@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Entre em contato com a ACURA BRASIL. Parcerias, convênios, dúvidas e informações institucionais.">
+    <title>Contato - ACURA BRASIL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo"><div class="logo-icon"></div> ACURA BRASIL</a>
+            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Início</a></li>
+                    <li><a href="instituicao.html" class="nav-link">A Instituição</a></li>
+                    <li><a href="pesquisas.html" class="nav-link">Pesquisas</a></li>
+                    <li><a href="sos-saude-rs.html" class="nav-link">SOS Saúde RS</a></li>
+                    <li><a href="transparencia.html" class="nav-link">Transparência</a></li>
+                    <li><a href="contato.html" class="nav-link">Contato</a></li>
+                </ul>
+            </nav>
+            <a href="associar.html" class="btn btn-verde header-cta">Seja um Associado</a>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="breadcrumb"><a href="index.html">Início</a> / Contato</div>
+        <h1>Contato</h1>
+        <p>Estamos à disposição para parcerias, convênios, dúvidas e informações institucionais.</p>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="contact-grid">
+                <div>
+                    <h2 style="font-size: 1.75rem; color: var(--azul-institucional); margin-bottom: 1.5rem;">Fale Conosco</h2>
+
+                    <div class="contact-info-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <div>
+                            <strong>Endereço</strong><br>
+                            Rua Ulhôa Cintra, nº 32, Loja 01, Sala 01<br>
+                            Bairro Santa Efigênia<br>
+                            Belo Horizonte/MG
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        <div>
+                            <strong>E-mail</strong><br>
+                            <a href="mailto:contato@acurabrasil.org.br" style="color: var(--azul-institucional);">contato@acurabrasil.org.br</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                        <div>
+                            <strong>Website</strong><br>
+                            www.acurabrasil.org
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: var(--cinza-claro); border-radius: var(--radius); border-left: 3px solid var(--verde-acao);">
+                        <strong style="color: var(--texto-escuro);">Novos Convênios e Parcerias</strong>
+                        <p style="color: var(--texto-mutado); font-size: 0.95rem; margin-top: 0.5rem; margin-bottom: 0;">
+                            Interessado em estabelecer convênio com a ACURA BRASIL? Entre em contato pelo formulário ao lado selecionando "Parceria/Convênio" como assunto.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--texto-escuro);">Envie sua mensagem</h3>
+                    <form action="mailto:contato@acurabrasil.org.br" method="post" enctype="text/plain">
+                        <div class="form-group">
+                            <label for="nome">Nome completo</label>
+                            <input type="text" id="nome" name="nome" required placeholder="Seu nome">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="assunto">Assunto</label>
+                            <select id="assunto" name="assunto" required>
+                                <option value="">Selecione...</option>
+                                <option value="associacao">Associação / Admissão</option>
+                                <option value="parceria">Parceria / Convênio</option>
+                                <option value="pesquisa">Pesquisa / Projeto</option>
+                                <option value="transparencia">Transparência / Documentos</option>
+                                <option value="sos-saude">SOS Saúde RS</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensagem">Mensagem</label>
+                            <textarea id="mensagem" name="mensagem" required placeholder="Escreva sua mensagem..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-verde" style="width: 100%;">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="logo"><div class="logo-icon"></div> ACURA BRASIL</a>
+                <p class="footer-desc">Associação Brasil pela Cura. Entidade sem fins econômicos dedicada ao avanço da ciência, fomento à pesquisa e assistência humanitária.</p>
+                <span class="footer-cnpj">CNPJ: 00.000.000/0001-00 · OSCIP</span>
+            </div>
+            <div>
+                <h4 class="footer-title">Navegação</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="instituicao.html">Sobre Nós</a></li>
+                    <li><a href="pesquisas.html">Áreas de Atuação</a></li>
+                    <li><a href="sos-saude-rs.html">SOS Saúde RS</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">Transparência</h4>
+                <ul class="footer-links">
+                    <li><a href="transparencia.html">Portal da Transparência</a></li>
+                    <li><a href="docs/projeto-sos-saude-rs.pdf" target="_blank">Projeto SOS Saúde RS (PDF)</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">Contato</h4>
+                <div class="footer-contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span>Belo Horizonte, MG · Brasil</span>
+                </div>
+                <div class="footer-contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    <span>contato@acurabrasil.org.br</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ACURA BRASIL. Todos os direitos reservados.</p>
+            <p>Desenvolvido em conformidade com as diretrizes de transparência pública.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
