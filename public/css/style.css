@@ -397,6 +397,13 @@ img:not(.logo-img) {
     text-decoration: underline;
 }
 
+.content-block .breadcrumb {
+    justify-content: flex-start;
+    color: var(--texto-mutado);
+    opacity: 1;
+    margin-bottom: 1rem;
+}
+
 /* ==========================================================================
    Section utilities
    ========================================================================== */
@@ -1803,6 +1810,9 @@ img:not(.logo-img) {
     .emergency-banner p { margin-left: auto; margin-right: auto; }
     .emergency-stats-inline { justify-content: center; }
     .emergency-cta-box { min-width: auto; }
+    .emergency-cta-box .btn { width: 100%; max-width: 320px; }
+    .emergency-banner-inner { padding: 2rem 1.25rem; }
+    .emergency-banner h2 { font-size: 1.5rem; }
 }
 
 @media (max-width: 640px) {
