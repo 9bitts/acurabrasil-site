@@ -18,6 +18,9 @@
     --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.04);
     --radius: 8px;
     --header-height: 72px;
+    --urgencia: #c0392b;
+    --urgencia-escuro: #922b21;
+    --urgencia-claro: #fdf2f2;
 }
 
 *, *::before, *::after {
@@ -317,6 +320,11 @@ img {
     background-image: url('https://images.unsplash.com/photo-1532187643603-ba119ca4109e?auto=format&fit=crop&w=1920&q=80');
     background-size: cover;
     background-position: center;
+}
+
+.hero.hero-home {
+    min-height: 70vh;
+    padding-top: 0;
 }
 
 .hero::before {
@@ -983,6 +991,168 @@ img {
 }
 
 /* ==========================================================================
+   Emergency banner (Venezuela / humanitarian crises)
+   ========================================================================== */
+.emergency-banner {
+    margin-top: var(--header-height);
+    background: linear-gradient(135deg, var(--urgencia-escuro) 0%, #1a1a2e 50%, var(--azul-escuro) 100%);
+    color: var(--branco);
+    position: relative;
+    overflow: hidden;
+}
+
+.emergency-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1584438784894-089ae6dceb39?auto=format&fit=crop&w=1920&q=60') center/cover;
+    opacity: 0.15;
+}
+
+.emergency-banner-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+}
+
+.emergency-pulse {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(192, 57, 43, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: var(--branco);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.emergency-pulse::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #ff6b6b;
+    border-radius: 50%;
+    animation: pulse-dot 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+.emergency-banner h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+}
+
+.emergency-banner p {
+    font-size: 1.05rem;
+    opacity: 0.92;
+    max-width: 650px;
+    margin-bottom: 1.25rem;
+}
+
+.emergency-stats-inline {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.emergency-stat-inline {
+    font-size: 0.875rem;
+    opacity: 0.85;
+}
+
+.emergency-stat-inline strong {
+    display: block;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #ffb4a2;
+}
+
+.emergency-cta-box {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    min-width: 260px;
+}
+
+.emergency-cta-box p {
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+    max-width: none;
+}
+
+.btn-urgencia {
+    background-color: var(--urgencia);
+    color: var(--branco);
+    width: 100%;
+}
+
+.btn-urgencia:hover {
+    background-color: #a93226;
+    transform: translateY(-1px);
+}
+
+.page-hero.emergency {
+    background: linear-gradient(135deg, var(--urgencia-escuro) 0%, var(--azul-escuro) 100%);
+}
+
+.alert-info {
+    background: var(--urgencia-claro);
+    border-left: 4px solid var(--urgencia);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+    color: var(--texto-escuro);
+}
+
+.cta-voluntario {
+    background: linear-gradient(135deg, var(--azul-institucional), var(--azul-escuro));
+    border-radius: 12px;
+    padding: 2.5rem;
+    color: var(--branco);
+    margin: 2.5rem 0;
+    text-align: center;
+}
+
+.cta-voluntario h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--branco);
+}
+
+.cta-voluntario p {
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 700px;
+    margin: 0 auto 1.5rem;
+}
+
+.cta-voluntario-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ==========================================================================
    Footer
    ========================================================================== */
 .footer {
@@ -1146,6 +1316,10 @@ img {
     .transparencia-text { font-size: 1.25rem; }
     .sos-stats { grid-template-columns: 1fr; }
     .doc-download { flex-direction: column; text-align: center; }
+    .emergency-banner-inner { grid-template-columns: 1fr; text-align: center; }
+    .emergency-banner p { margin-left: auto; margin-right: auto; }
+    .emergency-stats-inline { justify-content: center; }
+    .emergency-cta-box { min-width: auto; }
 }
 
 @media (max-width: 640px) {
