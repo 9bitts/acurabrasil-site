@@ -1,84 +1,97 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="es-VE">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ACURA BRASIL - Associação Brasil pela Cura. Fomento à pesquisa científica, atendimento humanitário e transparência pública.">
-    <title>ACURA BRASIL - Associação Brasil pela Cura</title>
+    <meta name="description" data-i18n-content="index.meta.description" content="ACURA BRASIL - Asociación Brasil por la Cura. Fomento de la investigación científica, atención humanitaria y transparencia pública.">
+    <title>ACURA BRASIL - Asociación Brasil por la Cura</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=6">
+    <link rel="stylesheet" href="css/style.css?v=7">
+    <script src="js/i18n-data.js"></script>
+    <script>try{var l=localStorage.getItem('acura.lang')||'es';document.documentElement.lang=l==='es'?'es-VE':'pt-BR';}catch(e){}</script>
 </head>
-<body>
+<body data-i18n-title="index.meta.title">
 
     <header class="header">
         <div class="header-container">
             <a href="index.html" class="logo">
-                <img src="img/logo-header.png" alt="ACURA BRASIL — Associação Brasil pela Cura" class="logo-img">
+                <img src="img/logo-header.png" alt="ACURA BRASIL" class="logo-img">
             </a>
-            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+            <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" data-i18n-aria="common.menuOpen">
                 <span></span><span></span><span></span>
             </button>
-            <nav>
+            <nav class="header-nav">
                 <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link">Início</a></li>
-                    <li><a href="instituicao.html" class="nav-link">A Instituição</a></li>
-                    <li><a href="pesquisas.html" class="nav-link">Pesquisas</a></li>
-                    <li><a href="atendimento-pandemia.html" class="nav-link">Pandemia COVID-19</a></li>
-                    <li><a href="sos-saude-rs.html" class="nav-link">SOS Saúde RS</a></li>
-                    <li><a href="sos-venezuela.html" class="nav-link">SOS Venezuela</a></li>
-                    <li><a href="consulta-venezuela.html" class="nav-link nav-link-destaque">Consulta Online</a></li>
-                    <li><a href="transparencia.html" class="nav-link">Transparência</a></li>
-                    <li><a href="contato.html" class="nav-link">Contato</a></li>
+                    <li><a href="index.html" class="nav-link" data-i18n="nav.home">Inicio</a></li>
+                    <li><a href="sos-venezuela.html" class="nav-link" data-i18n="nav.sosVe">SOS Venezuela</a></li>
+                    <li><a href="consulta-venezuela.html" class="nav-link nav-link-destaque" data-i18n="nav.consult">Consulta en línea</a></li>
+                    <li><a href="instituicao.html" class="nav-link" data-i18n="nav.about">Institución</a></li>
+                    <li class="nav-dropdown">
+                        <button type="button" class="nav-dropdown-toggle" aria-expanded="false" data-i18n="nav.more">Más</button>
+                        <ul class="nav-dropdown-menu">
+                            <li><a href="pesquisas.html" data-i18n="nav.research">Investigación</a></li>
+                            <li><a href="atendimento-pandemia.html" data-i18n="nav.covid">Pandemia COVID-19</a></li>
+                            <li><a href="sos-saude-rs.html" data-i18n="nav.sosRs">SOS Saúde RS</a></li>
+                            <li><a href="transparencia.html" data-i18n="nav.transparency">Transparencia</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contato.html" class="nav-link" data-i18n="nav.contact">Contacto</a></li>
                 </ul>
             </nav>
-            <a href="associar.html" class="btn btn-verde header-cta">Seja um Associado</a>
+            <div class="header-actions">
+                <button type="button" class="lang-toggle" id="lang-toggle" title="Português">
+                    <span class="lang-toggle-flag" aria-hidden="true">🇧🇷</span>
+                    <span class="lang-toggle-label">PT</span>
+                </button>
+                <a href="associar.html" class="btn btn-verde header-cta" data-i18n="nav.join">Asociarse</a>
+            </div>
         </div>
     </header>
 
     <section class="emergency-banner">
         <div class="emergency-banner-inner">
             <div class="emergency-banner-content">
-                <span class="emergency-pulse">Emergência Humanitária · 24 de junho de 2026</span>
-                <h2>Terremotos na Venezuela: a ACURA BRASIL mobiliza apoio à distância</h2>
-                <p>
-                    Dois terremotos de magnitude 7,2 e 7,5 devastaram o norte da Venezuela. Caracas, La Guaira e dezenas de municípios precisam de assistência médica e psicológica urgente — e você pode ajudar como voluntário ou profissional de saúde.
+                <span class="emergency-pulse" data-i18n="index.emergency.pulse">Emergencia Humanitaria · 24 de junio de 2026</span>
+                <h2 data-i18n="index.emergency.title">Terremotos en Venezuela: ACURA BRASIL moviliza apoyo a distancia</h2>
+                <p data-i18n="index.emergency.text">
+                    Dos terremotos de magnitud 7,2 y 7,5 devastaron el norte de Venezuela. Caracas, La Guaira y decenas de municipios necesitan asistencia médica y psicológica urgente — y usted puede ayudar como voluntario o profesional de la salud.
                 </p>
                 <div class="emergency-stats-inline">
                     <div class="emergency-stat-inline">
-                        <strong>7,5 Mw</strong>
-                        <span>Maior magnitude registrada</span>
+                        <strong data-i18n="index.emergency.stat1.value">7,5 Mw</strong>
+                        <span data-i18n="index.emergency.stat1.label">Mayor magnitud registrada</span>
                     </div>
                     <div class="emergency-stat-inline">
-                        <strong>500+</strong>
-                        <span>Vítimas fatais confirmadas*</span>
+                        <strong data-i18n="index.emergency.stat2.value">500+</strong>
+                        <span data-i18n="index.emergency.stat2.label">Víctimas fatales confirmadas*</span>
                     </div>
                     <div class="emergency-stat-inline">
-                        <strong>4.300+</strong>
-                        <span>Feridos reportados*</span>
+                        <strong data-i18n="index.emergency.stat3.value">4.300+</strong>
+                        <span data-i18n="index.emergency.stat3.label">Heridos reportados*</span>
                     </div>
                 </div>
-                <p class="emergency-footnote">*Cifras oficiais em atualização conforme avançam os resgates.</p>
+                <p class="emergency-footnote" data-i18n="index.emergency.footnote">*Cifras oficiales en actualización conforme avanzan los rescates.</p>
             </div>
             <div class="emergency-cta-box">
-                <p>Saiba como a ACURA BRASIL pode ajudar com telemedicina gratuita via Doctor8 — o mesmo modelo do SOS Saúde RS.</p>
-                <a href="consulta-venezuela.html" class="btn btn-consulta-principal btn-consulta-inline">Iniciar consulta agora →</a>
-                <a href="sos-venezuela.html" class="btn btn-urgencia" style="margin-top: 0.75rem;">Como Ajudar a Venezuela →</a>
+                <p data-i18n="index.emergency.cta.text">Conozca cómo ACURA BRASIL puede ayudar con telemedicina gratuita vía Doctor8 — el mismo modelo del SOS Salud RS.</p>
+                <a href="consulta-venezuela.html" class="btn btn-consulta-principal btn-consulta-inline" data-i18n="index.emergency.cta.consult">Iniciar consulta ahora →</a>
+                <a href="sos-venezuela.html" class="btn btn-urgencia" style="margin-top: 0.75rem;" data-i18n="index.emergency.cta.help">Cómo Ayudar a Venezuela →</a>
             </div>
         </div>
     </section>
 
     <section class="hero hero-home">
         <div class="hero-container">
-            <span class="hero-tag">Inovação Médica &amp; Atendimento Humanitário</span>
-            <h1 class="hero-title">A Ciência a Serviço da Vida e da Esperança.</h1>
-            <p class="hero-subtitle">
-                Promovemos o desenvolvimento científico brasileiro. Da biologia e genética estrutural ao atendimento humanitário, transformamos pesquisas avançadas em curas reais para humanos e animais.
+            <span class="hero-tag" data-i18n="index.hero.tag">Innovación Médica y Atención Humanitaria</span>
+            <h1 class="hero-title" data-i18n="index.hero.title">La Ciencia al Servicio de la Vida y la Esperanza.</h1>
+            <p class="hero-subtitle" data-i18n="index.hero.subtitle">
+                Promovemos el desarrollo científico brasileño. De la biología y genética estructural a la atención humanitaria, transformamos investigaciones avanzadas en curas reales para humanos y animales.
             </p>
             <div class="hero-actions">
-                <a href="associar.html" class="btn btn-verde">Apoie a Pesquisa</a>
-                <a href="pesquisas.html" class="btn btn-transparente">Conhecer Áreas de Atuação</a>
+                <a href="associar.html" class="btn btn-verde" data-i18n="index.hero.btn.research">Apoyar la Investigación</a>
+                <a href="pesquisas.html" class="btn btn-transparente" data-i18n="index.hero.btn.areas">Conocer Áreas de Actuación</a>
             </div>
         </div>
     </section>
@@ -87,49 +100,49 @@
         <div class="container">
             <div class="sos-highlight-grid">
                 <div>
-                    <span class="sos-badge">Projeto em Destaque</span>
-                    <h2>SOS Saúde Rio Grande do Sul</h2>
-                    <p>
-                        Como parte do projeto <strong>Reconstrução Saúde Rio Grande do Sul</strong>, a ACURA BRASIL mobilizou profissionais de saúde de todo o Brasil para oferecer atendimento médico e psicológico gratuito às vítimas das enchentes de 2024 no RS.
+                    <span class="sos-badge" data-i18n="index.sos.badge">Proyecto Destacado</span>
+                    <h2 data-i18n="index.sos.title">SOS Salud Río Grande do Sul</h2>
+                    <p data-i18n="index.sos.p1" data-i18n-html>
+                        Como parte del proyecto <strong>Reconstrucción Salud Río Grande do Sul</strong>, ACURA BRASIL movilizó profesionales de salud de todo Brasil para ofrecer atención médica y psicológica gratuita a las víctimas de las inundaciones de 2024 en RS.
                     </p>
-                    <p>
-                        O projeto implementou uma estratégia de atendimento multidisciplinar com triagem por prioridade, telemedicina via plataforma Doctor8 e acompanhamento pós-consulta — documentado integralmente no relatório técnico da instituição.
+                    <p data-i18n="index.sos.p2">
+                        El proyecto implementó una estrategia de atención multidisciplinaria con triaje por prioridad, telemedicina vía plataforma Doctor8 y seguimiento post-consulta — documentado integralmente en el informe técnico de la institución.
                     </p>
                     <div class="sos-stats">
                         <div class="sos-stat">
-                            <strong>2.664</strong>
-                            <span>Solicitações de consulta</span>
+                            <strong data-i18n="index.sos.stat1.value">2.664</strong>
+                            <span data-i18n="index.sos.stat1.label">Solicitudes de consulta</span>
                         </div>
                         <div class="sos-stat">
-                            <strong>100+</strong>
-                            <span>Cidades atendidas</span>
+                            <strong data-i18n="index.sos.stat2.value">100+</strong>
+                            <span data-i18n="index.sos.stat2.label">Ciudades atendidas</span>
                         </div>
                         <div class="sos-stat">
-                            <strong>4</strong>
-                            <span>Modalidades de profissionais</span>
+                            <strong data-i18n="index.sos.stat3.value">4</strong>
+                            <span data-i18n="index.sos.stat3.label">Modalidades de profesionales</span>
                         </div>
                     </div>
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <a href="sos-saude-rs.html" class="btn btn-azul">Conhecer o Projeto Completo</a>
-                        <a href="docs/projeto-sos-saude-rs.pdf" class="btn btn-outline" target="_blank" rel="noopener">Baixar Documento (PDF)</a>
+                        <a href="sos-saude-rs.html" class="btn btn-azul" data-i18n="index.sos.btn.project">Conocer el Proyecto Completo</a>
+                        <a href="docs/projeto-sos-saude-rs.pdf" class="btn btn-outline" target="_blank" rel="noopener" data-i18n="index.sos.btn.pdf">Descargar Documento (PDF)</a>
                     </div>
                 </div>
                 <div class="sos-card">
                     <div class="sos-card-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                     </div>
-                    <h3>Documento de Referência</h3>
-                    <p style="font-size: 0.9rem; color: var(--texto-mutado); margin-bottom: 1rem;">
-                        O relatório <em>"Estratégia de Atendimento Multidisciplinar para Populações Afetadas pelas Enchentes de 2024 no Rio Grande do Sul"</em> detalha toda a operação:
+                    <h3 data-i18n="index.sos.card.title">Documento de Referencia</h3>
+                    <p style="font-size: 0.9rem; color: var(--texto-mutado); margin-bottom: 1rem;" data-i18n="index.sos.card.intro" data-i18n-html>
+                        El informe <em>"Estrategia de Atención Multidisciplinaria para Poblaciones Afectadas por las Inundaciones de 2024 en Río Grande do Sul"</em> detalla toda la operación:
                     </p>
                     <ul>
-                        <li>Jornada completa do paciente (6 etapas)</li>
-                        <li>Sistema de triagem e filas de prioridade</li>
-                        <li>Cadastro de médicos, psicólogos e voluntários</li>
-                        <li>Relatório de impacto com dados oficiais</li>
-                        <li>Cuidados paliativos e práticas integrativas</li>
+                        <li data-i18n="index.sos.card.li1">Recorrido completo del paciente (6 etapas)</li>
+                        <li data-i18n="index.sos.card.li2">Sistema de triaje y filas de prioridad</li>
+                        <li data-i18n="index.sos.card.li3">Registro de médicos, psicólogos y voluntarios</li>
+                        <li data-i18n="index.sos.card.li4">Informe de impacto con datos oficiales</li>
+                        <li data-i18n="index.sos.card.li5">Cuidados paliativos y prácticas integrativas</li>
                     </ul>
-                    <a href="sos-saude-rs.html" class="btn btn-verde" style="width: 100%;">Ver Detalhes do Documento</a>
+                    <a href="sos-saude-rs.html" class="btn btn-verde" style="width: 100%;" data-i18n="index.sos.card.btn">Ver Detalles del Documento</a>
                 </div>
             </div>
         </div>
@@ -138,37 +151,37 @@
     <section class="section" id="atuacao">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Nossas Frentes de Pesquisa e Atendimento</h2>
-                <p class="section-subtitle">Unimos o rigor da comunidade científica ao acolhimento humano para gerar impacto real.</p>
+                <h2 class="section-title" data-i18n="index.areas.title">Nuestras Frentes de Investigación y Atención</h2>
+                <p class="section-subtitle" data-i18n="index.areas.subtitle">Unimos el rigor de la comunidad científica al acogimiento humano para generar impacto real.</p>
             </div>
             <div class="grid-atuacao">
                 <article class="card-atuacao">
                     <div class="card-icon-container">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 10.5C3.5 11.5 2 13 2 15s1.5 3.5 3.5 3.5c1.5 0 3-1.5 4-2.5"/><path d="M19.5 13.5c1 1 2.5 2.5 2.5 4.5s-1.5 3.5-3.5 3.5c-1.5 0-3-1.5-4-2.5"/><path d="m6 6 12 12"/><path d="m18 6-12 12"/></svg>
                     </div>
-                    <h3 class="card-title">Genética e Bioengenharia</h3>
-                    <p class="card-text">Desenvolvimento de tecnologias de ponta voltadas para diagnósticos biológicos precisos e tratamentos personalizados.</p>
+                    <h3 class="card-title" data-i18n="index.areas.genetics.title">Genética y Bioingeniería</h3>
+                    <p class="card-text" data-i18n="index.areas.genetics.text">Desarrollo de tecnologías de punta orientadas a diagnósticos biológicos precisos y tratamientos personalizados.</p>
                 </article>
                 <article class="card-atuacao">
                     <div class="card-icon-container">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 9.7a1 1 0 0 1-.68 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 .76-.97l8-2a1 1 0 0 1 .48 0l8 2A1 1 0 0 1 20 6Z"/></svg>
                     </div>
-                    <h3 class="card-title">Imunologia e Vacinas</h3>
-                    <p class="card-text">Fomento e suporte à pesquisa de novas soluções médicas e farmacêuticas para o combate a patologias complexas.</p>
+                    <h3 class="card-title" data-i18n="index.areas.immuno.title">Inmunología y Vacunas</h3>
+                    <p class="card-text" data-i18n="index.areas.immuno.text">Fomento y apoyo a la investigación de nuevas soluciones médicas y farmacéuticas para el combate de patologías complejas.</p>
                 </article>
                 <article class="card-atuacao">
                     <div class="card-icon-container">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4c0-1.1.9-2 2-2h8a2 2 0 0 1 2 2v5Z"/><path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-3"/></svg>
                     </div>
-                    <h3 class="card-title">Ação Humanitária</h3>
-                    <p class="card-text">Levamos suporte, cuidado médico e assistência técnica a comunidades vulneráveis, integrando saúde e solidariedade.</p>
+                    <h3 class="card-title" data-i18n="index.areas.humanitarian.title">Acción Humanitaria</h3>
+                    <p class="card-text" data-i18n="index.areas.humanitarian.text">Llevamos apoyo, cuidado médico y asistencia técnica a comunidades vulnerables, integrando salud y solidaridad.</p>
                 </article>
                 <article class="card-atuacao">
                     <div class="card-icon-container">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z"/><path d="M12 6v12"/><path d="M6 12h12"/></svg>
                     </div>
-                    <h3 class="card-title">Apoio à Sociedade</h3>
-                    <p class="card-text">Programas estruturados de pesquisa social e suporte direto, incluindo intervenções e combate à dependência química.</p>
+                    <h3 class="card-title" data-i18n="index.areas.society.title">Apoyo a la Sociedad</h3>
+                    <p class="card-text" data-i18n="index.areas.society.text">Programas estructurados de investigación social y apoyo directo, incluyendo intervenciones y combate a la dependencia química.</p>
                 </article>
             </div>
         </div>
@@ -176,11 +189,11 @@
 
     <section class="transparencia">
         <div class="transparencia-container">
-            <span class="transparencia-badge">Qualificação OSCIP Certificada</span>
-            <p class="transparencia-text">
-                Como uma OSCIP reconhecida, a ACURA BRASIL baseia a sua atuação no rigor científico e na absoluta transparência pública. Cada contribuição é um passo firme rumo a novas descobertas.
+            <span class="transparencia-badge" data-i18n="index.transparency.badge">Calificación OSCIP Certificada</span>
+            <p class="transparencia-text" data-i18n="index.transparency.text">
+                Como OSCIP reconocida, ACURA BRASIL basa su actuación en el rigor científico y la absoluta transparencia pública. Cada contribución es un paso firme hacia nuevos descubrimientos.
             </p>
-            <a href="transparencia.html" class="btn btn-transparente">Acessar Portal da Transparência</a>
+            <a href="transparencia.html" class="btn btn-transparente" data-i18n="index.transparency.btn">Acceder al Portal de Transparencia</a>
         </div>
     </section>
 
@@ -188,39 +201,39 @@
         <div class="container">
             <div class="associar-container">
                 <div class="associar-content">
-                    <h2 class="associar-title">Junte-se à linha de frente da ciência brasileira.</h2>
-                    <p class="associar-description">
-                        Pesquisadores, cidadãos, empresas e instituições unidos por um único propósito: a cura. Conheça as nossas modalidades de ingresso e faça parte do ecossistema de inovação da ACURA BRASIL.
+                    <h2 class="associar-title" data-i18n="index.associar.title">Únase a la línea de frente de la ciencia brasileña.</h2>
+                    <p class="associar-description" data-i18n="index.associar.description">
+                        Investigadores, ciudadanos, empresas e instituciones unidos por un único propósito: la cura. Conozca nuestras modalidades de ingreso y forme parte del ecosistema de innovación de ACURA BRASIL.
                     </p>
                     <ul class="categorias-list">
                         <li class="categoria-item">
                             <div>
-                                <strong>Contribuinte</strong>
-                                <span>Cidadãos que apoiam financeiramente as pesquisas cotidianas.</span>
+                                <strong data-i18n="index.associar.contribuinte.title">Contribuyente</strong>
+                                <span data-i18n="index.associar.contribuinte.desc">Ciudadanos que apoyan financieramente las investigaciones cotidianas.</span>
                             </div>
                         </li>
                         <li class="categoria-item">
                             <div>
-                                <strong>Pesquisador</strong>
-                                <span>Profissionais da saúde e cientistas focados no desenvolvimento técnico.</span>
+                                <strong data-i18n="index.associar.pesquisador.title">Investigador</strong>
+                                <span data-i18n="index.associar.pesquisador.desc">Profesionales de la salud y científicos enfocados en el desarrollo técnico.</span>
                             </div>
                         </li>
                         <li class="categoria-item">
                             <div>
-                                <strong>Benemérito</strong>
-                                <span>Membros reconhecidos por serviços ou doações de alto impacto.</span>
+                                <strong data-i18n="index.associar.benemerito.title">Benemérito</strong>
+                                <span data-i18n="index.associar.benemerito.desc">Miembros reconocidos por servicios o donaciones de alto impacto.</span>
                             </div>
                         </li>
                         <li class="categoria-item">
                             <div>
-                                <strong>Patrocinador</strong>
-                                <span>Pessoas físicas ou jurídicas que financiam projetos específicos.</span>
+                                <strong data-i18n="index.associar.patrocinador.title">Patrocinador</strong>
+                                <span data-i18n="index.associar.patrocinador.desc">Personas físicas o jurídicas que financian proyectos específicos.</span>
                             </div>
                         </li>
                         <li class="categoria-item" style="grid-column: span 2;">
                             <div>
-                                <strong>Institucional</strong>
-                                <span>Universidades, laboratórios e entidades parceiras em convênios.</span>
+                                <strong data-i18n="index.associar.institucional.title">Institucional</strong>
+                                <span data-i18n="index.associar.institucional.desc">Universidades, laboratorios y entidades asociadas en convenios.</span>
                             </div>
                         </li>
                     </ul>
@@ -229,9 +242,9 @@
                     <div class="conversao-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                     </div>
-                    <h3>Solicitar Admissão</h3>
-                    <p>O processo de ingresso em qualquer categoria envolve o preenchimento e análise da nossa ficha cadastral interna.</p>
-                    <a href="associar.html" class="btn btn-verde">Quero me Associar</a>
+                    <h3 data-i18n="index.associar.card.title">Solicitar Admisión</h3>
+                    <p data-i18n="index.associar.card.text">El proceso de ingreso en cualquier categoría implica el llenado y análisis de nuestra ficha de registro interna.</p>
+                    <a href="associar.html" class="btn btn-verde" data-i18n="index.associar.card.btn">Quiero Asociarme</a>
                 </div>
             </div>
         </div>
@@ -241,55 +254,55 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <a href="index.html" class="logo">
-                    <img src="img/logo-header.png" alt="ACURA BRASIL — Associação Brasil pela Cura" class="logo-img">
+                    <img src="img/logo-header.png" alt="ACURA BRASIL" class="logo-img">
                 </a>
-                <p class="footer-desc">
-                    Associação Brasil pela Cura. Uma entidade sem fins econômicos dedicada ao avanço da ciência, fomento à pesquisa e assistência humanitária.
+                <p class="footer-desc" data-i18n="footer.desc">
+                    Asociación Brasil por la Cura. Entidad sin fines de lucro dedicada al avance de la ciencia, el fomento de la investigación y la asistencia humanitaria.
                 </p>
-                <span class="footer-cnpj">CNPJ: 30.350.850/0001-80 · OSCIP</span>
+                <span class="footer-cnpj" data-i18n="common.cnpj">CNPJ: 30.350.850/0001-80 · OSCIP</span>
             </div>
             <div>
-                <h4 class="footer-title">Navegação</h4>
+                <h4 class="footer-title" data-i18n="footer.nav">Navegación</h4>
                 <ul class="footer-links">
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="instituicao.html">Sobre Nós</a></li>
-                    <li><a href="pesquisas.html">Áreas de Atuação</a></li>
-                    <li><a href="sos-saude-rs.html">SOS Saúde RS</a></li>
-                    <li><a href="consulta-venezuela.html">Consulta Online</a></li>
-                    <li><a href="sos-venezuela.html">SOS Venezuela</a></li>
-                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="index.html" data-i18n="footer.home">Inicio</a></li>
+                    <li><a href="instituicao.html" data-i18n="footer.about">Sobre Nosotros</a></li>
+                    <li><a href="pesquisas.html" data-i18n="footer.areas">Áreas de Actuación</a></li>
+                    <li><a href="sos-saude-rs.html" data-i18n="footer.sosRs">SOS Salud RS</a></li>
+                    <li><a href="consulta-venezuela.html" data-i18n="footer.consult">Consulta en Línea</a></li>
+                    <li><a href="sos-venezuela.html" data-i18n="footer.sosVe">SOS Venezuela</a></li>
+                    <li><a href="contato.html" data-i18n="footer.contactLink">Contacto</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="footer-title">Transparência</h4>
+                <h4 class="footer-title" data-i18n="footer.transparency">Transparencia</h4>
                 <ul class="footer-links">
-                    <li><a href="transparencia.html">Portal da Transparência</a></li>
-                    <li><a href="transparencia.html#estatuto">Estatuto Social</a></li>
-                    <li><a href="docs/estatuto-social-2022.pdf" target="_blank">Estatuto Social (PDF)</a></li>
-                    <li><a href="docs/comprovante-cnpj.pdf" target="_blank">Comprovante CNPJ (PDF)</a></li>
-                    <li><a href="transparencia.html#balancos">Balanços Financeiros</a></li>
-                    <li><a href="transparencia.html#relatorios">Relatórios de Atividades</a></li>
-                    <li><a href="docs/projeto-sos-saude-rs.pdf" target="_blank">Projeto SOS Saúde RS (PDF)</a></li>
+                    <li><a href="transparencia.html" data-i18n="footer.portal">Portal de Transparencia</a></li>
+                    <li><a href="transparencia.html#estatuto" data-i18n="footer.estatuto">Estatuto Social</a></li>
+                    <li><a href="docs/estatuto-social-2022.pdf" target="_blank" rel="noopener" data-i18n="footer.estatutoPdf">Estatuto Social (PDF)</a></li>
+                    <li><a href="docs/comprovante-cnpj.pdf" target="_blank" rel="noopener" data-i18n="footer.cnpjPdf">Comprobante CNPJ (PDF)</a></li>
+                    <li><a href="transparencia.html#balancos" data-i18n="footer.balancos">Balances Financieros</a></li>
+                    <li><a href="transparencia.html#relatorios" data-i18n="footer.relatorios">Informes de Actividades</a></li>
+                    <li><a href="docs/projeto-sos-saude-rs.pdf" target="_blank" rel="noopener" data-i18n="footer.projetoSosRs">Proyecto SOS Salud RS (PDF)</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="footer-title">Contato</h4>
+                <h4 class="footer-title" data-i18n="footer.contact">Contacto</h4>
                 <div class="footer-contact-item">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                    <span>Rua Ulhôa Cintra, nº 32, Loja 01, Sala 01<br>Bairro Santa Efigênia, Belo Horizonte/MG</span>
+                    <span data-i18n="footer.address" data-i18n-html>Rua Ulhôa Cintra, nº 32, Loja 01, Sala 01<br>Barrio Santa Efigênia, Belo Horizonte/MG</span>
                 </div>
                 <div class="footer-contact-item">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                    <span>contato@acurabrasil.org</span>
+                    <span data-i18n="footer.email">contato@acurabrasil.org</span>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 ACURA BRASIL. Todos os direitos reservados.</p>
-            <p>Desenvolvido em conformidade com as diretrizes de transparência pública.</p>
+            <p data-i18n="common.rights">&copy; 2026 ACURA BRASIL. Todos los derechos reservados.</p>
+            <p data-i18n="common.transparencyFooter">Desarrollado en conformidad con las directrices de transparencia pública.</p>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script src="js/i18n.js"></script><script src="js/main.js"></script>
 </body>
 </html>

@@ -1,330 +1,139 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="es-VE">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SOS Saúde Rio Grande do Sul - Atendimento multidisciplinar gratuito às vítimas das enchentes de 2024. Projeto da ACURA BRASIL.">
-    <title>SOS Saúde RS - ACURA BRASIL</title>
+    <meta name="description" data-i18n-content="sosrs.meta.description" content="SOS Salud Río Grande do Sul - Atención multidisciplinaria gratuita a las víctimas de las inundaciones de 2024. Proyecto de ACURA BRASIL.">
+    <title>SOS Salud RS - ACURA BRASIL</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=6">
+    <link rel="stylesheet" href="css/style.css?v=7">
+    <script src="js/i18n-data.js"></script>
+    <script>try{var l=localStorage.getItem('acura.lang')||'es';document.documentElement.lang=l==='es'?'es-VE':'pt-BR';}catch(e){}</script>
 </head>
-<body>
-
+<body data-i18n-title="sosrs.meta.title">
     <header class="header">
         <div class="header-container">
             <a href="index.html" class="logo">
-                <img src="img/logo-header.png" alt="ACURA BRASIL — Associação Brasil pela Cura" class="logo-img">
+                <img src="img/logo-header.png" alt="ACURA BRASIL" class="logo-img">
             </a>
-            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+            <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" data-i18n-aria="common.menuOpen">
                 <span></span><span></span><span></span>
             </button>
-            <nav>
+            <nav class="header-nav">
                 <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link">Início</a></li>
-                    <li><a href="instituicao.html" class="nav-link">A Instituição</a></li>
-                    <li><a href="pesquisas.html" class="nav-link">Pesquisas</a></li>
-                    <li><a href="atendimento-pandemia.html" class="nav-link">Pandemia COVID-19</a></li>
-                    <li><a href="sos-saude-rs.html" class="nav-link">SOS Saúde RS</a></li>
-                    <li><a href="sos-venezuela.html" class="nav-link">SOS Venezuela</a></li>
-                    <li><a href="consulta-venezuela.html" class="nav-link nav-link-destaque">Consulta Online</a></li>
-                    <li><a href="transparencia.html" class="nav-link">Transparência</a></li>
-                    <li><a href="contato.html" class="nav-link">Contato</a></li>
+                    <li><a href="index.html" class="nav-link" data-i18n="nav.home">Inicio</a></li>
+                    <li><a href="sos-venezuela.html" class="nav-link" data-i18n="nav.sosVe">SOS Venezuela</a></li>
+                    <li><a href="consulta-venezuela.html" class="nav-link nav-link-destaque" data-i18n="nav.consult">Consulta en línea</a></li>
+                    <li><a href="instituicao.html" class="nav-link" data-i18n="nav.about">Institución</a></li>
+                    <li class="nav-dropdown">
+                        <button type="button" class="nav-dropdown-toggle" aria-expanded="false" data-i18n="nav.more">Más</button>
+                        <ul class="nav-dropdown-menu">
+                            <li><a href="pesquisas.html" data-i18n="nav.research">Investigación</a></li>
+                            <li><a href="atendimento-pandemia.html" data-i18n="nav.covid">Pandemia COVID-19</a></li>
+                            <li><a href="sos-saude-rs.html" data-i18n="nav.sosRs">SOS Saúde RS</a></li>
+                            <li><a href="transparencia.html" data-i18n="nav.transparency">Transparencia</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contato.html" class="nav-link" data-i18n="nav.contact">Contacto</a></li>
                 </ul>
             </nav>
-            <a href="associar.html" class="btn btn-verde header-cta">Seja um Associado</a>
+            <div class="header-actions">
+                <button type="button" class="lang-toggle" id="lang-toggle" title="Português">
+                    <span class="lang-toggle-flag" aria-hidden="true">🇧🇷</span>
+                    <span class="lang-toggle-label">PT</span>
+                </button>
+                <a href="associar.html" class="btn btn-verde header-cta" data-i18n="nav.join">Asociarse</a>
+            </div>
         </div>
     </header>
-
     <section class="page-hero">
-        <div class="breadcrumb">
-            <a href="index.html">Início</a> / SOS Saúde RS
-        </div>
-        <h1>SOS Saúde Rio Grande do Sul</h1>
-        <p>Estratégia de Atendimento Multidisciplinar para Populações Afetadas pelas Enchentes de 2024</p>
+        <div class="breadcrumb"><a href="index.html" data-i18n="common.breadcrumbHome">Inicio</a> / <span data-i18n="sosrs.breadcrumb">SOS Salud RS</span></div>
+        <h1 data-i18n="sosrs.hero.title">SOS Salud Río Grande do Sul</h1>
+        <p data-i18n="sosrs.hero.subtitle">Estrategia de Atención Multidisciplinaria para Poblaciones Afectadas por las Inundaciones de 2024</p>
     </section>
-
-    <section class="section">
-        <div class="container content-block">
-
-            <div class="doc-download">
-                <div class="doc-download-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                </div>
-                <div class="doc-download-text">
-                    <h4>Documento Oficial do Projeto (PDF)</h4>
-                    <p>Relatório completo elaborado pela Diretoria Executiva da ACURA BRASIL — Belo Horizonte, junho de 2024.</p>
-                </div>
-                <a href="docs/projeto-sos-saude-rs.pdf" class="btn btn-azul" target="_blank" rel="noopener">Baixar PDF</a>
-            </div>
-
-            <h2>1. Introdução</h2>
-            <p>
-                O <strong>SOS Saúde Rio Grande do Sul</strong>, como parte do projeto <em>Reconstrução Saúde Rio Grande do Sul</em>, surgiu do anseio de profissionais de saúde do Brasil em se unirem para socorrer as vítimas da enchente no RS. Durante momentos desafiadores, é crucial oferecer suporte médico e psicológico às pessoas afetadas.
-            </p>
-            <p>
-                Inicialmente composto por médicos e psicólogos, atualmente o SOS Saúde abrange profissionais divididos em quatro grandes grupos: <strong>médicos</strong>, <strong>psicólogos</strong>, <strong>psicanalistas</strong> e <strong>Anjos</strong> — enfermeiros, farmacêuticos, dentistas, fisioterapeutas, nutricionistas, terapeutas ocupacionais e integrativos, veterinários e voluntários da população em geral.
-            </p>
-            <p>
-                Os Anjos auxiliam no cadastro dos pacientes, ajudam a encontrar informações sobre medicamentos de doação e alimentos, organizam os dados dos pacientes e fazem a triagem dos casos, conferindo prioridades e reentradas.
-            </p>
-
-            <div class="stats-banner">
-                <div class="stat-item">
-                    <strong>2.664</strong>
-                    <span>Solicitações de consulta<br>(07/05 a 19/06/2024)</span>
-                </div>
-                <div class="stat-item">
-                    <strong>478</strong>
-                    <span>Municípios afetados<br>(Defesa Civil/RS)</span>
-                </div>
-                <div class="stat-item">
-                    <strong>2,4 mi</strong>
-                    <span>Pessoas afetadas<br>(Ministério Público)</span>
-                </div>
-                <div class="stat-item">
-                    <strong>100+</strong>
-                    <span>Cidades atendidas<br>pelo projeto</span>
-                </div>
-            </div>
-
-            <h2>2. Objetivos</h2>
-            <h3>2.1. Objetivo Geral</h3>
-            <p>
-                Oferecer apoio integral, tanto online quanto presencial, para as pessoas afetadas pelas enchentes no Rio Grande do Sul, que sofrem com prejuízos materiais e humanos, interrupção da atividade econômica e contaminação nas áreas inundadas.
-            </p>
-            <h3>2.2. Objetivos Específicos</h3>
-            <ul>
-                <li>Realizar consultas médicas e psicológicas online e presenciais em locais estratégicos dos municípios afetados.</li>
-                <li>Atender pacientes para troca de receitas de medicamentos de uso contínuo, profilaxia, síndromes respiratórias e gastrointestinais, dores musculares, leptospirose e demais doenças por veiculação hídrica.</li>
-                <li>Atender crises de abstinência por interrupção da medicação, depressão, ansiedade, pânico, reação aguda ao estresse e transtornos do sono.</li>
-                <li>Promover a triagem e o acompanhamento de casos de doenças crônicas e agudas.</li>
-                <li>Oferecer suporte psicológico especializado em traumas e crises.</li>
-                <li>Orientar sobre medidas de saúde preventiva e promoção da saúde em emergências.</li>
-                <li>Oferecer atendimento multidisciplinar coordenado por equipe de profissionais de saúde.</li>
-                <li>Articular com a rede de saúde local para garantir o encaminhamento adequado dos casos mais graves.</li>
-            </ul>
-
-            <h2>3. Justificativa</h2>
-            <p>
-                As enchentes de 2024 causaram diversos danos à saúde da população dos municípios afetados, tanto física quanto mentalmente. A perda de moradias, a interrupção dos serviços básicos e das atividades econômicas, e o trauma do evento podem levar ao aumento de doenças transmissíveis, doenças crônicas, transtornos de ansiedade e depressão.
-            </p>
-            <p>
-                O atendimento online e presencial por médicos e psicólogos voluntários é fundamental para garantir o acesso rápido e gratuito à saúde para a população afetada, especialmente para aqueles que perderam seus documentos ou que não possuem plano de saúde. O projeto contribui para a desmedicalização do sofrimento, oferecendo um espaço de acolhimento e escuta.
-            </p>
-
-            <h2>4. Público-Alvo</h2>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h4>Deslocados e Vítimas</h4>
-                    <p>Pessoas que perderam casas, bens e entes queridos; indivíduos acometidos por doenças durante a enchente.</p>
-                </div>
-                <div class="info-card">
-                    <h4>Doenças Crônicas</h4>
-                    <p>Pessoas com doenças crônicas ou pré-existentes que precisam de acompanhamento médico contínuo.</p>
-                </div>
-                <div class="info-card">
-                    <h4>Saúde Mental</h4>
-                    <p>Indivíduos com estresse, ansiedade, depressão ou transtornos mentais relacionados à crise.</p>
-                </div>
-                <div class="info-card">
-                    <h4>Linha de Frente</h4>
-                    <p>Trabalhadores da linha de frente — voluntários e socorristas que também necessitam de suporte.</p>
-                </div>
-                <div class="info-card">
-                    <h4>Cuidados Paliativos</h4>
-                    <p>Pessoas com sofrimento relacionado a doença grave que buscam melhorar a qualidade de vida.</p>
-                </div>
-                <div class="info-card">
-                    <h4>Escuta e Autoconhecimento</h4>
-                    <p>Pessoas que procuram escuta empática para resolução de conflitos internos e saúde mental.</p>
-                </div>
-            </div>
-
-            <h2>5. Abrangência</h2>
-            <p>
-                População residente ou em trânsito nos Municípios do Rio Grande do Sul relatados em Boletim da Defesa Civil como afetados pelas enchentes. O projeto registrou atendimentos em mais de 100 localidades, incluindo Porto Alegre, Canoas, Pelotas, Lajeado, São Leopoldo, Novo Hamburgo, Gravataí, Caxias do Sul, Santa Maria e dezenas de outras cidades gaúchas.
-            </p>
-
-            <h2>6. Jornada do Paciente</h2>
-            <p>O paciente passa por um processo cuidadoso de seis etapas, desde o cadastro inicial até o acompanhamento pós-consulta e cuidados paliativos quando necessário.</p>
-
-            <div class="journey-timeline">
-                <div class="journey-step">
-                    <div class="journey-number">1</div>
-                    <div class="journey-content">
-                        <h3>Acesso ao Sistema</h3>
-                        <p>O paciente preenche um formulário via Google Forms, informando dados pessoais, sintomas e necessidades, concordando com o Termo de Consentimento Livre e Esclarecido para Telemedicina. Em seguida, cria seu cadastro no Sistema Doctor8 (www.doctor8.com.br). Os dados são registrados numa planilha compartilhada para criação da ficha/card no sistema.</p>
-                    </div>
-                </div>
-                <div class="journey-step">
-                    <div class="journey-number">2</div>
-                    <div class="journey-content">
-                        <h3>Triagem e Organização</h3>
-                        <p>Classificação por prioridade com base nas informações do formulário. Casos organizados em filas: <strong>atendimento prioritário</strong>, <strong>atendimento regular</strong> e <strong>redirecionamento para especialistas</strong>. Atribuição às filas de médicos, psicólogos, psicanalistas, terapeutas integrativos ou cuidados paliativos.</p>
-                        <p><strong>Alta prioridade:</strong> sintomas físicos graves, problemas de saúde mental críticos, renovação urgente de receitas, pessoas em abrigos, idosos (65+), gestantes, lactantes e pessoas com deficiência.</p>
-                    </div>
-                </div>
-                <div class="journey-step">
-                    <div class="journey-number">3</div>
-                    <div class="journey-content">
-                        <h3>Encaminhamento do Paciente</h3>
-                        <p>Considerando classificação de prioridade, modalidade e especialidade, os pacientes são encaminhados rapidamente para profissionais voluntários disponíveis. O coordenador remove o paciente da fila e envia nome e telefone ao profissional, junto com o card/ficha completo via Doctor8.</p>
-                    </div>
-                </div>
-                <div class="journey-step">
-                    <div class="journey-number">4</div>
-                    <div class="journey-content">
-                        <h3>Atendimento do Paciente</h3>
-                        <p>Profissionais voluntários realizam consultas médicas e/ou psicológicas via videochamada no Sistema Doctor8. O profissional envia mensagem inicial ao paciente, realiza a consulta, registra diagnósticos, prescrições e orientações, e encaminha para outras especialidades quando necessário.</p>
-                    </div>
-                </div>
-                <div class="journey-step">
-                    <div class="journey-number">5</div>
-                    <div class="journey-content">
-                        <h3>Acompanhamento e Suporte</h3>
-                        <p>Contato pós-consulta para verificar satisfação, entendimento das orientações e acesso aos medicamentos prescritos. Voluntários (Anjos) orientam sobre farmácias na rede pública e doações. Novas necessidades são encaminhadas ao coordenador de triagem.</p>
-                    </div>
-                </div>
-                <div class="journey-step">
-                    <div class="journey-number">6</div>
-                    <div class="journey-content">
-                        <h3>Cuidados Paliativos</h3>
-                        <p>Voluntários da modalidade multidisciplinar promovem assistência ao paciente e familiares, minimizando o sofrimento de vitimados pelas enchentes, com suporte que vai além do tratamento médico convencional.</p>
-                    </div>
-                </div>
-            </div>
-
-            <h2>7. Equipe de Profissionais Voluntários</h2>
-            <h3>Médicos</h3>
-            <p>Cadastro com registro ativo no CFM, verificação via CRM, direcionamento para atendimento de pacientes e/ou discussão de casos. Todos os atendimentos registrados conforme normas do CFM.</p>
-            <h3>Psicólogos</h3>
-            <p>Registro ativo no CRP, conhecimento em urgência, emergência e primeiros socorros psicológicos. Verificação via site do CRP e direcionamento aos grupos de trabalho.</p>
-            <h3>Psicanalistas</h3>
-            <p>Cadastro via formulário na modalidade Multidisciplinar, com opção de atendimento de pacientes e/ou discussão de casos.</p>
-            <h3>Anjos (Voluntários Multidisciplinares)</h3>
-            <p>Enfermagem, Farmácia, Odontologia, Nutrição, Veterinária, Fisioterapia, Terapias Integrativas, Administração, Informática, Engenharia e população geral. Atuam na triagem, encaminhamento, captação de informações e feedback pós-consulta.</p>
-
-            <h2>8. Ferramentas Utilizadas</h2>
-            <ul>
-                <li><strong>Plataforma Doctor8</strong> — software para consultas com dados criptografados em nuvem, compartilhamento de arquivos entre profissionais e pacientes.</li>
-                <li><strong>Google Forms</strong> — formulário de cadastro e solicitação de atendimento.</li>
-                <li><strong>Google Planilhas e Docs</strong> — organização de filas e registros.</li>
-                <li><strong>WhatsApp</strong> — comunicação e telemedicina.</li>
-            </ul>
-
-            <h2>9. Relatório de Atendimento — Dados Oficiais</h2>
-            <h3>Período analisado: 07/05 a 19/06/2024</h3>
-            <p>Durante este período, foram registradas <strong>2.664 solicitações de pacientes para consulta</strong> via Formulário 2.</p>
-
-            <h3>Dados do Ministério Público (enchentes RS 2024)</h3>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h4>175 mortos</h4>
-                    <p>Registrados oficialmente</p>
-                </div>
-                <div class="info-card">
-                    <h4>806 feridos</h4>
-                    <p>Vítimas das enchentes</p>
-                </div>
-                <div class="info-card">
-                    <h4>10.485 pessoas</h4>
-                    <p>Em abrigos</p>
-                </div>
-                <div class="info-card">
-                    <h4>388.781 desalojados</h4>
-                    <p>Perderam suas moradias</p>
-                </div>
-                <div class="info-card">
-                    <h4>2.398.255 afetados</h4>
-                    <p>População impactada</p>
-                </div>
-                <div class="info-card">
-                    <h4>150 cidades atingidas</h4>
-                    <p>Segundo MP</p>
-                </div>
-            </div>
-
-            <h3>Principais Sintomas Relatados</h3>
-            <p><strong>Físicos:</strong> renovação de receita, dor muscular, dor abdominal, dificuldade para respirar, ardor/queimação à micção, infecção urinária, febre com vômito e diarreia, manchas na pele, calafrios, tosse, dor de garganta e secreção vaginal.</p>
-            <p><strong>Emocionais:</strong> tristeza, ansiedade/crise de ansiedade, pânico/síndrome do pânico, choro/crise de choro, medo, angústia, esgotamento mental e dificuldade para dormir.</p>
-            <p><strong>Doenças crônicas mais citadas:</strong> Depressão, Hipertensão Arterial, Diabetes, Obesidade, Asma, Transtorno de Bipolaridade, Autismo, Epilepsia e Alzheimer.</p>
-
-            <h2>10. Conclusão</h2>
-            <p>
-                O SOS Saúde Rio Grande do Sul é um exemplo inspirador de solidariedade e cuidado coletivo. O projeto demonstra o poder das parcerias e do trabalho voluntário para minimizar os impactos de desastres naturais e promover a saúde e o bem-estar das comunidades afetadas.
-            </p>
-            <p><strong>Pontos fortes do projeto:</strong></p>
-            <ul>
-                <li><strong>Abrangência</strong> — atendimento a saúde física, mental e suporte social.</li>
-                <li><strong>Acessibilidade</strong> — consultas online gratuitas, eliminando barreiras de deslocamento.</li>
-                <li><strong>Equipe qualificada</strong> — profissionais voluntários com experiência e comprometimento.</li>
-                <li><strong>Triagem eficiente</strong> — priorização de casos urgentes.</li>
-                <li><strong>Suporte pós-consulta</strong> — acompanhamento para garantir auxílio contínuo.</li>
-            </ul>
-            <p><strong>Próximos passos:</strong> ampliar parcerias com Secretarias de Saúde, captar recursos para sustentabilidade, avaliar impacto na saúde da população e oferecer treinamentos contínuos aos voluntários.</p>
-
-            <div class="doc-download">
-                <div class="doc-download-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                </div>
-                <div class="doc-download-text">
-                    <h4>Baixe o documento completo</h4>
-                    <p>Inclui anexos técnicos, fluxos operacionais detalhados e relatório estatístico completo.</p>
-                </div>
-                <a href="docs/projeto-sos-saude-rs.pdf" class="btn btn-verde" target="_blank" rel="noopener">Download PDF</a>
-            </div>
-
-            <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--texto-mutado);">
-                Documento elaborado por Diego Albs Passos, Diretoria Executiva — ACURA BRASIL.<br>
-                Belo Horizonte, 26 de junho de 2024. Presidente: Claudia de Bessa Solmucci.
-            </p>
+    <section class="section"><div class="container content-block">
+        <div class="doc-download"><div class="doc-download-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="doc-download-text"><h4 data-i18n="sosrs.doc.title">Documento Oficial del Proyecto (PDF)</h4><p data-i18n="sosrs.doc.text">Informe completo elaborado por la Dirección Ejecutiva de ACURA BRASIL — Belo Horizonte, junio de 2024.</p></div><a href="docs/projeto-sos-saude-rs.pdf" class="btn btn-azul" target="_blank" rel="noopener" data-i18n="sosrs.doc.btn">Descargar PDF</a></div>
+        <h2 data-i18n="sosrs.s1.title">1. Introducción</h2><p data-i18n="sosrs.s1.p1" data-i18n-html>El <strong>SOS Salud Río Grande do Sul</strong>, como parte del proyecto <em>Reconstrucción Salud Río Grande do Sul</em>, surgió del anhelo de profesionales de salud de Brasil de unirse para socorrer a las víctimas de la inundación en RS. En momentos desafiantes, es crucial ofrecer apoyo médico y psicológico a las personas afectadas.</p><p data-i18n="sosrs.s1.p2" data-i18n-html>Inicialmente compuesto por médicos y psicólogos, actualmente el SOS Salud abarca profesionales divididos en cuatro grandes grupos: <strong>médicos</strong>, <strong>psicólogos</strong>, <strong>psicoanalistas</strong> y <strong>Angeles</strong> — enfermeros, farmacéuticos, dentistas, fisioterapeutas, nutricionistas, terapeutas ocupacionales e integrativos, veterinarios y voluntarios de la población en general.</p><p data-i18n="sosrs.s1.p3">Los Angeles auxilian en el registro de pacientes, ayudan a encontrar información sobre medicamentos de donación y alimentos, organizan los datos de los pacientes y hacen el triaje de los casos, verificando prioridades y reingresos.</p>
+        <div class="stats-banner"><div class="stat-item"><strong data-i18n="sosrs.stats.consultas.value">2.664</strong><span data-i18n="sosrs.stats.consultas.label" data-i18n-html>Solicitudes de consulta<br>(07/05 a 19/06/2024)</span></div><div class="stat-item"><strong data-i18n="sosrs.stats.municipios.value">478</strong><span data-i18n="sosrs.stats.municipios.label" data-i18n-html>Municipios afectados<br>(Defensa Civil/RS)</span></div><div class="stat-item"><strong data-i18n="sosrs.stats.pessoas.value">2,4 mi</strong><span data-i18n="sosrs.stats.pessoas.label" data-i18n-html>Personas afectadas<br>(Ministerio Público)</span></div><div class="stat-item"><strong data-i18n="sosrs.stats.cidades.value">100+</strong><span data-i18n="sosrs.stats.cidades.label" data-i18n-html>Ciudades atendidas<br>por el proyecto</span></div></div>
+        <h2 data-i18n="sosrs.s2.title">2. Objetivos</h2><h3 data-i18n="sosrs.s2.general.title">2.1. Objetivo General</h3><p data-i18n="sosrs.s2.general.text">Ofrecer apoyo integral, tanto en línea como presencial, para las personas afectadas por las inundaciones en Río Grande do Sul, que sufren perjuicios materiales y humanos, interrupción de la actividad económica y contaminación en las áreas inundadas.</p><h3 data-i18n="sosrs.s2.specific.title">2.2. Objetivos Específicos</h3><ul><li data-i18n="sosrs.s2.specific.li1">Realizar consultas médicas y psicológicas en línea y presenciales en lugares estratégicos de los municipios afectados.</li><li data-i18n="sosrs.s2.specific.li2">Atender pacientes para renovación de recetas de medicamentos de uso continuo, profilaxis, síndromes respiratorias y gastrointestinales, dolores musculares, leptospirosis y demás enfermedades por transmisión hídrica.</li><li data-i18n="sosrs.s2.specific.li3">Atender crisis de abstinencia por interrupción de la medicación, depresión, ansiedad, pánico, reacción aguda al estrés y trastornos del sueño.</li><li data-i18n="sosrs.s2.specific.li4">Promover el triaje y seguimiento de casos de enfermedades crónicas y agudas.</li><li data-i18n="sosrs.s2.specific.li5">Ofrecer apoyo psicológico especializado en traumas y crisis.</li><li data-i18n="sosrs.s2.specific.li6">Orientar sobre medidas de salud preventiva y promoción de la salud en emergencias.</li><li data-i18n="sosrs.s2.specific.li7">Ofrecer atención multidisciplinaria coordinada por equipo de profesionales de salud.</li><li data-i18n="sosrs.s2.specific.li8">Articular con la red de salud local para garantizar el encaminamiento adecuado de los casos más graves.</li></ul>
+        <h2 data-i18n="sosrs.s3.title">3. Justificación</h2><p data-i18n="sosrs.s3.p1">Las inundaciones de 2024 causaron diversos daños a la salud de la población de los municipios afectados, tanto física como mentalmente. La pérdida de viviendas, la interrupción de los servicios básicos y de las actividades económicas, y el trauma del evento pueden llevar al aumento de enfermedades transmisibles, enfermedades crónicas, trastornos de ansiedad y depresión.</p><p data-i18n="sosrs.s3.p2">La atención en línea y presencial por médicos y psicólogos voluntarios es fundamental para garantizar el acceso rápido y gratuito a la salud para la población afectada, especialmente para quienes perdieron sus documentos o no poseen plan de salud. El proyecto contribuye a la desmedicalización del sufrimiento, ofreciendo un espacio de acogimiento y escucha.</p>
+        <h2 data-i18n="sosrs.s4.title">4. Público Objetivo</h2><div class="info-grid"><div class="info-card"><h4 data-i18n="sosrs.s4.displaced.title">undefined</h4><p data-i18n="sosrs.s4.displaced.text">Personas que perdieron casas, bienes y seres queridos; individuos afectados por enfermedades durante la inundación.</p></div><div class="info-card"><h4 data-i18n="sosrs.s4.chronic.title">undefined</h4><p data-i18n="sosrs.s4.chronic.text">Personas con enfermedades crónicas o preexistentes que necesitan seguimiento médico continuo.</p></div><div class="info-card"><h4 data-i18n="sosrs.s4.mental.title">undefined</h4><p data-i18n="sosrs.s4.mental.text">Individuos con estrés, ansiedad, depresión o trastornos mentales relacionados con la crisis.</p></div><div class="info-card"><h4 data-i18n="sosrs.s4.frontline.title">undefined</h4><p data-i18n="sosrs.s4.frontline.text">Trabajadores de la línea de frente — voluntarios y socorristas que también necesitan apoyo.</p></div><div class="info-card"><h4 data-i18n="sosrs.s4.palliative.title">undefined</h4><p data-i18n="sosrs.s4.palliative.text">Personas con sufrimiento relacionado a enfermedad grave que buscan mejorar la calidad de vida.</p></div><div class="info-card"><h4 data-i18n="sosrs.s4.listening.title">undefined</h4><p data-i18n="sosrs.s4.listening.text">Personas que buscan escucha empática para resolución de conflictos internos y salud mental.</p></div></div>
+        <h2 data-i18n="sosrs.s5.title">5. Cobertura</h2><p data-i18n="sosrs.s5.text">Población residente o en tránsito en los Municipios de Río Grande do Sul reportados en Boletín de la Defensa Civil como afectados por las inundaciones. El proyecto registró atenciones en más de 100 localidades, incluyendo Porto Alegre, Canoas, Pelotas, Lajeado, São Leopoldo, Novo Hamburgo, Gravataí, Caxias do Sul, Santa Maria y decenas de otras ciudades gaúchas.</p>
+        <h2 data-i18n="sosrs.s6.title">6. Recorrido del Paciente</h2><p data-i18n="sosrs.s6.intro">El paciente pasa por un proceso cuidadoso de seis etapas, desde el registro inicial hasta el seguimiento post-consulta y cuidados paliativos cuando es necesario.</p>
+        <div class="journey-timeline">
+            <div class="journey-step"><div class="journey-number">1</div><div class="journey-content"><h3 data-i18n="sosrs.s6.step1.title">Acceso al Sistema</h3><p data-i18n="sosrs.s6.step1.text">El paciente completa un formulario vía Google Forms, informando datos personales, síntomas y necesidades, aceptando el Término de Consentimiento Libre e Informado para Telemedicina. Luego, crea su registro en el Sistema Doctor8 (www.doctor8.com.br). Los datos se registran en una planilla compartida para creación de la ficha/card en el sistema.</p></div></div>
+            <div class="journey-step"><div class="journey-number">2</div><div class="journey-content"><h3 data-i18n="sosrs.s6.step2.title">Triaje y Organización</h3><p data-i18n="sosrs.s6.step2.text" data-i18n-html>Clasificación por prioridad con base en la información del formulario. Casos organizados en filas: <strong>atención prioritaria</strong>, <strong>atención regular</strong> y <strong>redireccionamiento a especialistas</strong>. Asignación a las filas de médicos, psicólogos, psicoanalistas, terapeutas integrativos o cuidados paliativos.</p><p data-i18n="sosrs.s6.step2.priority" data-i18n-html><strong>Alta prioridad:</strong> síntomas físicos graves, problemas de salud mental críticos, renovación urgente de recetas, personas en refugios, adultos mayores (65+), gestantes, lactantes y personas con discapacidad.</p></div></div>
+            <div class="journey-step"><div class="journey-number">3</div><div class="journey-content"><h3 data-i18n="sosrs.s6.step3.title">Encaminamiento del Paciente</h3><p data-i18n="sosrs.s6.step3.text">Considerando clasificación de prioridad, modalidad y especialidad, los pacientes son encaminados rápidamente a profesionales voluntarios disponibles. El coordinador retira al paciente de la fila y envía nombre y teléfono al profesional, junto con el card/ficha completo vía Doctor8.</p></div></div>
+            <div class="journey-step"><div class="journey-number">4</div><div class="journey-content"><h3 data-i18n="sosrs.s6.step4.title">Atención del Paciente</h3><p data-i18n="sosrs.s6.step4.text">Profesionales voluntarios realizan consultas médicas y/o psicológicas vía videollamada en el Sistema Doctor8. El profesional envía mensaje inicial al paciente, realiza la consulta, registra diagnósticos, prescripciones y orientaciones, y encamina a otras especialidades cuando es necesario.</p></div></div>
+            <div class="journey-step"><div class="journey-number">5</div><div class="journey-content"><h3 data-i18n="sosrs.s6.step5.title">Seguimiento y Apoyo</h3><p data-i18n="sosrs.s6.step5.text">Contacto post-consulta para verificar satisfacción, comprensión de las orientaciones y acceso a los medicamentos prescritos. Voluntarios (Angeles) orientan sobre farmacias en la red pública y donaciones. Nuevas necesidades son encaminadas al coordinador de triaje.</p></div></div>
+            <div class="journey-step"><div class="journey-number">6</div><div class="journey-content"><h3 data-i18n="sosrs.s6.step6.title">Cuidados Paliativos</h3><p data-i18n="sosrs.s6.step6.text">Voluntarios de la modalidad multidisciplinaria promueven asistencia al paciente y familiares, minimizando el sufrimiento de víctimas de las inundaciones, con apoyo que va más allá del tratamiento médico convencional.</p></div></div>
         </div>
-    </section>
-
+        <h2 data-i18n="sosrs.s7.title">7. Equipo de Profesionales Voluntarios</h2><h3 data-i18n="sosrs.s7.medicos.title">Médicos</h3><p data-i18n="sosrs.s7.medicos.text">Registro con inscripción activa en el CFM, verificación vía CRM, direccionamiento para atención de pacientes y/o discusión de casos. Todas las atenciones registradas conforme a las normas del CFM.</p><h3 data-i18n="sosrs.s7.psicologos.title">Psicólogos</h3><p data-i18n="sosrs.s7.psicologos.text">Registro activo en el CRP, conocimiento en urgencia, emergencia y primeros auxilios psicológicos. Verificación vía sitio del CRP y direccionamiento a los grupos de trabajo.</p><h3 data-i18n="sosrs.s7.psicanalistas.title">Psicoanalistas</h3><p data-i18n="sosrs.s7.psicanalistas.text">Registro vía formulario en la modalidad Multidisciplinaria, con opción de atención de pacientes y/o discusión de casos.</p><h3 data-i18n="sosrs.s7.anjos.title">Angeles (Voluntarios Multidisciplinarios)</h3><p data-i18n="sosrs.s7.anjos.text">Enfermería, Farmacia, Odontología, Nutrición, Veterinaria, Fisioterapia, Terapias Integrativas, Administración, Informática, Ingeniería y población general. Actúan en el triaje, encaminamiento, captación de información y retroalimentación post-consulta.</p>
+        <h2 data-i18n="sosrs.s8.title">8. Herramientas Utilizadas</h2><ul><li data-i18n="sosrs.s8.li1" data-i18n-html><strong>Plataforma Doctor8</strong> — software para consultas con datos cifrados en la nube, compartición de archivos entre profesionales y pacientes.</li><li data-i18n="sosrs.s8.li2" data-i18n-html><strong>Google Forms</strong> — formulario de registro y solicitud de atención.</li><li data-i18n="sosrs.s8.li3" data-i18n-html><strong>Google Planillas y Docs</strong> — organización de filas y registros.</li><li data-i18n="sosrs.s8.li4" data-i18n-html><strong>WhatsApp</strong> — comunicación y telemedicina.</li></ul>
+        <h2 data-i18n="sosrs.s9.title">9. Informe de Atención — Datos Oficiales</h2><h3 data-i18n="sosrs.s9.period">Período analizado: 07/05 a 19/06/2024</h3><p data-i18n="sosrs.s9.intro" data-i18n-html>Durante este período, se registraron <strong>2.664 solicitudes de pacientes para consulta</strong> vía Formulario 2.</p><h3 data-i18n="sosrs.s9.mp.title">Datos del Ministerio Público (inundaciones RS 2024)</h3><div class="info-grid"><div class="info-card"><h4 data-i18n="sosrs.s9.mp.deaths.title">undefined</h4><p data-i18n="sosrs.s9.mp.deaths.text">Registrados oficialmente</p></div><div class="info-card"><h4 data-i18n="sosrs.s9.mp.injured.title">undefined</h4><p data-i18n="sosrs.s9.mp.injured.text">Víctimas de las inundaciones</p></div><div class="info-card"><h4 data-i18n="sosrs.s9.mp.shelters.title">undefined</h4><p data-i18n="sosrs.s9.mp.shelters.text">En refugios</p></div><div class="info-card"><h4 data-i18n="sosrs.s9.mp.displaced.title">undefined</h4><p data-i18n="sosrs.s9.mp.displaced.text">Perdieron sus viviendas</p></div><div class="info-card"><h4 data-i18n="sosrs.s9.mp.affected.title">undefined</h4><p data-i18n="sosrs.s9.mp.affected.text">Población impactada</p></div><div class="info-card"><h4 data-i18n="sosrs.s9.mp.cities.title">undefined</h4><p data-i18n="sosrs.s9.mp.cities.text">Según MP</p></div></div>
+        <h3 data-i18n="sosrs.s9.symptoms.title">Principales Síntomas Reportados</h3>
+        <p data-i18n="sosrs.s9.symptoms.physical" data-i18n-html><strong>Físicos:</strong> renovación de receta, dolor muscular, dolor abdominal, dificultad para respirar, ardor/quemazón al orinar, infección urinaria, fiebre con vómito y diarrea, manchas en la piel, escalofríos, tos, dolor de garganta y secreción vaginal.</p>
+        <p data-i18n="sosrs.s9.symptoms.emotional" data-i18n-html><strong>Emocionales:</strong> tristeza, ansiedad/crisis de ansiedad, pánico/síndrome de pánico, llanto/crisis de llanto, miedo, angustia, agotamiento mental y dificultad para dormir.</p>
+        <p data-i18n="sosrs.s9.symptoms.chronic" data-i18n-html><strong>Enfermedades crónicas más citadas:</strong> Depresión, Hipertensión Arterial, Diabetes, Obesidad, Asma, Trastorno de Bipolaridad, Autismo, Epilepsia y Alzheimer.</p>
+        <h2 data-i18n="sosrs.s10.title">10. Conclusión</h2><p data-i18n="sosrs.s10.p1">El SOS Salud Río Grande do Sul es un ejemplo inspirador de solidaridad y cuidado colectivo. El proyecto demuestra el poder de las alianzas y del trabajo voluntario para minimizar los impactos de desastres naturales y promover la salud y el bienestar de las comunidades afectadas.</p><p><strong data-i18n="sosrs.s10.strengths.title">Puntos fuertes del proyecto:</strong></p><ul><li data-i18n="sosrs.s10.strengths.li1" data-i18n-html><strong>Cobertura</strong> — atención a salud física, mental y apoyo social.</li><li data-i18n="sosrs.s10.strengths.li2" data-i18n-html><strong>Accesibilidad</strong> — consultas en línea gratuitas, eliminando barreras de desplazamiento.</li><li data-i18n="sosrs.s10.strengths.li3" data-i18n-html><strong>Equipo calificado</strong> — profesionales voluntarios con experiencia y compromiso.</li><li data-i18n="sosrs.s10.strengths.li4" data-i18n-html><strong>Triaje eficiente</strong> — priorización de casos urgentes.</li><li data-i18n="sosrs.s10.strengths.li5" data-i18n-html><strong>Apoyo post-consulta</strong> — seguimiento para garantizar auxilio continuo.</li></ul>
+        <p data-i18n="sosrs.s10.next" data-i18n-html><strong>Próximos pasos:</strong> ampliar alianzas con Secretarías de Salud, captar recursos para sostenibilidad, evaluar impacto en la salud de la población y ofrecer capacitaciones continuas a los voluntarios.</p>
+        <div class="doc-download"><div class="doc-download-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div><div class="doc-download-text"><h4 data-i18n="sosrs.download.title">Descargue el documento completo</h4><p data-i18n="sosrs.download.text">Incluye anexos técnicos, flujos operacionales detallados e informe estadístico completo.</p></div><a href="docs/projeto-sos-saude-rs.pdf" class="btn btn-verde" target="_blank" rel="noopener" data-i18n="sosrs.download.btn">Descargar PDF</a></div>
+        <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--texto-mutado);" data-i18n="sosrs.credit" data-i18n-html>Documento elaborado por Diego Albs Passos, Dirección Ejecutiva — ACURA BRASIL.<br>Belo Horizonte, 26 de junio de 2024. Presidenta: Claudia de Bessa Solmucci.</p>
+    </div></section>
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-brand">
-                <a href="index.html" class="logo"><img src="img/logo-header.png" alt="ACURA BRASIL — Associação Brasil pela Cura" class="logo-img"></a>
-                <p class="footer-desc">Associação Brasil pela Cura. Entidade sem fins econômicos dedicada ao avanço da ciência, fomento à pesquisa e assistência humanitária.</p>
-                <span class="footer-cnpj">CNPJ: 30.350.850/0001-80 · OSCIP</span>
+                <a href="index.html" class="logo">
+                    <img src="img/logo-header.png" alt="ACURA BRASIL" class="logo-img">
+                </a>
+                <p class="footer-desc" data-i18n="footer.desc">Asociación Brasil por la Cura. Entidad sin fines de lucro dedicada al avance de la ciencia, el fomento de la investigación y la asistencia humanitaria.</p>
+                <span class="footer-cnpj" data-i18n="common.cnpj">CNPJ: 30.350.850/0001-80 · OSCIP</span>
             </div>
             <div>
-                <h4 class="footer-title">Navegação</h4>
+                <h4 class="footer-title" data-i18n="footer.nav">Navegación</h4>
                 <ul class="footer-links">
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="instituicao.html">Sobre Nós</a></li>
-                    <li><a href="pesquisas.html">Áreas de Atuação</a></li>
-                    <li><a href="sos-saude-rs.html">SOS Saúde RS</a></li>
-                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="index.html" data-i18n="footer.home">Inicio</a></li>
+                    <li><a href="instituicao.html" data-i18n="footer.about">Sobre Nosotros</a></li>
+                    <li><a href="pesquisas.html" data-i18n="footer.areas">Áreas de Actuación</a></li>
+                    <li><a href="sos-saude-rs.html" data-i18n="footer.sosRs">SOS Salud RS</a></li>
+                    <li><a href="consulta-venezuela.html" data-i18n="footer.consult">Consulta en Línea</a></li>
+                    <li><a href="sos-venezuela.html" data-i18n="footer.sosVe">SOS Venezuela</a></li>
+                    <li><a href="contato.html" data-i18n="footer.contactLink">Contacto</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="footer-title">Transparência</h4>
+                <h4 class="footer-title" data-i18n="footer.transparency">Transparencia</h4>
                 <ul class="footer-links">
-                    <li><a href="transparencia.html">Portal da Transparência</a></li>
-                    <li><a href="docs/projeto-sos-saude-rs.pdf" target="_blank">Projeto SOS Saúde RS (PDF)</a></li>
+                    <li><a href="transparencia.html" data-i18n="footer.portal">Portal de Transparencia</a></li>
+                    <li><a href="transparencia.html#estatuto" data-i18n="footer.estatuto">Estatuto Social</a></li>
+                    <li><a href="docs/estatuto-social-2022.pdf" target="_blank" rel="noopener" data-i18n="footer.estatutoPdf">Estatuto Social (PDF)</a></li>
+                    <li><a href="docs/comprovante-cnpj.pdf" target="_blank" rel="noopener" data-i18n="footer.cnpjPdf">Comprobante CNPJ (PDF)</a></li>
+                    <li><a href="transparencia.html#balancos" data-i18n="footer.balancos">Balances Financieros</a></li>
+                    <li><a href="transparencia.html#relatorios" data-i18n="footer.relatorios">Informes de Actividades</a></li>
+                    <li><a href="docs/projeto-sos-saude-rs.pdf" target="_blank" rel="noopener" data-i18n="footer.projetoSosRs">Proyecto SOS Salud RS (PDF)</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="footer-title">Contato</h4>
+                <h4 class="footer-title" data-i18n="footer.contact">Contacto</h4>
                 <div class="footer-contact-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                    <span>Belo Horizonte, MG · Brasil</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span data-i18n="footer.address" data-i18n-html>Rua Ulhôa Cintra, nº 32, Loja 01, Sala 01<br>Barrio Santa Efigênia, Belo Horizonte/MG</span>
                 </div>
                 <div class="footer-contact-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                    <span>contato@acurabrasil.org</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    <span data-i18n="footer.email">contato@acurabrasil.org</span>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 ACURA BRASIL. Todos os direitos reservados.</p>
-            <p>Desenvolvido em conformidade com as diretrizes de transparência pública.</p>
+            <p data-i18n="common.rights">© 2026 ACURA BRASIL. Todos los derechos reservados.</p>
+            <p data-i18n="common.transparencyFooter">Desarrollado en conformidad con las directrices de transparencia pública.</p>
         </div>
     </footer>
 
+    <script src="js/i18n.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

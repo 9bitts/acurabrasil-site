@@ -1,201 +1,152 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="es-VE">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Consulta médica e psicológica online gratuita para vítimas dos terremotos na Venezuela — ACURA BRASIL via plataforma Doctor8. Atendimento imediato com profissionais disponíveis.">
-    <title>Consulta Online — SOS Venezuela | ACURA BRASIL</title>
+    <meta name="description" data-i18n-content="consulta.meta.description" content="Consulta médica y psicológica en línea gratuita para víctimas de los terremotos en Venezuela — ACURA BRASIL vía plataforma Doctor8. Atención inmediata con profesionales disponibles.">
+    <title>Consulta en Línea — SOS Venezuela | ACURA BRASIL</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=6">
+    <link rel="stylesheet" href="css/style.css?v=7">
+    <script src="js/i18n-data.js"></script>
+    <script>try{var l=localStorage.getItem('acura.lang')||'es';document.documentElement.lang=l==='es'?'es-VE':'pt-BR';}catch(e){}</script>
 </head>
-<body>
-
+<body data-i18n-title="consulta.meta.title">
     <header class="header">
         <div class="header-container">
             <a href="index.html" class="logo">
-                <img src="img/logo-header.png" alt="ACURA BRASIL — Associação Brasil pela Cura" class="logo-img">
+                <img src="img/logo-header.png" alt="ACURA BRASIL" class="logo-img">
             </a>
-            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+            <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" data-i18n-aria="common.menuOpen">
                 <span></span><span></span><span></span>
             </button>
-            <nav>
+            <nav class="header-nav">
                 <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link">Início</a></li>
-                    <li><a href="instituicao.html" class="nav-link">A Instituição</a></li>
-                    <li><a href="pesquisas.html" class="nav-link">Pesquisas</a></li>
-                    <li><a href="atendimento-pandemia.html" class="nav-link">Pandemia COVID-19</a></li>
-                    <li><a href="sos-saude-rs.html" class="nav-link">SOS Saúde RS</a></li>
-                    <li><a href="sos-venezuela.html" class="nav-link">SOS Venezuela</a></li>
-                    <li><a href="consulta-venezuela.html" class="nav-link nav-link-destaque">Consulta Online</a></li>
-                    <li><a href="transparencia.html" class="nav-link">Transparência</a></li>
-                    <li><a href="contato.html" class="nav-link">Contato</a></li>
+                    <li><a href="index.html" class="nav-link" data-i18n="nav.home">Inicio</a></li>
+                    <li><a href="sos-venezuela.html" class="nav-link" data-i18n="nav.sosVe">SOS Venezuela</a></li>
+                    <li><a href="consulta-venezuela.html" class="nav-link nav-link-destaque" data-i18n="nav.consult">Consulta en línea</a></li>
+                    <li><a href="instituicao.html" class="nav-link" data-i18n="nav.about">Institución</a></li>
+                    <li class="nav-dropdown">
+                        <button type="button" class="nav-dropdown-toggle" aria-expanded="false" data-i18n="nav.more">Más</button>
+                        <ul class="nav-dropdown-menu">
+                            <li><a href="pesquisas.html" data-i18n="nav.research">Investigación</a></li>
+                            <li><a href="atendimento-pandemia.html" data-i18n="nav.covid">Pandemia COVID-19</a></li>
+                            <li><a href="sos-saude-rs.html" data-i18n="nav.sosRs">SOS Saúde RS</a></li>
+                            <li><a href="transparencia.html" data-i18n="nav.transparency">Transparencia</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contato.html" class="nav-link" data-i18n="nav.contact">Contacto</a></li>
                 </ul>
             </nav>
-            <a href="associar.html" class="btn btn-verde header-cta">Seja um Associado</a>
+            <div class="header-actions">
+                <button type="button" class="lang-toggle" id="lang-toggle" title="Português">
+                    <span class="lang-toggle-flag" aria-hidden="true">🇧🇷</span>
+                    <span class="lang-toggle-label">PT</span>
+                </button>
+                <a href="associar.html" class="btn btn-verde header-cta" data-i18n="nav.join">Asociarse</a>
+            </div>
         </div>
     </header>
-
-    <section class="consulta-hero">
-        <div class="container consulta-hero-inner">
-            <div class="breadcrumb consulta-breadcrumb">
-                <a href="index.html">Início</a> / <a href="sos-venezuela.html">SOS Venezuela</a> / Consulta Online
-            </div>
-            <span class="consulta-badge">Gratuito · Telemedicina · 24h conforme disponibilidade</span>
-            <h1>Consulta médica y psicológica en línea</h1>
-            <p class="consulta-hero-subtitle">
-                Atención gratuita para víctimas de los terremotos en Venezuela, organizada por ACURA BRASIL a través de la plataforma Doctor8.
-            </p>
-            <p class="consulta-hero-subtitle-pt">
-                Consulta gratuita para vítimas dos terremotos na Venezuela — projeto humanitário ACURA BRASIL.
-            </p>
-            <div class="consulta-hero-actions">
-                <a href="https://app.doctor8.org/register?callbackUrl=%2Furgent" class="btn btn-consulta-principal" target="_blank" rel="noopener">
-                    Iniciar consulta ahora →
-                </a>
-                <a href="https://app.doctor8.org/login?callbackUrl=%2Furgent" class="btn btn-consulta-secundario" target="_blank" rel="noopener">
-                    Ya tengo cuenta
-                </a>
-            </div>
-            <p class="consulta-hero-nota">La plataforma detecta automáticamente el idioma español de su navegador.</p>
+    <section class="consulta-hero"><div class="container consulta-hero-inner">
+        <div class="breadcrumb consulta-breadcrumb"><a href="index.html" data-i18n="common.breadcrumbHome">Inicio</a> / <a href="sos-venezuela.html" data-i18n="consulta.breadcrumb.sos">SOS Venezuela</a> / <span data-i18n="consulta.breadcrumb">Consulta en Línea</span></div>
+        <span class="consulta-badge" data-i18n="consulta.badge">Gratuito · Telemedicina · 24h según disponibilidad</span>
+        <h1 data-i18n="consulta.hero.title">Consulta médica y psicológica en línea</h1>
+        <p class="consulta-hero-subtitle" data-i18n="consulta.hero.subtitle">Atención gratuita para víctimas de los terremotos en Venezuela, organizada por ACURA BRASIL a través de la plataforma Doctor8.</p>
+        <div class="consulta-hero-actions">
+            <a href="https://app.doctor8.org/register?callbackUrl=%2Furgent" class="btn btn-consulta-principal" target="_blank" rel="noopener" data-i18n="consulta.hero.btn.start">Iniciar consulta ahora →</a>
+            <a href="https://app.doctor8.org/login?callbackUrl=%2Furgent" class="btn btn-consulta-secundario" target="_blank" rel="noopener" data-i18n="consulta.hero.btn.login">Ya tengo cuenta</a>
         </div>
-    </section>
-
-    <section class="section">
-        <div class="container">
-            <div class="consulta-steps-header">
-                <h2>¿Cómo funciona?</h2>
-                <p>Tres pasos simples para hablar con un profesional de salud disponible en este momento.</p>
-            </div>
-
-            <div class="consulta-steps">
-                <article class="consulta-step">
-                    <div class="consulta-step-number">1</div>
-                    <h3>Cree su cuenta</h3>
-                    <p>Regístrese como <strong>paciente</strong> en Doctor8 con su nombre, correo y contraseña. El proceso toma menos de 2 minutos.</p>
-                    <a href="https://app.doctor8.org/register?callbackUrl=%2Furgent" class="btn btn-outline consulta-step-btn" target="_blank" rel="noopener">Crear cuenta gratis</a>
-                </article>
-                <article class="consulta-step">
-                    <div class="consulta-step-number">2</div>
-                    <h3>Atendimento Imediato</h3>
-                    <p>Después del registro, accederá directamente al portal de <strong>Atendimento Imediato</strong> — consulta sin cita previa con profesionales en línea.</p>
-                    <a href="https://app.doctor8.org/urgent" class="btn btn-outline consulta-step-btn" target="_blank" rel="noopener">Ir al atendimento imediato</a>
-                </article>
-                <article class="consulta-step">
-                    <div class="consulta-step-number">3</div>
-                    <h3>Elija un profesional</h3>
-                    <p>Vea la lista de médicos y psicólogos disponibles ahora. Entre en la fila virtual y espere ser llamado para la videoconsulta.</p>
-                    <a href="https://app.doctor8.org/urgent" class="btn btn-outline consulta-step-btn" target="_blank" rel="noopener">Ver profesionales disponibles</a>
-                </article>
-            </div>
+        <p class="consulta-hero-nota" data-i18n="consulta.hero.note">La plataforma detecta automáticamente el idioma español de su navegador.</p>
+    </div></section>
+    <section class="section"><div class="container">
+        <div class="consulta-steps-header"><h2 data-i18n="consulta.steps.title">¿Cómo funciona?</h2><p data-i18n="consulta.steps.subtitle">Tres pasos simples para hablar con un profesional de salud disponible en este momento.</p></div>
+        <div class="consulta-steps">
+            <article class="consulta-step"><div class="consulta-step-number">1</div><h3 data-i18n="consulta.step1.title">Cree su cuenta</h3><p data-i18n="consulta.step1.text" data-i18n-html>Regístrese como <strong>paciente</strong> en Doctor8 con su nombre, correo y contraseña. El proceso toma menos de 2 minutos.</p><a href="https://app.doctor8.org/register?callbackUrl=%2Furgent" class="btn btn-outline consulta-step-btn" target="_blank" rel="noopener" data-i18n="consulta.step1.btn">Crear cuenta gratis</a></article>
+            <article class="consulta-step"><div class="consulta-step-number">2</div><h3 data-i18n="consulta.step2.title">Atención Inmediata</h3><p data-i18n="consulta.step2.text" data-i18n-html>Después del registro, accederá directamente al portal de <strong>Atención Inmediata</strong> — consulta sin cita previa con profesionales en línea.</p><a href="https://app.doctor8.org/urgent" class="btn btn-outline consulta-step-btn" target="_blank" rel="noopener" data-i18n="consulta.step2.btn">Ir a atención inmediata</a></article>
+            <article class="consulta-step"><div class="consulta-step-number">3</div><h3 data-i18n="consulta.step3.title">Elija un profesional</h3><p data-i18n="consulta.step3.text">Vea la lista de médicos y psicólogos disponibles ahora. Entre en la fila virtual y espere ser llamado para la videoconsulta.</p><a href="https://app.doctor8.org/urgent" class="btn btn-outline consulta-step-btn" target="_blank" rel="noopener" data-i18n="consulta.step3.btn">Ver profesionales disponibles</a></article>
         </div>
-    </section>
-
-    <section class="section section-alt">
-        <div class="container">
-            <div class="consulta-info-grid">
-                <div class="consulta-info-card">
-                    <h3>¿Qué tipo de atención recibo?</h3>
-                    <ul>
-                        <li>Evaluación médica por videollamada</li>
-                        <li>Apoyo psicológico y primeros auxilios emocionales</li>
-                        <li>Orientación sobre medicamentos y cuidados</li>
-                        <li>Derivación a especialistas si es necesario</li>
-                    </ul>
-                </div>
-                <div class="consulta-info-card">
-                    <h3>¿Es realmente gratuito?</h3>
-                    <p>Sí. Este canal humanitario de ACURA BRASIL conecta pacientes venezolanos con profesionales voluntarios. Las consultas del proyecto SOS Venezuela son <strong>sin costo</strong> cuando el profesional está en plantón gratuito.</p>
-                </div>
-                <div class="consulta-info-card">
-                    <h3>¿Necesito algo especial?</h3>
-                    <ul>
-                        <li>Celular o computadora con internet</li>
-                        <li>Correo electrónico para el registro</li>
-                        <li>Ser mayor de 18 años o tener autorización del responsable</li>
-                    </ul>
-                </div>
-                <div class="consulta-info-card">
-                    <h3>¿Problemas con el registro?</h3>
-                    <p>Voluntarios de ACURA BRASIL pueden ayudarle. Escríbanos a <a href="mailto:contato@acurabrasil.org">contato@acurabrasil.org</a> o consulte la página <a href="sos-venezuela.html">SOS Venezuela</a> para más información sobre el proyecto.</p>
-                </div>
-            </div>
+    </div></section>
+    <section class="section section-alt"><div class="container"><div class="consulta-info-grid">
+        <div class="consulta-info-card"><h3 data-i18n="consulta.info.care.title">¿Qué tipo de atención recibo?</h3><ul><li data-i18n="consulta.info.care.li1">Evaluación médica por videollamada</li><li data-i18n="consulta.info.care.li2">Apoyo psicológico y primeros auxilios emocionales</li><li data-i18n="consulta.info.care.li3">Orientación sobre medicamentos y cuidados</li><li data-i18n="consulta.info.care.li4">Derivación a especialistas si es necesario</li></ul></div>
+        <div class="consulta-info-card"><h3 data-i18n="consulta.info.free.title">¿Es realmente gratuito?</h3><p data-i18n="consulta.info.free.text" data-i18n-html>Sí. Este canal humanitario de ACURA BRASIL conecta pacientes venezolanos con profesionales voluntarios. Las consultas del proyecto SOS Venezuela son <strong>sin costo</strong> cuando el profesional está en turno gratuito.</p></div>
+        <div class="consulta-info-card"><h3 data-i18n="consulta.info.requirements.title">¿Necesito algo especial?</h3><ul><li data-i18n="consulta.info.requirements.li1">Celular o computadora con internet</li><li data-i18n="consulta.info.requirements.li2">Correo electrónico para el registro</li><li data-i18n="consulta.info.requirements.li3">Ser mayor de 18 años o tener autorización del responsable</li></ul></div>
+        <div class="consulta-info-card"><h3 data-i18n="consulta.info.help.title">¿Problemas con el registro?</h3><p data-i18n="consulta.info.help.text" data-i18n-html>Voluntarios de ACURA BRASIL pueden ayudarle. Escríbanos a <a href="mailto:contato@acurabrasil.org">contato@acurabrasil.org</a> o consulte la página <a href="sos-venezuela.html">SOS Venezuela</a> para más información sobre el proyecto.</p></div>
+    </div></div></section>
+    <section class="consulta-cta-final"><div class="container consulta-cta-final-inner">
+        <h2 data-i18n="consulta.final.title">¿Listo para recibir atención?</h2>
+        <p data-i18n="consulta.final.subtitle">Haga clic abajo para registrarse y ver los profesionales disponibles ahora mismo.</p>
+        <div class="consulta-cta-final-actions">
+            <a href="https://app.doctor8.org/register?callbackUrl=%2Furgent" class="btn btn-consulta-principal btn-lg" target="_blank" rel="noopener" data-i18n="consulta.final.btn.start">Iniciar consulta ahora →</a>
+            <a href="sos-venezuela.html" class="btn btn-transparente" data-i18n="consulta.final.btn.more">Más información sobre el proyecto</a>
         </div>
-    </section>
-
-    <section class="consulta-cta-final">
-        <div class="container consulta-cta-final-inner">
-            <h2>¿Listo para recibir atención?</h2>
-            <p>Haga clic abajo para registrarse y ver los profesionales disponibles ahora mismo.</p>
-            <div class="consulta-cta-final-actions">
-                <a href="https://app.doctor8.org/register?callbackUrl=%2Furgent" class="btn btn-consulta-principal btn-lg" target="_blank" rel="noopener">
-                    Iniciar consulta ahora →
-                </a>
-                <a href="sos-venezuela.html" class="btn btn-transparente">Más información sobre el proyecto</a>
-            </div>
-            <p class="consulta-powered">Plataforma <a href="https://app.doctor8.org" target="_blank" rel="noopener">Doctor8</a> · Projeto <a href="sos-venezuela.html">SOS Saúde Venezuela</a> · ACURA BRASIL</p>
+        <p class="consulta-powered" data-i18n="consulta.powered" data-i18n-html>Plataforma <a href="https://app.doctor8.org" target="_blank" rel="noopener">Doctor8</a> · Proyecto <a href="sos-venezuela.html">SOS Salud Venezuela</a> · ACURA BRASIL</p>
+    </div></section>
+    <section class="section consulta-pt-section"><div class="container content-block">
+        <h2 data-i18n="consulta.pt.title">Cómo funciona</h2>
+        <p data-i18n="consulta.pt.intro">Para pacientes y familiares en Venezuela — o brasileños apoyando familiares en el país — el flujo es el mismo:</p>
+        <ol>
+            <li data-i18n="consulta.pt.step1" data-i18n-html><strong>Registro:</strong> acceda a <a href="https://app.doctor8.org/register?callbackUrl=%2Furgent" target="_blank" rel="noopener">app.doctor8.org/register</a> y cree cuenta como paciente.</li>
+            <li data-i18n="consulta.pt.step2" data-i18n-html><strong>Atención Inmediata:</strong> después del registro, será dirigido al portal de consulta inmediata.</li>
+            <li data-i18n="consulta.pt.step3" data-i18n-html><strong>Profesionales en línea:</strong> elija un médico o psicólogo disponible y entre en la fila virtual para videollamada.</li>
+        </ol>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+            <a href="https://app.doctor8.org/register?callbackUrl=%2Furgent" class="btn btn-verde" target="_blank" rel="noopener" data-i18n="consulta.pt.btn.register">Crear cuenta y consultar</a>
+            <a href="https://app.doctor8.org/login?callbackUrl=%2Furgent" class="btn btn-outline" target="_blank" rel="noopener" data-i18n="consulta.pt.btn.login">Ya tengo cuenta</a>
         </div>
-    </section>
-
-    <section class="section consulta-pt-section">
-        <div class="container content-block">
-            <h2>Como funciona (português)</h2>
-            <p>Para pacientes e familiares na Venezuela — ou brasileiros apoiando familiares no país — o fluxo é o mesmo:</p>
-            <ol>
-                <li><strong>Cadastro:</strong> acesse <a href="https://app.doctor8.org/register?callbackUrl=%2Furgent" target="_blank" rel="noopener">app.doctor8.org/register</a> e crie conta como paciente.</li>
-                <li><strong>Atendimento Imediato:</strong> após o cadastro, você será direcionado ao portal de consulta imediata.</li>
-                <li><strong>Profissionais online:</strong> escolha um médico ou psicólogo disponível e entre na fila virtual para videochamada.</li>
-            </ol>
-            <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
-                <a href="https://app.doctor8.org/register?callbackUrl=%2Furgent" class="btn btn-verde" target="_blank" rel="noopener">Criar conta e consultar</a>
-                <a href="https://app.doctor8.org/login?callbackUrl=%2Furgent" class="btn btn-outline" target="_blank" rel="noopener">Já tenho conta</a>
-            </div>
-        </div>
-    </section>
-
+    </div></section>
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-brand">
-                <a href="index.html" class="logo"><img src="img/logo-header.png" alt="ACURA BRASIL — Associação Brasil pela Cura" class="logo-img"></a>
-                <p class="footer-desc">Associação Brasil pela Cura. Entidade sem fins econômicos dedicada ao avanço da ciência, fomento à pesquisa e assistência humanitária.</p>
-                <span class="footer-cnpj">CNPJ: 30.350.850/0001-80 · OSCIP</span>
+                <a href="index.html" class="logo">
+                    <img src="img/logo-header.png" alt="ACURA BRASIL" class="logo-img">
+                </a>
+                <p class="footer-desc" data-i18n="footer.desc">Asociación Brasil por la Cura. Entidad sin fines de lucro dedicada al avance de la ciencia, el fomento de la investigación y la asistencia humanitaria.</p>
+                <span class="footer-cnpj" data-i18n="common.cnpj">CNPJ: 30.350.850/0001-80 · OSCIP</span>
             </div>
             <div>
-                <h4 class="footer-title">Navegação</h4>
+                <h4 class="footer-title" data-i18n="footer.nav">Navegación</h4>
                 <ul class="footer-links">
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="consulta-venezuela.html">Consulta Online</a></li>
-                    <li><a href="sos-venezuela.html">SOS Venezuela</a></li>
-                    <li><a href="sos-saude-rs.html">SOS Saúde RS</a></li>
-                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="index.html" data-i18n="footer.home">Inicio</a></li>
+                    <li><a href="instituicao.html" data-i18n="footer.about">Sobre Nosotros</a></li>
+                    <li><a href="pesquisas.html" data-i18n="footer.areas">Áreas de Actuación</a></li>
+                    <li><a href="sos-saude-rs.html" data-i18n="footer.sosRs">SOS Salud RS</a></li>
+                    <li><a href="consulta-venezuela.html" data-i18n="footer.consult">Consulta en Línea</a></li>
+                    <li><a href="sos-venezuela.html" data-i18n="footer.sosVe">SOS Venezuela</a></li>
+                    <li><a href="contato.html" data-i18n="footer.contactLink">Contacto</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="footer-title">Transparência</h4>
+                <h4 class="footer-title" data-i18n="footer.transparency">Transparencia</h4>
                 <ul class="footer-links">
-                    <li><a href="transparencia.html">Portal da Transparência</a></li>
-                    <li><a href="docs/projeto-sos-saude-rs.pdf" target="_blank">Projeto SOS Saúde RS (PDF)</a></li>
+                    <li><a href="transparencia.html" data-i18n="footer.portal">Portal de Transparencia</a></li>
+                    <li><a href="transparencia.html#estatuto" data-i18n="footer.estatuto">Estatuto Social</a></li>
+                    <li><a href="docs/estatuto-social-2022.pdf" target="_blank" rel="noopener" data-i18n="footer.estatutoPdf">Estatuto Social (PDF)</a></li>
+                    <li><a href="docs/comprovante-cnpj.pdf" target="_blank" rel="noopener" data-i18n="footer.cnpjPdf">Comprobante CNPJ (PDF)</a></li>
+                    <li><a href="transparencia.html#balancos" data-i18n="footer.balancos">Balances Financieros</a></li>
+                    <li><a href="transparencia.html#relatorios" data-i18n="footer.relatorios">Informes de Actividades</a></li>
+                    <li><a href="docs/projeto-sos-saude-rs.pdf" target="_blank" rel="noopener" data-i18n="footer.projetoSosRs">Proyecto SOS Salud RS (PDF)</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="footer-title">Contato</h4>
+                <h4 class="footer-title" data-i18n="footer.contact">Contacto</h4>
                 <div class="footer-contact-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                    <span>Belo Horizonte, MG · Brasil</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span data-i18n="footer.address" data-i18n-html>Rua Ulhôa Cintra, nº 32, Loja 01, Sala 01<br>Barrio Santa Efigênia, Belo Horizonte/MG</span>
                 </div>
                 <div class="footer-contact-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                    <span>contato@acurabrasil.org</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    <span data-i18n="footer.email">contato@acurabrasil.org</span>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 ACURA BRASIL. Todos os direitos reservados.</p>
-            <p>Desenvolvido em conformidade com as diretrizes de transparência pública.</p>
+            <p data-i18n="common.rights">© 2026 ACURA BRASIL. Todos los derechos reservados.</p>
+            <p data-i18n="common.transparencyFooter">Desarrollado en conformidad con las directrices de transparencia pública.</p>
         </div>
     </footer>
 
+    <script src="js/i18n.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

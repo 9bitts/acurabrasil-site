@@ -1,0 +1,106 @@
+(function () {
+  const STORAGE_KEY = 'acura.lang';
+  const DEFAULT_LANG = 'es';
+
+  function getLang() {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored === 'es' || stored === 'pt') return stored;
+    } catch { /* ignore */ }
+    return DEFAULT_LANG;
+  }
+
+  function t(lang, key) {
+    const dict = window.ACURA_I18N;
+    if (!dict) return key;
+    return dict[lang]?.[key] ?? dict.es?.[key] ?? dict.pt?.[key] ?? key;
+  }
+
+  function apply(lang) {
+    if (!window.ACURA_I18N) return;
+
+    document.documentElement.lang = lang === 'es' ? 'es-VE' : 'pt-BR';
+
+    document.querySelectorAll('[data-i18n]').forEach((el) => {
+      const key = el.getAttribute('data-i18n');
+      const value = t(lang, key);
+      if (el.hasAttribute('data-i18n-html')) {
+        el.innerHTML = value;
+      } else {
+        el.textContent = value;
+      }
+    });
+
+    document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+      el.placeholder = t(lang, el.getAttribute('data-i18n-placeholder'));
+    });
+
+    document.querySelectorAll('[data-i18n-aria]').forEach((el) => {
+      el.setAttribute('aria-label', t(lang, el.getAttribute('data-i18n-aria')));
+    });
+
+    document.querySelectorAll('[data-i18n-title]').forEach((el) => {
+      el.title = t(lang, el.getAttribute('data-i18n-title'));
+    });
+
+    const pageTitleKey = document.body.getAttribute('data-i18n-title');
+    if (pageTitleKey) {
+      document.title = t(lang, pageTitleKey);
+    }
+
+    const metaDesc = document.querySelector('meta[name="description"][data-i18n-content]');
+    if (metaDesc) {
+      metaDesc.setAttribute('content', t(lang, metaDesc.getAttribute('data-i18n-content')));
+    }
+
+    const logo = document.querySelector('.logo-img');
+    if (logo) {
+      logo.alt = t(lang, 'common.logoAlt');
+    }
+
+    const toggle = document.getElementById('lang-toggle');
+    if (toggle) {
+      const label = toggle.querySelector('.lang-toggle-label');
+      const flag = toggle.querySelector('.lang-toggle-flag');
+      if (lang === 'es') {
+        if (label) label.textContent = 'PT';
+        if (flag) flag.textContent = '🇧🇷';
+        toggle.setAttribute('data-i18n-title', 'common.langSwitchPt');
+        toggle.title = t(lang, 'common.langSwitchPt');
+      } else {
+        if (label) label.textContent = 'ES';
+        if (flag) flag.textContent = '🇻🇪';
+        toggle.setAttribute('data-i18n-title', 'common.langSwitchEs');
+        toggle.title = t(lang, 'common.langSwitchEs');
+      }
+    }
+
+    document.dispatchEvent(new CustomEvent('acura:langchange', { detail: { lang } }));
+  }
+
+  function setLang(lang) {
+    if (lang !== 'es' && lang !== 'pt') return;
+    try {
+      localStorage.setItem(STORAGE_KEY, lang);
+    } catch { /* ignore */ }
+    apply(lang);
+  }
+
+  function init() {
+    apply(getLang());
+    const toggle = document.getElementById('lang-toggle');
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        setLang(getLang() === 'es' ? 'pt' : 'es');
+      });
+    }
+  }
+
+  window.AcuraI18n = { getLang, setLang, apply, t, init };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();

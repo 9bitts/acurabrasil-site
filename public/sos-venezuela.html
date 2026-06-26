@@ -1,303 +1,136 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="es-VE">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SOS Saúde Venezuela - ACURA BRASIL mobiliza telemedicina gratuita para vítimas dos terremotos de junho de 2026 via plataforma Doctor8.">
-    <title>SOS Saúde Venezuela - ACURA BRASIL</title>
+    <meta name="description" data-i18n-content="sosve.meta.description" content="SOS Salud Venezuela - ACURA BRASIL moviliza telemedicina gratuita para víctimas de los terremotos de junio de 2026 vía plataforma Doctor8.">
+    <title>SOS Salud Venezuela - ACURA BRASIL</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=6">
+    <link rel="stylesheet" href="css/style.css?v=7">
+    <script src="js/i18n-data.js"></script>
+    <script>try{var l=localStorage.getItem('acura.lang')||'es';document.documentElement.lang=l==='es'?'es-VE':'pt-BR';}catch(e){}</script>
 </head>
-<body>
-
+<body data-i18n-title="sosve.meta.title">
     <header class="header">
         <div class="header-container">
             <a href="index.html" class="logo">
-                <img src="img/logo-header.png" alt="ACURA BRASIL — Associação Brasil pela Cura" class="logo-img">
+                <img src="img/logo-header.png" alt="ACURA BRASIL" class="logo-img">
             </a>
-            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+            <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" data-i18n-aria="common.menuOpen">
                 <span></span><span></span><span></span>
             </button>
-            <nav>
+            <nav class="header-nav">
                 <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link">Início</a></li>
-                    <li><a href="instituicao.html" class="nav-link">A Instituição</a></li>
-                    <li><a href="pesquisas.html" class="nav-link">Pesquisas</a></li>
-                    <li><a href="atendimento-pandemia.html" class="nav-link">Pandemia COVID-19</a></li>
-                    <li><a href="sos-saude-rs.html" class="nav-link">SOS Saúde RS</a></li>
-                    <li><a href="sos-venezuela.html" class="nav-link">SOS Venezuela</a></li>
-                    <li><a href="consulta-venezuela.html" class="nav-link nav-link-destaque">Consulta Online</a></li>
-                    <li><a href="transparencia.html" class="nav-link">Transparência</a></li>
-                    <li><a href="contato.html" class="nav-link">Contato</a></li>
+                    <li><a href="index.html" class="nav-link" data-i18n="nav.home">Inicio</a></li>
+                    <li><a href="sos-venezuela.html" class="nav-link" data-i18n="nav.sosVe">SOS Venezuela</a></li>
+                    <li><a href="consulta-venezuela.html" class="nav-link nav-link-destaque" data-i18n="nav.consult">Consulta en línea</a></li>
+                    <li><a href="instituicao.html" class="nav-link" data-i18n="nav.about">Institución</a></li>
+                    <li class="nav-dropdown">
+                        <button type="button" class="nav-dropdown-toggle" aria-expanded="false" data-i18n="nav.more">Más</button>
+                        <ul class="nav-dropdown-menu">
+                            <li><a href="pesquisas.html" data-i18n="nav.research">Investigación</a></li>
+                            <li><a href="atendimento-pandemia.html" data-i18n="nav.covid">Pandemia COVID-19</a></li>
+                            <li><a href="sos-saude-rs.html" data-i18n="nav.sosRs">SOS Saúde RS</a></li>
+                            <li><a href="transparencia.html" data-i18n="nav.transparency">Transparencia</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contato.html" class="nav-link" data-i18n="nav.contact">Contacto</a></li>
                 </ul>
             </nav>
-            <a href="associar.html" class="btn btn-verde header-cta">Seja um Associado</a>
+            <div class="header-actions">
+                <button type="button" class="lang-toggle" id="lang-toggle" title="Português">
+                    <span class="lang-toggle-flag" aria-hidden="true">🇧🇷</span>
+                    <span class="lang-toggle-label">PT</span>
+                </button>
+                <a href="associar.html" class="btn btn-verde header-cta" data-i18n="nav.join">Asociarse</a>
+            </div>
         </div>
     </header>
-
     <section class="page-hero emergency">
-        <div class="breadcrumb">
-            <a href="index.html">Início</a> / SOS Saúde Venezuela
-        </div>
-        <h1>SOS Saúde Venezuela</h1>
-        <p>Assistência médica e psicológica à distância para as vítimas dos terremotos de junho de 2026</p>
+        <div class="breadcrumb"><a href="index.html" data-i18n="common.breadcrumbHome">Inicio</a> / <span data-i18n="sosve.breadcrumb">SOS Salud Venezuela</span></div>
+        <h1 data-i18n="sosve.hero.title">SOS Salud Venezuela</h1>
+        <p data-i18n="sosve.hero.subtitle">Asistencia médica y psicológica a distancia para las víctimas de los terremotos de junio de 2026</p>
     </section>
-
-    <section class="section">
-        <div class="container content-block">
-
-            <div class="alert-info">
-                <strong>Emergência em curso.</strong> As cifras oficiais de vítimas e feridos estão sendo atualizadas diariamente conforme avançam as operações de busca e resgate. Este projeto segue o mesmo modelo comprovado do <a href="sos-saude-rs.html" style="color: var(--urgencia); font-weight: 600;">SOS Saúde Rio Grande do Sul</a>, adaptado à crise na Venezuela.
-            </div>
-
-            <h2>1. O que aconteceu</h2>
-            <p>
-                Na tarde de <strong>24 de junho de 2026</strong>, o norte da Venezuela foi atingido por um <strong>terremoto duplo (doublet)</strong> — dois sismos de grande magnitude em intervalo de menos de um minuto. Segundo o Serviço Geológico dos Estados Unidos (USGS) e autoridades venezuelanas:
-            </p>
-            <ul>
-                <li><strong>Primeiro sismo:</strong> magnitude 7,2 Mw, às 18:04 (hora local), epicentro a 23 km de San Felipe, estado Yaracuy, profundidade de ~20 km.</li>
-                <li><strong>Segundo sismo:</strong> magnitude 7,5 Mw, 39 segundos depois — o mais devastador — epicentro a 28 km a sudeste de Yumare, profundidade de ~10 km.</li>
-                <li><strong>Intensidade:</strong> IX na escala Mercalli (violento) — o terremoto mais potente registrado na região em mais de um século.</li>
-            </ul>
-            <p>
-                Os tremores ocorreram durante feriado nacional (Batalha de Carabobo), com muitas pessoas em casa ou em espaços públicos. Milhões de pessoas sentiram os abalos; estimativas da OIM indicam que até <strong>6,7 milhões</strong> podem ter sido afetadas.
-            </p>
-
-            <div class="stats-banner">
-                <div class="stat-item">
-                    <strong>7,5 Mw</strong>
-                    <span>Magnitude do sismo principal<br>(USGS)</span>
-                </div>
-                <div class="stat-item">
-                    <strong>589+</strong>
-                    <span>Vítimas fatais confirmadas*<br>(governo venezuelano, 26/06)</span>
-                </div>
-                <div class="stat-item">
-                    <strong>4.300+</strong>
-                    <span>Feridos reportados*<br>(autoridades oficiais)</span>
-                </div>
-                <div class="stat-item">
-                    <strong>250+</strong>
-                    <span>Edificações colapsadas<br>ou gravemente danificadas</span>
-                </div>
-            </div>
-            <p style="font-size: 0.85rem; color: var(--texto-mutado);">*Cifras sujeitas a atualização. Equipes de resgate continuam operando em Caracas, La Guaira e regiões adjacentes.</p>
-
-            <h2>2. Regiões mais afetadas</h2>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h4>La Guaira</h4>
-                    <p>Estado costeiro declarado zona de desastre. Mais de 100 edificações colapsaram. Estimativa de 70.000 famílias afetadas.</p>
-                </div>
-                <div class="info-card">
-                    <h4>Caracas</h4>
-                    <p>Capital com danos generalizados, pessoas soterradas nos escombros e hospitais sobrecarregados ou evacuados.</p>
-                </div>
-                <div class="info-card">
-                    <h4>Miranda e Falcón</h4>
-                    <p>Infraestrutura danificada, interrupção de serviços básicos e dificuldade de acesso a cuidados de saúde.</p>
-                </div>
-                <div class="info-card">
-                    <h4>Yaracuy</h4>
-                    <p>Epicentro dos sismos. Cidades como San Felipe e Yumare com destruição significativa.</p>
-                </div>
-                <div class="info-card">
-                    <h4>Aeroporto de Maiquetía</h4>
-                    <p>Principal aeroporto internacional do país com operações suspensas temporariamente por danos estruturais.</p>
-                </div>
-                <div class="info-card">
-                    <h4>8 hospitais afetados</h4>
-                    <p>Algumas unidades de saúde precisaram ser evacuadas, agravando a crise assistencial no momento de maior demanda.</p>
-                </div>
-            </div>
-
-            <h2>3. Necessidades de saúde urgentes</h2>
-            <p>Com base em padrões observados em desastres sísmicos de magnitude semelhante e na experiência do SOS Saúde RS, as principais demandas incluem:</p>
-            <h3>3.1. Traumas físicos</h3>
-            <ul>
-                <li>Fraturas, lacerações e esmagamentos por edificações colapsadas.</li>
-                <li>Lesões por queda de objetos e desabamentos parciais.</li>
-                <li>Complicações em feridos já atendidos que perderam acesso a medicamentos ou follow-up.</li>
-                <li>Renovação de receitas para doenças crônicas (diabetes, hipertensão, asma, etc.) quando o sistema local está sobrecarregado.</li>
-            </ul>
-            <h3>3.2. Saúde mental e suporte psicossocial</h3>
-            <ul>
-                <li>Reação aguda ao estresse, pânico, ansiedade e luto por perda de familiares e patrimônio.</li>
-                <li>Transtornos do sono, pesadelos recorrentes e medo de réplicas sísmicas.</li>
-                <li>Primeiros socorros psicológicos para crianças, idosos e famílias desabrigadas.</li>
-                <li>Escuta empática e acolhimento para trabalhadores de resgate e voluntários locais.</li>
-            </ul>
-            <h3>3.3. Populações vulneráveis</h3>
-            <ul>
-                <li>Gestantes, lactantes, idosos e pessoas com deficiência em abrigos temporários.</li>
-                <li>Famílias desalojadas sem acesso ao sistema de saúde local.</li>
-                <li>Pessoas com doenças graves que necessitam de cuidados paliativos e suporte contínuo.</li>
-            </ul>
-
-            <h2>4. Como a ACURA BRASIL pode ajudar</h2>
-            <p>
-                A ACURA BRASIL está mobilizando sua rede de voluntários e replicando o modelo do <strong>SOS Saúde Rio Grande do Sul</strong> — projeto que atendeu <strong>2.664 solicitações</strong> de consulta gratuita via telemedicina durante as enchentes de 2024 no RS, com triagem por prioridade, atendimento multidisciplinar e acompanhamento pós-consulta.
-            </p>
-            <p>
-                Para a Venezuela, a estratégia é oferecer <strong>consultas médicas e psicológicas online gratuitas</strong> por meio da plataforma <strong><a href="https://www.doctor8.com.br" target="_blank" rel="noopener" style="color: var(--azul-institucional);">Doctor8</a></strong> — software de telemedicina com dados criptografados em nuvem, compartilhamento seguro de prontuários e videochamadas entre profissionais e pacientes.
-            </p>
-
-            <h2>5. Modelo de atendimento (baseado no SOS Saúde RS)</h2>
-            <p>O fluxo operacional segue seis etapas comprovadas no projeto gaúcho, adaptadas ao contexto venezuelano:</p>
-
-            <div class="journey-timeline">
-                <div class="journey-step">
-                    <div class="journey-number">1</div>
-                    <div class="journey-content">
-                        <h3>Acesso ao sistema</h3>
-                        <p>A vítima ou familiar preenche formulário de solicitação com dados, sintomas e necessidades, concordando com o Termo de Consentimento para Telemedicina. Em seguida, cria cadastro no <strong>Doctor8</strong> (www.doctor8.com.br). Voluntários (Anjos) auxiliam quem tiver dificuldade com o cadastro.</p>
-                    </div>
-                </div>
-                <div class="journey-step">
-                    <div class="journey-number">2</div>
-                    <div class="journey-content">
-                        <h3>Triagem e priorização</h3>
-                        <p>Equipe de triagem classifica casos em filas de <strong>alta prioridade</strong> (traumas graves, risco de vida, crise psicológica aguda) e <strong>atendimento regular</strong>. Casos são direcionados às filas de médicos, psicólogos, psicanalistas ou cuidados paliativos conforme a necessidade.</p>
-                    </div>
-                </div>
-                <div class="journey-step">
-                    <div class="journey-number">3</div>
-                    <div class="journey-content">
-                        <h3>Encaminhamento</h3>
-                        <p>Coordenadores atribuem cada paciente ao profissional voluntário disponível, enviando ficha completa via Doctor8 e contato direto por WhatsApp para agendamento imediato da consulta.</p>
-                    </div>
-                </div>
-                <div class="journey-step">
-                    <div class="journey-number">4</div>
-                    <div class="journey-content">
-                        <h3>Consulta por telemedicina</h3>
-                        <p>Médicos e psicólogos voluntários realizam videochamada via Doctor8: avaliação clínica, orientações, prescrições quando aplicável e encaminhamento para especialidades adicionais se necessário. Todos os atendimentos são registrados conforme normas do CFM e CRP.</p>
-                    </div>
-                </div>
-                <div class="journey-step">
-                    <div class="journey-number">5</div>
-                    <div class="journey-content">
-                        <h3>Acompanhamento pós-consulta</h3>
-                        <p>Voluntários (Anjos) entram em contato para verificar se o paciente compreendeu as orientações, obteve medicamentos prescritos e necessita de suporte adicional — medicamentos, abrigos, informações locais.</p>
-                    </div>
-                </div>
-                <div class="journey-step">
-                    <div class="journey-number">6</div>
-                    <div class="journey-content">
-                        <h3>Cuidados paliativos e integrativos</h3>
-                        <p>Equipe multidisciplinar oferece suporte a pacientes com doenças graves, práticas integrativas complementares e escuta psicanalítica para famílias em luto e sofrimento prolongado.</p>
-                    </div>
-                </div>
-            </div>
-
-            <h2>6. Quem pode se voluntariar</h2>
-            <p>Seguindo a estrutura do SOS Saúde RS, buscamos profissionais em quatro modalidades:</p>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h4>Médicos</h4>
-                    <p>Registro ativo no CFM/CRM. Atendimento clínico e discussão de casos. Verificação de credenciais antes do ingresso.</p>
-                </div>
-                <div class="info-card">
-                    <h4>Psicólogos</h4>
-                    <p>Registro ativo no CRP. Experiência em urgência, emergência e primeiros socorros psicológicos.</p>
-                </div>
-                <div class="info-card">
-                    <h4>Psicanalistas</h4>
-                    <p>Atendimento psico-espiritual e escuta profunda para vítimas em crise de luto e trauma.</p>
-                </div>
-                <div class="info-card">
-                    <h4>Anjos (multidisciplinares)</h4>
-                    <p>Enfermeiros, farmacêuticos, fisioterapeutas, nutricionistas, administradores e voluntários gerais para triagem, cadastro e pós-consulta.</p>
-                </div>
-            </div>
-
-            <h2>7. Ferramentas utilizadas</h2>
-            <ul>
-                <li><strong>Doctor8</strong> — plataforma de telemedicina para consultas, prontuário eletrônico e videochamadas seguras.</li>
-                <li><strong>Google Forms</strong> — formulário de solicitação de atendimento para pacientes.</li>
-                <li><strong>WhatsApp</strong> — comunicação direta entre profissional e paciente para agendamento.</li>
-                <li><strong>Planilhas compartilhadas</strong> — organização de filas de espera e triagem por prioridade.</li>
-            </ul>
-
-            <div class="cta-voluntario">
-                <h3>¿Necesita atención médica ahora?</h3>
-                <p>
-                    Pacientes y familiares en Venezuela: acceda a consultas médicas y psicológicas online gratuitas. Regístrese en Doctor8, entre en <strong>Atendimento Imediato</strong> y vea los profesionales disponibles en este momento.
-                </p>
-                <div class="cta-voluntario-actions">
-                    <a href="https://app.doctor8.org/register?callbackUrl=%2Furgent" class="btn btn-verde" target="_blank" rel="noopener">Iniciar consulta ahora →</a>
-                    <a href="consulta-venezuela.html" class="btn btn-transparente">Ver instrucciones paso a paso</a>
-                </div>
-            </div>
-
-            <div class="cta-voluntario" style="background: linear-gradient(135deg, var(--urgencia-escuro), var(--azul-escuro));">
-                <h3>Faça parte da resposta humanitária</h3>
-                <p>
-                    Profissionais de saúde do Brasil e da comunidade internacional: sua experiência pode salvar vidas a distância.
-                </p>
-                <div class="cta-voluntario-actions">
-                    <a href="contato.html" class="btn btn-verde">Quero ser Voluntário</a>
-                    <a href="sos-saude-rs.html" class="btn btn-transparente">Ver Modelo SOS Saúde RS</a>
-                </div>
-            </div>
-
-            <h2>8. Fontes e referências</h2>
-            <p style="font-size: 0.9rem; color: var(--texto-mutado);">
-                Informações sobre os terremotos compiladas a partir de reportagens e dados públicos de junho de 2026:
-                <a href="https://www.elmundo.es/internacional/2026/06/26/6a3d69a2fc6c83b4758b45b3.html" target="_blank" rel="noopener" style="color: var(--azul-institucional);">El Mundo</a>,
-                <a href="https://elpais.com/america/2026-06-26/el-terremoto-en-venezuela-en-vivo.html" target="_blank" rel="noopener" style="color: var(--azul-institucional);">El País</a>,
-                <a href="https://www.dw.com/es/en-mapas-y-fotos-las-zonas-m%C3%A1s-afectadas-por-los-terremotos-en-venezuela/a-77721622" target="_blank" rel="noopener" style="color: var(--azul-institucional);">Deutsche Welle</a>,
-                USGS e comunicados oficiais do governo venezuelano.
-                Modelo operacional baseado no documento <a href="docs/projeto-sos-saude-rs.pdf" target="_blank" rel="noopener" style="color: var(--azul-institucional);">SOS Saúde Rio Grande do Sul</a> — ACURA BRASIL, 2024.
-            </p>
+    <section class="section"><div class="container content-block">
+        <div class="alert-info" data-i18n="sosve.alert" data-i18n-html><strong>Emergencia en curso.</strong> Las cifras oficiales de víctimas y heridos se están actualizando diariamente conforme avanzan las operaciones de búsqueda y rescate. Este proyecto sigue el mismo modelo comprobado del <a href="sos-saude-rs.html" style="color: var(--urgencia); font-weight: 600;">SOS Salud Río Grande do Sul</a>, adaptado a la crisis en Venezuela.</div>
+        <h2 data-i18n="sosve.s1.title">1. Qué pasó</h2><p data-i18n="sosve.s1.p1" data-i18n-html>En la tarde del <strong>24 de junio de 2026</strong>, el norte de Venezuela fue golpeado por un <strong>terremoto doble (doublet)</strong> — dos sismos de gran magnitud en un intervalo de menos de un minuto. Según el Servicio Geológico de Estados Unidos (USGS) y autoridades venezolanas:</p><ul><li data-i18n="sosve.s1.li1" data-i18n-html><strong>Primer sismo:</strong> magnitud 7,2 Mw, a las 18:04 (hora local), epicentro a 23 km de San Felipe, estado Yaracuy, profundidad de ~20 km.</li><li data-i18n="sosve.s1.li2" data-i18n-html><strong>Segundo sismo:</strong> magnitud 7,5 Mw, 39 segundos después — el más devastador — epicentro a 28 km al sureste de Yumare, profundidad de ~10 km.</li><li data-i18n="sosve.s1.li3" data-i18n-html><strong>Intensidad:</strong> IX en la escala Mercalli (violento) — el terremoto más potente registrado en la región en más de un siglo.</li></ul><p data-i18n="sosve.s1.p2" data-i18n-html>Los temblores ocurrieron durante feriado nacional (Batalla de Carabobo), con muchas personas en casa o en espacios públicos. Millones de personas sintieron los sismos; estimaciones de la OIM indican que hasta <strong>6,7 millones</strong> pueden haber sido afectadas.</p>
+        <div class="stats-banner"><div class="stat-item"><strong data-i18n="sosve.stats.magnitude.value">7,5 Mw</strong><span data-i18n="sosve.stats.magnitude.label" data-i18n-html>Magnitud del sismo principal<br>(USGS)</span></div><div class="stat-item"><strong data-i18n="sosve.stats.deaths.value">589+</strong><span data-i18n="sosve.stats.deaths.label" data-i18n-html>Víctimas fatales confirmadas*<br>(gobierno venezolano, 26/06)</span></div><div class="stat-item"><strong data-i18n="sosve.stats.injured.value">4.300+</strong><span data-i18n="sosve.stats.injured.label" data-i18n-html>Heridos reportados*<br>(autoridades oficiales)</span></div><div class="stat-item"><strong data-i18n="sosve.stats.buildings.value">250+</strong><span data-i18n="sosve.stats.buildings.label" data-i18n-html>Edificaciones colapsadas<br>o gravemente dañadas</span></div></div>
+        <p style="font-size: 0.85rem; color: var(--texto-mutado);" data-i18n="sosve.stats.footnote">*Cifras sujetas a actualización. Equipos de rescate continúan operando en Caracas, La Guaira y regiones adyacentes.</p>
+        <h2 data-i18n="sosve.s2.title">2. Regiones más afectadas</h2><div class="info-grid"><div class="info-card"><h4 data-i18n="sosve.s2.laguaira.title">undefined</h4><p data-i18n="sosve.s2.laguaira.text">Estado costero declarado zona de desastre. Más de 100 edificaciones colapsaron. Estimación de 70.000 familias afectadas.</p></div><div class="info-card"><h4 data-i18n="sosve.s2.caracas.title">undefined</h4><p data-i18n="sosve.s2.caracas.text">Capital con daños generalizados, personas atrapadas bajo escombros y hospitales sobrecargados o evacuados.</p></div><div class="info-card"><h4 data-i18n="sosve.s2.miranda.title">undefined</h4><p data-i18n="sosve.s2.miranda.text">Infraestructura dañada, interrupción de servicios básicos y dificultad de acceso a cuidados de salud.</p></div><div class="info-card"><h4 data-i18n="sosve.s2.yaracuy.title">undefined</h4><p data-i18n="sosve.s2.yaracuy.text">Epicentro de los sismos. Ciudades como San Felipe y Yumare con destrucción significativa.</p></div><div class="info-card"><h4 data-i18n="sosve.s2.airport.title">undefined</h4><p data-i18n="sosve.s2.airport.text">Principal aeropuerto internacional del país con operaciones suspendidas temporalmente por daños estructurales.</p></div><div class="info-card"><h4 data-i18n="sosve.s2.hospitals.title">undefined</h4><p data-i18n="sosve.s2.hospitals.text">Algunas unidades de salud tuvieron que ser evacuadas, agravando la crisis asistencial en el momento de mayor demanda.</p></div></div>
+        <h2 data-i18n="sosve.s3.title">3. Necesidades de salud urgentes</h2><p data-i18n="sosve.s3.intro">Con base en patrones observados en desastres sísmicos de magnitud similar y en la experiencia del SOS Salud RS, las principales demandas incluyen:</p>
+        <h3 data-i18n="sosve.s3.physical.title">3.1. Traumas físicos</h3><ul><li data-i18n="sosve.s3.physical.li1">Fracturas, laceraciones y aplastamientos por edificaciones colapsadas.</li><li data-i18n="sosve.s3.physical.li2">Lesiones por caída de objetos y derrumbes parciales.</li><li data-i18n="sosve.s3.physical.li3">Complicaciones en heridos ya atendidos que perdieron acceso a medicamentos o seguimiento.</li><li data-i18n="sosve.s3.physical.li4">Renovación de recetas para enfermedades crónicas (diabetes, hipertensión, asma, etc.) cuando el sistema local está sobrecargado.</li></ul>
+        <h3 data-i18n="sosve.s3.mental.title">3.2. Salud mental y apoyo psicosocial</h3><ul><li data-i18n="sosve.s3.mental.li1">Reacción aguda al estrés, pánico, ansiedad y duelo por pérdida de familiares y patrimonio.</li><li data-i18n="sosve.s3.mental.li2">Trastornos del sueño, pesadillas recurrentes y miedo a réplicas sísmicas.</li><li data-i18n="sosve.s3.mental.li3">Primeros auxilios psicológicos para niños, adultos mayores y familias desalojadas.</li><li data-i18n="sosve.s3.mental.li4">Escucha empática y acogimiento para trabajadores de rescate y voluntarios locales.</li></ul>
+        <h3 data-i18n="sosve.s3.vulnerable.title">3.3. Poblaciones vulnerables</h3><ul><li data-i18n="sosve.s3.vulnerable.li1">Gestantes, lactantes, adultos mayores y personas con discapacidad en refugios temporales.</li><li data-i18n="sosve.s3.vulnerable.li2">Familias desalojadas sin acceso al sistema de salud local.</li><li data-i18n="sosve.s3.vulnerable.li3">Personas con enfermedades graves que necesitan cuidados paliativos y apoyo continuo.</li></ul>
+        <h2 data-i18n="sosve.s4.title">4. Cómo puede ayudar ACURA BRASIL</h2><p data-i18n="sosve.s4.p1" data-i18n-html>ACURA BRASIL está movilizando su red de voluntarios y replicando el modelo del <strong>SOS Salud Río Grande do Sul</strong> — proyecto que atendió <strong>2.664 solicitudes</strong> de consulta gratuita vía telemedicina durante las inundaciones de 2024 en RS, con triaje por prioridad, atención multidisciplinaria y seguimiento post-consulta.</p><p data-i18n="sosve.s4.p2" data-i18n-html>Para Venezuela, la estrategia es ofrecer <strong>consultas médicas y psicológicas en línea gratuitas</strong> por medio de la plataforma <strong><a href="https://www.doctor8.com.br" target="_blank" rel="noopener" style="color: var(--azul-institucional);">Doctor8</a></strong> — software de telemedicina con datos cifrados en la nube, compartición segura de historias clínicas y videollamadas entre profesionales y pacientes.</p>
+        <h2 data-i18n="sosve.s5.title">5. Modelo de atención (basado en SOS Salud RS)</h2><p data-i18n="sosve.s5.intro">El flujo operacional sigue seis etapas comprobadas en el proyecto gaúcho, adaptadas al contexto venezolano:</p>
+        <div class="journey-timeline">
+            <div class="journey-step"><div class="journey-number">1</div><div class="journey-content"><h3 data-i18n="sosve.s5.step1.title">Acceso al sistema</h3><p data-i18n="sosve.s5.step1.text" data-i18n-html>La víctima o familiar completa formulario de solicitud con datos, síntomas y necesidades, aceptando el Término de Consentimiento para Telemedicina. Luego, crea registro en <strong>Doctor8</strong> (www.doctor8.com.br). Voluntarios (Ángeles) auxilian a quien tenga dificultad con el registro.</p></div></div>
+            <div class="journey-step"><div class="journey-number">2</div><div class="journey-content"><h3 data-i18n="sosve.s5.step2.title">Triaje y priorización</h3><p data-i18n="sosve.s5.step2.text" data-i18n-html>Equipo de triaje clasifica casos en filas de <strong>alta prioridad</strong> (traumas graves, riesgo de vida, crisis psicológica aguda) y <strong>atención regular</strong>. Los casos se dirigen a las filas de médicos, psicólogos, psicoanalistas o cuidados paliativos según la necesidad.</p></div></div>
+            <div class="journey-step"><div class="journey-number">3</div><div class="journey-content"><h3 data-i18n="sosve.s5.step3.title">Encaminamiento</h3><p data-i18n="sosve.s5.step3.text">Coordinadores asignan cada paciente al profesional voluntario disponible, enviando ficha completa vía Doctor8 y contacto directo por WhatsApp para agendar la consulta de inmediato.</p></div></div>
+            <div class="journey-step"><div class="journey-number">4</div><div class="journey-content"><h3 data-i18n="sosve.s5.step4.title">Consulta por telemedicina</h3><p data-i18n="sosve.s5.step4.text">Médicos y psicólogos voluntarios realizan videollamada vía Doctor8: evaluación clínica, orientaciones, prescripciones cuando aplique y derivación a especialidades adicionales si es necesario. Todas las atenciones se registran conforme a las normas del CFM y CRP.</p></div></div>
+            <div class="journey-step"><div class="journey-number">5</div><div class="journey-content"><h3 data-i18n="sosve.s5.step5.title">Seguimiento post-consulta</h3><p data-i18n="sosve.s5.step5.text">Voluntarios (Ángeles) contactan para verificar si el paciente comprendió las orientaciones, obtuvo medicamentos prescritos y necesita apoyo adicional — medicamentos, refugios, información local.</p></div></div>
+            <div class="journey-step"><div class="journey-number">6</div><div class="journey-content"><h3 data-i18n="sosve.s5.step6.title">Cuidados paliativos e integrativos</h3><p data-i18n="sosve.s5.step6.text">Equipo multidisciplinario ofrece apoyo a pacientes con enfermedades graves, prácticas integrativas complementarias y escucha psicoanalítica para familias en duelo y sufrimiento prolongado.</p></div></div>
         </div>
-    </section>
-
+        <h2 data-i18n="sosve.s6.title">6. Quién puede ser voluntario</h2><p data-i18n="sosve.s6.intro">Siguiendo la estructura del SOS Salud RS, buscamos profesionales en cuatro modalidades:</p><div class="info-grid"><div class="info-card"><h4 data-i18n="sosve.s6.medicos.title">undefined</h4><p data-i18n="sosve.s6.medicos.text">Registro activo en CFM/CRM. Atención clínica y discusión de casos. Verificación de credenciales antes del ingreso.</p></div><div class="info-card"><h4 data-i18n="sosve.s6.psicologos.title">undefined</h4><p data-i18n="sosve.s6.psicologos.text">Registro activo en CRP. Experiencia en urgencia, emergencia y primeros auxilios psicológicos.</p></div><div class="info-card"><h4 data-i18n="sosve.s6.psicanalistas.title">undefined</h4><p data-i18n="sosve.s6.psicanalistas.text">Atención psico-espiritual y escucha profunda para víctimas en crisis de duelo y trauma.</p></div><div class="info-card"><h4 data-i18n="sosve.s6.anjos.title">undefined</h4><p data-i18n="sosve.s6.anjos.text">Enfermeros, farmacéuticos, fisioterapeutas, nutricionistas, administradores y voluntarios generales para triaje, registro y post-consulta.</p></div></div>
+        <h2 data-i18n="sosve.s7.title">7. Herramientas utilizadas</h2><ul><li data-i18n="sosve.s7.li1" data-i18n-html><strong>Doctor8</strong> — plataforma de telemedicina para consultas, historia clínica electrónica y videollamadas seguras.</li><li data-i18n="sosve.s7.li2" data-i18n-html><strong>Google Forms</strong> — formulario de solicitud de atención para pacientes.</li><li data-i18n="sosve.s7.li3" data-i18n-html><strong>WhatsApp</strong> — comunicación directa entre profesional y paciente para agendamiento.</li><li data-i18n="sosve.s7.li4" data-i18n-html><strong>Planillas compartidas</strong> — organización de filas de espera y triaje por prioridad.</li></ul>
+        <div class="cta-voluntario"><h3 data-i18n="sosve.cta.patient.title">¿Necesita atención médica ahora?</h3><p data-i18n="sosve.cta.patient.text" data-i18n-html>Pacientes y familiares en Venezuela: acceda a consultas médicas y psicológicas en línea gratuitas. Regístrese en Doctor8, entre en <strong>Atención Inmediata</strong> y vea los profesionales disponibles en este momento.</p><div class="cta-voluntario-actions"><a href="https://app.doctor8.org/register?callbackUrl=%2Furgent" class="btn btn-verde" target="_blank" rel="noopener" data-i18n="sosve.cta.patient.btn1">Iniciar consulta ahora →</a><a href="consulta-venezuela.html" class="btn btn-transparente" data-i18n="sosve.cta.patient.btn2">Ver instrucciones paso a paso</a></div></div>
+        <div class="cta-voluntario" style="background: linear-gradient(135deg, var(--urgencia-escuro), var(--azul-escuro));"><h3 data-i18n="sosve.cta.volunteer.title">Sea parte de la respuesta humanitaria</h3><p data-i18n="sosve.cta.volunteer.text">Profesionales de salud de Brasil y de la comunidad internacional: su experiencia puede salvar vidas a distancia.</p><div class="cta-voluntario-actions"><a href="contato.html" class="btn btn-verde" data-i18n="sosve.cta.volunteer.btn1">Quiero ser Voluntario</a><a href="sos-saude-rs.html" class="btn btn-transparente" data-i18n="sosve.cta.volunteer.btn2">Ver Modelo SOS Salud RS</a></div></div>
+        <h2 data-i18n="sosve.s8.title">8. Fuentes y referencias</h2><p style="font-size: 0.9rem; color: var(--texto-mutado);" data-i18n="sosve.s8.text" data-i18n-html>Información sobre los terremotos compilada a partir de reportajes y datos públicos de junio de 2026: <a href="https://www.elmundo.es/internacional/2026/06/26/6a3d69a2fc6c83b4758b45b3.html" target="_blank" rel="noopener" style="color: var(--azul-institucional);">El Mundo</a>, <a href="https://elpais.com/america/2026-06-26/el-terremoto-en-venezuela-en-vivo.html" target="_blank" rel="noopener" style="color: var(--azul-institucional);">El País</a>, <a href="https://www.dw.com/es/en-mapas-y-fotos-las-zonas-m%C3%A1s-afectadas-por-los-terremotos-en-venezuela/a-77721622" target="_blank" rel="noopener" style="color: var(--azul-institucional);">Deutsche Welle</a>, USGS y comunicados oficiales del gobierno venezolano. Modelo operacional basado en el documento <a href="docs/projeto-sos-saude-rs.pdf" target="_blank" rel="noopener" style="color: var(--azul-institucional);">SOS Salud Río Grande do Sul</a> — ACURA BRASIL, 2024.</p>
+    </div></section>
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-brand">
-                <a href="index.html" class="logo"><img src="img/logo-header.png" alt="ACURA BRASIL — Associação Brasil pela Cura" class="logo-img"></a>
-                <p class="footer-desc">Associação Brasil pela Cura. Entidade sem fins econômicos dedicada ao avanço da ciência, fomento à pesquisa e assistência humanitária.</p>
-                <span class="footer-cnpj">CNPJ: 30.350.850/0001-80 · OSCIP</span>
+                <a href="index.html" class="logo">
+                    <img src="img/logo-header.png" alt="ACURA BRASIL" class="logo-img">
+                </a>
+                <p class="footer-desc" data-i18n="footer.desc">Asociación Brasil por la Cura. Entidad sin fines de lucro dedicada al avance de la ciencia, el fomento de la investigación y la asistencia humanitaria.</p>
+                <span class="footer-cnpj" data-i18n="common.cnpj">CNPJ: 30.350.850/0001-80 · OSCIP</span>
             </div>
             <div>
-                <h4 class="footer-title">Navegação</h4>
+                <h4 class="footer-title" data-i18n="footer.nav">Navegación</h4>
                 <ul class="footer-links">
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="instituicao.html">Sobre Nós</a></li>
-                    <li><a href="consulta-venezuela.html">Consulta Online</a></li>
-                    <li><a href="sos-venezuela.html">SOS Venezuela</a></li>
-                    <li><a href="sos-saude-rs.html">SOS Saúde RS</a></li>
-                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="index.html" data-i18n="footer.home">Inicio</a></li>
+                    <li><a href="instituicao.html" data-i18n="footer.about">Sobre Nosotros</a></li>
+                    <li><a href="pesquisas.html" data-i18n="footer.areas">Áreas de Actuación</a></li>
+                    <li><a href="sos-saude-rs.html" data-i18n="footer.sosRs">SOS Salud RS</a></li>
+                    <li><a href="consulta-venezuela.html" data-i18n="footer.consult">Consulta en Línea</a></li>
+                    <li><a href="sos-venezuela.html" data-i18n="footer.sosVe">SOS Venezuela</a></li>
+                    <li><a href="contato.html" data-i18n="footer.contactLink">Contacto</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="footer-title">Transparência</h4>
+                <h4 class="footer-title" data-i18n="footer.transparency">Transparencia</h4>
                 <ul class="footer-links">
-                    <li><a href="transparencia.html">Portal da Transparência</a></li>
-                    <li><a href="docs/projeto-sos-saude-rs.pdf" target="_blank">Projeto SOS Saúde RS (PDF)</a></li>
+                    <li><a href="transparencia.html" data-i18n="footer.portal">Portal de Transparencia</a></li>
+                    <li><a href="transparencia.html#estatuto" data-i18n="footer.estatuto">Estatuto Social</a></li>
+                    <li><a href="docs/estatuto-social-2022.pdf" target="_blank" rel="noopener" data-i18n="footer.estatutoPdf">Estatuto Social (PDF)</a></li>
+                    <li><a href="docs/comprovante-cnpj.pdf" target="_blank" rel="noopener" data-i18n="footer.cnpjPdf">Comprobante CNPJ (PDF)</a></li>
+                    <li><a href="transparencia.html#balancos" data-i18n="footer.balancos">Balances Financieros</a></li>
+                    <li><a href="transparencia.html#relatorios" data-i18n="footer.relatorios">Informes de Actividades</a></li>
+                    <li><a href="docs/projeto-sos-saude-rs.pdf" target="_blank" rel="noopener" data-i18n="footer.projetoSosRs">Proyecto SOS Salud RS (PDF)</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="footer-title">Contato</h4>
+                <h4 class="footer-title" data-i18n="footer.contact">Contacto</h4>
                 <div class="footer-contact-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                    <span>Belo Horizonte, MG · Brasil</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span data-i18n="footer.address" data-i18n-html>Rua Ulhôa Cintra, nº 32, Loja 01, Sala 01<br>Barrio Santa Efigênia, Belo Horizonte/MG</span>
                 </div>
                 <div class="footer-contact-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                    <span>contato@acurabrasil.org</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    <span data-i18n="footer.email">contato@acurabrasil.org</span>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 ACURA BRASIL. Todos os direitos reservados.</p>
-            <p>Desenvolvido em conformidade com as diretrizes de transparência pública.</p>
+            <p data-i18n="common.rights">© 2026 ACURA BRASIL. Todos los derechos reservados.</p>
+            <p data-i18n="common.transparencyFooter">Desarrollado en conformidad con las directrices de transparencia pública.</p>
         </div>
     </footer>
 
+    <script src="js/i18n.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

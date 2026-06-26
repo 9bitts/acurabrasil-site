@@ -1,235 +1,138 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="es-VE">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Atendimento humanitário da ACURA BRASIL na pandemia de COVID-19 via telemedicina em parceria com a plataforma Doctor8 — estudo retrospectivo em cidades brasileiras com colapso do sistema de saúde.">
-    <title>Atendimento na Pandemia - ACURA BRASIL</title>
+    <meta name="description" data-i18n-content="covid.meta.description" content="Atención humanitaria de ACURA BRASIL en la pandemia de COVID-19 vía telemedicina en alianza con la plataforma Doctor8 — estudio retrospectivo en ciudades brasileñas con colapso del sistema de salud.">
+    <title>Atención en la Pandemia - ACURA BRASIL</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=6">
+    <link rel="stylesheet" href="css/style.css?v=7">
+    <script src="js/i18n-data.js"></script>
+    <script>try{var l=localStorage.getItem('acura.lang')||'es';document.documentElement.lang=l==='es'?'es-VE':'pt-BR';}catch(e){}</script>
 </head>
-<body>
-
+<body data-i18n-title="covid.meta.title">
     <header class="header">
         <div class="header-container">
             <a href="index.html" class="logo">
-                <img src="img/logo-header.png" alt="ACURA BRASIL — Associação Brasil pela Cura" class="logo-img">
+                <img src="img/logo-header.png" alt="ACURA BRASIL" class="logo-img">
             </a>
-            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+            <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" data-i18n-aria="common.menuOpen">
                 <span></span><span></span><span></span>
             </button>
-            <nav>
+            <nav class="header-nav">
                 <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link">Início</a></li>
-                    <li><a href="instituicao.html" class="nav-link">A Instituição</a></li>
-                    <li><a href="pesquisas.html" class="nav-link">Pesquisas</a></li>
-                    <li><a href="atendimento-pandemia.html" class="nav-link">Pandemia COVID-19</a></li>
-                    <li><a href="sos-saude-rs.html" class="nav-link">SOS Saúde RS</a></li>
-                    <li><a href="sos-venezuela.html" class="nav-link">SOS Venezuela</a></li>
-                    <li><a href="consulta-venezuela.html" class="nav-link nav-link-destaque">Consulta Online</a></li>
-                    <li><a href="transparencia.html" class="nav-link">Transparência</a></li>
-                    <li><a href="contato.html" class="nav-link">Contato</a></li>
+                    <li><a href="index.html" class="nav-link" data-i18n="nav.home">Inicio</a></li>
+                    <li><a href="sos-venezuela.html" class="nav-link" data-i18n="nav.sosVe">SOS Venezuela</a></li>
+                    <li><a href="consulta-venezuela.html" class="nav-link nav-link-destaque" data-i18n="nav.consult">Consulta en línea</a></li>
+                    <li><a href="instituicao.html" class="nav-link" data-i18n="nav.about">Institución</a></li>
+                    <li class="nav-dropdown">
+                        <button type="button" class="nav-dropdown-toggle" aria-expanded="false" data-i18n="nav.more">Más</button>
+                        <ul class="nav-dropdown-menu">
+                            <li><a href="pesquisas.html" data-i18n="nav.research">Investigación</a></li>
+                            <li><a href="atendimento-pandemia.html" data-i18n="nav.covid">Pandemia COVID-19</a></li>
+                            <li><a href="sos-saude-rs.html" data-i18n="nav.sosRs">SOS Saúde RS</a></li>
+                            <li><a href="transparencia.html" data-i18n="nav.transparency">Transparencia</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contato.html" class="nav-link" data-i18n="nav.contact">Contacto</a></li>
                 </ul>
             </nav>
-            <a href="associar.html" class="btn btn-verde header-cta">Seja um Associado</a>
+            <div class="header-actions">
+                <button type="button" class="lang-toggle" id="lang-toggle" title="Português">
+                    <span class="lang-toggle-flag" aria-hidden="true">🇧🇷</span>
+                    <span class="lang-toggle-label">PT</span>
+                </button>
+                <a href="associar.html" class="btn btn-verde header-cta" data-i18n="nav.join">Asociarse</a>
+            </div>
         </div>
     </header>
-
     <section class="page-hero">
-        <div class="breadcrumb">
-            <a href="index.html">Início</a> / Atendimento na Pandemia
-        </div>
-        <h1>Atendimento na Pandemia de COVID-19</h1>
-        <p>Telemedicina humanitária em parceria com a plataforma Doctor8 em cidades brasileiras com colapso do sistema de saúde</p>
+        <div class="breadcrumb"><a href="index.html" data-i18n="common.breadcrumbHome">Inicio</a> / <span data-i18n="covid.breadcrumb">Atención en la Pandemia</span></div>
+        <h1 data-i18n="covid.hero.title">Atención en la Pandemia de COVID-19</h1>
+        <p data-i18n="covid.hero.subtitle">Telemedicina humanitaria en alianza con la plataforma Doctor8 en ciudades brasileñas con colapso del sistema de salud</p>
     </section>
-
-    <section class="section">
-        <div class="container content-block">
-
-            <h2>1. Contexto</h2>
-            <p>
-                Em março de 2020, a Organização Mundial da Saúde declarou a pandemia causada pelo vírus SARS-CoV-2, afetando profundamente a saúde pública e a economia global. Profissionais de saúde enfrentaram uma doença nova, com mecanismos, diagnóstico e tratamento ainda em construção.
-            </p>
-            <p>
-                O colapso atingiu um ponto crítico em <strong>janeiro de 2021</strong>, quando o sistema de saúde de <strong>Manaus (AM)</strong> entrou em colapso: hospitais superlotados, ausência de leitos e escassez de oxigênio para pacientes graves. Muitas pessoas precisaram ser transferidas para outras cidades ou não tiveram acesso a tratamento.
-            </p>
-            <p>
-                Diante desse cenário, a <strong>ACURA BRASIL</strong> — em conjunto com médicos voluntários de diversas especialidades e outros profissionais de saúde — organizou uma resposta humanitária de atendimento remoto, utilizando a infraestrutura de telemedicina já regulamentada pelo Conselho Federal de Medicina e autorizada em caráter emergencial pelo governo federal durante a pandemia.
-            </p>
-
-            <div class="stats-banner">
-                <div class="stat-item">
-                    <strong>~12.000</strong>
-                    <span>Famílias atendidas<br>via Doctor8</span>
-                </div>
-                <div class="stat-item">
-                    <strong>~36.000</strong>
-                    <span>Pessoas beneficiadas<br>(estimativa)</span>
-                </div>
-                <div class="stat-item">
-                    <strong>122</strong>
-                    <span>Médicos voluntários<br>de todo o Brasil</span>
-                </div>
-                <div class="stat-item">
-                    <strong>11 meses</strong>
-                    <span>Operação contínua<br>(jan.–dez. 2021)</span>
-                </div>
-            </div>
-
-            <h2>2. Parceria com a Doctor8</h2>
-            <p>
-                A operação foi viabilizada pela plataforma <strong><a href="https://www.doctor8.com.br" target="_blank" rel="noopener" style="color: var(--azul-institucional);">Doctor8</a></strong> — software médico originalmente desenvolvido como prontuário eletrônico em nuvem, adaptado para telemedicina após a Lei nº 13.989/2020 e em conformidade com a LGPD (Lei nº 13.709/2018).
-            </p>
-            <p>
-                A Doctor8 garantiu segurança jurídica, registro clínico criptografado, consultas por videochamada, prescrições com assinatura digital (certificados ICP-Brasil) e compartilhamento de documentos com pacientes, farmácias e laboratórios — eliminando deslocamentos e acelerando o acesso ao cuidado em meio à crise.
-            </p>
-            <p>
-                Cada profissional voluntário dispunha de uma clínica virtual própria na plataforma, com autonomia médica preservada e dados acessíveis apenas mediante senha pessoal, assegurando confidencialidade e responsabilidade individual sobre cada atendimento.
-            </p>
-
-            <h2>3. Como funcionou o atendimento</h2>
-            <p>
-                Pacientes preenchiam um questionário clínico digital — anamnese pré-consulta com dados pessoais, sintomas, histórico e comorbidades. Sintomas de alerta eram destacados para priorizar casos mais graves e reduzir o tempo de espera. Todos os pacientes eram informados e consentiam digitalmente com o tratamento proposto, conforme orientações do CFM e normas éticas internacionais.
-            </p>
-
-            <div class="journey-timeline">
-                <div class="journey-step">
-                    <div class="journey-number">1</div>
-                    <div class="journey-content">
-                        <h3>Cadastro e triagem</h3>
-                        <p>O paciente responde ao questionário clínico na plataforma Doctor8, declarando consentimento informado. A triagem identifica sintomas de alerta e classifica a urgência do caso.</p>
-                    </div>
-                </div>
-                <div class="journey-step">
-                    <div class="journey-number">2</div>
-                    <div class="journey-content">
-                        <h3>Consulta por telemedicina</h3>
-                        <p>Médicos voluntários com CRM validado pelo CFM realizam consultas remotas, registram diagnósticos, orientações e prescrições na plataforma, com documentos assinados digitalmente.</p>
-                    </div>
-                </div>
-                <div class="journey-step">
-                    <div class="journey-number">3</div>
-                    <div class="journey-content">
-                        <h3>Acompanhamento multidisciplinar</h3>
-                        <p>Psicólogos, fisioterapeutas, nutricionistas e outros profissionais de saúde complementam o cuidado às famílias. Voluntários não médicos auxiliam no cadastro, agendamento e apoio logístico.</p>
-                    </div>
-                </div>
-                <div class="journey-step">
-                    <div class="journey-number">4</div>
-                    <div class="journey-content">
-                        <h3>Apoio comunitário</h3>
-                        <p>Em diversas cidades, associações profissionais e empresas locais apoiaram a campanha. Voluntários também contribuíram na arrecadação e distribuição de medicamentos e alimentos a pacientes em situação de vulnerabilidade.</p>
-                    </div>
-                </div>
-            </div>
-
-            <h2>4. Abrangência</h2>
-            <p>
-                A operação teve início em Manaus e, diante do reconhecimento social do trabalho realizado, expandiu-se para outras cidades severamente afetadas pela pandemia — incluindo <strong>Uberaba</strong>, <strong>Ribeirão Preto</strong>, <strong>Chapecó</strong> e <strong>Itaúna</strong>, entre outras.
-            </p>
-            <p>
-                Famílias de praticamente todos os estados brasileiros foram atendidas. Em Uberaba, a plataforma Doctor8 foi disponibilizada também ao SUS em parceria com a gestão municipal. A ACURA BRASIL prestou apoio tecnológico e humano à organização não governamental <em>Médicos Pela Vida</em>, ativa em todo o território nacional desde o início da pandemia.
-            </p>
-            <p>
-                O período de coleta de dados para o estudo retrospectivo compreendeu <strong>25 de janeiro a 20 de dezembro de 2021</strong>.
-            </p>
-
-            <h2>5. Estudo científico e resultados</h2>
-            <p>
-                A vasta quantidade de dados armazenados na plataforma Doctor8 ao longo de 11 meses de operação permitiu a elaboração do estudo retrospectivo <em>The Impact of Telemedicine on COVID-19 Treatment: A Retrospective Study in Collapsed Brazilian Cities</em>, documentando a experiência de telemedicina em contexto de emergência.
-            </p>
-
-            <div class="info-grid">
-                <div class="info-card">
-                    <h4>2.220 pacientes</h4>
-                    <p>Com diagnóstico confirmado de COVID-19 (RT-PCR) analisados no estudo retrospectivo.</p>
-                </div>
-                <div class="info-card">
-                    <h4>0,36%</h4>
-                    <p>Taxa de mortalidade observada no grupo analisado — todos os óbitos envolveram pacientes com comorbidades.</p>
-                </div>
-                <div class="info-card">
-                    <h4>0 óbitos</h4>
-                    <p>Entre pacientes atendidos e iniciados tratamento farmacológico em até 3 dias do início dos sintomas.</p>
-                </div>
-                <div class="info-card">
-                    <h4>122 crianças</h4>
-                    <p>Atendidas na faixa etária de 0 a 17 anos (5,5% da amostra), sem óbitos registrados nesse grupo.</p>
-                </div>
-            </div>
-
-            <p>
-                Os resultados reforçam a importância do <strong>atendimento precoce</strong>: nenhum paciente que iniciou tratamento nos primeiros três dias de sintomas faleceu. Entre os óbitos registrados, a maioria havia sido atendida após o sétimo dia de sintomas. A telemedicina mostrou-se viável para consultas remotas durante a pandemia, reunindo dados uniformes e auditáveis que contribuem para a pesquisa científica em contextos de emergência.
-            </p>
-            <p>
-                A ACURA BRASIL reafirma o compromisso com o rigor científico, a transparência dos dados e a autonomia médica, pilares que orientam todas as suas ações humanitárias.
-            </p>
-
-            <h2>6. Legado e continuidade</h2>
-            <p>
-                A experiência acumulada na pandemia — triagem digital, rede de médicos voluntários, prontuário em nuvem e acompanhamento multidisciplinar via Doctor8 — fundamentou os projetos humanitários posteriores da instituição, como o <a href="sos-saude-rs.html" style="color: var(--azul-institucional); font-weight: 500;">SOS Saúde Rio Grande do Sul</a> (enchentes de 2024) e o <a href="sos-venezuela.html" style="color: var(--azul-institucional); font-weight: 500;">SOS Saúde Venezuela</a> (terremotos de 2026).
-            </p>
-            <p>
-                A telemedicina deixou de ser apenas uma alternativa emergencial: tornou-se uma ferramenta permanente para ampliar o acesso à saúde, especialmente em regiões onde médicos não estão fisicamente presentes ou em situações de colapso do sistema de saúde.
-            </p>
-
-            <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
-                <a href="https://www.doctor8.com.br" class="btn btn-azul" target="_blank" rel="noopener">Conhecer a Doctor8</a>
-                <a href="associar.html" class="btn btn-verde">Quero me Associar</a>
-                <a href="contato.html" class="btn btn-outline">Entrar em Contato</a>
-            </div>
-
-            <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--texto-mutado);">
-                ACURA BRASIL — Associação Brasil pela Cura · OSCIP · CNPJ 30.350.850/0001-80 · Belo Horizonte, MG
-            </p>
+    <section class="section"><div class="container content-block">
+        <h2 data-i18n="covid.s1.title">1. Contexto</h2><p data-i18n="covid.s1.p1">En marzo de 2020, la Organización Mundial de la Salud declaró la pandemia causada por el virus SARS-CoV-2, afectando profundamente la salud pública y la economía global. Los profesionales de salud enfrentaron una enfermedad nueva, con mecanismos, diagnóstico y tratamiento aún en construcción.</p><p data-i18n="covid.s1.p2" data-i18n-html>El colapso alcanzó un punto crítico en <strong>enero de 2021</strong>, cuando el sistema de salud de <strong>Manaus (AM)</strong> entró en colapso: hospitales saturados, ausencia de camas y escasez de oxígeno para pacientes graves. Muchas personas tuvieron que ser transferidas a otras ciudades o no tuvieron acceso a tratamiento.</p><p data-i18n="covid.s1.p3" data-i18n-html>Ante este escenario, <strong>ACURA BRASIL</strong> — junto con médicos voluntarios de diversas especialidades y otros profesionales de salud — organizó una respuesta humanitaria de atención remota, utilizando la infraestructura de telemedicina ya regulamentada por el Consejo Federal de Medicina y autorizada en carácter emergencial por el gobierno federal durante la pandemia.</p>
+        <div class="stats-banner"><div class="stat-item"><strong data-i18n="covid.stats.families.value">~12.000</strong><span data-i18n="covid.stats.families.label" data-i18n-html>Familias atendidas<br>vía Doctor8</span></div><div class="stat-item"><strong data-i18n="covid.stats.people.value">~36.000</strong><span data-i18n="covid.stats.people.label" data-i18n-html>Personas beneficiadas<br>(estimación)</span></div><div class="stat-item"><strong data-i18n="covid.stats.doctors.value">122</strong><span data-i18n="covid.stats.doctors.label" data-i18n-html>Médicos voluntarios<br>de todo Brasil</span></div><div class="stat-item"><strong data-i18n="covid.stats.months.value">11 meses</strong><span data-i18n="covid.stats.months.label" data-i18n-html>Operación continua<br>(ene.–dic. 2021)</span></div></div>
+        <h2 data-i18n="covid.s2.title">2. Alianza con Doctor8</h2><p data-i18n="covid.s2.p1" data-i18n-html>La operación fue posible gracias a la plataforma <strong><a href="https://www.doctor8.com.br" target="_blank" rel="noopener" style="color: var(--azul-institucional);">Doctor8</a></strong> — software médico originalmente desarrollado como historia clínica electrónica en la nube, adaptado para telemedicina tras la Ley nº 13.989/2020 y en conformidad con la LGPD (Ley nº 13.709/2018).</p><p data-i18n="covid.s2.p2">Doctor8 garantizó seguridad jurídica, registro clínico cifrado, consultas por videollamada, prescripciones con firma digital (certificados ICP-Brasil) y compartición de documentos con pacientes, farmacias y laboratorios — eliminando desplazamientos y acelerando el acceso al cuidado en medio de la crisis.</p><p data-i18n="covid.s2.p3">Cada profesional voluntario disponía de una clínica virtual propia en la plataforma, con autonomía médica preservada y datos accesibles solo mediante contraseña personal, asegurando confidencialidad y responsabilidad individual sobre cada atención.</p>
+        <h2 data-i18n="covid.s3.title">3. Cómo funcionó la atención</h2><p data-i18n="covid.s3.intro">Los pacientes completaban un cuestionario clínico digital — anamnesis pre-consulta con datos personales, síntomas, historial y comorbilidades. Los síntomas de alerta eran destacados para priorizar casos más graves y reducir el tiempo de espera. Todos los pacientes eran informados y consentían digitalmente con el tratamiento propuesto, conforme a las orientaciones del CFM y normas éticas internacionales.</p>
+        <div class="journey-timeline">
+            <div class="journey-step"><div class="journey-number">1</div><div class="journey-content"><h3 data-i18n="covid.s3.step1.title">Registro y triaje</h3><p data-i18n="covid.s3.step1.text">El paciente responde al cuestionario clínico en la plataforma Doctor8, declarando consentimiento informado. El triaje identifica síntomas de alerta y clasifica la urgencia del caso.</p></div></div>
+            <div class="journey-step"><div class="journey-number">2</div><div class="journey-content"><h3 data-i18n="covid.s3.step2.title">Consulta por telemedicina</h3><p data-i18n="covid.s3.step2.text">Médicos voluntarios con CRM validado por el CFM realizan consultas remotas, registran diagnósticos, orientaciones y prescripciones en la plataforma, con documentos firmados digitalmente.</p></div></div>
+            <div class="journey-step"><div class="journey-number">3</div><div class="journey-content"><h3 data-i18n="covid.s3.step3.title">Seguimiento multidisciplinario</h3><p data-i18n="covid.s3.step3.text">Psicólogos, fisioterapeutas, nutricionistas y otros profesionales de salud complementan el cuidado a las familias. Voluntarios no médicos auxilian en el registro, agendamiento y apoyo logístico.</p></div></div>
+            <div class="journey-step"><div class="journey-number">4</div><div class="journey-content"><h3 data-i18n="covid.s3.step4.title">Apoyo comunitario</h3><p data-i18n="covid.s3.step4.text">En diversas ciudades, asociaciones profesionales y empresas locales apoyaron la campaña. Voluntarios también contribuyeron en la recaudación y distribución de medicamentos y alimentos a pacientes en situación de vulnerabilidad.</p></div></div>
         </div>
-    </section>
-
+        <h2 data-i18n="covid.s4.title">4. Cobertura</h2><p data-i18n="covid.s4.p1" data-i18n-html>La operación comenzó en Manaus y, ante el reconocimiento social del trabajo realizado, se expandió a otras ciudades severamente afectadas por la pandemia — incluyendo <strong>Uberaba</strong>, <strong>Ribeirão Preto</strong>, <strong>Chapecó</strong> y <strong>Itaúna</strong>, entre otras.</p><p data-i18n="covid.s4.p2" data-i18n-html>Familias de prácticamente todos los estados brasileños fueron atendidas. En Uberaba, la plataforma Doctor8 fue puesta a disposición también del SUS en alianza con la gestión municipal. ACURA BRASIL prestó apoyo tecnológico y humano a la organización no gubernamental <em>Médicos Pela Vida</em>, activa en todo el territorio nacional desde el inicio de la pandemia.</p><p data-i18n="covid.s4.p3" data-i18n-html>El período de recolección de datos para el estudio retrospectivo comprendió del <strong>25 de enero al 20 de diciembre de 2021</strong>.</p>
+        <h2 data-i18n="covid.s5.title">5. Estudio científico y resultados</h2><p data-i18n="covid.s5.p1" data-i18n-html>La vasta cantidad de datos almacenados en la plataforma Doctor8 a lo largo de 11 meses de operación permitió la elaboración del estudio retrospectivo <em>The Impact of Telemedicine on COVID-19 Treatment: A Retrospective Study in Collapsed Brazilian Cities</em>, documentando la experiencia de telemedicina en contexto de emergencia.</p>
+        <div class="info-grid">
+            <div class="info-card"><h4 data-i18n="covid.s5.card1.title">2.220 pacientes</h4><p data-i18n="covid.s5.card1.text">Con diagnóstico confirmado de COVID-19 (RT-PCR) analizados en el estudio retrospectivo.</p></div>
+            <div class="info-card"><h4 data-i18n="covid.s5.card2.title">0,36%</h4><p data-i18n="covid.s5.card2.text">Tasa de mortalidad observada en el grupo analizado — todos los fallecimientos involucraron pacientes con comorbilidades.</p></div>
+            <div class="info-card"><h4 data-i18n="covid.s5.card3.title">0 fallecimientos</h4><p data-i18n="covid.s5.card3.text">Entre pacientes atendidos e iniciados tratamiento farmacológico en hasta 3 días del inicio de los síntomas.</p></div>
+            <div class="info-card"><h4 data-i18n="covid.s5.card4.title">122 niños</h4><p data-i18n="covid.s5.card4.text">Atendidos en el rango de 0 a 17 años (5,5% de la muestra), sin fallecimientos registrados en ese grupo.</p></div>
+        </div>
+        <p data-i18n="covid.s5.p2" data-i18n-html>Los resultados refuerzan la importancia de la <strong>atención temprana</strong>: ningún paciente que inició tratamiento en los primeros tres días de síntomas falleció. Entre los fallecimientos registrados, la mayoría había sido atendida después del séptimo día de síntomas. La telemedicina demostró ser viable para consultas remotas durante la pandemia, reuniendo datos uniformes y auditables que contribuyen a la investigación científica en contextos de emergencia.</p><p data-i18n="covid.s5.p3">ACURA BRASIL reafirma el compromiso con el rigor científico, la transparencia de los datos y la autonomía médica, pilares que orientan todas sus acciones humanitarias.</p>
+        <h2 data-i18n="covid.s6.title">6. Legado y continuidad</h2><p data-i18n="covid.s6.p1" data-i18n-html>La experiencia acumulada en la pandemia — triaje digital, red de médicos voluntarios, historia clínica en la nube y seguimiento multidisciplinario vía Doctor8 — fundamentó los proyectos humanitarios posteriores de la institución, como el <a href="sos-saude-rs.html" style="color: var(--azul-institucional); font-weight: 500;">SOS Salud Río Grande do Sul</a> (inundaciones de 2024) y el <a href="sos-venezuela.html" style="color: var(--azul-institucional); font-weight: 500;">SOS Salud Venezuela</a> (terremotos de 2026).</p><p data-i18n="covid.s6.p2">La telemedicina dejó de ser solo una alternativa emergencial: se convirtió en una herramienta permanente para ampliar el acceso a la salud, especialmente en regiones donde los médicos no están físicamente presentes o en situaciones de colapso del sistema de salud.</p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
+            <a href="https://www.doctor8.com.br" class="btn btn-azul" target="_blank" rel="noopener" data-i18n="covid.btn.doctor8">Conocer Doctor8</a>
+            <a href="associar.html" class="btn btn-verde" data-i18n="covid.btn.join">Quiero Asociarme</a>
+            <a href="contato.html" class="btn btn-outline" data-i18n="covid.btn.contact">Contactar</a>
+        </div>
+        <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--texto-mutado);" data-i18n="covid.footer">ACURA BRASIL — Asociación Brasil por la Cura · OSCIP · CNPJ 30.350.850/0001-80 · Belo Horizonte, MG</p>
+    </div></section>
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-brand">
-                <a href="index.html" class="logo"><img src="img/logo-header.png" alt="ACURA BRASIL — Associação Brasil pela Cura" class="logo-img"></a>
-                <p class="footer-desc">Associação Brasil pela Cura. Entidade sem fins econômicos dedicada ao avanço da ciência, fomento à pesquisa e assistência humanitária.</p>
-                <span class="footer-cnpj">CNPJ: 30.350.850/0001-80 · OSCIP</span>
+                <a href="index.html" class="logo">
+                    <img src="img/logo-header.png" alt="ACURA BRASIL" class="logo-img">
+                </a>
+                <p class="footer-desc" data-i18n="footer.desc">Asociación Brasil por la Cura. Entidad sin fines de lucro dedicada al avance de la ciencia, el fomento de la investigación y la asistencia humanitaria.</p>
+                <span class="footer-cnpj" data-i18n="common.cnpj">CNPJ: 30.350.850/0001-80 · OSCIP</span>
             </div>
             <div>
-                <h4 class="footer-title">Navegação</h4>
+                <h4 class="footer-title" data-i18n="footer.nav">Navegación</h4>
                 <ul class="footer-links">
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="instituicao.html">Sobre Nós</a></li>
-                    <li><a href="atendimento-pandemia.html">Pandemia COVID-19</a></li>
-                    <li><a href="pesquisas.html">Áreas de Atuação</a></li>
-                    <li><a href="sos-saude-rs.html">SOS Saúde RS</a></li>
-                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="index.html" data-i18n="footer.home">Inicio</a></li>
+                    <li><a href="instituicao.html" data-i18n="footer.about">Sobre Nosotros</a></li>
+                    <li><a href="pesquisas.html" data-i18n="footer.areas">Áreas de Actuación</a></li>
+                    <li><a href="sos-saude-rs.html" data-i18n="footer.sosRs">SOS Salud RS</a></li>
+                    <li><a href="consulta-venezuela.html" data-i18n="footer.consult">Consulta en Línea</a></li>
+                    <li><a href="sos-venezuela.html" data-i18n="footer.sosVe">SOS Venezuela</a></li>
+                    <li><a href="contato.html" data-i18n="footer.contactLink">Contacto</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="footer-title">Transparência</h4>
+                <h4 class="footer-title" data-i18n="footer.transparency">Transparencia</h4>
                 <ul class="footer-links">
-                    <li><a href="transparencia.html">Portal da Transparência</a></li>
-                    <li><a href="docs/projeto-sos-saude-rs.pdf" target="_blank">Projeto SOS Saúde RS (PDF)</a></li>
+                    <li><a href="transparencia.html" data-i18n="footer.portal">Portal de Transparencia</a></li>
+                    <li><a href="transparencia.html#estatuto" data-i18n="footer.estatuto">Estatuto Social</a></li>
+                    <li><a href="docs/estatuto-social-2022.pdf" target="_blank" rel="noopener" data-i18n="footer.estatutoPdf">Estatuto Social (PDF)</a></li>
+                    <li><a href="docs/comprovante-cnpj.pdf" target="_blank" rel="noopener" data-i18n="footer.cnpjPdf">Comprobante CNPJ (PDF)</a></li>
+                    <li><a href="transparencia.html#balancos" data-i18n="footer.balancos">Balances Financieros</a></li>
+                    <li><a href="transparencia.html#relatorios" data-i18n="footer.relatorios">Informes de Actividades</a></li>
+                    <li><a href="docs/projeto-sos-saude-rs.pdf" target="_blank" rel="noopener" data-i18n="footer.projetoSosRs">Proyecto SOS Salud RS (PDF)</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="footer-title">Contato</h4>
+                <h4 class="footer-title" data-i18n="footer.contact">Contacto</h4>
                 <div class="footer-contact-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                    <span>Belo Horizonte, MG · Brasil</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span data-i18n="footer.address" data-i18n-html>Rua Ulhôa Cintra, nº 32, Loja 01, Sala 01<br>Barrio Santa Efigênia, Belo Horizonte/MG</span>
                 </div>
                 <div class="footer-contact-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                    <span>contato@acurabrasil.org</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    <span data-i18n="footer.email">contato@acurabrasil.org</span>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 ACURA BRASIL. Todos os direitos reservados.</p>
-            <p>Desenvolvido em conformidade com as diretrizes de transparência pública.</p>
+            <p data-i18n="common.rights">© 2026 ACURA BRASIL. Todos los derechos reservados.</p>
+            <p data-i18n="common.transparencyFooter">Desarrollado en conformidad con las directrices de transparencia pública.</p>
         </div>
     </footer>
 
+    <script src="js/i18n.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

@@ -1,184 +1,147 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="es-VE">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portal da Transparência da ACURA BRASIL - OSCIP certificada. Estatuto, balanços, relatórios e certidões públicas.">
-    <title>Transparência - ACURA BRASIL</title>
+    <meta name="description" data-i18n-content="trans.meta.description" content="Portal de Transparencia de ACURA BRASIL - OSCIP certificada. Estatuto, balances, informes y certificados públicos.">
+    <title>Transparencia - ACURA BRASIL</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=6">
+    <link rel="stylesheet" href="css/style.css?v=7">
+    <script src="js/i18n-data.js"></script>
+    <script>try{var l=localStorage.getItem('acura.lang')||'es';document.documentElement.lang=l==='es'?'es-VE':'pt-BR';}catch(e){}</script>
 </head>
-<body>
-
+<body data-i18n-title="trans.meta.title">
     <header class="header">
         <div class="header-container">
-            <a href="index.html" class="logo"><img src="img/logo-header.png" alt="ACURA BRASIL — Associação Brasil pela Cura" class="logo-img"></a>
-            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
-            <nav>
+            <a href="index.html" class="logo">
+                <img src="img/logo-header.png" alt="ACURA BRASIL" class="logo-img">
+            </a>
+            <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" data-i18n-aria="common.menuOpen">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="header-nav">
                 <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link">Início</a></li>
-                    <li><a href="instituicao.html" class="nav-link">A Instituição</a></li>
-                    <li><a href="pesquisas.html" class="nav-link">Pesquisas</a></li>
-                    <li><a href="atendimento-pandemia.html" class="nav-link">Pandemia COVID-19</a></li>
-                    <li><a href="sos-saude-rs.html" class="nav-link">SOS Saúde RS</a></li>
-                    <li><a href="sos-venezuela.html" class="nav-link">SOS Venezuela</a></li>
-                    <li><a href="consulta-venezuela.html" class="nav-link nav-link-destaque">Consulta Online</a></li>
-                    <li><a href="transparencia.html" class="nav-link">Transparência</a></li>
-                    <li><a href="contato.html" class="nav-link">Contato</a></li>
+                    <li><a href="index.html" class="nav-link" data-i18n="nav.home">Inicio</a></li>
+                    <li><a href="sos-venezuela.html" class="nav-link" data-i18n="nav.sosVe">SOS Venezuela</a></li>
+                    <li><a href="consulta-venezuela.html" class="nav-link nav-link-destaque" data-i18n="nav.consult">Consulta en línea</a></li>
+                    <li><a href="instituicao.html" class="nav-link" data-i18n="nav.about">Institución</a></li>
+                    <li class="nav-dropdown">
+                        <button type="button" class="nav-dropdown-toggle" aria-expanded="false" data-i18n="nav.more">Más</button>
+                        <ul class="nav-dropdown-menu">
+                            <li><a href="pesquisas.html" data-i18n="nav.research">Investigación</a></li>
+                            <li><a href="atendimento-pandemia.html" data-i18n="nav.covid">Pandemia COVID-19</a></li>
+                            <li><a href="sos-saude-rs.html" data-i18n="nav.sosRs">SOS Saúde RS</a></li>
+                            <li><a href="transparencia.html" data-i18n="nav.transparency">Transparencia</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contato.html" class="nav-link" data-i18n="nav.contact">Contacto</a></li>
                 </ul>
             </nav>
-            <a href="associar.html" class="btn btn-verde header-cta">Seja um Associado</a>
+            <div class="header-actions">
+                <button type="button" class="lang-toggle" id="lang-toggle" title="Português">
+                    <span class="lang-toggle-flag" aria-hidden="true">🇧🇷</span>
+                    <span class="lang-toggle-label">PT</span>
+                </button>
+                <a href="associar.html" class="btn btn-verde header-cta" data-i18n="nav.join">Asociarse</a>
+            </div>
         </div>
     </header>
-
     <section class="page-hero">
-        <div class="breadcrumb"><a href="index.html">Início</a> / Transparência</div>
-        <h1>Portal da Transparência</h1>
-        <p>Como OSCIP certificada, mantemos absoluta transparência pública em todas as nossas ações.</p>
+        <div class="breadcrumb"><a href="index.html" data-i18n="common.breadcrumbHome">Inicio</a> / <span data-i18n="trans.breadcrumb">Transparencia</span></div>
+        <h1 data-i18n="trans.hero.title">Portal de Transparencia</h1>
+        <p data-i18n="trans.hero.subtitle">Como OSCIP certificada, mantenemos absoluta transparencia pública en todas nuestras acciones.</p>
     </section>
-
     <section class="section">
         <div class="container content-block">
-            <p>
-                A ACURA BRASIL, enquanto Organização da Sociedade Civil de Interesse Público (OSCIP), está comprometida com a prestação de contas e a divulgação de todos os documentos exigidos pela legislação. Abaixo estão os documentos institucionais disponíveis para consulta pública.
-            </p>
-
-            <h2 id="estatuto">Documentos Institucionais</h2>
+            <p data-i18n="trans.intro">ACURA BRASIL, como Organización de la Sociedad Civil de Interés Público (OSCIP), está comprometida con la rendición de cuentas y la divulgación de todos los documentos exigidos por la legislación. A continuación se encuentran los documentos institucionales disponibles para consulta pública.</p>
+            <h2 id="estatuto" data-i18n="trans.docs.title">Documentos Institucionales</h2>
             <ul class="docs-list">
-                <li>
-                    <span>Estatuto Social (07/04/2022)</span>
-                    <a href="docs/estatuto-social-2022.pdf" target="_blank" rel="noopener">Download PDF</a>
-                </li>
-                <li>
-                    <span>Comprovante de Inscrição CNPJ — Receita Federal</span>
-                    <a href="docs/comprovante-cnpj.pdf" target="_blank" rel="noopener">Download PDF</a>
-                </li>
-                <li>
-                    <span>Ata de Fundação</span>
-                    <a href="contato.html">Solicitar acesso</a>
-                </li>
-                <li>
-                    <span>Certificação OSCIP</span>
-                    <a href="contato.html">Solicitar acesso</a>
-                </li>
-                <li>
-                    <span>Certidões Públicas (CND Federal, Estadual e Municipal)</span>
-                    <a href="contato.html">Solicitar acesso</a>
-                </li>
+                <li><span data-i18n="trans.docs.estatuto">Estatuto Social (07/04/2022)</span><a href="docs/estatuto-social-2022.pdf" target="_blank" rel="noopener" data-i18n="common.downloadPdf">Descargar PDF</a></li>
+                <li><span data-i18n="trans.docs.cnpj">Comprobante de Inscripción CNPJ — Receita Federal</span><a href="docs/comprovante-cnpj.pdf" target="_blank" rel="noopener" data-i18n="common.downloadPdf">Descargar PDF</a></li>
+                <li><span data-i18n="trans.docs.ata">Acta de Fundación</span><a href="contato.html" data-i18n="common.requestAccess">Solicitar acceso</a></li>
+                <li><span data-i18n="trans.docs.oscip">Certificación OSCIP</span><a href="contato.html" data-i18n="common.requestAccess">Solicitar acceso</a></li>
+                <li><span data-i18n="trans.docs.certidoes">Certificados Públicos (CND Federal, Estadual y Municipal)</span><a href="contato.html" data-i18n="common.requestAccess">Solicitar acceso</a></li>
             </ul>
-
-            <h2 id="balancos">Balanços Financeiros</h2>
+            <h2 id="balancos" data-i18n="trans.balancos.title">Balances Financieros</h2>
             <ul class="docs-list">
-                <li>
-                    <span>Balanço Patrimonial — Exercício 2024</span>
-                    <a href="contato.html">Solicitar acesso</a>
-                </li>
-                <li>
-                    <span>Demonstração de Resultados — Exercício 2024</span>
-                    <a href="contato.html">Solicitar acesso</a>
-                </li>
-                <li>
-                    <span>Relatório do Conselho Fiscal — Exercício 2024</span>
-                    <a href="contato.html">Solicitar acesso</a>
-                </li>
+                <li><span data-i18n="trans.balancos.patrimonial">Balance Patrimonial — Ejercicio 2024</span><a href="contato.html" data-i18n="common.requestAccess">Solicitar acceso</a></li>
+                <li><span data-i18n="trans.balancos.resultados">Demostración de Resultados — Ejercicio 2024</span><a href="contato.html" data-i18n="common.requestAccess">Solicitar acceso</a></li>
+                <li><span data-i18n="trans.balancos.fiscal">Informe del Consejo Fiscal — Ejercicio 2024</span><a href="contato.html" data-i18n="common.requestAccess">Solicitar acceso</a></li>
             </ul>
-
-            <h2 id="relatorios">Relatórios de Atividades</h2>
+            <h2 id="relatorios" data-i18n="trans.relatorios.title">Informes de Actividades</h2>
             <ul class="docs-list">
-                <li>
-                    <span>Relatório Anual de Atividades — 2024</span>
-                    <a href="contato.html">Solicitar acesso</a>
-                </li>
-                <li>
-                    <span>Projeto SOS Saúde Rio Grande do Sul — Relatório Técnico Completo (PDF)</span>
-                    <a href="docs/projeto-sos-saude-rs.pdf" target="_blank" rel="noopener">Download PDF</a>
-                </li>
-                <li>
-                    <span>Página do Projeto SOS Saúde RS</span>
-                    <a href="sos-saude-rs.html">Ver online</a>
-                </li>
+                <li><span data-i18n="trans.relatorios.anual">Informe Anual de Actividades — 2024</span><a href="contato.html" data-i18n="common.requestAccess">Solicitar acceso</a></li>
+                <li><span data-i18n="trans.relatorios.sosRs">Proyecto SOS Salud Río Grande do Sul — Informe Técnico Completo (PDF)</span><a href="docs/projeto-sos-saude-rs.pdf" target="_blank" rel="noopener" data-i18n="common.downloadPdf">Descargar PDF</a></li>
+                <li><span data-i18n="trans.relatorios.sosRsPage">Página del Proyecto SOS Salud RS</span><a href="sos-saude-rs.html" data-i18n="common.viewOnline">Ver en línea</a></li>
             </ul>
-
-            <h2 id="conselho">Conselho Fiscal</h2>
-            <p>
-                O Conselho Fiscal da ACURA BRASIL é responsável pela fiscalização contábil, financeira, orçamentária, operacional e patrimonial da entidade, em conformidade com o estatuto social e a legislação aplicável às OSCIPs.
-            </p>
-            <p>Para informações sobre a composição do Conselho Fiscal ou solicitação de documentos, entre em <a href="contato.html" style="color: var(--azul-institucional); font-weight: 500;">contato conosco</a>.</p>
-
-            <h2>Informações Cadastrais</h2>
+            <h2 id="conselho" data-i18n="trans.conselho.title">Consejo Fiscal</h2>
+            <p data-i18n="trans.conselho.p1">El Consejo Fiscal de ACURA BRASIL es responsable de la fiscalización contable, financiera, presupuestaria, operacional y patrimonial de la entidad, en conformidad con el estatuto social y la legislación aplicable a las OSCIP.</p>
+            <p data-i18n="trans.conselho.p2" data-i18n-html>Para información sobre la composición del Consejo Fiscal o solicitud de documentos, entre en <a href="contato.html" style="color: var(--azul-institucional); font-weight: 500;">contacto con nosotros</a>.</p>
+            <h2 data-i18n="trans.cadastro.title">Información Registral</h2>
             <div class="info-grid">
-                <div class="info-card">
-                    <h4>Razão Social</h4>
-                    <p>ACURA BRASIL — Associação Brasil pela Cura</p>
-                </div>
-                <div class="info-card">
-                    <h4>CNPJ</h4>
-                    <p>30.350.850/0001-80</p>
-                </div>
-                <div class="info-card">
-                    <h4>Natureza Jurídica</h4>
-                    <p>Associação Privada · Situação cadastral: Ativa</p>
-                </div>
-                <div class="info-card">
-                    <h4>Fundação</h4>
-                    <p>02 de maio de 2018 · Belo Horizonte/MG</p>
-                </div>
-                <div class="info-card">
-                    <h4>Qualificação</h4>
-                    <p>OSCIP Certificada</p>
-                </div>
-                <div class="info-card">
-                    <h4>Atividade Principal</h4>
-                    <p>Pesquisa e desenvolvimento experimental em ciências físicas e naturais</p>
-                </div>
+                <div class="info-card"><h4 data-i18n="trans.cadastro.razao.title">Razón Social</h4><p data-i18n="trans.cadastro.razao.value">ACURA BRASIL — Asociación Brasil por la Cura</p></div>
+                <div class="info-card"><h4 data-i18n="trans.cadastro.cnpj.title">CNPJ</h4><p data-i18n="trans.cadastro.cnpj.value">30.350.850/0001-80</p></div>
+                <div class="info-card"><h4 data-i18n="trans.cadastro.nature.title">Naturaleza Jurídica</h4><p data-i18n="trans.cadastro.nature.value">Asociación Privada · Situación registral: Activa</p></div>
+                <div class="info-card"><h4 data-i18n="trans.cadastro.foundation.title">Fundación</h4><p data-i18n="trans.cadastro.foundation.value">02 de mayo de 2018 · Belo Horizonte/MG</p></div>
+                <div class="info-card"><h4 data-i18n="trans.cadastro.qualification.title">Calificación</h4><p data-i18n="trans.cadastro.qualification.value">OSCIP Certificada</p></div>
+                <div class="info-card"><h4 data-i18n="trans.cadastro.activity.title">Actividad Principal</h4><p data-i18n="trans.cadastro.activity.value">Investigación y desarrollo experimental en ciencias físicas y naturales</p></div>
             </div>
         </div>
     </section>
-
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-brand">
-                <a href="index.html" class="logo"><img src="img/logo-header.png" alt="ACURA BRASIL — Associação Brasil pela Cura" class="logo-img"></a>
-                <p class="footer-desc">Associação Brasil pela Cura. Entidade sem fins econômicos dedicada ao avanço da ciência, fomento à pesquisa e assistência humanitária.</p>
-                <span class="footer-cnpj">CNPJ: 30.350.850/0001-80 · OSCIP</span>
+                <a href="index.html" class="logo">
+                    <img src="img/logo-header.png" alt="ACURA BRASIL" class="logo-img">
+                </a>
+                <p class="footer-desc" data-i18n="footer.desc">Asociación Brasil por la Cura. Entidad sin fines de lucro dedicada al avance de la ciencia, el fomento de la investigación y la asistencia humanitaria.</p>
+                <span class="footer-cnpj" data-i18n="common.cnpj">CNPJ: 30.350.850/0001-80 · OSCIP</span>
             </div>
             <div>
-                <h4 class="footer-title">Navegação</h4>
+                <h4 class="footer-title" data-i18n="footer.nav">Navegación</h4>
                 <ul class="footer-links">
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="instituicao.html">Sobre Nós</a></li>
-                    <li><a href="pesquisas.html">Áreas de Atuação</a></li>
-                    <li><a href="sos-saude-rs.html">SOS Saúde RS</a></li>
-                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="index.html" data-i18n="footer.home">Inicio</a></li>
+                    <li><a href="instituicao.html" data-i18n="footer.about">Sobre Nosotros</a></li>
+                    <li><a href="pesquisas.html" data-i18n="footer.areas">Áreas de Actuación</a></li>
+                    <li><a href="sos-saude-rs.html" data-i18n="footer.sosRs">SOS Salud RS</a></li>
+                    <li><a href="consulta-venezuela.html" data-i18n="footer.consult">Consulta en Línea</a></li>
+                    <li><a href="sos-venezuela.html" data-i18n="footer.sosVe">SOS Venezuela</a></li>
+                    <li><a href="contato.html" data-i18n="footer.contactLink">Contacto</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="footer-title">Transparência</h4>
+                <h4 class="footer-title" data-i18n="footer.transparency">Transparencia</h4>
                 <ul class="footer-links">
-                    <li><a href="transparencia.html">Portal da Transparência</a></li>
-                    <li><a href="docs/projeto-sos-saude-rs.pdf" target="_blank">Projeto SOS Saúde RS (PDF)</a></li>
+                    <li><a href="transparencia.html" data-i18n="footer.portal">Portal de Transparencia</a></li>
+                    <li><a href="transparencia.html#estatuto" data-i18n="footer.estatuto">Estatuto Social</a></li>
+                    <li><a href="docs/estatuto-social-2022.pdf" target="_blank" rel="noopener" data-i18n="footer.estatutoPdf">Estatuto Social (PDF)</a></li>
+                    <li><a href="docs/comprovante-cnpj.pdf" target="_blank" rel="noopener" data-i18n="footer.cnpjPdf">Comprobante CNPJ (PDF)</a></li>
+                    <li><a href="transparencia.html#balancos" data-i18n="footer.balancos">Balances Financieros</a></li>
+                    <li><a href="transparencia.html#relatorios" data-i18n="footer.relatorios">Informes de Actividades</a></li>
+                    <li><a href="docs/projeto-sos-saude-rs.pdf" target="_blank" rel="noopener" data-i18n="footer.projetoSosRs">Proyecto SOS Salud RS (PDF)</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="footer-title">Contato</h4>
+                <h4 class="footer-title" data-i18n="footer.contact">Contacto</h4>
                 <div class="footer-contact-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                    <span>Belo Horizonte, MG · Brasil</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span data-i18n="footer.address" data-i18n-html>Rua Ulhôa Cintra, nº 32, Loja 01, Sala 01<br>Barrio Santa Efigênia, Belo Horizonte/MG</span>
                 </div>
                 <div class="footer-contact-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                    <span>contato@acurabrasil.org</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    <span data-i18n="footer.email">contato@acurabrasil.org</span>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 ACURA BRASIL. Todos os direitos reservados.</p>
-            <p>Desenvolvido em conformidade com as diretrizes de transparência pública.</p>
+            <p data-i18n="common.rights">© 2026 ACURA BRASIL. Todos los derechos reservados.</p>
+            <p data-i18n="common.transparencyFooter">Desarrollado en conformidad con las directrices de transparencia pública.</p>
         </div>
     </footer>
 
+    <script src="js/i18n.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
