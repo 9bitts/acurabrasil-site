@@ -156,9 +156,16 @@ img {
     display: block;
 }
 
+.header .logo {
+    background: #0a0a0a;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
 .header .logo-img {
-    height: 40px;
-    border-radius: 4px;
+    height: 36px;
+    border-radius: 0;
+    display: block;
 }
 
 .footer-brand .logo-img {
@@ -993,9 +1000,11 @@ img {
    Emergency banner (Venezuela / humanitarian crises)
    ========================================================================== */
 .emergency-banner {
+    display: block;
     margin-top: var(--header-height);
-    background: linear-gradient(135deg, var(--urgencia-escuro) 0%, #1a1a2e 50%, var(--azul-escuro) 100%);
-    color: var(--branco);
+    background-color: #922b21;
+    background-image: linear-gradient(135deg, #922b21 0%, #1a1a2e 45%, #164e6c 100%);
+    color: #ffffff;
     position: relative;
     overflow: hidden;
 }
@@ -1004,8 +1013,9 @@ img {
     content: '';
     position: absolute;
     inset: 0;
-    background: url('https://images.unsplash.com/photo-1584438784894-089ae6dceb39?auto=format&fit=crop&w=1920&q=60') center/cover;
-    opacity: 0.15;
+    background: radial-gradient(circle at 20% 50%, rgba(192, 57, 43, 0.4) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
 }
 
 .emergency-banner-inner {
@@ -1015,18 +1025,24 @@ img {
     margin: 0 auto;
     padding: 3rem 2rem;
     display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 2rem;
+    grid-template-columns: 1fr minmax(260px, 320px);
+    gap: 2.5rem;
     align-items: center;
+}
+
+.emergency-banner-content h2,
+.emergency-banner-content p,
+.emergency-banner-content .emergency-footnote {
+    color: #ffffff;
 }
 
 .emergency-pulse {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: rgba(192, 57, 43, 0.35);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    color: var(--branco);
+    background: rgba(192, 57, 43, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #ffffff;
     padding: 0.4rem 1rem;
     border-radius: 50px;
     font-size: 0.75rem;
@@ -1055,57 +1071,73 @@ img {
     font-weight: 700;
     line-height: 1.25;
     margin-bottom: 0.75rem;
+    color: #ffffff;
 }
 
-.emergency-banner p {
+.emergency-banner-content > p {
     font-size: 1.05rem;
-    opacity: 0.92;
+    opacity: 0.95;
     max-width: 650px;
     margin-bottom: 1.25rem;
+    color: #ffffff;
+}
+
+.emergency-footnote {
+    font-size: 0.75rem;
+    opacity: 0.75;
+    margin: 0;
 }
 
 .emergency-stats-inline {
     display: flex;
     gap: 1.5rem;
     flex-wrap: wrap;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
 }
 
 .emergency-stat-inline {
     font-size: 0.875rem;
-    opacity: 0.85;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .emergency-stat-inline strong {
     display: block;
-    font-size: 1.35rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    color: #ffb4a2;
+    color: #ffc9b9;
+    line-height: 1.2;
+}
+
+.emergency-stat-inline span {
+    display: block;
+    margin-top: 0.15rem;
 }
 
 .emergency-cta-box {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 12px;
     padding: 2rem;
     text-align: center;
-    min-width: 260px;
 }
 
 .emergency-cta-box p {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     margin-bottom: 1.25rem;
-    max-width: none;
+    color: #ffffff;
+    line-height: 1.5;
 }
 
 .btn-urgencia {
-    background-color: var(--urgencia);
-    color: var(--branco);
+    background-color: #c0392b;
+    color: #ffffff;
     width: 100%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .btn-urgencia:hover {
     background-color: #a93226;
+    color: #ffffff;
     transform: translateY(-1px);
 }
 
