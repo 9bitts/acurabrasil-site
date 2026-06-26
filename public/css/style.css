@@ -1197,6 +1197,297 @@ img:not(.logo-img) {
 }
 
 /* ==========================================================================
+   Consulta Online — Portal Venezuela / Doctor8
+   ========================================================================== */
+.nav-link-destaque {
+    color: var(--urgencia) !important;
+    font-weight: 700;
+}
+
+.nav-link-destaque:hover,
+.nav-link-destaque.active {
+    color: var(--urgencia-escuro) !important;
+}
+
+.consulta-hero {
+    background: linear-gradient(135deg, var(--urgencia-escuro) 0%, var(--azul-escuro) 55%, #0f2f42 100%);
+    color: var(--branco);
+    padding: calc(var(--header-height) + 3rem) 2rem 4rem;
+    text-align: center;
+}
+
+.consulta-hero-inner {
+    max-width: 780px;
+}
+
+.consulta-breadcrumb {
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.consulta-breadcrumb a {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.consulta-breadcrumb a:hover {
+    color: var(--branco);
+}
+
+.consulta-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    padding: 0.35rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+}
+
+.consulta-hero h1 {
+    font-size: clamp(1.85rem, 4vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.consulta-hero-subtitle {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.92);
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.consulta-hero-subtitle-pt {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 2rem;
+}
+
+.consulta-hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.consulta-hero-nota {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.btn-consulta-principal {
+    background-color: var(--verde-acao);
+    color: var(--branco);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    font-size: 1.05rem;
+    padding: 0.9rem 2rem;
+}
+
+.btn-consulta-principal:hover {
+    background-color: var(--verde-hover);
+    color: var(--branco);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.btn-consulta-secundario {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--branco);
+    border: 2px solid rgba(255, 255, 255, 0.35);
+}
+
+.btn-consulta-secundario:hover {
+    background: var(--branco);
+    color: var(--azul-escuro);
+}
+
+.btn-lg {
+    padding: 1rem 2.25rem;
+    font-size: 1.1rem;
+}
+
+.consulta-steps-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 2.5rem;
+}
+
+.consulta-steps-header h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+    color: var(--texto-escuro);
+}
+
+.consulta-steps-header p {
+    color: var(--texto-mutado);
+}
+
+.consulta-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.consulta-step {
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.consulta-step:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.consulta-step-number {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--azul-institucional), var(--azul-escuro));
+    color: var(--branco);
+    font-size: 1.25rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+}
+
+.consulta-step h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.75rem;
+    color: var(--texto-escuro);
+}
+
+.consulta-step p {
+    font-size: 0.92rem;
+    color: var(--texto-mutado);
+    margin-bottom: 1.25rem;
+    line-height: 1.55;
+}
+
+.consulta-step-btn {
+    width: 100%;
+    font-size: 0.88rem;
+}
+
+.consulta-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.consulta-info-card {
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+}
+
+.consulta-info-card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+    color: var(--azul-escuro);
+}
+
+.consulta-info-card p,
+.consulta-info-card li {
+    font-size: 0.92rem;
+    color: var(--texto-mutado);
+    line-height: 1.55;
+}
+
+.consulta-info-card ul {
+    padding-left: 1.25rem;
+}
+
+.consulta-info-card li {
+    margin-bottom: 0.35rem;
+}
+
+.consulta-info-card a {
+    color: var(--azul-institucional);
+    font-weight: 500;
+}
+
+.consulta-cta-final {
+    background: linear-gradient(135deg, var(--azul-institucional), var(--azul-escuro));
+    padding: 4rem 2rem;
+    text-align: center;
+    color: var(--branco);
+}
+
+.consulta-cta-final-inner {
+    max-width: 640px;
+}
+
+.consulta-cta-final h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+    color: var(--branco);
+}
+
+.consulta-cta-final p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1.75rem;
+}
+
+.consulta-cta-final-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.consulta-powered {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.consulta-powered a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: underline;
+}
+
+.consulta-pt-section {
+    border-top: 1px solid var(--cinza-borda);
+}
+
+.consulta-pt-section ol {
+    padding-left: 1.5rem;
+    color: var(--texto-mutado);
+}
+
+.consulta-pt-section li {
+    margin-bottom: 0.5rem;
+}
+
+.consulta-pt-section a {
+    color: var(--azul-institucional);
+    font-weight: 500;
+}
+
+.emergency-cta-box .btn-consulta-inline {
+    margin-top: 0.75rem;
+    width: 100%;
+}
+
+@media (max-width: 900px) {
+    .consulta-steps { grid-template-columns: 1fr; }
+    .consulta-info-grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
    Footer
    ========================================================================== */
 .footer {
