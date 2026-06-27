@@ -2739,3 +2739,129 @@ img:not(.logo-img) {
         white-space: normal;
     }
 }
+
+/* Equipe */
+.equipe-intro {
+    font-size: 1.05rem;
+    color: var(--texto-mutado);
+    max-width: 720px;
+    margin-bottom: 2.5rem;
+}
+
+.equipe-section-title {
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.equipe-section-title:first-of-type {
+    margin-top: 0;
+}
+
+.team-tier--president {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.team-grid--fiscal {
+    margin-top: 1.5rem;
+}
+
+.team-card {
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: var(--radius);
+    padding: 1.75rem 1.5rem;
+    text-align: center;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.team-card:hover {
+    border-color: var(--azul-institucional);
+    box-shadow: var(--shadow-md);
+}
+
+.team-card--featured {
+    max-width: 360px;
+    width: 100%;
+    padding: 2.25rem 2rem;
+    border-width: 2px;
+    border-color: var(--azul-institucional);
+    box-shadow: var(--shadow-md);
+}
+
+.team-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1.25rem;
+    display: block;
+}
+
+.team-card--featured .team-photo {
+    width: 140px;
+    height: 140px;
+}
+
+.team-photo--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--azul-institucional) 0%, var(--azul-escuro) 100%);
+    color: var(--branco);
+}
+
+.team-photo-initials {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    opacity: 0.9;
+}
+
+.team-card--featured .team-photo-initials {
+    font-size: 2.25rem;
+}
+
+.team-role {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--azul-institucional);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 0.5rem;
+}
+
+.team-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--texto);
+    margin: 0;
+    line-height: 1.35;
+}
+
+.team-card--featured .team-name {
+    font-size: 1.35rem;
+}
+
+.team-name--pending {
+    font-weight: 500;
+    font-style: italic;
+    color: var(--texto-mutado);
+    font-size: 0.95rem;
+}
+
+@media (max-width: 900px) {
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+    .team-grid { grid-template-columns: 1fr; }
+    .team-card--featured { max-width: 100%; }
+}
