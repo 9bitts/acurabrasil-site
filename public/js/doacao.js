@@ -3,7 +3,7 @@
 
   var CONFIG = {
     pixKey: '30.350.850/0001-80',
-    pixName: 'ABRAC BRASIL',
+    pixName: 'ACURA BRASIL',
     pixCity: 'BELO HORIZONTE',
     angelRegisterUrl: 'https://app.doctor8.org/register/angel',
   };
@@ -47,6 +47,8 @@
     var key = CONFIG.pixKey.replace(/\D/g, '');
     var merchantAccount = emv('00', 'br.gov.bcb.pix') + emv('01', key);
     var payload = emv('00', '01') + emv('26', merchantAccount);
+    payload += emv('52', '0000');
+    payload += emv('53', '986');
     if (amount && amount > 0) {
       payload += emv('54', amount.toFixed(2));
     }
@@ -239,14 +241,30 @@
   function bindCopyPix() {
     var btn = document.getElementById('copy-pix-key');
     if (btn) btn.addEventListener('click', copyPixKey);
+    var btnMonthly = document.getElementById('copy-pix-key-monthly');
+    if (btnMonthly) btnMonthly.addEventListener('click', copyPixKey);
   }
 
   function bindRegisterForm() {
     var form = document.getElementById('doacao-register-form');
     if (!form) return;
+    var submitBtn = form.querySelector('[type="submit"]');
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var status = document.getElementById('doacao-form-status');
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      if (submitBtn) submitBtn.disabled = true;
+      if (status) {
+        status.hidden = false;
+        status.className = 'form-status info';
+        status.textContent = t('contato.form.sending') || 'Enviando...';
+      }
+
       var fd = new FormData(form);
       var amount = parseFloat(String(fd.get('valor') || '0').replace(',', '.')) || getActiveAmount();
       var tipo = fd.get('tipo_doacao') || state.type;
@@ -256,8 +274,8 @@
       }
 
       var body = {
-        nome: fd.get('nome'),
-        email: fd.get('email'),
+        nome: String(fd.get('nome') || '').trim(),
+        email: String(fd.get('email') || '').trim(),
         assunto: 'doacao',
         mensagem: [
           'Tipo: ' + tipo,
@@ -266,7 +284,7 @@
           'Selo: ' + badge.id,
           'Comprovante/ref: ' + (fd.get('comprovante') || 'não informado'),
           '',
-          fd.get('mensagem') || '',
+          String(fd.get('mensagem') || '').trim(),
         ].join('\n'),
         website: fd.get('website') || '',
       };
@@ -276,7 +294,7 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       })
-        .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
+        .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, status: res.status, data: data }; }); })
         .then(function (result) {
           if (!status) return;
           status.hidden = false;
@@ -288,10 +306,15 @@
             } catch (err) { /* ignore */ }
             showEarnedBadge(badge);
             form.reset();
-          } else {
-            status.className = 'form-status error';
-            status.textContent = t('doacao.form.error');
+            return;
           }
+          if (result.status === 429) {
+            status.className = 'form-status error';
+            status.textContent = t('contato.form.errorRateLimit');
+            return;
+          }
+          status.className = 'form-status error';
+          status.textContent = t('doacao.form.error');
         })
         .catch(function () {
           if (status) {
@@ -299,6 +322,9 @@
             status.className = 'form-status error';
             status.textContent = t('doacao.form.error');
           }
+        })
+        .finally(function () {
+          if (submitBtn) submitBtn.disabled = false;
         });
     });
   }

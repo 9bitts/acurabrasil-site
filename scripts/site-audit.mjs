@@ -59,7 +59,8 @@ undefinedInHtml.forEach((x) => out.push('  ' + x));
 // Missing assets
 const missingAssets = new Set();
 for (const file of htmlFiles) {
-  const html = fs.readFileSync(path.join(root, file), 'utf8');
+  let html = fs.readFileSync(path.join(root, file), 'utf8');
+  html = html.replace(/<!--[\s\S]*?-->/g, '');
   const hrefRe = /(?:href|src)="([^"]+)"/g;
   let m;
   while ((m = hrefRe.exec(html)) !== null) {

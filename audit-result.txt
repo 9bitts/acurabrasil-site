@@ -1,0 +1,21 @@
+=== SITE AUDIT ===
+HTML pages: 12
+Missing i18n keys: 0
+ES-only keys: 0
+PT-only keys: 0
+HTML with 'undefined' text: 0
+Missing local assets: 0
+Broken same-page anchors: 0
+CSS versions:
+  associar.html: v=11
+  atendimento-pandemia.html: v=11
+  consulta-venezuela.html: v=11
+  contato.html: v=11
+  doacao.html: v=11
+  equipe.html: v=11
+  index.html: v=11
+  instituicao.html: v=11
+  pesquisas.html: v=11
+  sos-saude-rs.html: v=11
+  sos-venezuela.html: v=11
+  transparencia.html: v=11
