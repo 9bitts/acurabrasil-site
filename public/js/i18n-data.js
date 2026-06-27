@@ -546,8 +546,8 @@ window.ACURA_I18N = {
     "sosve.s8.title": "8. Fuentes y referencias",
     "sosve.s8.text": "Información sobre los terremotos compilada a partir de reportajes y datos públicos de junio de 2026: <a href=\"https://www.elmundo.es/internacional/2026/06/26/6a3d69a2fc6c83b4758b45b3.html\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--azul-institucional);\">El Mundo</a>, <a href=\"https://elpais.com/america/2026-06-26/el-terremoto-en-venezuela-en-vivo.html\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--azul-institucional);\">El País</a>, <a href=\"https://www.dw.com/es/en-mapas-y-fotos-las-zonas-m%C3%A1s-afectadas-por-los-terremotos-en-venezuela/a-77721622\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--azul-institucional);\">Deutsche Welle</a>, USGS y comunicados oficiales del gobierno venezolano. Modelo operacional basado en el documento <a href=\"docs/projeto-sos-saude-rs.pdf\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--azul-institucional);\">SOS Salud Río Grande do Sul</a> — ACURA BRASIL, 2024.",
 
-    "consulta.meta.description": "Consulta médica y psicológica en línea gratuita para víctimas de los terremotos en Venezuela — ACURA BRASIL vía plataforma Doctor8. Atención inmediata con profesionales disponibles.",
-    "consulta.meta.title": "Consulta en Línea — SOS Venezuela | ACURA BRASIL",
+    "consulta.meta.description": "Consulta médica y psicológica en línea gratuita para víctimas de los terremotos en Venezuela — ACURABRASIL vía plataforma Doctor8. Atención inmediata con profesionales disponibles.",
+    "consulta.meta.title": "Consulta en Línea — SOS Venezuela | ACURABRASIL",
     "consulta.breadcrumb": "Consulta en Línea",
     "consulta.breadcrumb.sos": "SOS Venezuela",
     "consulta.badge": "Gratuito · Telemedicina · 24h según disponibilidad",
@@ -1140,8 +1140,8 @@ window.ACURA_I18N = {
     "sosve.s8.title": "8. Fontes e referências",
     "sosve.s8.text": "Informações sobre os terremotos compiladas a partir de reportagens e dados públicos de junho de 2026: <a href=\"https://www.elmundo.es/internacional/2026/06/26/6a3d69a2fc6c83b4758b45b3.html\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--azul-institucional);\">El Mundo</a>, <a href=\"https://elpais.com/america/2026-06-26/el-terremoto-en-venezuela-en-vivo.html\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--azul-institucional);\">El País</a>, <a href=\"https://www.dw.com/es/en-mapas-y-fotos-las-zonas-m%C3%A1s-afectadas-por-los-terremotos-en-venezuela/a-77721622\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--azul-institucional);\">Deutsche Welle</a>, USGS e comunicados oficiais do governo venezuelano. Modelo operacional baseado no documento <a href=\"docs/projeto-sos-saude-rs.pdf\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--azul-institucional);\">SOS Saúde Rio Grande do Sul</a> — ACURA BRASIL, 2024.",
 
-    "consulta.meta.description": "Consulta médica e psicológica online gratuita para vítimas dos terremotos na Venezuela — ACURA BRASIL via plataforma Doctor8. Atendimento imediato com profissionais disponíveis.",
-    "consulta.meta.title": "Consulta Online — SOS Venezuela | ACURA BRASIL",
+    "consulta.meta.description": "Consulta médica e psicológica online gratuita para vítimas dos terremotos na Venezuela — ACURABRASIL via plataforma Doctor8. Atendimento imediato com profissionais disponíveis.",
+    "consulta.meta.title": "Consulta Online — SOS Venezuela | ACURABRASIL",
     "consulta.breadcrumb": "Consulta Online",
     "consulta.breadcrumb.sos": "SOS Venezuela",
     "consulta.badge": "Gratuito · Telemedicina · 24h conforme disponibilidade",
