@@ -18,10 +18,29 @@ Site institucional da **ACURA BRASIL** (Associação Brasil pela Cura), OSCIP ce
 
 ```bash
 npm install
+cp .env.example .env   # configure o SMTP (ver abaixo)
 npm start
 ```
 
 Acesse: http://localhost:3000
+
+## Formulário de Contato
+
+O formulário em `contato.html` envia mensagens via API (`POST /api/contact`) para o e-mail institucional usando SMTP.
+
+Copie `.env.example` para `.env` e configure:
+
+| Variável | Descrição |
+|----------|-----------|
+| `SMTP_HOST` | Servidor SMTP (ex.: `smtp.gmail.com`, `smtp.sendgrid.net`) |
+| `SMTP_PORT` | Porta SMTP (padrão: `587`) |
+| `SMTP_SECURE` | `true` para porta 465, `false` para STARTTLS |
+| `SMTP_USER` | Usuário SMTP |
+| `SMTP_PASS` | Senha ou app password |
+| `CONTACT_TO` | Destino (padrão: `contato@acurabrasil.org`) |
+| `CONTACT_FROM` | Remetente (padrão: `SMTP_USER`) |
+
+No **Railway**, adicione essas variáveis em **Variables** do projeto.
 
 ## Deploy no Railway
 

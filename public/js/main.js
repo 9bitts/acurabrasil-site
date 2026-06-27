@@ -79,27 +79,88 @@
     });
   });
 
-  const contactForm = document.querySelector('.contact-form-mailto');
+  const contactForm = document.querySelector('#contact-form');
   if (contactForm) {
     const assuntoSelect = contactForm.querySelector('#assunto');
+    const statusEl = document.getElementById('contact-form-status');
+    const submitBtn = contactForm.querySelector('[type="submit"]');
     const params = new URLSearchParams(window.location.search);
     const presetAssunto = params.get('assunto');
+
+    const t = (key) => {
+      if (window.AcuraI18n) {
+        return window.AcuraI18n.t(window.AcuraI18n.getLang(), key);
+      }
+      return key;
+    };
+
+    const showStatus = (type, messageKey) => {
+      if (!statusEl) return;
+      statusEl.hidden = false;
+      statusEl.className = `form-status ${type}`;
+      statusEl.textContent = t(messageKey);
+    };
+
+    const clearStatus = () => {
+      if (!statusEl) return;
+      statusEl.hidden = true;
+      statusEl.className = 'form-status';
+      statusEl.textContent = '';
+    };
+
     if (assuntoSelect && presetAssunto) {
       const option = assuntoSelect.querySelector(`option[value="${presetAssunto}"]`);
       if (option) assuntoSelect.value = presetAssunto;
     }
 
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const nome = contactForm.querySelector('#nome')?.value.trim() || '';
-      const email = contactForm.querySelector('#email')?.value.trim() || '';
-      const assunto = assuntoSelect?.selectedOptions[0]?.textContent.trim() || '';
-      const mensagem = contactForm.querySelector('#mensagem')?.value.trim() || '';
-      const subject = encodeURIComponent(`[ACURA BRASIL] ${assunto}`);
-      const body = encodeURIComponent(
-        `Nombre: ${nome}\nCorreo: ${email}\nAsunto: ${assunto}\n\n${mensagem}`
-      );
-      window.location.href = `mailto:contato@acurabrasil.org?subject=${subject}&body=${body}`;
+      clearStatus();
+
+      if (!contactForm.checkValidity()) {
+        contactForm.reportValidity();
+        return;
+      }
+
+      if (submitBtn) submitBtn.disabled = true;
+      showStatus('info', 'contato.form.sending');
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nome: contactForm.querySelector('#nome')?.value.trim() || '',
+            email: contactForm.querySelector('#email')?.value.trim() || '',
+            assunto: assuntoSelect?.value || '',
+            mensagem: contactForm.querySelector('#mensagem')?.value.trim() || '',
+            website: contactForm.querySelector('#website')?.value || '',
+          }),
+        });
+
+        const data = await res.json().catch(() => ({}));
+
+        if (res.ok && data.ok) {
+          showStatus('success', 'contato.form.success');
+          contactForm.reset();
+          if (assuntoSelect && presetAssunto) {
+            const option = assuntoSelect.querySelector(`option[value="${presetAssunto}"]`);
+            if (option) assuntoSelect.value = presetAssunto;
+          }
+          return;
+        }
+
+        if (res.status === 429) {
+          showStatus('error', 'contato.form.errorRateLimit');
+          return;
+        }
+
+        showStatus('error', 'contato.form.error');
+      } catch {
+        showStatus('error', 'contato.form.errorNetwork');
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+      }
     });
   }
 })();

@@ -215,6 +215,11 @@ window.ACURA_I18N = {
     "contato.form.message.label": "Mensaje",
     "contato.form.message.placeholder": "Escriba su mensaje...",
     "contato.form.submit": "Enviar Mensaje",
+    "contato.form.sending": "Enviando mensaje...",
+    "contato.form.success": "Mensaje enviado con éxito. Responderemos pronto.",
+    "contato.form.error": "No se pudo enviar el mensaje. Inténtelo de nuevo más tarde.",
+    "contato.form.errorNetwork": "Error de conexión. Verifique su internet e inténtelo de nuevo.",
+    "contato.form.errorRateLimit": "Espere un momento antes de enviar otro mensaje.",
 
     "trans.meta.description": "Portal de Transparencia de ACURA BRASIL - OSCIP certificada. Estatuto, balances, informes y certificados públicos.",
     "trans.meta.title": "Transparencia - ACURA BRASIL",
@@ -804,6 +809,11 @@ window.ACURA_I18N = {
     "contato.form.message.label": "Mensagem",
     "contato.form.message.placeholder": "Escreva sua mensagem...",
     "contato.form.submit": "Enviar Mensagem",
+    "contato.form.sending": "Enviando mensagem...",
+    "contato.form.success": "Mensagem enviada com sucesso. Responderemos em breve.",
+    "contato.form.error": "Não foi possível enviar a mensagem. Tente novamente mais tarde.",
+    "contato.form.errorNetwork": "Erro de conexão. Verifique sua internet e tente novamente.",
+    "contato.form.errorRateLimit": "Aguarde um momento antes de enviar outra mensagem.",
 
     "trans.meta.description": "Portal da Transparência da ACURA BRASIL - OSCIP certificada. Estatuto, balanços, relatórios e certidões públicas.",
     "trans.meta.title": "Transparência - ACURA BRASIL",
