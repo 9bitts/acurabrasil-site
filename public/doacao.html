@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es-VE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" data-i18n-content="doacao.meta.description" content="Doe para ACURA BRASIL. Apoie atendimento voluntário humanitário e pesquisa científica via Pix, PayPal ou trabalho voluntário.">
+    <title>Doação - ACURA BRASIL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=11">
+    <script src="js/i18n-data.js"></script>
+    <script>try{var l=localStorage.getItem('acura.lang')||'es';document.documentElement.lang=l==='es'?'es-VE':'pt-BR';}catch(e){}</script>
+</head>
+<body data-i18n-title="doacao.meta.title">
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="img/logo-acurabrasil.png" alt="ACURABRASIL" class="logo-img">
+            </a>
+            <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" data-i18n-aria="common.menuOpen">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="header-nav">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link" data-i18n="nav.home">Inicio</a></li>
+                    <li><a href="sos-venezuela.html" class="nav-link" data-i18n="nav.sosVe">SOS Venezuela</a></li>
+                    <li><a href="consulta-venezuela.html" class="nav-link nav-link-destaque" data-i18n="nav.consult">Consulta en Línea</a></li>
+                    <li><a href="instituicao.html" class="nav-link" data-i18n="nav.about">La Institución</a></li>
+                    <li class="nav-dropdown">
+                        <button type="button" class="nav-dropdown-toggle" aria-expanded="false" data-i18n="nav.more">Más</button>
+                        <ul class="nav-dropdown-menu">
+                            <li><a href="pesquisas.html" data-i18n="nav.research">Investigaciones</a></li>
+                            <li><a href="atendimento-pandemia.html" data-i18n="nav.covid">Pandemia COVID-19</a></li>
+                            <li><a href="sos-saude-rs.html" data-i18n="nav.sosRs">SOS Salud RS</a></li>
+                            <li><a href="doacao.html" data-i18n="nav.donate">Doar</a></li>
+                            <li><a href="transparencia.html" data-i18n="nav.transparency">Transparencia</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contato.html" class="nav-link" data-i18n="nav.contact">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button type="button" class="lang-toggle" id="lang-toggle" title="Português">
+                    <span class="lang-toggle-flag" aria-hidden="true">🇧🇷</span>
+                    <span class="lang-toggle-label">PT</span>
+                </button>
+                <a href="doacao.html" class="btn btn-verde header-cta" data-i18n="nav.donate">Doar</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="doacao-hero">
+        <div class="container doacao-hero-inner">
+            <div class="breadcrumb doacao-breadcrumb"><a href="index.html" data-i18n="common.breadcrumbHome">Inicio</a> / <span data-i18n="doacao.breadcrumb">Doação</span></div>
+            <span class="doacao-hero-tag" data-i18n="doacao.hero.tag">Solidariedade que salva vidas</span>
+            <h1 data-i18n="doacao.hero.title">Sua doação transforma cuidado em esperança</h1>
+            <p class="doacao-hero-sub" data-i18n="doacao.hero.subtitle">Como a Cruz Vermelha e Médicos Sem Fronteiras, acreditamos que cada gesto conta. Apoie o atendimento voluntário em emergências — pandemia, enchentes, terremotos — e o avanço da pesquisa científica brasileira.</p>
+            <div class="doacao-hero-stats">
+                <div class="doacao-hero-stat"><strong>122</strong><span data-i18n="doacao.hero.stat1">Médicos voluntários na pandemia</span></div>
+                <div class="doacao-hero-stat"><strong>2.664</strong><span data-i18n="doacao.hero.stat2">Consultas no SOS Saúde RS</span></div>
+                <div class="doacao-hero-stat"><strong>~36 mil</strong><span data-i18n="doacao.hero.stat3">Pessoas beneficiadas</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="como-ajudar">
+        <div class="container">
+            <h2 class="section-title-center" data-i18n="doacao.ways.title">3 formas de ajudar, 1 só objetivo</h2>
+            <p class="section-subtitle-center" data-i18n="doacao.ways.subtitle">Inspirado nas melhores práticas de organizações humanitárias internacionais: doação financeira, recorrente ou do seu tempo.</p>
+            <div class="doacao-ways-grid">
+                <article class="doacao-way-card doacao-way-card--money">
+                    <div class="doacao-way-icon" aria-hidden="true">💚</div>
+                    <h3 data-i18n="doacao.ways.money.title">Doação financeira</h3>
+                    <p data-i18n="doacao.ways.money.text">Pix instantâneo ou PayPal para doações únicas e mensais. Qualquer valor faz diferença.</p>
+                    <a href="#doar-agora" class="btn btn-verde" data-i18n="doacao.ways.money.btn">Doar agora</a>
+                </article>
+                <article class="doacao-way-card doacao-way-card--time">
+                    <div class="doacao-way-icon" aria-hidden="true">🕊️</div>
+                    <h3 data-i18n="doacao.ways.time.title">Doação de tempo</h3>
+                    <p data-i18n="doacao.ways.time.text">Médicos, psicólogos e voluntários Angeles atendem famílias em crise via Doctor8 — como fizemos na COVID e nas enchentes do RS.</p>
+                    <a href="https://app.doctor8.org/register/angel" id="angel-register-btn" class="btn btn-azul" target="_blank" rel="noopener" data-i18n="doacao.ways.time.btn">Cadastrar como Anjo</a>
+                </article>
+                <article class="doacao-way-card doacao-way-card--research">
+                    <div class="doacao-way-icon" aria-hidden="true">🔬</div>
+                    <h3 data-i18n="doacao.ways.research.title">Pesquisa científica</h3>
+                    <p data-i18n="doacao.ways.research.text">Destine sua doação à investigação em genética, imunologia e telemedicina — transformando dados em curas reais.</p>
+                    <a href="#destino" class="btn btn-outline" data-i18n="doacao.ways.research.btn">Destinar à pesquisa</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt doacao-gallery">
+        <div class="container">
+            <h2 class="section-title-center" data-i18n="doacao.gallery.title">Nossa história de solidariedade</h2>
+            <p class="section-subtitle-center" data-i18n="doacao.gallery.subtitle">Da pandemia de COVID-19 às enchentes do Rio Grande do Sul e agora ao SOS Venezuela — profissionais voluntários conectados pela telemedicina.</p>
+            <div class="doacao-gallery-grid">
+                <figure class="doacao-gallery-item">
+                    <img src="https://images.unsplash.com/photo-1584036561561-dedfad3d5817?w=800&q=80" alt="" loading="lazy" width="400" height="280">
+                    <figcaption>
+                        <strong data-i18n="doacao.gallery.covid.title">Pandemia COVID-19</strong>
+                        <span data-i18n="doacao.gallery.covid.text">122 médicos voluntários atenderam ~12 mil famílias em cidades com colapso do sistema de saúde.</span>
+                        <a href="atendimento-pandemia.html" data-i18n="doacao.gallery.covid.link">Ver história →</a>
+                    </figcaption>
+                </figure>
+                <figure class="doacao-gallery-item">
+                    <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=800&q=80" alt="" loading="lazy" width="400" height="280">
+                    <figcaption>
+                        <strong data-i18n="doacao.gallery.rs.title">Enchentes RS 2024</strong>
+                        <span data-i18n="doacao.gallery.rs.text">2.664 consultas gratuitas em mais de 100 cidades gaúchas — médicos, psicólogos e Anjos voluntários.</span>
+                        <a href="sos-saude-rs.html" data-i18n="doacao.gallery.rs.link">Ver projeto →</a>
+                    </figcaption>
+                </figure>
+                <figure class="doacao-gallery-item">
+                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80" alt="" loading="lazy" width="400" height="280">
+                    <figcaption>
+                        <strong data-i18n="doacao.gallery.ve.title">SOS Venezuela 2026</strong>
+                        <span data-i18n="doacao.gallery.ve.text">Telemedicina gratuita para vítimas dos terremotos — o mesmo modelo humanitário em ação.</span>
+                        <a href="sos-venezuela.html" data-i18n="doacao.gallery.ve.link">Como ajudar →</a>
+                    </figcaption>
+                </figure>
+                <figure class="doacao-gallery-item">
+                    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80" alt="" loading="lazy" width="400" height="280">
+                    <figcaption>
+                        <strong data-i18n="doacao.gallery.science.title">Ciência que cura</strong>
+                        <span data-i18n="doacao.gallery.science.text">Dados da telemedicina geraram estudos publicados e fundamentam novas pesquisas da ACURA.</span>
+                        <a href="pesquisas.html" data-i18n="doacao.gallery.science.link">Áreas de pesquisa →</a>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="doar-agora">
+        <div class="container">
+            <div class="doacao-panel-grid">
+                <div class="doacao-panel-main">
+                    <h2 data-i18n="doacao.panel.title">Faça sua doação</h2>
+
+                    <div class="doacao-tabs" role="tablist">
+                        <button type="button" class="doacao-tab active" data-donation-type="unica" data-i18n="doacao.tab.once">Doação única</button>
+                        <button type="button" class="doacao-tab" data-donation-type="mensal" data-i18n="doacao.tab.monthly">Doação mensal</button>
+                    </div>
+
+                    <div id="destino" class="doacao-cause-tabs">
+                        <span class="doacao-cause-label" data-i18n="doacao.cause.label">Destino:</span>
+                        <button type="button" class="doacao-cause-tab active" data-cause="humanitaria" data-i18n="doacao.cause.humanitarian">Atendimento humanitário</button>
+                        <button type="button" class="doacao-cause-tab" data-cause="pesquisa" data-i18n="doacao.cause.research">Pesquisa científica</button>
+                    </div>
+
+                    <p class="doacao-amount-label" data-i18n="doacao.amount.label">Escolha o valor:</p>
+                    <div class="doacao-amounts">
+                        <button type="button" class="doacao-amount-btn" data-amount="30">R$ 30</button>
+                        <button type="button" class="doacao-amount-btn active" data-amount="50">R$ 50</button>
+                        <button type="button" class="doacao-amount-btn" data-amount="100">R$ 100</button>
+                        <button type="button" class="doacao-amount-btn" data-amount="250">R$ 250</button>
+                        <button type="button" class="doacao-amount-btn" data-amount="500">R$ 500</button>
+                        <button type="button" class="doacao-amount-btn" data-amount="1000">R$ 1.000</button>
+                    </div>
+                    <div class="doacao-custom-amount">
+                        <label for="custom-amount" data-i18n="doacao.amount.custom">Outro valor (R$)</label>
+                        <input type="number" id="custom-amount" min="1" step="1" placeholder="0,00" data-i18n-placeholder="doacao.amount.customPlaceholder">
+                    </div>
+
+                    <div data-panel-type="unica">
+                        <div class="doacao-payment-grid">
+                            <div class="doacao-payment-card doacao-pix-card">
+                                <h3 data-i18n="doacao.pix.title">Pix — Cora SCD</h3>
+                                <p class="doacao-pix-amount" id="pix-amount-display">R$ 50,00</p>
+                                <div class="doacao-pix-qr-wrap">
+                                    <img id="pix-qr" src="" alt="QR Code Pix" width="220" height="220">
+                                </div>
+                                <div class="doacao-pix-key">
+                                    <code>30.350.850/0001-80</code>
+                                    <button type="button" class="btn btn-outline btn-sm" id="copy-pix-key" data-i18n="doacao.pix.copy">Copiar chave</button>
+                                </div>
+                                <p id="pix-copy-feedback" class="doacao-copy-feedback" hidden data-i18n="doacao.pix.copied">Chave copiada!</p>
+                                <p class="doacao-pix-info" data-i18n="doacao.pix.info" data-i18n-html><strong>ABRAC BRASIL</strong> · Banco Cora SCD (403) · Ag 0001 · C/C 3649168-7<br>CNPJ como chave Pix</p>
+                            </div>
+                            <div class="doacao-payment-card">
+                                <h3 data-i18n="doacao.paypal.once.title">PayPal — Doação única</h3>
+                                <p data-i18n="doacao.paypal.once.text">Cartão de crédito internacional. Ideal para doadores no exterior.</p>
+                                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" data-paypal-form>
+                                    <input type="hidden" name="cmd" value="_donations">
+                                    <input type="hidden" name="business" value="">
+                                    <input type="hidden" name="item_name" value="Doação ACURA BRASIL">
+                                    <input type="hidden" name="currency_code" value="BRL">
+                                    <input type="hidden" name="amount" id="paypal-amount" value="50.00">
+                                    <button type="submit" class="btn btn-azul btn-paypal" data-i18n="doacao.paypal.once.btn">Doar via PayPal</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-panel-type="mensal" hidden>
+                        <div class="doacao-payment-grid">
+                            <div class="doacao-payment-card doacao-pix-card">
+                                <h3 data-i18n="doacao.pix.monthly.title">Pix recorrente</h3>
+                                <p data-i18n="doacao.pix.monthly.text">Configure transferência automática mensal no app do seu banco para a chave Pix acima. Doações recorrentes nos permitem planejar emergências com antecedência — como fazem MSF e Cruz Vermelha.</p>
+                                <div class="doacao-pix-key">
+                                    <code>30.350.850/0001-80</code>
+                                    <button type="button" class="btn btn-outline btn-sm" id="copy-pix-key-monthly" onclick="document.getElementById('copy-pix-key').click()" data-i18n="doacao.pix.copy">Copiar chave</button>
+                                </div>
+                            </div>
+                            <div class="doacao-payment-card">
+                                <h3 data-i18n="doacao.paypal.monthly.title">PayPal — Assinatura mensal</h3>
+                                <p data-i18n="doacao.paypal.monthly.text">Doação recorrente automática no cartão. Cancele quando quiser pelo PayPal.</p>
+                                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" data-paypal-form>
+                                    <input type="hidden" name="cmd" value="_xclick-subscriptions">
+                                    <input type="hidden" name="business" value="">
+                                    <input type="hidden" name="item_name" value="Doação Mensal ACURA BRASIL">
+                                    <input type="hidden" name="currency_code" value="BRL">
+                                    <input type="hidden" name="a3" id="paypal-monthly" value="50.00">
+                                    <input type="hidden" name="p3" value="1">
+                                    <input type="hidden" name="t3" value="M">
+                                    <input type="hidden" name="src" value="1">
+                                    <input type="hidden" name="sra" value="1">
+                                    <button type="submit" class="btn btn-azul btn-paypal" data-i18n="doacao.paypal.monthly.btn">Assinar doação mensal</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="doacao-panel-side">
+                    <div class="doacao-badge-preview" id="badge-preview" data-badge="guardiao">
+                        <p class="doacao-badge-label" data-i18n="doacao.badge.preview">Seu selo de reconhecimento</p>
+                        <div class="doacao-selo doacao-selo--guardiao" aria-hidden="true">
+                            <span class="doacao-selo-icon">★</span>
+                        </div>
+                        <h3 class="badge-preview-name" data-i18n="doacao.badge.guardiao.name">Guardião da Saúde</h3>
+                        <p class="badge-preview-desc" data-i18n="doacao.badge.guardiao.desc">Doações a partir de R$ 30 fortalecem nosso atendimento voluntário.</p>
+                    </div>
+                    <div class="doacao-transparency-note">
+                        <h4 data-i18n="doacao.transparency.title">Transparência</h4>
+                        <p data-i18n="doacao.transparency.text">ACURA BRASIL é OSCIP (CNPJ 30.350.850/0001-80). Publicamos relatórios de atividades e balanços no portal de transparência.</p>
+                        <a href="transparencia.html" class="btn btn-outline btn-sm" data-i18n="doacao.transparency.btn">Ver transparência</a>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt" id="selos">
+        <div class="container">
+            <h2 class="section-title-center" data-i18n="doacao.badges.title">Selos ACURA — reconhecimento aos doadores</h2>
+            <p class="section-subtitle-center" data-i18n="doacao.badges.subtitle">Quem doa recebe um selo digital de acordo com o valor ou a forma de contribuição. Registre sua doação após o pagamento para receber o certificado.</p>
+            <div class="doacao-badges-grid">
+                <div class="doacao-badge-card" data-badge="anjo">
+                    <div class="doacao-selo doacao-selo--anjo"><span>🕊️</span></div>
+                    <h3 data-i18n="doacao.badge.anjo.name">Anjo Voluntário</h3>
+                    <p data-i18n="doacao.badge.anjo.desc">Doação de tempo: cadastro como Anjo no Doctor8 e participação em atendimentos humanitários.</p>
+                </div>
+                <div class="doacao-badge-card" data-badge="amigo">
+                    <div class="doacao-selo doacao-selo--amigo"><span>♥</span></div>
+                    <h3 data-i18n="doacao.badge.amigo.name">Amigo ACURA</h3>
+                    <p data-i18n="doacao.badge.amigo.desc">Qualquer contribuição, por menor que seja — cada gesto importa.</p>
+                </div>
+                <div class="doacao-badge-card" data-badge="guardiao">
+                    <div class="doacao-selo doacao-selo--guardiao"><span>★</span></div>
+                    <h3 data-i18n="doacao.badge.guardiao.name">Guardião da Saúde</h3>
+                    <p data-i18n="doacao.badge.guardiao.desc">Doação única a partir de R$ 30 ou equivalente.</p>
+                </div>
+                <div class="doacao-badge-card" data-badge="protetor">
+                    <div class="doacao-selo doacao-selo--protetor"><span>◆</span></div>
+                    <h3 data-i18n="doacao.badge.protetor.name">Protetor Humanitário</h3>
+                    <p data-i18n="doacao.badge.protetor.desc">R$ 100+ único ou R$ 30+/mês recorrente.</p>
+                </div>
+                <div class="doacao-badge-card" data-badge="benemerito">
+                    <div class="doacao-selo doacao-selo--benemerito"><span>✦</span></div>
+                    <h3 data-i18n="doacao.badge.benemerito.name">Benemérito ACURA</h3>
+                    <p data-i18n="doacao.badge.benemerito.desc">R$ 500+ único ou R$ 100+/mês — impacto transformador.</p>
+                </div>
+                <div class="doacao-badge-card" data-badge="patrono">
+                    <div class="doacao-selo doacao-selo--patrono"><span>♛</span></div>
+                    <h3 data-i18n="doacao.badge.patrono.name">Patrono da Cura</h3>
+                    <p data-i18n="doacao.badge.patrono.desc">R$ 1.000+ único ou R$ 250+/mês — liderança em solidariedade.</p>
+                </div>
+                <div class="doacao-badge-card doacao-badge-card--wide" data-badge="mecenas">
+                    <div class="doacao-selo doacao-selo--mecenas"><span>🔬</span></div>
+                    <h3 data-i18n="doacao.badge.mecenas.name">Mecenas da Ciência</h3>
+                    <p data-i18n="doacao.badge.mecenas.desc">Doações de R$ 200+ destinadas à pesquisa científica — genética, imunologia e inovação em saúde.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="registrar">
+        <div class="container">
+            <div class="doacao-register-grid">
+                <div>
+                    <h2 data-i18n="doacao.form.title">Registre sua doação e receba seu selo</h2>
+                    <p data-i18n="doacao.form.intro">Após doar via Pix ou PayPal, preencha o formulário para que possamos enviar seu selo digital de reconhecimento e incluí-lo em nosso relatório de doadores (opcional).</p>
+                    <div id="earned-badge" class="doacao-earned-badge" hidden>
+                        <div class="doacao-selo doacao-selo--guardiao earned-selo"><span>★</span></div>
+                        <div>
+                            <p class="doacao-earned-label" data-i18n="doacao.form.earned">Parabéns! Você conquistou o selo:</p>
+                            <h3 class="earned-badge-name">Guardião da Saúde</h3>
+                            <p class="earned-badge-desc">Enviaremos seu certificado por e-mail em até 5 dias úteis.</p>
+                        </div>
+                    </div>
+                </div>
+                <form id="doacao-register-form" class="doacao-register-form contact-form">
+                    <div id="doacao-form-status" class="form-status" role="status" aria-live="polite" hidden></div>
+                    <input type="text" name="website" tabindex="-1" autocomplete="off" class="hp-field" aria-hidden="true">
+                    <div class="form-group">
+                        <label for="doacao-nome" data-i18n="doacao.form.name">Nome completo</label>
+                        <input type="text" id="doacao-nome" name="nome" required maxlength="200">
+                    </div>
+                    <div class="form-group">
+                        <label for="doacao-email" data-i18n="doacao.form.email">E-mail</label>
+                        <input type="email" id="doacao-email" name="email" required maxlength="254">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="doacao-tipo" data-i18n="doacao.form.type">Tipo de doação</label>
+                            <select id="doacao-tipo" name="tipo_doacao" required>
+                                <option value="unica" data-i18n="doacao.form.typeOnce">Única (Pix/PayPal)</option>
+                                <option value="mensal" data-i18n="doacao.form.typeMonthly">Mensal recorrente</option>
+                                <option value="voluntario" data-i18n="doacao.form.typeVolunteer">Trabalho voluntário</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="doacao-destino" data-i18n="doacao.form.destination">Destino</label>
+                            <select id="doacao-destino" name="destino">
+                                <option value="humanitaria" data-i18n="doacao.cause.humanitarian">Atendimento humanitário</option>
+                                <option value="pesquisa" data-i18n="doacao.cause.research">Pesquisa científica</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="doacao-valor" data-i18n="doacao.form.amount">Valor (R$)</label>
+                            <input type="text" id="doacao-valor" name="valor" placeholder="50,00">
+                        </div>
+                        <div class="form-group">
+                            <label for="doacao-comprovante" data-i18n="doacao.form.receipt">Ref. comprovante</label>
+                            <input type="text" id="doacao-comprovante" name="comprovante" placeholder="ID transação, data...">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="doacao-mensagem" data-i18n="doacao.form.message">Mensagem (opcional)</label>
+                        <textarea id="doacao-mensagem" name="mensagem" rows="3" maxlength="2000"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-verde" data-i18n="doacao.form.submit">Registrar e solicitar selo</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt">
+        <div class="container content-block">
+            <h2 data-i18n="doacao.faq.title">Perguntas frequentes</h2>
+            <div class="doacao-faq">
+                <details class="doacao-faq-item">
+                    <summary data-i18n="doacao.faq.q1">Como minha doação será usada?</summary>
+                    <p data-i18n="doacao.faq.a1">Priorizamos o atendimento voluntário humanitário — telemedicina em emergências, triagem, suporte a médicos e Anjos no Doctor8. Doações destinadas à pesquisa financiam estudos em genética, imunologia e análise de dados clínicos.</p>
+                </details>
+                <details class="doacao-faq-item">
+                    <summary data-i18n="doacao.faq.q2">Posso deduzir no imposto de renda?</summary>
+                    <p data-i18n="doacao.faq.a2">Como OSCIP, doações à ACURA BRASIL podem ser dedutíveis conforme a legislação vigente. Consulte seu contador e solicite recibo pelo formulário de registro.</p>
+                </details>
+                <details class="doacao-faq-item">
+                    <summary data-i18n="doacao.faq.q3">Como cancelar doação mensal PayPal?</summary>
+                    <p data-i18n="doacao.faq.a3">Acesse sua conta PayPal → Pagamentos automáticos → Gerenciar pagamentos automáticos e cancele a assinatura ACURA BRASIL.</p>
+                </details>
+                <details class="doacao-faq-item">
+                    <summary data-i18n="doacao.faq.q4">Não posso doar dinheiro. Como ajudo?</summary>
+                    <p data-i18n="doacao.faq.a4" data-i18n-html>Cadastre-se como <strong>Anjo voluntário</strong> em <a href="https://app.doctor8.org/register/angel" target="_blank" rel="noopener">app.doctor8.org/register/angel</a> — médicos, psicólogos, enfermeiros e apoio logístico são sempre necessários em nossas operações humanitárias.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <div class="cta-voluntario">
+        <h3 data-i18n="doacao.cta.title">Junte-se à corrente de solidariedade</h3>
+        <p data-i18n="doacao.cta.text">Da pandemia às enchentes e aos terremotos na Venezuela — cada doador e voluntário faz parte de uma rede que salva vidas à distância.</p>
+        <div class="cta-voluntario-actions">
+            <a href="#doar-agora" class="btn btn-verde" data-i18n="doacao.cta.donate">Fazer doação</a>
+            <a href="https://app.doctor8.org/register/angel" class="btn btn-transparente" target="_blank" rel="noopener" data-i18n="doacao.cta.volunteer">Ser voluntário Anjo</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <img src="img/logo-acurabrasil.png" alt="ACURABRASIL" class="logo-img">
+                </a>
+                <p class="footer-desc" data-i18n="footer.desc">Asociación Brasil por la Cura. Entidad sin fines de lucro dedicada al avance de la ciencia, el fomento de la investigación y la asistencia humanitaria.</p>
+                <span class="footer-cnpj" data-i18n="common.cnpj">CNPJ: 30.350.850/0001-80 · OSCIP</span>
+            </div>
+            <div>
+                <h4 class="footer-title" data-i18n="footer.nav">Navegación</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html" data-i18n="footer.home">Inicio</a></li>
+                    <li><a href="instituicao.html" data-i18n="footer.about">Sobre Nosotros</a></li>
+                    <li><a href="pesquisas.html" data-i18n="footer.areas">Áreas de Actuación</a></li>
+                    <li><a href="doacao.html" data-i18n="footer.donate">Doação</a></li>
+                    <li><a href="sos-saude-rs.html" data-i18n="footer.sosRs">SOS Salud RS</a></li>
+                    <li><a href="consulta-venezuela.html" data-i18n="footer.consult">Consulta en Línea</a></li>
+                    <li><a href="sos-venezuela.html" data-i18n="footer.sosVe">SOS Venezuela</a></li>
+                    <li><a href="contato.html" data-i18n="footer.contactLink">Contacto</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title" data-i18n="footer.transparency">Transparencia</h4>
+                <ul class="footer-links">
+                    <li><a href="transparencia.html" data-i18n="footer.portal">Portal de Transparencia</a></li>
+                    <li><a href="transparencia.html#estatuto" data-i18n="footer.estatuto">Estatuto Social</a></li>
+                    <li><a href="docs/estatuto-social-2022.pdf" target="_blank" rel="noopener" data-i18n="footer.estatutoPdf">Estatuto Social (PDF)</a></li>
+                    <li><a href="docs/comprovante-cnpj.pdf" target="_blank" rel="noopener" data-i18n="footer.cnpjPdf">Comprobante CNPJ (PDF)</a></li>
+                    <li><a href="transparencia.html#balancos" data-i18n="footer.balancos">Balances Financieros</a></li>
+                    <li><a href="transparencia.html#relatorios" data-i18n="footer.relatorios">Informes de Actividades</a></li>
+                    <li><a href="docs/projeto-sos-saude-rs.pdf" target="_blank" rel="noopener" data-i18n="footer.projetoSosRs">Proyecto SOS Salud RS (PDF)</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title" data-i18n="footer.contact">Contacto</h4>
+                <div class="footer-contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span data-i18n="footer.address" data-i18n-html>Rua Ulhôa Cintra, nº 32, Loja 01, Sala 01<br>Barrio Santa Efigênia, Belo Horizonte/MG</span>
+                </div>
+                <div class="footer-contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    <span data-i18n="footer.email">contato@acurabrasil.org</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p data-i18n="common.rights">© 2026 ACURA BRASIL. Todos los derechos reservados.</p>
+            <p data-i18n="common.transparencyFooter">Desarrollado en conformidad con las directrices de transparencia pública.</p>
+        </div>
+    </footer>
+
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/doacao.js"></script>
+</body>
+</html>

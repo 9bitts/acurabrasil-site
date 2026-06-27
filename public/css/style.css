@@ -1368,6 +1368,673 @@ img:not(.logo-img) {
 }
 
 /* ==========================================================================
+   Donation page & homepage banner
+   ========================================================================== */
+.doacao-banner {
+    background: linear-gradient(135deg, #1a5c3a 0%, var(--azul-escuro) 55%, #0f2f42 100%);
+    color: var(--branco);
+    position: relative;
+    overflow: hidden;
+}
+
+.doacao-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 85% 20%, rgba(114, 168, 66, 0.35) 0%, transparent 45%);
+    pointer-events: none;
+}
+
+.doacao-banner-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+}
+
+.doacao-banner-tag {
+    display: inline-block;
+    background: rgba(114, 168, 66, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.35rem 0.9rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.75rem;
+}
+
+.doacao-banner h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+    color: var(--branco);
+}
+
+.doacao-banner-content p {
+    font-size: 1rem;
+    opacity: 0.92;
+    max-width: 620px;
+    line-height: 1.6;
+}
+
+.doacao-banner-cta {
+    text-align: center;
+    min-width: 220px;
+}
+
+.btn-lg {
+    padding: 0.9rem 1.75rem;
+    font-size: 1.05rem;
+}
+
+.doacao-banner-link {
+    display: block;
+    margin-top: 0.85rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.9rem;
+    text-decoration: underline;
+}
+
+.doacao-banner-link:hover {
+    color: var(--branco);
+}
+
+.doacao-hero {
+    background: linear-gradient(135deg, #1a5c3a 0%, var(--azul-institucional) 50%, var(--azul-escuro) 100%);
+    color: var(--branco);
+    padding: calc(var(--header-height) + 2.5rem) 0 3.5rem;
+}
+
+.doacao-hero-inner {
+    max-width: 900px;
+}
+
+.doacao-breadcrumb {
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 1.25rem;
+    font-size: 0.9rem;
+}
+
+.doacao-breadcrumb a {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.doacao-hero-tag {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.doacao-hero h1 {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.doacao-hero-sub {
+    font-size: 1.1rem;
+    opacity: 0.92;
+    line-height: 1.65;
+    margin-bottom: 2rem;
+}
+
+.doacao-hero-stats {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.doacao-hero-stat strong {
+    display: block;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #b8e986;
+}
+
+.doacao-hero-stat span {
+    font-size: 0.85rem;
+    opacity: 0.85;
+}
+
+.section-title-center {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--azul-institucional);
+    margin-bottom: 0.75rem;
+}
+
+.section-subtitle-center {
+    text-align: center;
+    color: var(--texto-mutado);
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.6;
+}
+
+.doacao-ways-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.doacao-way-card {
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+}
+
+.doacao-way-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.doacao-way-card h3 {
+    font-size: 1.25rem;
+    color: var(--texto-escuro);
+    margin-bottom: 0.75rem;
+}
+
+.doacao-way-card p {
+    color: var(--texto-mutado);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 1.25rem;
+}
+
+.doacao-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.doacao-gallery-item {
+    background: var(--branco);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    margin: 0;
+}
+
+.doacao-gallery-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.doacao-gallery-item figcaption {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.doacao-gallery-item strong {
+    color: var(--azul-institucional);
+    font-size: 1.05rem;
+}
+
+.doacao-gallery-item span {
+    color: var(--texto-mutado);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.doacao-gallery-item a {
+    color: var(--verde-acao);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+.doacao-panel-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+    align-items: start;
+}
+
+.doacao-panel-main h2 {
+    font-size: 1.75rem;
+    color: var(--azul-institucional);
+    margin-bottom: 1.5rem;
+}
+
+.doacao-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.doacao-tab {
+    padding: 0.65rem 1.25rem;
+    border: 2px solid var(--cinza-borda);
+    background: var(--branco);
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: var(--texto-mutado);
+    font-family: var(--font-principal);
+    transition: all 0.2s;
+}
+
+.doacao-tab.active {
+    border-color: var(--verde-acao);
+    background: var(--verde-acao);
+    color: var(--branco);
+}
+
+.doacao-cause-tabs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.doacao-cause-label {
+    font-weight: 600;
+    color: var(--texto-escuro);
+    font-size: 0.9rem;
+}
+
+.doacao-cause-tab {
+    padding: 0.45rem 1rem;
+    border: 1px solid var(--cinza-borda);
+    background: var(--cinza-claro);
+    border-radius: var(--radius);
+    font-size: 0.85rem;
+    cursor: pointer;
+    font-family: var(--font-principal);
+}
+
+.doacao-cause-tab.active {
+    border-color: var(--azul-institucional);
+    background: var(--azul-institucional);
+    color: var(--branco);
+}
+
+.doacao-amount-label {
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--texto-escuro);
+}
+
+.doacao-amounts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.doacao-amount-btn {
+    padding: 0.6rem 1.1rem;
+    border: 2px solid var(--cinza-borda);
+    background: var(--branco);
+    border-radius: var(--radius);
+    font-weight: 600;
+    cursor: pointer;
+    font-family: var(--font-principal);
+    transition: all 0.2s;
+}
+
+.doacao-amount-btn:hover,
+.doacao-amount-btn.active {
+    border-color: var(--verde-acao);
+    background: rgba(114, 168, 66, 0.1);
+    color: var(--verde-hover);
+}
+
+.doacao-custom-amount {
+    margin-bottom: 1.5rem;
+}
+
+.doacao-custom-amount label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.35rem;
+    color: var(--texto-mutado);
+}
+
+.doacao-custom-amount input {
+    width: 100%;
+    max-width: 200px;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid var(--cinza-borda);
+    border-radius: var(--radius);
+    font-family: var(--font-principal);
+}
+
+.doacao-payment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+
+.doacao-payment-card {
+    background: var(--cinza-claro);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.doacao-payment-card h3 {
+    font-size: 1.1rem;
+    color: var(--azul-institucional);
+    margin-bottom: 0.75rem;
+}
+
+.doacao-pix-amount {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--verde-acao);
+    margin-bottom: 1rem;
+}
+
+.doacao-pix-qr-wrap {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.doacao-pix-qr-wrap img {
+    border-radius: var(--radius);
+    background: var(--branco);
+    padding: 0.5rem;
+}
+
+.doacao-pix-key {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+}
+
+.doacao-pix-key code {
+    background: var(--branco);
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    border: 1px solid var(--cinza-borda);
+}
+
+.doacao-pix-info {
+    font-size: 0.85rem;
+    color: var(--texto-mutado);
+    line-height: 1.5;
+}
+
+.doacao-copy-feedback {
+    color: var(--verde-acao);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.btn-sm {
+    padding: 0.45rem 0.9rem;
+    font-size: 0.85rem;
+}
+
+.btn-paypal {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.doacao-badge-preview {
+    background: linear-gradient(160deg, var(--azul-escuro), #0f2f42);
+    color: var(--branco);
+    border-radius: 12px;
+    padding: 1.75rem;
+    text-align: center;
+    margin-bottom: 1.25rem;
+}
+
+.doacao-badge-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.8;
+    margin-bottom: 1rem;
+}
+
+.doacao-selo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 2rem;
+    border: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.doacao-selo--anjo { background: linear-gradient(135deg, #5b8c33, #72a842); }
+.doacao-selo--amigo { background: linear-gradient(135deg, #64748b, #94a3b8); }
+.doacao-selo--guardiao { background: linear-gradient(135deg, #23729d, #164e6c); }
+.doacao-selo--protetor { background: linear-gradient(135deg, #1a5c3a, #72a842); }
+.doacao-selo--benemerito { background: linear-gradient(135deg, #b8860b, #daa520); }
+.doacao-selo--patrono { background: linear-gradient(135deg, #6b21a8, #9333ea); }
+.doacao-selo--mecenas { background: linear-gradient(135deg, #0e7490, #23729d); }
+
+.badge-preview-name,
+.earned-badge-name {
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+}
+
+.badge-preview-desc,
+.earned-badge-desc {
+    font-size: 0.85rem;
+    opacity: 0.85;
+    line-height: 1.5;
+}
+
+.doacao-transparency-note {
+    background: var(--cinza-claro);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 12px;
+    padding: 1.25rem;
+}
+
+.doacao-transparency-note h4 {
+    color: var(--azul-institucional);
+    margin-bottom: 0.5rem;
+}
+
+.doacao-transparency-note p {
+    font-size: 0.9rem;
+    color: var(--texto-mutado);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.doacao-badges-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
+.doacao-badge-card {
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.doacao-badge-card--wide {
+    grid-column: span 3;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.25rem;
+    text-align: left;
+    align-items: center;
+}
+
+.doacao-badge-card--wide .doacao-selo {
+    margin: 0;
+}
+
+.doacao-badge-card h3 {
+    font-size: 1.05rem;
+    color: var(--azul-institucional);
+    margin-bottom: 0.5rem;
+}
+
+.doacao-badge-card p {
+    font-size: 0.9rem;
+    color: var(--texto-mutado);
+    line-height: 1.5;
+}
+
+.doacao-register-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+.doacao-register-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.doacao-earned-badge {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(114, 168, 66, 0.12), rgba(35, 114, 157, 0.08));
+    border: 2px solid var(--verde-acao);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.doacao-earned-badge .doacao-selo {
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.doacao-earned-label {
+    font-size: 0.85rem;
+    color: var(--verde-hover);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.doacao-faq {
+    max-width: 800px;
+}
+
+.doacao-faq-item {
+    border-bottom: 1px solid var(--cinza-borda);
+    padding: 1rem 0;
+}
+
+.doacao-faq-item summary {
+    font-weight: 600;
+    color: var(--azul-institucional);
+    cursor: pointer;
+    list-style: none;
+}
+
+.doacao-faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.doacao-faq-item p {
+    margin-top: 0.75rem;
+    color: var(--texto-mutado);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.hp-field {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+
+@media (max-width: 992px) {
+    .doacao-banner-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .doacao-banner-content p {
+        margin: 0 auto;
+    }
+
+    .doacao-ways-grid,
+    .doacao-payment-grid,
+    .doacao-panel-grid,
+    .doacao-register-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .doacao-gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .doacao-badges-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .doacao-badge-card--wide {
+        grid-column: span 2;
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .doacao-badge-card--wide .doacao-selo {
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .doacao-badges-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .doacao-badge-card--wide {
+        grid-column: span 1;
+    }
+
+    .doacao-register-form .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .doacao-hero-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+/* ==========================================================================
    Consulta Online — Portal Venezuela / Doctor8
    ========================================================================== */
 .nav-link-destaque {
