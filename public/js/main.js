@@ -72,4 +72,28 @@
       }
     });
   });
+
+  const contactForm = document.querySelector('.contact-form-mailto');
+  if (contactForm) {
+    const assuntoSelect = contactForm.querySelector('#assunto');
+    const params = new URLSearchParams(window.location.search);
+    const presetAssunto = params.get('assunto');
+    if (assuntoSelect && presetAssunto) {
+      const option = assuntoSelect.querySelector(`option[value="${presetAssunto}"]`);
+      if (option) assuntoSelect.value = presetAssunto;
+    }
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nome = contactForm.querySelector('#nome')?.value.trim() || '';
+      const email = contactForm.querySelector('#email')?.value.trim() || '';
+      const assunto = assuntoSelect?.selectedOptions[0]?.textContent.trim() || '';
+      const mensagem = contactForm.querySelector('#mensagem')?.value.trim() || '';
+      const subject = encodeURIComponent(`[ACURA BRASIL] ${assunto}`);
+      const body = encodeURIComponent(
+        `Nombre: ${nome}\nCorreo: ${email}\nAsunto: ${assunto}\n\n${mensagem}`
+      );
+      window.location.href = `mailto:contato@acurabrasil.org?subject=${subject}&body=${body}`;
+    });
+  }
 })();
