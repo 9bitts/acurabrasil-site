@@ -5,8 +5,15 @@
     pixKey: '30.350.850/0001-80',
     pixName: 'ABRAC BRASIL',
     pixCity: 'BELO HORIZONTE',
-    paypalBusiness: 'contato@acurabrasil.org',
     angelRegisterUrl: 'https://app.doctor8.org/register/angel',
+  };
+
+  var paypalState = {
+    clientId: '',
+    enabled: false,
+    sdkIntent: null,
+    onceButtons: null,
+    monthlyButtons: null,
   };
 
   var AMOUNTS = [30, 50, 100, 250, 500, 1000];
@@ -74,12 +81,17 @@
     var amount = getActiveAmount();
     var display = document.getElementById('pix-amount-display');
     if (display) display.textContent = 'R$ ' + amount.toFixed(2).replace('.', ',');
-    var paypalOnce = document.getElementById('paypal-amount');
-    var paypalMonthly = document.getElementById('paypal-monthly');
-    if (paypalOnce) paypalOnce.value = amount.toFixed(2);
-    if (paypalMonthly) paypalMonthly.value = amount.toFixed(2);
     updateQr();
     updateBadgePreview(amount);
+    schedulePaypalRender();
+  }
+
+  var paypalRenderTimer = null;
+  function schedulePaypalRender() {
+    if (paypalRenderTimer) clearTimeout(paypalRenderTimer);
+    paypalRenderTimer = setTimeout(function () {
+      renderPaypalButtons();
+    }, 350);
   }
 
   function getBadgeForAmount(amount, type) {
@@ -195,6 +207,7 @@
           panel.hidden = panel.dataset.panelType !== state.type;
         });
         updateBadgePreview(getActiveAmount());
+        renderPaypalButtons();
       });
     });
   }
@@ -302,11 +315,199 @@
     earned.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-  function initPaypalForms() {
-    document.querySelectorAll('form[data-paypal-form]').forEach(function (form) {
-      var business = form.querySelector('input[name="business"]');
-      if (business) business.value = CONFIG.paypalBusiness;
+  function getCauseLabel() {
+    if (state.cause === 'pesquisa') {
+      return t('doacao.cause.research');
+    }
+    return t('doacao.cause.humanitarian');
+  }
+
+  function loadPaypalSdk(intent) {
+    if (!paypalState.clientId) {
+      return Promise.reject(new Error('no client id'));
+    }
+    if (paypalState.sdkIntent === intent && window.paypal) {
+      return Promise.resolve();
+    }
+
+    return new Promise(function (resolve, reject) {
+      var existing = document.getElementById('paypal-sdk');
+      if (existing) existing.remove();
+      delete window.paypal;
+      paypalState.sdkIntent = null;
+      paypalState.onceButtons = null;
+      paypalState.monthlyButtons = null;
+
+      var script = document.createElement('script');
+      script.id = 'paypal-sdk';
+      var url =
+        'https://www.paypal.com/sdk/js?client-id=' +
+        encodeURIComponent(paypalState.clientId) +
+        '&currency=BRL&components=buttons&disable-funding=credit';
+      if (intent === 'subscription') {
+        url += '&vault=true&intent=subscription';
+      }
+      script.src = url;
+      script.onload = function () {
+        paypalState.sdkIntent = intent;
+        resolve();
+      };
+      script.onerror = reject;
+      document.body.appendChild(script);
     });
+  }
+
+  function closePaypalButtons() {
+    if (paypalState.onceButtons && paypalState.onceButtons.close) {
+      try { paypalState.onceButtons.close(); } catch (e) { /* ignore */ }
+    }
+    if (paypalState.monthlyButtons && paypalState.monthlyButtons.close) {
+      try { paypalState.monthlyButtons.close(); } catch (e) { /* ignore */ }
+    }
+    paypalState.onceButtons = null;
+    paypalState.monthlyButtons = null;
+  }
+
+  function showPaypalUnavailable(which) {
+    var container = document.getElementById(which === 'monthly' ? 'paypal-monthly-container' : 'paypal-once-container');
+    var msg = document.getElementById(which === 'monthly' ? 'paypal-monthly-unavailable' : 'paypal-once-unavailable');
+    if (container) container.innerHTML = '';
+    if (msg) msg.hidden = false;
+  }
+
+  function hidePaypalUnavailable() {
+    ['paypal-once-unavailable', 'paypal-monthly-unavailable'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.hidden = true;
+    });
+  }
+
+  function showPaypalSuccess(kind, detail) {
+    var el = document.getElementById(kind === 'monthly' ? 'paypal-monthly-success' : 'paypal-once-success');
+    if (!el) return;
+    el.hidden = false;
+    el.textContent =
+      kind === 'monthly'
+        ? t('doacao.paypal.successMonthly')
+        : t('doacao.paypal.successOnce').replace('{id}', detail || '');
+    var register = document.getElementById('registrar');
+    if (register) register.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function renderPaypalOnce() {
+    var container = document.getElementById('paypal-once-container');
+    if (!container || !window.paypal || state.type !== 'unica') return;
+
+    closePaypalButtons();
+    container.innerHTML = '';
+    var amount = getActiveAmount();
+
+    paypalState.onceButtons = window.paypal.Buttons({
+      style: { layout: 'vertical', color: 'blue', shape: 'rect', label: 'donate' },
+      createOrder: function (data, actions) {
+        return actions.order.create({
+          purchase_units: [
+            {
+              amount: { currency_code: 'BRL', value: amount.toFixed(2) },
+              description: 'Doação ACURA BRASIL — ' + getCauseLabel(),
+              custom_id: 'doacao-' + state.cause,
+            },
+          ],
+        });
+      },
+      onApprove: function (data, actions) {
+        return actions.order.capture().then(function (details) {
+          var id = details.id || data.orderID || '';
+          showPaypalSuccess('once', id);
+        });
+      },
+      onError: function (err) {
+        console.error('PayPal once error:', err);
+      },
+    });
+
+    if (paypalState.onceButtons.isEligible()) {
+      return paypalState.onceButtons.render('#paypal-once-container');
+    }
+    showPaypalUnavailable('once');
+  }
+
+  function renderPaypalMonthly() {
+    var container = document.getElementById('paypal-monthly-container');
+    if (!container || !window.paypal || state.type !== 'mensal') return;
+
+    closePaypalButtons();
+    container.innerHTML = '';
+    var amount = getActiveAmount();
+
+    paypalState.monthlyButtons = window.paypal.Buttons({
+      style: { layout: 'vertical', color: 'blue', shape: 'rect', label: 'subscribe' },
+      createSubscription: function (data, actions) {
+        return fetch('/api/paypal/subscription-plan', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ amount: amount, cause: state.cause }),
+        })
+          .then(function (res) {
+            return res.json().then(function (json) {
+              if (!res.ok || !json.planId) throw new Error('plan_failed');
+              return actions.subscription.create({ plan_id: json.planId });
+            });
+          });
+      },
+      onApprove: function (data) {
+        showPaypalSuccess('monthly', data.subscriptionID || '');
+      },
+      onError: function (err) {
+        console.error('PayPal monthly error:', err);
+      },
+    });
+
+    if (paypalState.monthlyButtons.isEligible()) {
+      return paypalState.monthlyButtons.render('#paypal-monthly-container');
+    }
+    showPaypalUnavailable('monthly');
+  }
+
+  function renderPaypalButtons() {
+    if (!paypalState.enabled || !paypalState.clientId) {
+      showPaypalUnavailable(state.type === 'mensal' ? 'monthly' : 'once');
+      return;
+    }
+
+    hidePaypalUnavailable();
+    var intent = state.type === 'mensal' ? 'subscription' : 'capture';
+
+    loadPaypalSdk(intent)
+      .then(function () {
+        if (state.type === 'mensal') {
+          return renderPaypalMonthly();
+        }
+        return renderPaypalOnce();
+      })
+      .catch(function (err) {
+        console.error('PayPal init failed:', err);
+        showPaypalUnavailable(state.type === 'mensal' ? 'monthly' : 'once');
+      });
+  }
+
+  function initPaypal() {
+    fetch('/api/paypal/config')
+      .then(function (res) { return res.json(); })
+      .then(function (cfg) {
+        paypalState.clientId = cfg.clientId || '';
+        paypalState.enabled = !!cfg.enabled;
+        if (!paypalState.enabled) {
+          showPaypalUnavailable('once');
+          showPaypalUnavailable('monthly');
+          return;
+        }
+        renderPaypalButtons();
+      })
+      .catch(function () {
+        showPaypalUnavailable('once');
+        showPaypalUnavailable('monthly');
+      });
   }
 
   function onLangChange() {
@@ -339,7 +540,7 @@
     bindCustomAmount();
     bindCopyPix();
     bindRegisterForm();
-    initPaypalForms();
+    initPaypal();
     updateAmountDisplay();
 
     var angelBtn = document.getElementById('angel-register-btn');

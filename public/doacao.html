@@ -181,14 +181,9 @@
                             <div class="doacao-payment-card">
                                 <h3 data-i18n="doacao.paypal.once.title">PayPal — Doação única</h3>
                                 <p data-i18n="doacao.paypal.once.text">Cartão de crédito internacional. Ideal para doadores no exterior.</p>
-                                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" data-paypal-form>
-                                    <input type="hidden" name="cmd" value="_donations">
-                                    <input type="hidden" name="business" value="">
-                                    <input type="hidden" name="item_name" value="Doação ACURA BRASIL">
-                                    <input type="hidden" name="currency_code" value="BRL">
-                                    <input type="hidden" name="amount" id="paypal-amount" value="50.00">
-                                    <button type="submit" class="btn btn-azul btn-paypal" data-i18n="doacao.paypal.once.btn">Doar via PayPal</button>
-                                </form>
+                                <div id="paypal-once-container" class="paypal-button-container"></div>
+                                <p id="paypal-once-unavailable" class="doacao-paypal-unavailable" hidden data-i18n="doacao.paypal.unavailable">PayPal em configuração. Use Pix ou contato@acurabrasil.org.</p>
+                                <p id="paypal-once-success" class="doacao-paypal-success" hidden role="status"></p>
                             </div>
                         </div>
                     </div>
@@ -206,18 +201,9 @@
                             <div class="doacao-payment-card">
                                 <h3 data-i18n="doacao.paypal.monthly.title">PayPal — Assinatura mensal</h3>
                                 <p data-i18n="doacao.paypal.monthly.text">Doação recorrente automática no cartão. Cancele quando quiser pelo PayPal.</p>
-                                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" data-paypal-form>
-                                    <input type="hidden" name="cmd" value="_xclick-subscriptions">
-                                    <input type="hidden" name="business" value="">
-                                    <input type="hidden" name="item_name" value="Doação Mensal ACURA BRASIL">
-                                    <input type="hidden" name="currency_code" value="BRL">
-                                    <input type="hidden" name="a3" id="paypal-monthly" value="50.00">
-                                    <input type="hidden" name="p3" value="1">
-                                    <input type="hidden" name="t3" value="M">
-                                    <input type="hidden" name="src" value="1">
-                                    <input type="hidden" name="sra" value="1">
-                                    <button type="submit" class="btn btn-azul btn-paypal" data-i18n="doacao.paypal.monthly.btn">Assinar doação mensal</button>
-                                </form>
+                                <div id="paypal-monthly-container" class="paypal-button-container"></div>
+                                <p id="paypal-monthly-unavailable" class="doacao-paypal-unavailable" hidden data-i18n="doacao.paypal.unavailable">PayPal em configuração. Use Pix recorrente ou contato@acurabrasil.org.</p>
+                                <p id="paypal-monthly-success" class="doacao-paypal-success" hidden role="status"></p>
                             </div>
                         </div>
                     </div>

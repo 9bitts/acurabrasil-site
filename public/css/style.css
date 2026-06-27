@@ -1800,6 +1800,29 @@ img:not(.logo-img) {
     margin-top: 0.5rem;
 }
 
+.paypal-button-container {
+    min-height: 45px;
+    margin-top: 0.5rem;
+}
+
+.doacao-paypal-unavailable {
+    font-size: 0.9rem;
+    color: var(--texto-mutado);
+    margin-top: 0.75rem;
+    line-height: 1.5;
+}
+
+.doacao-paypal-success {
+    margin-top: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: rgba(114, 168, 66, 0.12);
+    border: 1px solid var(--verde-acao);
+    border-radius: var(--radius);
+    color: var(--verde-hover);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
 .doacao-badge-preview {
     background: linear-gradient(160deg, var(--azul-escuro), #0f2f42);
     color: var(--branco);
