@@ -136,6 +136,9 @@
           body: JSON.stringify({
             nome: contactForm.querySelector('#nome')?.value.trim() || '',
             email: contactForm.querySelector('#email')?.value.trim() || '',
+            ddi: contactForm.querySelector('#ddi')?.value.trim() || '',
+            ddd: contactForm.querySelector('#ddd')?.value.trim() || '',
+            telefone: contactForm.querySelector('#telefone')?.value.trim() || '',
             assunto: assuntoSelect?.value || '',
             mensagem: contactForm.querySelector('#mensagem')?.value.trim() || '',
             website: contactForm.querySelector('#website')?.value || '',
@@ -149,6 +152,8 @@
         if (res.ok && data.ok) {
           showStatus('success', 'contato.form.success');
           contactForm.reset();
+          const ddiInput = contactForm.querySelector('#ddi');
+          if (ddiInput) ddiInput.value = '+55';
           if (assuntoSelect && presetAssunto) {
             const option = assuntoSelect.querySelector(`option[value="${presetAssunto}"]`);
             if (option) assuntoSelect.value = presetAssunto;

@@ -1097,6 +1097,42 @@ img:not(.logo-img) {
     color: var(--texto-escuro);
 }
 
+.form-group-label {
+    display: block;
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+    color: var(--texto-escuro);
+}
+
+.form-phone-row {
+    display: grid;
+    grid-template-columns: 72px 64px 1fr;
+    gap: 0.65rem;
+}
+
+.form-phone-field label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--texto-mutado);
+    margin-bottom: 0.3rem;
+}
+
+.form-phone-field input {
+    width: 100%;
+    padding: 0.75rem 0.65rem;
+    border: 1px solid var(--cinza-borda);
+    border-radius: 6px;
+    font-family: var(--font-principal);
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+}
+
+.form-phone-field input:focus {
+    outline: none;
+    border-color: var(--azul-institucional);
+}
+
 .form-group input,
 .form-group select,
 .form-group textarea {
@@ -2676,6 +2712,16 @@ img:not(.logo-img) {
     .form-group select,
     .form-group textarea {
         font-size: 16px;
+    }
+
+    .form-phone-row {
+        grid-template-columns: 68px 56px 1fr;
+        gap: 0.5rem;
+    }
+
+    .form-phone-field input {
+        font-size: 16px;
+        padding: 0.7rem 0.5rem;
     }
 
     .journey-step {

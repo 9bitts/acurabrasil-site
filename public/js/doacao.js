@@ -276,6 +276,9 @@
       var body = {
         nome: String(fd.get('nome') || '').trim(),
         email: String(fd.get('email') || '').trim(),
+        ddi: String(fd.get('ddi') || '').trim(),
+        ddd: String(fd.get('ddd') || '').trim(),
+        telefone: String(fd.get('telefone') || '').trim(),
         assunto: 'doacao',
         mensagem: [
           'Tipo: ' + tipo,
@@ -306,6 +309,8 @@
             } catch (err) { /* ignore */ }
             showEarnedBadge(badge);
             form.reset();
+            var ddiInput = form.querySelector('[name="ddi"]');
+            if (ddiInput) ddiInput.value = '+55';
             return;
           }
           if (result.status === 429) {

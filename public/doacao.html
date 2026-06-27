@@ -299,6 +299,23 @@
                         <label for="doacao-email" data-i18n="doacao.form.email">E-mail</label>
                         <input type="email" id="doacao-email" name="email" required maxlength="254">
                     </div>
+                    <div class="form-group">
+                        <span class="form-group-label" data-i18n="contato.form.phone.label">WhatsApp / Telefone</span>
+                        <div class="form-phone-row">
+                            <div class="form-phone-field form-phone-ddi">
+                                <label for="doacao-ddi" data-i18n="contato.form.phone.ddi">DDI</label>
+                                <input type="tel" id="doacao-ddi" name="ddi" required value="+55" maxlength="5" inputmode="tel" data-i18n-placeholder="contato.form.phone.ddiPlaceholder" placeholder="+55">
+                            </div>
+                            <div class="form-phone-field form-phone-ddd">
+                                <label for="doacao-ddd" data-i18n="contato.form.phone.ddd">DDD</label>
+                                <input type="tel" id="doacao-ddd" name="ddd" required maxlength="3" inputmode="numeric" data-i18n-placeholder="contato.form.phone.dddPlaceholder" placeholder="31">
+                            </div>
+                            <div class="form-phone-field form-phone-numero">
+                                <label for="doacao-telefone" data-i18n="contato.form.phone.number">Número</label>
+                                <input type="tel" id="doacao-telefone" name="telefone" required maxlength="15" inputmode="tel" data-i18n-placeholder="contato.form.phone.numberPlaceholder" placeholder="99999-9999">
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="doacao-tipo" data-i18n="doacao.form.type">Tipo de doação</label>
