@@ -4,20 +4,26 @@
   const header = document.querySelector('.header');
 
   if (menuToggle && navMenu) {
+    const setMenuOpen = (open) => {
+      navMenu.classList.toggle('open', open);
+      menuToggle.classList.toggle('active', open);
+      menuToggle.setAttribute('aria-expanded', String(open));
+      document.body.classList.toggle('menu-open', open);
+      if (window.AcuraI18n) {
+        menuToggle.setAttribute(
+          'aria-label',
+          window.AcuraI18n.t(window.AcuraI18n.getLang(), open ? 'common.menuClose' : 'common.menuOpen')
+        );
+      }
+    };
+
     menuToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('open');
-      menuToggle.classList.toggle('active');
-      menuToggle.setAttribute(
-        'aria-expanded',
-        navMenu.classList.contains('open')
-      );
+      setMenuOpen(!navMenu.classList.contains('open'));
     });
 
     navMenu.querySelectorAll('.nav-link, .nav-dropdown-menu a').forEach((link) => {
       link.addEventListener('click', () => {
-        navMenu.classList.remove('open');
-        menuToggle.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', 'false');
+        setMenuOpen(false);
         document.querySelectorAll('.nav-dropdown.open').forEach((d) => d.classList.remove('open'));
       });
     });

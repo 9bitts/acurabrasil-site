@@ -31,6 +31,8 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -38,6 +40,11 @@ body {
     color: var(--texto-escuro);
     background-color: var(--branco);
     line-height: 1.6;
+    overflow-x: clip;
+}
+
+body.menu-open {
+    overflow: hidden;
 }
 
 a {
@@ -806,6 +813,10 @@ img:not(.logo-img) {
     color: var(--texto-mutado);
     font-size: 0.85rem;
     line-height: 1.4;
+}
+
+.categoria-item.categoria-full {
+    grid-column: span 2;
 }
 
 .conversao-card {
@@ -1727,26 +1738,55 @@ img:not(.logo-img) {
     .header-container {
         height: auto;
         min-height: 72px;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        grid-template-areas:
+            "logo toggle actions"
+            "nav nav nav";
+        align-items: center;
         padding: 0.65rem 1rem;
+        gap: 0.5rem 0.75rem;
+    }
+
+    .logo {
+        grid-area: logo;
+    }
+
+    .menu-toggle {
+        grid-area: toggle;
+        justify-self: end;
+    }
+
+    .header-actions {
+        grid-area: actions;
+        margin-left: 0;
     }
 
     .header-nav {
-        order: 4;
-        flex: 1 1 100%;
+        grid-area: nav;
+        order: unset;
+        flex: unset;
         width: 100%;
+    }
+
+    .header-nav:not(:has(.nav-menu.open)) {
+        display: none;
     }
 
     .header-cta {
         display: none;
     }
 
-    .header-actions {
-        margin-left: auto;
-    }
-
     .menu-toggle {
         display: flex;
+        min-width: 44px;
+        min-height: 44px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .lang-toggle {
+        min-height: 44px;
     }
 
     .nav-menu {
@@ -1773,8 +1813,9 @@ img:not(.logo-img) {
         display: block;
         width: 100%;
         text-align: left;
-        padding: 0.75rem 0;
+        padding: 0.875rem 0;
         border-bottom: 1px solid var(--cinza-borda);
+        min-height: 44px;
     }
 
     .nav-dropdown-menu {
@@ -1793,33 +1834,150 @@ img:not(.logo-img) {
     }
 
     .nav-dropdown-menu a {
-        padding: 0.6rem 0.75rem;
+        padding: 0.75rem;
         border-bottom: 1px solid var(--cinza-borda);
+        min-height: 44px;
+        white-space: normal;
+    }
+
+    .page-hero {
+        padding: calc(var(--header-height) + 2rem) 1.25rem 2.5rem;
+    }
+
+    .page-hero h1 { font-size: 2rem; }
+    .page-hero p { font-size: 1rem; }
+
+    .breadcrumb {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .content-block .breadcrumb {
+        justify-content: flex-start;
+    }
+
+    .section {
+        padding: 3.5rem 0;
     }
 
     .hero-title { font-size: 2.25rem; }
     .hero-subtitle { font-size: 1.1rem; }
+    .hero-container { padding: 3rem 1.25rem; }
     .hero-actions { flex-direction: column; width: 100%; }
-    .hero-actions .btn { width: 100%; }
-    .page-hero h1 { font-size: 2rem; }
+    .hero-actions .btn { width: 100%; white-space: normal; }
+
+    .sos-highlight { padding: 3.5rem 0; }
+    .sos-highlight h2 { font-size: 1.65rem; }
+    .sos-card { padding: 1.75rem 1.25rem; }
+
     .transparencia { padding: 4.5rem 1.5rem; }
     .transparencia-text { font-size: 1.25rem; }
+
+    .docs-list li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .docs-list a {
+        align-self: flex-start;
+    }
+
+    .doc-download {
+        padding: 1.25rem;
+        gap: 1rem;
+    }
+
+    .doc-download .btn {
+        width: 100%;
+        white-space: normal;
+    }
+
+    .cta-voluntario {
+        padding: 2rem 1.25rem;
+    }
+
+    .cta-voluntario-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cta-voluntario-actions .btn {
+        width: 100%;
+        white-space: normal;
+    }
+
+    .consulta-hero {
+        padding: calc(var(--header-height) + 2rem) 1.25rem 3rem;
+    }
+
+    .consulta-hero-actions,
+    .consulta-cta-final-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .consulta-hero-actions .btn,
+    .consulta-cta-final-actions .btn,
+    .consulta-step-btn {
+        width: 100%;
+        white-space: normal;
+    }
+
+    .consulta-badge {
+        font-size: 0.72rem;
+        line-height: 1.4;
+        white-space: normal;
+    }
+
+    .consulta-breadcrumb {
+        font-size: 0.82rem;
+        line-height: 1.5;
+    }
+
+    .contact-form {
+        padding: 1.5rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 16px;
+    }
+
+    .journey-step {
+        gap: 1rem;
+    }
+
+    .journey-content {
+        min-width: 0;
+    }
+
     .sos-stats { grid-template-columns: 1fr; }
     .doc-download { flex-direction: column; text-align: center; }
     .emergency-banner-inner { grid-template-columns: 1fr; text-align: center; }
     .emergency-banner p { margin-left: auto; margin-right: auto; }
     .emergency-stats-inline { justify-content: center; }
     .emergency-cta-box { min-width: auto; }
-    .emergency-cta-box .btn { width: 100%; max-width: 320px; }
+    .emergency-cta-box .btn { width: 100%; max-width: none; white-space: normal; }
     .emergency-banner-inner { padding: 2rem 1.25rem; }
     .emergency-banner h2 { font-size: 1.5rem; }
+    .emergency-pulse {
+        font-size: 0.68rem;
+        letter-spacing: 0.04em;
+        white-space: normal;
+        text-align: center;
+        line-height: 1.35;
+    }
 }
 
 @media (max-width: 640px) {
     .container { padding: 0 1.25rem; }
     .grid-atuacao { grid-template-columns: 1fr; }
     .section-title { font-size: 1.75rem; }
+    .content-block h2 { font-size: 1.45rem; }
     .categorias-list { grid-template-columns: 1fr; }
+    .categoria-item.categoria-full { grid-column: auto; }
     .associar-title { font-size: 1.75rem; }
     .conversao-card { padding: 2rem 1.5rem; }
     .footer { padding: 4rem 1.5rem 2rem; }
@@ -1827,4 +1985,12 @@ img:not(.logo-img) {
     .footer-bottom { flex-direction: column; text-align: center; }
     .info-grid { grid-template-columns: 1fr; }
     .stats-banner { grid-template-columns: 1fr; }
+    .header .logo-img {
+        max-width: 150px;
+        height: 38px;
+        max-height: 38px;
+    }
+    .btn {
+        white-space: normal;
+    }
 }
