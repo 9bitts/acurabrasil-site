@@ -126,9 +126,13 @@
       showStatus('info', 'contato.form.sending');
 
       try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 18_000);
+
         const res = await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
+          signal: controller.signal,
           body: JSON.stringify({
             nome: contactForm.querySelector('#nome')?.value.trim() || '',
             email: contactForm.querySelector('#email')?.value.trim() || '',
@@ -137,6 +141,8 @@
             website: contactForm.querySelector('#website')?.value || '',
           }),
         });
+
+        clearTimeout(timeoutId);
 
         const data = await res.json().catch(() => ({}));
 

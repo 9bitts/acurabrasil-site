@@ -26,21 +26,31 @@ Acesse: http://localhost:3000
 
 ## Formulário de Contato
 
-O formulário em `contato.html` envia mensagens via API (`POST /api/contact`) para o e-mail institucional usando SMTP.
+O formulário envia via `POST /api/contact`. **Recomendado: [Resend](https://resend.com)** — o SMTP do GoDaddy costuma bloquear conexões do Railway.
 
-Copie `.env.example` para `.env` e configure:
+### Resend (recomendado)
 
-| Variável | Descrição |
-|----------|-----------|
-| `SMTP_HOST` | Servidor SMTP (ex.: `smtp.gmail.com`, `smtp.sendgrid.net`) |
-| `SMTP_PORT` | Porta SMTP (padrão: `587`) |
-| `SMTP_SECURE` | `true` para porta 465, `false` para STARTTLS |
-| `SMTP_USER` | Usuário SMTP |
-| `SMTP_PASS` | Senha ou app password |
-| `CONTACT_TO` | Destino (padrão: `contato@acurabrasil.org`) |
-| `CONTACT_FROM` | Remetente (padrão: `SMTP_USER`) |
+1. Crie conta em [resend.com](https://resend.com)
+2. **Domains** → adicione `acurabrasil.org` → copie os registros DNS para o **Cloudflare**
+3. No **Railway**, adicione:
 
-No **Railway**, adicione essas variáveis em **Variables** do projeto.
+| Variável | Valor |
+|----------|-------|
+| `RESEND_API_KEY` | chave da API (começa com `re_`) |
+| `CONTACT_TO` | `contato@acurabrasil.org` |
+| `CONTACT_FROM` | `ACURABRASIL <contato@acurabrasil.org>` |
+
+### SMTP GoDaddy (alternativa — pode falhar na nuvem)
+
+| Variável | Valor |
+|----------|-------|
+| `SMTP_HOST` | `smtpout.secureserver.net` |
+| `SMTP_PORT` | `465` |
+| `SMTP_SECURE` | `true` |
+| `SMTP_USER` | e-mail completo da caixa |
+| `SMTP_PASS` | senha da caixa |
+| `CONTACT_TO` | `contato@acurabrasil.org` |
+| `CONTACT_FROM` | igual ao `SMTP_USER` |
 
 ## Deploy no Railway
 
