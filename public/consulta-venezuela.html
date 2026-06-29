@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=11">
+    <link rel="stylesheet" href="css/style.css?v=12">
     <script src="js/i18n-data.js"></script>
     <script>try{var l=localStorage.getItem('acura.lang')||'es';document.documentElement.lang=l==='es'?'es-VE':'pt-BR';}catch(e){}</script>
 </head>
@@ -66,10 +66,28 @@
         <div class="consulta-steps">
             <article class="consulta-step"><div class="consulta-step-number">1</div><h3 data-i18n="consulta.step1.title">Cree su cuenta</h3><p data-i18n="consulta.step1.text" data-i18n-html>Regístrese como <strong>paciente</strong> en Doctor8 con su nombre, correo y contraseña. El proceso toma menos de 2 minutos.</p><a href="https://app.doctor8.org/register?callbackUrl=%2Furgent" class="btn btn-outline consulta-step-btn" target="_blank" rel="noopener" data-i18n="consulta.step1.btn">Crear cuenta gratis</a></article>
             <article class="consulta-step"><div class="consulta-step-number">2</div><h3 data-i18n="consulta.step2.title">Atención Inmediata</h3><p data-i18n="consulta.step2.text" data-i18n-html>Después del registro, accederá directamente al portal de <strong>Atención Inmediata</strong> — consulta sin cita previa con profesionales en línea.</p><a href="https://app.doctor8.org/urgent" class="btn btn-outline consulta-step-btn" target="_blank" rel="noopener" data-i18n="consulta.step2.btn">Ir a atención inmediata</a></article>
-            <article class="consulta-step"><div class="consulta-step-number">3</div><h3 data-i18n="consulta.step3.title">Elija un profesional</h3><p data-i18n="consulta.step3.text">Vea la lista de médicos y psicólogos disponibles ahora. Entre en la fila virtual y espere ser llamado para la videoconsulta.</p><a href="https://app.doctor8.org/urgent" class="btn btn-outline consulta-step-btn" target="_blank" rel="noopener" data-i18n="consulta.step3.btn">Ver profesionales disponibles</a></article>
+            <article class="consulta-step"><div class="consulta-step-number">3</div><h3 data-i18n="consulta.step3.title">Elija un profesional</h3><p data-i18n="consulta.step3.text">Vea la lista de médicos y psicólogos disponibles ahora. Entre en la fila virtual y espere ser llamado para la videoconsulta.</p><a href="#profissionais" class="btn btn-outline consulta-step-btn" data-i18n="consulta.step3.btn">Ver profesionales disponibles</a></article>
         </div>
     </div></section>
-    <section class="section section-alt"><div class="container"><div class="consulta-info-grid">
+    <section class="section section-alt consulta-profissionais-section" id="profissionais"><div class="container">
+        <div class="consulta-steps-header">
+            <h2 data-i18n="consulta.prof.title">Profesionales voluntarios</h2>
+            <p data-i18n="consulta.prof.subtitle">Conozca a los médicos, psicólogos y otros profesionales de ACURA BRASIL disponibles para consulta online vía Doctor8.</p>
+        </div>
+        <div class="consulta-prof-toolbar">
+            <label class="consulta-prof-search-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="search" id="consulta-prof-search" class="consulta-prof-search" autocomplete="off" data-i18n-placeholder="consulta.prof.search" placeholder="Buscar por nombre o especialidad…">
+            </label>
+            <select id="consulta-prof-filter" class="consulta-prof-filter" aria-label="Filtrar por profissão">
+                <option value="" data-i18n="consulta.prof.filter.all">Todas las profesiones</option>
+            </select>
+            <p id="consulta-prof-count" class="consulta-prof-count" aria-live="polite"></p>
+        </div>
+        <div id="consulta-prof-grid" class="consulta-prof-grid" aria-live="polite"></div>
+        <p id="consulta-prof-empty" class="consulta-prof-empty" hidden data-i18n="consulta.prof.empty">Ningún profesional coincide con su búsqueda.</p>
+    </div></section>
+    <section class="section"><div class="container"><div class="consulta-info-grid">
         <div class="consulta-info-card"><h3 data-i18n="consulta.info.care.title">¿Qué tipo de atención recibo?</h3><ul><li data-i18n="consulta.info.care.li1">Evaluación médica por videollamada</li><li data-i18n="consulta.info.care.li2">Apoyo psicológico y primeros auxilios emocionales</li><li data-i18n="consulta.info.care.li3">Orientación sobre medicamentos y cuidados</li><li data-i18n="consulta.info.care.li4">Derivación a especialistas si es necesario</li></ul></div>
         <div class="consulta-info-card"><h3 data-i18n="consulta.info.free.title">¿Es realmente gratuito?</h3><p data-i18n="consulta.info.free.text" data-i18n-html>Sí. Este canal humanitario de ACURA BRASIL conecta pacientes venezolanos con profesionales voluntarios. Las consultas del proyecto SOS Venezuela son <strong>sin costo</strong> cuando el profesional está en turno gratuito.</p></div>
         <div class="consulta-info-card"><h3 data-i18n="consulta.info.requirements.title">¿Necesito algo especial?</h3><ul><li data-i18n="consulta.info.requirements.li1">Celular o computadora con internet</li><li data-i18n="consulta.info.requirements.li2">Correo electrónico para el registro</li><li data-i18n="consulta.info.requirements.li3">Ser mayor de 18 años o tener autorización del responsable</li></ul></div>
@@ -139,5 +157,6 @@
 
     <script src="js/i18n.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/consulta-profissionais.js"></script>
 </body>
 </html>

@@ -1,0 +1,2301 @@
+[
+  {
+    "id": "03c7520d-f3b6-4d18-8ba8-11227ebb6e17",
+    "name": "Pedro Augusto Rolim",
+    "slug": "pedro-augusto-rolim",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Psiquiatria"
+    ],
+    "registro": "",
+    "bio": "Médico Intensivista\nPós-graduado em Psiquiatria adulto\nTelemedicina\nAlzheimer, Parkinson, Dor Crônica, Depressão, Ansiedade e Insônia\nTEA",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_2932dc4a5ba94e498ab1860c414256b9~mv2.png/8.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "PA"
+  },
+  {
+    "id": "04414914-c200-4ae7-bafc-e306cbd5f3e8",
+    "name": "Leci Maria Soriano Bobsin Corrêa",
+    "slug": "leci-maria-soriano-bobsin-correa",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "",
+    "bio": "Psicóloga Clínica. Psicanalista. Professora e Administradora",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_4261e815f0224d9bb138f68b3335332a~mv2.png/Leci%20Maria%20Soriano%20Bobsin%20Correa%202.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "LM"
+  },
+  {
+    "id": "050e0d27-0cba-42d5-88ec-502786fa417b",
+    "name": "Claudia de Bessa Solmucci",
+    "slug": "claudia-de-bessa-solmucci",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Hematologia",
+      "Oncohematologia",
+      "Clínica Médica",
+      "Patologista Clínica",
+      "Medicina Canabinoide",
+      "Psiquiatria"
+    ],
+    "registro": "CRM MG 20385",
+    "bio": "Hematologia e Oncohematologia, Clínica Médica, Patologista Clínica, Medicina Canabinoide e Psiquiatria",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "Belo Horizonte, Minas Gerais",
+    "photo": "https://static.wixstatic.com/media/cc9623_add89f02cac741ba81a0da3c6eafa144~mv2.png/Claudia%20Solmucci.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "CD"
+  },
+  {
+    "id": "05f4c56c-85d0-459a-88a4-561563378c20",
+    "name": "Genesia De Oliveira Cipriano Braz",
+    "slug": "genesia-de-oliveira-cipriano-braz",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "CRP DF 01/18982",
+    "bio": "Psicóloga",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "Brasília, Distrito Federal",
+    "photo": "https://static.wixstatic.com/media/cc9623_aa5d39f8ebdc4351ba356ea38e167fe7~mv2.png/Genesia%20de%20Oliveira%20Cipriano%20Braz.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "GD"
+  },
+  {
+    "id": "0695f2b9-a477-4ff3-9cf7-e137754ecd44",
+    "name": "José Augusto Nasser",
+    "slug": "jose-augusto-nasser",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Neurologia",
+      "Oncologia"
+    ],
+    "registro": "",
+    "bio": "Neurológica Integrativa , Neurocirurgia funcional e oncologia Integrativa",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_5206275b05d6403ca859b889daf43ace~mv2.png/Jos%C3%A9%20Augusto%20Nasser%202.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "JA"
+  },
+  {
+    "id": "07edb5a6-5866-4ebe-b47e-a396af21fc35",
+    "name": "Camila Marques da Silva",
+    "slug": "camila-marques-da-silva",
+    "profissao": [
+      "Terapeuta Integrativo",
+      "Veterinária"
+    ],
+    "especialidade": [
+      "Psicanalista de Adolescentes e Adulto"
+    ],
+    "registro": "",
+    "bio": "Terapeuta Integrativa Psicanalista de Adolescentes e Adultos, Médica Veterinária",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "São Bernardo do Campo, São Paulo",
+    "photo": "https://static.wixstatic.com/media/cc9623_8d5adcb1260548cf9d7b05ec5f8a09bd~mv2.png/Camila%20Marques%20da%20Silva.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "CM"
+  },
+  {
+    "id": "0ccb664c-e40f-4b0b-830c-e1f0377f788a",
+    "name": "Alosman Aprígio do Aguiar",
+    "slug": "alosman-aprigio-do-aguiar",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "CRP 18/8603",
+    "bio": "Psicólogo Clínico com Bacharelado em Filosofia, Bacharelado em Teologia, Pós-graduação em Terapia Gestalt e Hipnose Clínica.",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "https://static.wixstatic.com/ugd/cc9623_47e1c0901b1942959a3c8e9ebc203b27.pdf",
+    "location": "São Paulo, São Paulo",
+    "photo": "https://static.wixstatic.com/media/cc9623_c2ba87e3aaba42489b834e0019c74eac~mv2.png/Alosman%20Apr%C3%ADgio%20do%20Aguiar.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "AA"
+  },
+  {
+    "id": "1652f40d-3b3a-40a5-ab04-0a105ff3600c",
+    "name": "Solange Nunes Martins",
+    "slug": "solange-nunes-martins",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Dermatologia",
+      "Medicina Preventiva"
+    ],
+    "registro": "",
+    "bio": "Dermatologia Integrativa, Medicina Preventiva, Doenças da pele, unhas, cabelos através da visão global da sua saúde",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_f7fc013d8fe84804b12f86221e4eecf3~mv2.png/Solange%20Nunes%20Martins%202.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "SN"
+  },
+  {
+    "id": "1aebbfb3-f297-4687-8e05-e1275d0468f5",
+    "name": "Ernesto da Costa Veras",
+    "slug": "ernesto-da-costa-veras",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "CRP RJ 67881",
+    "bio": "Psicólogo clínico com pós-graduação em Terapia Cognitivo-Comportamental. Experiente em gestão e desenvolvimento de pessoas para ajudar no sofrimento psíquico de trabalhadores. Especialista no tratamento da ansiedade, depressão e transtornos de personalidade, com foco em terapia breve e atendimentos humanizados.",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "https://static.wixstatic.com/ugd/cc9623_efc5b89c40db40c0a9c7f8b2e8feee7d.pdf",
+    "location": "Rio de Janeiro, Rio de Janeiro",
+    "photo": "https://static.wixstatic.com/media/cc9623_2bee978b30054cd39cdf45906b5c672a~mv2.jpg/WhatsApp%20Image%202025-02-05%20at%2017.29_edited.jpg",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "ED"
+  },
+  {
+    "id": "1e025fdb-3961-4dea-98c4-91e2985932ca",
+    "name": "Neuzani das Graças Soares Branquinho",
+    "slug": "neuzani-das-gracas-soares-branquinho",
+    "profissao": [
+      "Psicanálise Clínica"
+    ],
+    "especialidade": [
+      "Psicanálise do Adolescente e Adulto"
+    ],
+    "registro": "",
+    "bio": "Psicanálise Clínica",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_d3a8d72733bd46c895ceeefb0485d260~mv2.png/Neuzani%20das%20Gra%C3%A7as%20Soares%20Branquinho%202.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "ND"
+  },
+  {
+    "id": "1fa9340a-d7ee-4d66-a6fa-df776a9aeb7e",
+    "name": "Rayane Fernandes",
+    "slug": "rayane-fernandes",
+    "profissao": [
+      "Dentista"
+    ],
+    "especialidade": [
+      "Dentista Clínico",
+      "Ortodontia",
+      "Terapia Canabinoide"
+    ],
+    "registro": "",
+    "bio": "Clínica Geral e Ortodontia\nOdontologia Canabinoide\nTelemedicina e Consultório",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_a0afd751c5a443b68f7eff408c90a22a~mv2.png/Rayane%20Fernandes.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "RF"
+  },
+  {
+    "id": "22f495fa-2bab-4f20-a530-34b9f58521f7",
+    "name": "Darlenis Maria Torres Pena",
+    "slug": "darlenis-maria-torres-pena",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Medicina da Família",
+      "Psiquiatria"
+    ],
+    "registro": "",
+    "bio": "Especialista em medicina de Família  com foco em Saúde Mental ,Pós-graduação  em psiquiatria do adulto ,infância e adolescência.",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_5fb68d05a08444748b528135146c86a0~mv2.png/Darlenis%20Pena.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "DM"
+  },
+  {
+    "id": "2398cd6b-49d3-4310-924f-0ee6119c0aef",
+    "name": "Lumena Simões",
+    "slug": "lumena-simoes",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Geriatria",
+      "Terapia Ocupacional",
+      "Medicina Canabinoide"
+    ],
+    "registro": "",
+    "bio": "Médica Geriatra | Terapeuta Ocupacional | Especialista em Medicina Canabinoide | Pesquisadora em Saúde do Adulto",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_a3cf4849d924400b9c21a0685beb5228~mv2.png/Profissionais%20D8%20(5).png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "LS"
+  },
+  {
+    "id": "241635b1-e6e4-40ff-a84f-b2f6272a9f8a",
+    "name": "Roberta Lacerda",
+    "slug": "roberta-lacerda",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [],
+    "registro": "",
+    "bio": "Infectologista\nCandidíase de Repetição\nInfecção Urinária de Repetição\nInvestigação de Tuberculose Latente\nPneumonias Virais\nInvestigação de Imunossupressão\nSíndrome Pós-COVID",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_8277cd6ea1b14bdc8d7149a3687386bd~mv2.png/Profissionais%20D8.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "RL"
+  },
+  {
+    "id": "2afda21d-2ecf-4b59-994d-c8912def2a70",
+    "name": "Janaina Sampaio",
+    "slug": "janaina-sampaio",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Medicina Vibracional"
+    ],
+    "registro": "",
+    "bio": "Terapeuta\nPioneira no exercício da Medicina Vibracional no Brasil, formada em Medicina pela Universidade Federal Fluminense.",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_9193999e3729493e8209f2a973e291fa~mv2.png/Jana%C3%ADna%20Sampaio.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "JS"
+  },
+  {
+    "id": "2c84b441-14f9-4ef8-9ec9-fc8a7dc7cba2",
+    "name": "Carmen Lúcia Vasques Freitas",
+    "slug": "carmen-lucia-vasques-freitas",
+    "profissao": [
+      "Terapeuta Integrativo"
+    ],
+    "especialidade": [
+      "Psicoterapeuta em Biossíntese",
+      "Terapeuta Transpessoal"
+    ],
+    "registro": "",
+    "bio": "Terapeuta Transpessoal, Psicoterapeuta em Biossíntese, Formação em Dinâmica, Energética do Psiquismo, Reiki, Práticas espirituais não Religiosas",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_90e63161e4f8415fa05d7a61674c0586~mv2.png/Carmen%20L%C3%BAcia%20Vasques%20Freitas.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "CL"
+  },
+  {
+    "id": "326eec0c-d904-4f80-9db3-bb5399f78b07",
+    "name": "Carmem Sophia Campelo de Albuquerque e Melo",
+    "slug": "carmem-sophia-campelo-de-albuquerque-e-melo",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia do Desenvolvimento",
+      "Psicooncologia"
+    ],
+    "registro": "CRP 01/9022",
+    "bio": "Psicóloga clínica\nMestre em psicologia do desenvolvimento \nEspecialista em psicooncologia \nEspecialista em melhoria de processos e qualidade de vida no trabalho",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "https://static.wixstatic.com/ugd/cc9623_8dc84e4670764a1b976a5446a710463d.pdf",
+    "location": "Brasília, Distrito Federal",
+    "photo": "https://static.wixstatic.com/media/cc9623_671e431578494aeabb57e7eb2c21393c~mv2.jpg/IMG_20250214_145951964_HDR_PORTRAIT.jpg",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "CS"
+  },
+  {
+    "id": "35190c72-84e1-4aab-b206-07a84f1ead59",
+    "name": "Mauricéia Maria",
+    "slug": "mauriceia-maria",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "CRP 03/29909",
+    "bio": "Psicóloga",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "https://static.wixstatic.com/ugd/cc9623_e52377bf0cab477c91b792298cff594c.pdf",
+    "location": "Salvador, Bahia",
+    "photo": "https://static.wixstatic.com/media/cc9623_e0a08ffa678c4e2bb6b72d3d04aac862~mv2.png/Mauric%C3%A9ia%20Maria.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "MM"
+  },
+  {
+    "id": "399ca482-f223-4fc9-b330-f064e1cc0f64",
+    "name": "Wildson Barbosa Oliveira",
+    "slug": "wildson-barbosa-oliveira",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "",
+    "bio": "Terapia Cognitivo Comportamental, Psicologia Escolar e Educacional, Neuropsicologia",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_333b471e2952416b8d493519171abbab~mv2.png/Wildson%20Barbosa%20Oliveira.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "WB"
+  },
+  {
+    "id": "3f5462eb-1273-49f4-bc7d-f63b5e0203b0",
+    "name": "Thâmara Kalil",
+    "slug": "thamara-kalil",
+    "profissao": [
+      "Psicanálise Clínica",
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicanalista de Adolescentes e Adulto"
+    ],
+    "registro": "",
+    "bio": "Psicanalista e Psicóloga, Atendimentos Online",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_8d504b9e21ef4153a3ef23f98a652633~mv2.png/6.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "TK"
+  },
+  {
+    "id": "4607d6cc-d137-488b-909c-2072a0a3ac2c",
+    "name": "Gelse Campos",
+    "slug": "gelse-campos",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Clínica Médica",
+      "Homeopatia"
+    ],
+    "registro": "",
+    "bio": "Clínica Médica, Intensivista e Homeopata",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_5610ed00d45843d791509e543c22c968~mv2.png/Profissionais%20D8%20(1).png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "GC"
+  },
+  {
+    "id": "46687758-7fcc-4a33-92e6-cbc473315018",
+    "name": "Patrícia Mello",
+    "slug": "patricia-mello",
+    "profissao": [
+      "Dentista"
+    ],
+    "especialidade": [
+      "Sedação Consciente",
+      "Dentista Clínico"
+    ],
+    "registro": "",
+    "bio": "Cirurgiã dentista Clínica Geral Habilitada em Sedação Consciente com Óxido Nitroso \nÁrea de atuação homecare ( atendimento domiciliar) adultos,  crianças e pacientes com necessidades especiais",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_430a3d6f41614039aaa0e79d0ea68f98~mv2.png/Patr%C3%ADcia%20Mello.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "PM"
+  },
+  {
+    "id": "4685a7c5-cbcf-4a09-9933-7565671ef408",
+    "name": "Gonçalo Rego Montanha Rebello",
+    "slug": "goncalo-rego-montanha-rebello",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Clínica Médica"
+    ],
+    "registro": "",
+    "bio": "Clínico Geral",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_2e02cb80956242498b167d43abf97667~mv2.png/ec2d13_4a6f19f1918e4449b3767e09db9c94e5~mv2%20(2).png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "GR"
+  },
+  {
+    "id": "4836ec01-37fc-4e3d-8fb5-32b322772264",
+    "name": "Mayre Aparecida Correa",
+    "slug": "mayre-aparecida-correa",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "",
+    "bio": "Psicóloga",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_4c489f7bc0664bcc83b6dd8052788cd3~mv2.png/M%20A%20Y%20R%20E%20A%20P%20A%20R%20E%20C%20I%20D%20A%20C%20O%20R%20R%20E%20A%202.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "MA"
+  },
+  {
+    "id": "48f0f429-a9ec-4877-be0c-0191e038d964",
+    "name": "Ana Carolina Abuquerque",
+    "slug": "ana-carolina-abuquerque",
+    "profissao": [
+      "Dentista"
+    ],
+    "especialidade": [
+      "Terapia Canabinoide"
+    ],
+    "registro": "CRO 51129",
+    "bio": "Cirutgiã-dentista \nTerapia Canabinoide",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_07e69f24726e4199823c3283e43fdf30~mv2.png/Ana%20Carolina%20Abuquerque.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "AC"
+  },
+  {
+    "id": "4a00fd58-95d9-4dc4-8c89-0c5c5a9664a5",
+    "name": "Brígida Frederico",
+    "slug": "brigida-frederico",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Neuropsicanalista Clínica Integrativa",
+      "Neuropsicopedagoga",
+      "Gerontologia",
+      "Hipnoterapeuta"
+    ],
+    "registro": "",
+    "bio": "Neuropsicopedagoga, Neuropsicanalista Clínica\nIntegrativa, Psicologia Positiva, Gerontologia, Hipnoterapeuta",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_be1341db89f6401ca98cdcc0c41b7bc5~mv2.png/Profissionais%20D8.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "BF"
+  },
+  {
+    "id": "4e0cc0da-afac-4cec-9882-52e2a78457c3",
+    "name": "Lucas de Freitas Santos",
+    "slug": "lucas-de-freitas-santos",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "",
+    "bio": "Clínica Geral, Anestesista",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_412726b4ff4442379d5e9858b34081fc~mv2.png/Profissionais%20D8%20(1).png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "LD"
+  },
+  {
+    "id": "4ecdf29c-f79a-4eba-8f12-dbff3177930f",
+    "name": "Poliana Pinheiro Pessanha",
+    "slug": "poliana-pinheiro-pessanha",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "",
+    "bio": "Psicóloga clínica, Terapia Cognitivo Comportamental",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_5688580a3b3145b79d185639ad93a03b~mv2.png/Poliana%20Pinheiro%20Pessanha%202.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "PP"
+  },
+  {
+    "id": "4fee736a-598f-4b6c-96b8-7c45c53a8150",
+    "name": "Celestina Marques Gonçalves",
+    "slug": "celestina-marques-goncalves",
+    "profissao": [
+      "Terapeuta Integrativo"
+    ],
+    "especialidade": [
+      "Terapia Flora",
+      "Reiki"
+    ],
+    "registro": "",
+    "bio": "Terapeuta Integrativa, Especialista em Terapia Floral, Plantas Medicinais e MTC - Mestre Reiki-Orientação Espiritual, Atendimento online e presencial em Porto Alegre-RS",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_a08112446e624c5792f554e5b7164f1c~mv2.png/Celestina%20Marques.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "CM"
+  },
+  {
+    "id": "5097fb55-ffba-41ee-ac09-f6ab20a88dbb",
+    "name": "Semíramis Herszon",
+    "slug": "semiramis-herszon",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Pediatria"
+    ],
+    "registro": "",
+    "bio": "Pediatria, Emergências Pediátricas, Doenças Tropicais, Consultoria em Cuidados Infantis",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_1347e548da4b463ca0f7c4d832bccb65~mv2.png/Sem%C3%ADramis%20Herszon.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "SH"
+  },
+  {
+    "id": "51897d24-d0b9-4f3d-bf0c-b411c3cb7fcd",
+    "name": "Adriana Rodrigues Alves",
+    "slug": "adriana-rodrigues-alves",
+    "profissao": [
+      "Psicanálise Clínica"
+    ],
+    "especialidade": [
+      "Psicanálise Clínica de Adultos"
+    ],
+    "registro": "",
+    "bio": "Psicanálise Clínica de Adultos",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "Belo Horizonte, Minas Gerais",
+    "photo": "https://static.wixstatic.com/media/cc9623_356af5813d114574b0f6597a17524dd4~mv2.png/Adriana%20Rodrigues%20Alves.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "AR"
+  },
+  {
+    "id": "56481760-58ef-4897-a19f-b0860fb1c302",
+    "name": "Juliana dos Santos Floriani",
+    "slug": "juliana-dos-santos-floriani",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Dermatologia"
+    ],
+    "registro": "",
+    "bio": "Dermatologista\nCom visão integrativa e funcional da Medicina, atua no tratamento e prevenção das alterações da pele, cabelos e unhas, assim como do envelhecimento cutâneo.",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_e710917e31c14f17abf623ea762c2612~mv2.png/Profissionais%20D8%20(4).png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "JD"
+  },
+  {
+    "id": "56ed6fc7-0293-4bd6-9495-effaf148cf28",
+    "name": "Michelle Camargo de Souza Oliveira",
+    "slug": "michelle-camargo-de-souza-oliveira",
+    "profissao": [
+      "Terapeuta Integrativo"
+    ],
+    "especialidade": [
+      "Terapia Floral"
+    ],
+    "registro": "",
+    "bio": "Florais de Bach, hipnose, constelação familiar, Reiki, biodescodificadora emocional",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_8c0dd828b5604dbb834c52a1e54f001c~mv2.png/Profissionais%20D8%20(2).png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "MC"
+  },
+  {
+    "id": "584dd04b-7716-4dee-b0dd-d04e51caface",
+    "name": "Osiris Casais",
+    "slug": "osiris-casais",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Cirurgia Geral",
+      "Cirurgia Bariátrica"
+    ],
+    "registro": "",
+    "bio": "Cirurgia Geral, Cirurgia Bariátrica e Metabólica",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_38aa89d9316a4e2293506727584cdb6c~mv2.png/Osiris%20Casais%202.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "OC"
+  },
+  {
+    "id": "591743db-d445-4ef4-afff-f15258b8ad4d",
+    "name": "Eloisa Vidor Lins de Melo",
+    "slug": "eloisa-vidor-lins-de-melo",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Clínica Médica",
+      "Psiquiatria",
+      "Medicina do Trabalho",
+      "Saúde do Idoso",
+      "Cardiologia",
+      "Geriatria"
+    ],
+    "registro": "",
+    "bio": "Clínica médica, Psiquiatria, Medicina do Trabalho, Saúde do Idoso, Cardiologia, Formação em Psicanálise, Atualização em Geriatria Clínica",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_000cd668e38c4aa3b2b7cc3544f72abe~mv2.png/Eloisa%20Vidor.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "EV"
+  },
+  {
+    "id": "5c603591-5c8a-43a9-ab3a-53460415efe8",
+    "name": "Bruna Trombini",
+    "slug": "bruna-trombini",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicanálise com Crianças e Adolescentes",
+      "Equoterapia",
+      "Psicologia Clínica"
+    ],
+    "registro": "",
+    "bio": "Psicóloga, Pós Graduanda em Sexologia, Pós Graduada em Psicanálise com Crianças e Adolescentes: Teoria e Clinica. Psicoterapia e Equoterapia.",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_2cf09208d47b41f7993bad7464e6f300~mv2.png/Bruna%20Trombini.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "BT"
+  },
+  {
+    "id": "5da24b00-1b2b-4d8f-b0a2-1c9a1d7f760b",
+    "name": "Thiago Choucair de Assis",
+    "slug": "thiago-choucair-de-assis",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Clínica Médica",
+      "Medicina Integrativa",
+      "Endocrinologia",
+      "Nutrologia"
+    ],
+    "registro": "",
+    "bio": "Clínica Médica, Medicina Integrativa, Endocrinologia, Nutrologia",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_c09764ee11324da993998cbeee8644c7~mv2.png/Thiago%20Choucair%20de%20Assis.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "TC"
+  },
+  {
+    "id": "610c6260-f783-4806-b9ca-64ecac80f35a",
+    "name": "Nahgila Vieira Cameli",
+    "slug": "nahgila-vieira-cameli",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Medicina da Família",
+      "Clínica Médica",
+      "Pediatria"
+    ],
+    "registro": "",
+    "bio": "Médica de Família e Comunidade, Clínica Médica, Pediatria",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_02068c90c5cf422eb6ad8a2bc3f14760~mv2.png/Nahgila%20Vieira%20Cameli.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "NV"
+  },
+  {
+    "id": "631256c5-e872-40bc-96a7-c38204cab3d6",
+    "name": "Teresa Moranduzzo",
+    "slug": "teresa-moranduzzo",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "CRP SP 06/196998",
+    "bio": "Psicóloga",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "São Paulo, São Paulo",
+    "photo": "https://static.wixstatic.com/media/cc9623_906b1506feeb4c2a8771edbeffed482e~mv2.png/Teresa%20Moranduzzo.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "TM"
+  },
+  {
+    "id": "63cacf14-7334-4742-9e84-15a9dd140f04",
+    "name": "Ivana Lucia Hilgenberg",
+    "slug": "ivana-lucia-hilgenberg",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica",
+      "Arteterapia"
+    ],
+    "registro": "",
+    "bio": "Psicóloga, Especializada em Psicologia Analítica, Arteterapia, Museologia, Antroposofia como Prática em Saúde e Psicoterapia Antroposófica",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_f97dbb68e9f84caf9a84e92a292aa32e~mv2.png/2Ivana%20Lucia%20Hilgenberg%20Guimar%C3%A3es%20Vieira.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "IL"
+  },
+  {
+    "id": "64acfb81-d5f4-43a7-b59a-20ad885f231e",
+    "name": "Luciana Arêde Duarte Machado",
+    "slug": "luciana-arede-duarte-machado",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Hospitalar",
+      "´Psicologia Clínica"
+    ],
+    "registro": "",
+    "bio": "Psicologia Clínica, Psicologia Hospitalar",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_21fd51a55bd44f9c9b73ce2be5e153c5~mv2.png/LUCIANA%20AR%C3%8ADE%20DUARTE%20MACHADO.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "LA"
+  },
+  {
+    "id": "693c1320-b845-4ccc-8c01-5e4b1fda22d2",
+    "name": "Gabriela Reis Cunha",
+    "slug": "gabriela-reis-cunha",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Clínica Médica"
+    ],
+    "registro": "",
+    "bio": "Médica generalista, Clínica geral",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_257fd6a966ce4b9491be92a4a01f49e3~mv2.png/GABRIELA%20REIS%20CUNHA%2023.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "GR"
+  },
+  {
+    "id": "69463dca-52d6-4773-985a-fd4b19c32528",
+    "name": "Suelem Corrêa da Silva",
+    "slug": "suelem-correa-da-silva",
+    "profissao": [
+      "Psicanálise Clínica"
+    ],
+    "especialidade": [
+      "Psicanálise do Adolescente e Adulto"
+    ],
+    "registro": "",
+    "bio": "Psicanálise Clínica",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_69c88ba5ecc14be08aa2946dd04d4528~mv2.jpg/WhatsApp%20Image%202025-01-30%20at%2007.45_edited.jpg",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "SC"
+  },
+  {
+    "id": "6cbb2fa8-677c-414a-bb8e-8193970c38b6",
+    "name": "Klissia Figueiredo Vieira",
+    "slug": "klissia-figueiredo-vieira",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Pediatria"
+    ],
+    "registro": "",
+    "bio": "Pediatra",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_e199ba1e98e040b5bfb0fb3c307c4773~mv2.png/Klissia%20Figueiredo%20Vieira%202.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "KF"
+  },
+  {
+    "id": "70586e1d-950f-4aa2-9cb4-a02528a48652",
+    "name": "Stela de Almeida Zorzo",
+    "slug": "stela-de-almeida-zorzo",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Clínica Médica",
+      "Hematologia",
+      "Hemoterapia",
+      "Medicina Estética"
+    ],
+    "registro": "",
+    "bio": "Clínica Médica, Hematologia e Hemoterapia, Medicina Estética",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_b7b54d24c9934d1b9e4452d1605f9253~mv2.png/Stela%20de%20Almeida%20Zorzo%201.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "SD"
+  },
+  {
+    "id": "70a6749d-3e73-4252-b32a-9df378f8f274",
+    "name": "Alessandra Machado da Silva",
+    "slug": "alessandra-machado-da-silva",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "",
+    "bio": "Psicóloga clínica",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_e756bd83db6548b1a4bc129e558257f8~mv2.png/Alessandra%20Machado%20da%20Silva.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "AM"
+  },
+  {
+    "id": "7605237b-80d1-4025-a805-e6586d4d6f08",
+    "name": "Maria Cristina Pavan de Moraes",
+    "slug": "maria-cristina-pavan-de-moraes",
+    "profissao": [
+      "Psicanálise Clínica"
+    ],
+    "especialidade": [
+      "Psicanálise Clínica de Adolescentes e Adultos"
+    ],
+    "registro": "",
+    "bio": "Psicanálise Clínica - adolescentes e adultos.\nPsicanalista em formação contínua. Instituto Roseli D'Morais e Instituto ESPE.\nProfessora Mestre   e Coordenadora de Curso universitário.",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_ad5da5c7190a485aa336cef490fe5232~mv2.png/Maria%20Cristina%20Pavan%20de%20Moraes%201.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "MC"
+  },
+  {
+    "id": "7a3e2694-3d4a-426a-bdfa-37448b30b695",
+    "name": "José Antonio da Cunha",
+    "slug": "jose-antonio-da-cunha",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "",
+    "bio": "Psicólogo e Psicanalista",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_21d431fbf713435b880a1f55a5c2d025~mv2.png/Jos%C3%A9%20Ant%C3%B4nio%20da%20Cunha%201.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "JA"
+  },
+  {
+    "id": "7a4b68f2-e3c5-4430-a662-3368944168d5",
+    "name": "Luzilene Ramos",
+    "slug": "luzilene-ramos",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "CRP MT 18/05902",
+    "bio": "Professora/ Psicóloga",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "Sinop, Mato Grosso",
+    "photo": "https://static.wixstatic.com/media/cc9623_e05771f359e24888ad9d42d3a2368e13~mv2.png/Profissionais%20D8%20(7).png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "LR"
+  },
+  {
+    "id": "7a966e2c-df4a-4970-a201-73d2d890afde",
+    "name": "Ester Carolina de Almeida LIma",
+    "slug": "ester-carolina-de-almeida-lima",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "CRP 08/41454",
+    "bio": "Psicóloga",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "Londrina, Paraná",
+    "photo": "https://static.wixstatic.com/media/cc9623_e3cb1e95c64c4fd8949e622c32893a98~mv2.png/Ester%20Carolina%20de%20Almeida%20Lima.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "EC"
+  },
+  {
+    "id": "7b95bc65-3bf4-4f6f-a9a3-b372e4c68217",
+    "name": "Eloy C. Furtado Bezerra",
+    "slug": "eloy-c-furtado-bezerra",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "",
+    "bio": "Psicólogo Clínico. Atendimento com jovens, adultos e idosos. Individual e em grupos.",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_6f04eaaf70f5431e92f01293d97d1e3c~mv2.png/Eloy%20C.%20Furtado%20Bezerra.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "EC"
+  },
+  {
+    "id": "7c2329ca-6275-4c52-802a-d1e21053d98c",
+    "name": "Anna Carolinna Ferreira de Carvalho",
+    "slug": "anna-carolinna-ferreira-de-carvalho",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Medicina do Trabalho"
+    ],
+    "registro": "",
+    "bio": "Médica com formação sólida, mestre em medicina e especialização em medicina do trabalho. Atualmente, cursa mestrados em saúde pública e especialização em endocrinologia. Possui experiência prévia como enfermeira, com especialização em enfermagem do trabalho, agregando uma visão multidisciplinar ao cuidado com a saúde.",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_f26370cb3858487fb541000e4d59b7d6~mv2.png/ANNA%20CAROLINNA%20FERREIRA%20DE%20CARVALHO.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "AC"
+  },
+  {
+    "id": "80cf3103-0798-428f-9884-d90c2fce01cc",
+    "name": "Denise Cogo Miletto",
+    "slug": "denise-cogo-miletto",
+    "profissao": [
+      "Terapeuta Integrativo"
+    ],
+    "especialidade": [
+      "Terapia Floral",
+      "Reiki"
+    ],
+    "registro": "",
+    "bio": "Terapia Floral, Reiki, Cura Quântica, Crimson Circle (Aspectology School, Sexual Energies School, Dream Walker Death Transitions School), HQI – Homeostase Quântica Informacional (Curso Livre Básico), Access Consciousness (MTVSS), Respiração e Integração Quântica",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_376f07d0a991402c9268d5dd0213e899~mv2.png/Denise%20Cogo%20Miletto%202.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "DC"
+  },
+  {
+    "id": "84606bb2-e71e-4883-adb4-509b891b005b",
+    "name": "Tânia Regina Pereira da Costa Veras",
+    "slug": "tania-regina-pereira-da-costa-veras",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "CRP RJ 05/73626",
+    "bio": "Psicóloga",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "Petrópolis, Rio de Janeiro",
+    "photo": "https://static.wixstatic.com/media/cc9623_e30f454274584ad18b5c54c55de8cca2~mv2.png/Tania%20Regina%20Pereira%20da%20Costa%20Veras%202.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "TR"
+  },
+  {
+    "id": "866b219f-f2e8-444f-a81b-8956f3d42ccc",
+    "name": "Ivone Nonato",
+    "slug": "ivone-nonato",
+    "profissao": [
+      "Terapeuta Integrativo"
+    ],
+    "especialidade": [],
+    "registro": "",
+    "bio": "Atendimentos clínicos (Terapias) com crianças, adolescentes,\nadultos, com transtornos mentais, TDAH-TOD-TEA-Depressão- TCEsquizofrenia-TOC-TAG",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_3738048b78514e9c82c123cdd197fb04~mv2.jpg/WhatsApp%20Image%202025-02-06%20at%2013.05_edited.jpg",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "IN"
+  },
+  {
+    "id": "86b601c1-679b-4bee-afcd-b9c589bfcd48",
+    "name": "Ana Rosa Silva Oliveira",
+    "slug": "ana-rosa-silva-oliveira",
+    "profissao": [
+      "Psicanálise Clínica"
+    ],
+    "especialidade": [
+      "Psicanalista Clínica"
+    ],
+    "registro": "",
+    "bio": "Psicanalista Clínica",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_e106f4f3949b4f3cacc97450425c0616~mv2.png/Ana%20Rosa%20Silva%20Oliveira.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "AR"
+  },
+  {
+    "id": "88aea0ad-c638-409c-b7eb-8ab534f47d90",
+    "name": "Antônio Abel Pierre Pauperio",
+    "slug": "antonio-abel-pierre-pauperio",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Otorrinolaringologia",
+      "Medicina do Trabalho"
+    ],
+    "registro": "",
+    "bio": "Otorrinolaringologia, Medicina do Trabalho, Orientação jurídica na área médica",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_79ca71997423437c83fd26ea82962669~mv2.png/Antonio%20Abel%20Pierre%20Pauperio.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "AA"
+  },
+  {
+    "id": "8b426b5b-9cdb-4973-9b5b-6482f4978323",
+    "name": "Mileide E. Mossmann",
+    "slug": "mileide-e-mossmann",
+    "profissao": [
+      "Fisioterapia"
+    ],
+    "especialidade": [
+      "Fisioterapia Clínica",
+      "Neuromodulação",
+      "Terapia Manual",
+      "Suplementação Magistral Integrativa"
+    ],
+    "registro": "",
+    "bio": "Fisioterapia clínica e domiciliar, especializada em desenvolvimento motor (neuropediatria), TME, Neuromodulação, Terapia manual, ABA no TEA, Sistema Endocanabinoide, Pilates, Suplementação Magistral Integrativa",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_751258c5a4364d89a613955bc4528af6~mv2.png/Mildeide%20Mossmann.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "ME"
+  },
+  {
+    "id": "9128dddc-3d63-4db7-b2c2-6eb465658cb3",
+    "name": "Leticia Poletti Soares",
+    "slug": "leticia-poletti-soares",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "CRP RJ 38287",
+    "bio": "Psicóloga",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "https://static.wixstatic.com/ugd/cc9623_b991438615114667885df2eb498bb5dc.pdf",
+    "location": "Rio de Janeiro, Rio de Janeiro",
+    "photo": "https://static.wixstatic.com/media/cc9623_7d59436e6d1547998c10e9c7e708ef1e~mv2.png/Leticia%20Poletti%20Soares.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "LP"
+  },
+  {
+    "id": "9b5c508e-8df7-4862-94eb-7f598ef06d56",
+    "name": "Fernando Lamego",
+    "slug": "fernando-lamego",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Cardiologia",
+      "Ortomolecular"
+    ],
+    "registro": "",
+    "bio": "Cardiologista\nOrtomolecular\nTelemedicina\nPresencial",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_de492356227f4912aa683060ede80f60~mv2.png/7.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "FL"
+  },
+  {
+    "id": "a10a7053-8273-45e8-95bb-dcf481baf93f",
+    "name": "Elisabeth Pavanelli ",
+    "slug": "elisabeth-pavanelli",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Pediatria",
+      "Neonatologia",
+      "Medicina do Estilo de Vida"
+    ],
+    "registro": "",
+    "bio": "Pediatria, Neonatologia, Prevenção de Doenças, Nutrição, Acompanhamento do bebê prematuro, Pré-Natal pediátrico, Aconselhamento em amamentação, Medicina do Estilo de Vida",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_10832818dfd940ac8970ca6ccf56c059~mv2.png/Elisabeth%20Pavanelli.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "EP"
+  },
+  {
+    "id": "a19b0e34-f8bc-4939-b9ad-d375d810ba2c",
+    "name": "Crislaine Mariana Rocha",
+    "slug": "crislaine-mariana-rocha",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "",
+    "bio": "Psicologia Clínica",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_9e077fcd066640aa9b539e60c71dddee~mv2.png/Crislaine%20Mariana%20Rocha.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "CM"
+  },
+  {
+    "id": "a1f0d3ab-9898-4575-930b-ada53b896fd2",
+    "name": "Maria de Lourdes Reis Oliveira",
+    "slug": "maria-de-lourdes-reis-oliveira",
+    "profissao": [
+      "Terapeuta Integrativo"
+    ],
+    "especialidade": [
+      "Terapia Floral"
+    ],
+    "registro": "",
+    "bio": "Farmacêutica Especialista em Terapia Floral de Bach",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "Acácias Goiás, Goiás",
+    "photo": "https://static.wixstatic.com/media/cc9623_8d11bb49904345f9a9d79c8256e7d763~mv2.jpg/WhatsApp%20Image%202025-02-04%20at%2021.57_edited.jpg",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "MD"
+  },
+  {
+    "id": "a7d330bc-093d-470d-843e-f8b038e42d87",
+    "name": "Martha Selma Seabra",
+    "slug": "martha-selma-seabra",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica",
+      "Psicanálise Clínica de Adolescentes e Adultos"
+    ],
+    "registro": "",
+    "bio": "Graduada em psicologia pela UFMG\nEspecialista em psicologia clínica e psicanálise",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_92d296359f6b4cb795b8430c612f7db9~mv2.png/Martha%20Selma%20Seabra.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "MS"
+  },
+  {
+    "id": "a891040c-c7ad-4777-a7a1-84d7693fe985",
+    "name": "Patrícia Lavoratto",
+    "slug": "patricia-lavoratto",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica",
+      "Psicodrama Terapêutico e Aplicado"
+    ],
+    "registro": "",
+    "bio": "Psicóloga, Psicodrama Terapêutico e Aplicado, Neurociência Afetiva",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_54d8aa543c1647b5a234745b7dc56482~mv2.png/Patricia%20Lavoratto.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "PL"
+  },
+  {
+    "id": "ad0a2042-b9ef-4c0c-877a-9b13235e8461",
+    "name": "Renata Torres Goldfeld Peixoto",
+    "slug": "renata-torres-goldfeld-peixoto",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "",
+    "bio": "Psicóloga clínica, Atendimento Sistêmico a Casais",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_4506dc8b623444bd9584d2255d9672dd~mv2.png/Renata%20Torres%20Goldfeld%20Peixoto%202.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "RT"
+  },
+  {
+    "id": "af920261-26a2-445e-94d4-f9c74e796db9",
+    "name": "Cristiane Marinsaldi Lhullier",
+    "slug": "cristiane-marinsaldi-lhullier",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Mindfulness",
+      "Psicologia Clínica"
+    ],
+    "registro": "",
+    "bio": "Psicóloga Clínica, Mestranda em Nutrição e Dietética, Certificada por Italo Marsili, Orientação TCC, Terapia do Esquema, Mindfulness",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_231a4d0ae4674cc593a99d531792e135~mv2.png/Cristiane%20Lhullier.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "CM"
+  },
+  {
+    "id": "b12c5638-4c29-4ba5-859b-0f218c4d385b",
+    "name": "Janaina Henke Claudino",
+    "slug": "janaina-henke-claudino",
+    "profissao": [
+      "Terapeuta Integrativo"
+    ],
+    "especialidade": [
+      "Terapia Floral",
+      "Terapeuta Integrativa espiritualista",
+      "Constelação Sistêmica"
+    ],
+    "registro": "",
+    "bio": "Terapeuta Integrativa espiritualista, Terapia Floral, Constelação Sistêmica, Desinflamação e Detoxficação do Sistema Digestivo",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_ba80fc4155b54e43895d9ac7a63c562d~mv2.png/Jana%C3%ADna%20Henke%20Claudino.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "JH"
+  },
+  {
+    "id": "b437e920-da98-496c-934b-67b649824466",
+    "name": "Jinoel Santos",
+    "slug": "jinoel-santos",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "CRP BA 03/30088",
+    "bio": "Psicólogo",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "https://static.wixstatic.com/ugd/cc9623_4aad063886a6447f8806afe2a0d32a01.pdf",
+    "location": "Sinop, Mato Grosso",
+    "photo": "https://static.wixstatic.com/media/cc9623_76b08550016a40c7b641911bc5e7e334~mv2.png/Profissionais%20D8%20(9).png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "JS"
+  },
+  {
+    "id": "b43c1a30-46f8-41cd-93b1-625102595275",
+    "name": "Cleide Neves Guarda",
+    "slug": "cleide-neves-guarda",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "CRP 09/16788",
+    "bio": "Psicóloga",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "Goiânia, Goiás",
+    "photo": "https://static.wixstatic.com/media/cc9623_0aab1d08f8544d14be59d9281e2f929e~mv2.png/Cleide%20Neve%20Guarda.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "CN"
+  },
+  {
+    "id": "b8095b6a-03f5-4e4a-ab77-8cf80fc30c81",
+    "name": "Isabela Tapié Guerra e Silva",
+    "slug": "isabela-tapie-guerra-e-silva",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Otorrinolaringologia",
+      "Clínica Médica"
+    ],
+    "registro": "",
+    "bio": "Médica, Otorrinolaringologista",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_206e0b7c12ba48be9bc48872a7a27672~mv2.png/Isabela%20Tapi%C3%A9%20Guerra%20e%20Silva.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "IT"
+  },
+  {
+    "id": "bbe3136e-61ff-4ee8-ae2b-53c6419b5bc9",
+    "name": "Daniel Robert de Jesus Almeida Dourado",
+    "slug": "daniel-robert-de-jesus-almeida-dourado",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Pediatria",
+      "Medicina da Família"
+    ],
+    "registro": "",
+    "bio": "Médico Pediatra e Medicina da Família",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_a8176043c71447358b8dfe70b9f32cc5~mv2.png/Daniel%20Robert%20de%20Jesus%20Almeida%201.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "DR"
+  },
+  {
+    "id": "bd5a45bb-584b-42d2-96cb-9c02913b1594",
+    "name": "Clara Campelo Albuquerque Soares",
+    "slug": "clara-campelo-albuquerque-soares",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "CRP DF 25937",
+    "bio": "Psicóloga",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "https://static.wixstatic.com/ugd/cc9623_d864faeb1107488db4e1f7348f5b6eb0.pdf",
+    "location": "Brasília, Distrito Federal",
+    "photo": "https://static.wixstatic.com/media/cc9623_72452a2783f84236aa4db1be55cfd69a~mv2.png/Clara%20Campelo%20Albuquerque%20Soares.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "CC"
+  },
+  {
+    "id": "be35d868-d839-45a7-9b05-0876e6b028df",
+    "name": "Rosely Aparecida Ricardi das Neves Augusto",
+    "slug": "rosely-aparecida-ricardi-das-neves-augusto",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "CRP SP 06/51476-1",
+    "bio": "Psicóloga Clínica",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "São Paulo, São Paulo",
+    "photo": "https://static.wixstatic.com/media/cc9623_1255f5dec76f4664a94b0507999c6a32~mv2.jpeg/WhatsApp%20Image%202025-02-05%20at%2019.51.49.jpeg",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "RA"
+  },
+  {
+    "id": "c03a314f-6a07-4e23-8a49-d27c6a4c8702",
+    "name": "Daniella Rocha de Sousa",
+    "slug": "daniella-rocha-de-sousa",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Cardiologia"
+    ],
+    "registro": "",
+    "bio": "Cardiologista",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_88717dce80b947b3890d042bab1eecc5~mv2.png/Daniella%20Rocha%20de%20Sousa.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "DR"
+  },
+  {
+    "id": "c0aa79f9-6961-442d-98c0-fad929b16942",
+    "name": "Grasielly Regina Andreata",
+    "slug": "grasielly-regina-andreata",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Clínica Médica",
+      "Medicina da Família",
+      "Perícia Criminal"
+    ],
+    "registro": "",
+    "bio": "Médica generalista, Clínica geral, Medicina de Família e Comunidade, Perícia Criminal e Ciências Forenses",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_928ea7de36854101965ac75697452a9c~mv2.png/Grasielly%20Regina%20Andreata.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "GR"
+  },
+  {
+    "id": "c1291822-05d1-48b8-b23b-e46a9e2b2cf8",
+    "name": "Ana Paula Yamakawa Godoy",
+    "slug": "ana-paula-yamakawa-godoy",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "CRP SP 46513",
+    "bio": "Psicóloga clínica",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "Campinas, São Paulo",
+    "photo": "https://static.wixstatic.com/media/cc9623_f0d5508c09934381a6dd29b3f9987b16~mv2.png/Ana%20Paula%20Yamakawa%20Godoy.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "AP"
+  },
+  {
+    "id": "c1a71353-f204-436a-a43d-486d8aa7b014",
+    "name": "Danilo Machado Santos",
+    "slug": "danilo-machado-santos",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "CRP BA 03/28940",
+    "bio": "Psicólogo",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "Vitória da Conquista, Bahia",
+    "photo": "https://static.wixstatic.com/media/cc9623_3a2fef920a004ef1b9435a71c4df2875~mv2.png/Danilo%20Machado%20Santos.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "DM"
+  },
+  {
+    "id": "c1cf3cd6-52b5-4d62-961d-6788ade1df92",
+    "name": "Maria Vannina Carvalho Simões ",
+    "slug": "maria-vannina-carvalho-simoes",
+    "profissao": [
+      "Psicanálise Clínica",
+      "Fisioterapia"
+    ],
+    "especialidade": [
+      "Acupuntura",
+      "Psicanálise Clínica de Adolescentes e Adultos"
+    ],
+    "registro": "",
+    "bio": "Psicanalista, Fisioterapeuta, Acupunturista",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_e8ef98aacf224260a547e259551994e0~mv2.png/Maria%20Vannina%20Carvalho%20Sim%C3%B5es.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "MV"
+  },
+  {
+    "id": "c2a1f59e-d893-49fc-8f1c-24573eec6b16",
+    "name": "Maria Madalena Graciano Pinheiro",
+    "slug": "maria-madalena-graciano-pinheiro",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Cardiologia"
+    ],
+    "registro": "CRM GO 5324 | RQE 522",
+    "bio": "Cardiologista",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "Goiânia, Goiás",
+    "photo": "https://static.wixstatic.com/media/cc9623_405d5ddce57d421ab7e4660a5429315a~mv2.png/dra%20maria%20madalena.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "MM"
+  },
+  {
+    "id": "c4a964e1-bfe7-47f1-bb62-dd64df98357f",
+    "name": "Márcia Calsolari Sammartino Kis",
+    "slug": "marcia-calsolari-sammartino-kis",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica",
+      "Neuropsicologia"
+    ],
+    "registro": "",
+    "bio": "Psicóloga, Psicopedagoga, Neuropsicologia",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_1a1ad78b7f2d45378334c766e2d53377~mv2.png/M%C3%A1rcia%20Calsolari%20Sammartino%20Kis.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "MC"
+  },
+  {
+    "id": "c5412153-c22f-42de-9a01-3a4fefdbbdc3",
+    "name": "Edna Marlisia Bezerra Costa",
+    "slug": "edna-marlisia-bezerra-costa",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Infectologia",
+      "Medicina Canabinoide"
+    ],
+    "registro": "",
+    "bio": "Infectologista\nMedicina Canabinoide\nTelemedicina\nPresencial",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_8a5ad633c2804c1a89c610450b2960db~mv2.png/9.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "EM"
+  },
+  {
+    "id": "c6530a2b-1fab-4222-af98-6a32f08c1f9f",
+    "name": "Natália dos Santos Pereira",
+    "slug": "natalia-dos-santos-pereira",
+    "profissao": [
+      "Dentista"
+    ],
+    "especialidade": [
+      "Odontologia do Sono",
+      "DTM",
+      "Terapia Canabinoide"
+    ],
+    "registro": "",
+    "bio": "Odontologia do Sono e DTM\nTerapia canabinoide\nEstética e harmonização orofacial\nTelemedicina e home care",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_e6b828979263470c993f0da730cd8856~mv2.png/Nat%C3%A1lia%20dos%20Santos%20Pereira.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "ND"
+  },
+  {
+    "id": "c68a1e06-7f80-4f73-a9ca-f6c7580f61f0",
+    "name": "Fernanda Pinheiro Quadros e Silva",
+    "slug": "fernanda-pinheiro-quadros-e-silva",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Clínica Médica"
+    ],
+    "registro": "",
+    "bio": "Clínica Médica",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_0fd9f335fa594c5da186179c3e6ef915~mv2.png/Fernanda%20Pinheiro%20Quadros%202.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "FP"
+  },
+  {
+    "id": "d112cd5e-37f3-450a-b984-83e07dfff895",
+    "name": "Rúbia Arakaki de Oliveira Moura",
+    "slug": "rubia-arakaki-de-oliveira-moura",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Clínica Médica",
+      "Medicina da Família",
+      "Acupuntura"
+    ],
+    "registro": "CRM DF 18804",
+    "bio": "Clínica geral, Medicina de Família e Comunidade, Acupuntura",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "Brasília, Distrito Federal",
+    "photo": "https://static.wixstatic.com/media/cc9623_7368f7242c3147e48e94153182b9e1c5~mv2.jpeg/WhatsApp%20Image%202025-01-30%20at%2018.09.15.jpeg",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "RA"
+  },
+  {
+    "id": "d361f8c1-a549-475d-8065-edd64c592a89",
+    "name": "Joseane Maria S. Ramos",
+    "slug": "joseane-maria-s-ramos",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "",
+    "bio": "Psicóloga, Terapia Cognitivo Comportamental",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_a67f9458e39242aea86b3b5f8615b0f2~mv2.png/Joseane%20Maria%20da%20Silva%20Ramos%202.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "JM"
+  },
+  {
+    "id": "d43d73a3-3619-4422-9619-23b0ddf2c466",
+    "name": "Maria Irene Cunha",
+    "slug": "maria-irene-cunha",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Pediatria",
+      "Medicina Integrativa",
+      "Homeopatia"
+    ],
+    "registro": "",
+    "bio": "Pediatra, Homeopatia, Medicina Integrativa, Tratamento Pós-covid/spike, Intervenção precoce, Neurodesenvolvimento infantil, Transtornos neurológicos infantis, Orientação familiar, Consultoria em neurociência",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_fe63b2a79931416b9d4ab8f689f38c1e~mv2.png/Maria%20Irene%20Cunha.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "MI"
+  },
+  {
+    "id": "d4fd6194-ce34-4397-b695-0e886eb21b08",
+    "name": "Edina Costa da Silva",
+    "slug": "edina-costa-da-silva",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "CRP SP 06/154155",
+    "bio": "Psicóloga",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "São Paulo, São Paulo",
+    "photo": "https://static.wixstatic.com/media/cc9623_342029531a0143f7aae6af9e252cee40~mv2.png/Edina%20Costa%20da%20Silva%202.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "EC"
+  },
+  {
+    "id": "d563b051-a426-4e79-b235-02019436aa0b",
+    "name": "Elaine Menoia",
+    "slug": "elaine-menoia",
+    "profissao": [
+      "Nutricionista"
+    ],
+    "especialidade": [
+      "Nutrição de Precisão",
+      "Teste Genéticos e de Metabolômica"
+    ],
+    "registro": "",
+    "bio": "Nutricionista, Nutrição de Precisão, Teste Genéticos e de Metabolômica",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_cec704cd845c4327833d68ea583f45a6~mv2.png/Elaine%20Menoia%201.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "EM"
+  },
+  {
+    "id": "d5b88fbd-7489-4cca-9afa-751cf27c9c76",
+    "name": "Frederico Santos David",
+    "slug": "frederico-santos-david",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Medicina do Sono",
+      "Medicina Canabinoide"
+    ],
+    "registro": "",
+    "bio": "Médico do Sono e medicina cannabinoide com foco no tratamento da insônia, ansiedade e dor crônica!",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_948efe415e0d4192a092d9dea174f851~mv2.png/Frederico%20Santos%20David.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "FS"
+  },
+  {
+    "id": "d697dac2-2a69-4d71-9a2c-d78d97c169a6",
+    "name": "Nathalia Bittencourt Graciano",
+    "slug": "nathalia-bittencourt-graciano",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Clínica Médica",
+      "Medicina Canabinoide",
+      "Psiquiatria"
+    ],
+    "registro": "",
+    "bio": "Atendimento online, pós graduação em psiquiatria.\nMedicina Canabinoide\nCRMMT 14888",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_e1339b64da284d8aa08f7ffa0d5acaaf~mv2.png/11.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "NB"
+  },
+  {
+    "id": "d6ac0025-3af4-4dc2-b7dc-3e7943c4f7f1",
+    "name": "Nivaldo Vanni Filho",
+    "slug": "nivaldo-vanni-filho",
+    "profissao": [
+      "Dentista"
+    ],
+    "especialidade": [
+      "DTM",
+      "Odontologia do Sono",
+      "Terapia Canabinoide"
+    ],
+    "registro": "",
+    "bio": "Mestre e especialista em DTM e Dor Orofacial\nOdontologia do Sono e Bruxismo\nTelemedicina\nPresencial",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_53c13898f7c84a748af32e5c095d60e1~mv2.png/Nivaldo%20Vanni.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "NV"
+  },
+  {
+    "id": "d6d3f7eb-6332-420f-afde-31d64ed62fd1",
+    "name": "Luciana de Oliveira e Silva",
+    "slug": "luciana-de-oliveira-e-silva",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Pediatria"
+    ],
+    "registro": "",
+    "bio": "Pediatra, Endocrinologia Pediátrica",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_e1461eb650714349802c625e3dc46a82~mv2.png/Luciana%20de%20Oliveira%20e%20Silva.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "LD"
+  },
+  {
+    "id": "d7b34270-5060-4eca-86ac-6653c88468dd",
+    "name": "Eunice Ramos",
+    "slug": "eunice-ramos",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica",
+      "Psicologia Bariátrica"
+    ],
+    "registro": "",
+    "bio": "Psicóloga Clínica e Bariátrica. Com foco em mudanças de comportamento alimentar e estilo de vida.",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_13628f9069434eba907470d9962f751c~mv2.png/Profissionais%20D8%20(21).png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "ER"
+  },
+  {
+    "id": "ddd2bff3-9ce2-4245-8bd2-47d8a13bd685",
+    "name": "Indira Coan Zanata",
+    "slug": "indira-coan-zanata",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Clínica Médica"
+    ],
+    "registro": "CRM RN 11896",
+    "bio": "Clínica médica",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "Brasília, Distrito Federal",
+    "photo": "https://static.wixstatic.com/media/cc9623_c980c46d21484aab81b321a418223d57~mv2.png/Indira%20Coan%20Zanata%202.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "IC"
+  },
+  {
+    "id": "e2b4e25c-7cdc-4d70-b14d-9755be28edbd",
+    "name": "Caroline Henrichsen",
+    "slug": "caroline-henrichsen",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "",
+    "bio": "Psicóloga, Psicoterapia de Orientação Psicanalítica, Psicologia Hospitalar na área Cardiovascular, Saúde Mental, Psicopatologia e Psicanálise",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_7250cb1035db471da9c3b283db6931e7~mv2.png/CAROLINE%20HENRICHSEN.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "CH"
+  },
+  {
+    "id": "e4428606-9209-438d-bfc0-06c22d28a1be",
+    "name": "Fernando Bihari",
+    "slug": "fernando-bihari",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Neurologia",
+      "Neuropediatria"
+    ],
+    "registro": "CRM PR 59956",
+    "bio": "Médico neurocirurgião com experiência em Neuropediatria e Neurologia Geral.",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "Curitiba, Paraná",
+    "photo": "https://static.wixstatic.com/media/cc9623_1d30266c02584dbab79e55a15b69c5ef~mv2.png/Profissionais%20D8%20(10).png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "FB"
+  },
+  {
+    "id": "e70c773d-a6e5-40f5-abbc-d1e920d1b5b2",
+    "name": "Debora Pereira Rufino",
+    "slug": "debora-pereira-rufino",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicopatologia e Dependência Química",
+      "Terapia Familiar e de Casal",
+      "Psicologia Clínica"
+    ],
+    "registro": "CRP SP 06/41208-1",
+    "bio": "Psicóloga Clínica, Psicopatologia e Dependência Química, Terapia Cognitiva Comportamental, Terapia Familiar e de Casal",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "https://static.wixstatic.com/ugd/cc9623_5c04722d9bcb440ebf86eb8b33623dfd.pdf",
+    "location": "São José dos Campos, São Paulo",
+    "photo": "https://static.wixstatic.com/media/cc9623_d60c6fda80184db1b8ee8b9e63258a07~mv2.jpeg/WhatsApp%20Image%202025-02-01%20at%2017.59.45.jpeg",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "DP"
+  },
+  {
+    "id": "e734bd44-7bea-493e-b651-fe3da5c1a32a",
+    "name": "Dilséa Grebogi",
+    "slug": "dilsea-grebogi",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica",
+      "Neuropsicologia"
+    ],
+    "registro": "CRP 06/79.477",
+    "bio": "Terapia Cognitivo-Comportamental, Abordagem psicodinâmica com base psicanalítica, Psicoterapia Breve, Clínica do Trabalho",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_f8df86494b814c3e950638639b8aca5b~mv2.jpeg/WhatsApp%20Image%202025-10-31%20at%2009.20.32.jpeg",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "DG"
+  },
+  {
+    "id": "e87b7517-139b-49b4-9381-3a2a0e6f483f",
+    "name": "Paulo Vitor Magalhães Cameli",
+    "slug": "paulo-vitor-magalhaes-cameli",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Clínica Médica",
+      "Medicina da Família"
+    ],
+    "registro": "",
+    "bio": "Clínico geral, Médico de família e comunidade",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_8ada6b809e2a4ae7adbd1429d40aeeb1~mv2.png/paulovitormagalhaescameli%202.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "PV"
+  },
+  {
+    "id": "e9a12d0f-6a9d-445b-85f5-f9c7e133dcdf",
+    "name": "Ana Cristine Bueno Franco",
+    "slug": "ana-cristine-bueno-franco",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "",
+    "bio": "Psicóloga clínica",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_62dda598c7d74c72a2fbc05c5f340a6f~mv2.png/ANA%20CRISTINE%20BUENO%20FRANCO%202.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "AC"
+  },
+  {
+    "id": "eb62c923-5ccf-4feb-89ed-38109182f09e",
+    "name": "Renata Balestra Martins",
+    "slug": "renata-balestra-martins",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Endocrinologia"
+    ],
+    "registro": "",
+    "bio": "Endocrinologista",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_119933c4ec394bab9e2ccc405fcb394c~mv2.png/Renata%20Balestra%20Martins%202.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "RB"
+  },
+  {
+    "id": "eda30cca-6eef-459b-9e48-abeb7e878aea",
+    "name": "Janaína Cavalheiro de Oliveira",
+    "slug": "janaina-cavalheiro-de-oliveira",
+    "profissao": [
+      "Terapeuta Integrativo"
+    ],
+    "especialidade": [
+      "Reiki",
+      "Terapia Floral",
+      "Cromoterapia"
+    ],
+    "registro": "P3V-PH0792",
+    "bio": "Reiki, Terapia Floral, Radiestesia Clínica, Alinhamento de chakras e cromoterapia",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "Porto Alegre, Rio Grande do Sul",
+    "photo": "https://static.wixstatic.com/media/cc9623_9d16190ab6c7401cba1717d74deb98db~mv2.png/Profissionais%20D8%20(8).png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "JC"
+  },
+  {
+    "id": "ee174567-f990-4752-8f9a-6944fe373168",
+    "name": "Sibila Malfatti Mozer",
+    "slug": "sibila-malfatti-mozer",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "",
+    "bio": "Psicóloga, Neuro-psicóloga  e  Psicanalista Clínica",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_bd19342caf294b3ea10c1187b3231639~mv2.png/Sibila%20Malfatti%20Mozer.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "SM"
+  },
+  {
+    "id": "f1cee5ac-35cb-40bb-a478-1ac9975be3f2",
+    "name": "Victor Florenzano",
+    "slug": "victor-florenzano",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica",
+      "Neuropsicologia"
+    ],
+    "registro": "",
+    "bio": "Psicologia Clínica E Neuropsicologia",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_111cb5ae957843b691cae4908bdb99c7~mv2.jpg/WhatsApp%20Image%202025-10-31%20at%2009.20_edited.jpg",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "VF"
+  },
+  {
+    "id": "f39bed4f-925d-4476-bfc5-e13e78d70c46",
+    "name": "Giovanna Bonilha Caseli",
+    "slug": "giovanna-bonilha-caseli",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "",
+    "bio": "Psicóloga",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_8dc55628ab5842faa5efad4ff83abc28~mv2.png/Giovanna%20Bonilha%20Caseli.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "GB"
+  },
+  {
+    "id": "f492395f-f3b8-43ed-80c4-c2f02b944aaa",
+    "name": "Ana Alice Salles Tannuri",
+    "slug": "ana-alice-salles-tannuri",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Cardiologista",
+      "Medicina Integrativa"
+    ],
+    "registro": "",
+    "bio": "Cardiologista e Médica Integrativa",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_9a620813d64644afaaa349f364778fff~mv2.png/anaalicesallestannuri.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "AA"
+  },
+  {
+    "id": "f69e6693-ffb3-4146-b4b4-6b5bcc2f92d9",
+    "name": "Edina Costa da Silva",
+    "slug": "edina-costa-da-silva",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "",
+    "bio": "Psicóloga",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_e27688cb6f43438699a88b724b8bc357~mv2.png/Edina%20Costa%20da%20Silva%202.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "EC"
+  },
+  {
+    "id": "f80243ba-49dc-4301-82ab-d6911b8f5297",
+    "name": "Santhiago Costa",
+    "slug": "santhiago-costa",
+    "profissao": [
+      "Psicanálise Clínica"
+    ],
+    "especialidade": [
+      "Psicanalista de Adolescentes e Adulto"
+    ],
+    "registro": "",
+    "bio": "Psicanalista, Terapeuta Especialista em Toxicomania e Redução de Danos",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_24ad265c24f1406bbb14d4a20675699e~mv2.png/Santhiago%20Costa.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "SC"
+  },
+  {
+    "id": "f9bdb564-1c4c-40dc-b55a-25fad58747a5",
+    "name": "Iris Cristina dos Santos Liu",
+    "slug": "iris-cristina-dos-santos-liu",
+    "profissao": [
+      "Psicologia"
+    ],
+    "especialidade": [
+      "Psicologia Clínica"
+    ],
+    "registro": "CRP SP 06/173642",
+    "bio": "Psicóloga Clinica, pós graduada em Terapia Cognitivo Comportamental (TCC) pela PUC-RS e pós graduanda em neuropsicologia e avaliação psicológica. Realiza atendimentos on-line e presencial para o público infantil, adolescente e adulto. Possui experiência em transtornos de ansiedade, TOC, transtornos depressivos, ideação suicída, luto e traumas.Realiza avaliação neuropsicológica para TEA, TDAH, DI e TA.",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "São Paulo, São Paulo",
+    "photo": "https://static.wixstatic.com/media/cc9623_510039a533b5401a999f1531585ef74b~mv2.jpeg/WhatsApp%20Image%202025-02-01%20at%2000.05.48.jpeg",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "IC"
+  },
+  {
+    "id": "fbea65c1-94c7-418b-9099-c92efae5f1ad",
+    "name": "Raisa Mendes de Araújo",
+    "slug": "raisa-mendes-de-araujo",
+    "profissao": [
+      "Medicina"
+    ],
+    "especialidade": [
+      "Nutrologia"
+    ],
+    "registro": "",
+    "bio": "Médica Nutróloga\nTelemedicina\nConsultório",
+    "agendamento": "http://wa.me/5531971720053",
+    "curriculo": "",
+    "location": "",
+    "photo": "https://static.wixstatic.com/media/cc9623_41e61d0734d84b28ab44e43f128fdb6b~mv2.png/10.png",
+    "volunteerBadge": true,
+    "doctor8": true,
+    "initials": "RM"
+  }
+]
