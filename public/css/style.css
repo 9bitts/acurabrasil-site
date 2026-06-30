@@ -1078,6 +1078,33 @@ img:not(.logo-img) {
     margin-top: 0.2rem;
 }
 
+.contact-column-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-volunteer-cta {
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-left: 3px solid var(--verde-acao);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+}
+
+.contact-volunteer-cta h3 {
+    font-size: 1.15rem;
+    color: var(--azul-institucional);
+    margin-bottom: 0.75rem;
+}
+
+.contact-volunteer-cta p {
+    color: var(--texto-mutado);
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+}
+
 .contact-form {
     background: var(--branco);
     border: 1px solid var(--cinza-borda);
