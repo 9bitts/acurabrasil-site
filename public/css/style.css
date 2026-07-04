@@ -3775,9 +3775,16 @@ a.btn.is-disabled:hover {
 
 .vol-how-steps {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.25rem;
     margin: 1.5rem 0 2rem;
+}
+
+.vol-how-intro {
+    margin: 0 0 1.25rem;
+    color: var(--texto-mutado);
+    font-size: 1.05rem;
+    line-height: 1.6;
 }
 
 .vol-how-step {
@@ -4065,6 +4072,10 @@ a.btn.is-disabled:hover {
 .nav-menu.open .nav-dropdown-menu a:focus {
     outline: 2px solid var(--verde-acao);
     outline-offset: 2px;
+}
+
+@media (max-width: 1100px) {
+    .vol-how-steps { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 900px) {
