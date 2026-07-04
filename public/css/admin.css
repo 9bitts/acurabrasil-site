@@ -381,6 +381,58 @@ body.admin-body {
   font-size: 0.875rem;
 }
 
+.admin-hint {
+  display: block;
+  margin: 0.25rem 0 0.75rem;
+  font-size: 0.8rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+.admin-form-group small.admin-hint {
+  margin: 0.35rem 0 0;
+}
+
+.admin-preview-block {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--admin-border);
+}
+
+.admin-preview-block:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.admin-preview-block ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.admin-preview-message {
+  margin: 0.5rem 0 0;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.admin-table-compact th,
+.admin-table-compact td {
+  padding: 0.4rem 0.5rem;
+  font-size: 0.8rem;
+}
+
+.admin-preview-box code {
+  font-size: 0.75rem;
+  background: #e9ecef;
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+}
+
+.admin-preview-box a {
+  color: var(--admin-accent);
+}
+
 @media (max-width: 768px) {
   .admin-layout {
     flex-direction: column;

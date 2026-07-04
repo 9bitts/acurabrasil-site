@@ -374,46 +374,79 @@
       <div id="vol-form-panel" class="admin-panel admin-hidden" style="margin-top:1rem"></div>`;
   }
 
+  function formatWaDisplay(number) {
+    const d = String(number || '').replace(/\D/g, '');
+    if (d.length >= 12 && d.startsWith('55')) {
+      return `+${d.slice(0, 2)} ${d.slice(2, 4)} ${d.slice(4, 9)}-${d.slice(9)}`;
+    }
+    return d ? `+${d}` : '—';
+  }
+
   async function renderConfig() {
     const data = await api('/api/admin/config');
     const c = data.config;
     const preview = await fetch('/api/sos-venezuela/public-info').then((r) => r.json());
+    const shiftRows = (preview.shiftsToday || [])
+      .map(
+        (s) =>
+          `<tr><td>${esc(s.nome)}</td><td>${esc(s.start)}–${esc(s.end)}</td><td>${esc(s.volunteer || '—')}</td></tr>`
+      )
+      .join('');
+    const plantao = (preview.currentShifts || [])
+      .map((s) => `<li><strong>${esc(s.nome)}</strong> — ${esc(s.volunteerDisplay)}</li>`)
+      .join('');
 
     return `
       <h1>Configurações SOS</h1>
       <div class="admin-panel">
+        <h2>WhatsApp</h2>
+        <p class="admin-hint">Número usado nos botões do site e links wa.me. Informe só dígitos (ex.: 5531971720053).</p>
         <div class="admin-form-group">
-          <label>WhatsApp (somente números)</label>
-          <input type="text" id="cfg-wa" value="${esc(c.whatsapp_number)}">
+          <label>Número WhatsApp</label>
+          <input type="text" id="cfg-wa" value="${esc(c.whatsapp_number)}" inputmode="numeric" placeholder="5531971720053">
+          <small class="admin-hint">Exibido como: ${esc(formatWaDisplay(c.whatsapp_number))}</small>
         </div>
         <div class="admin-form-group">
-          <label>Mensagem geral (URL-encoded)</label>
-          <input type="text" id="cfg-wa-general" value="${esc(c.whatsapp_message_general)}">
+          <label>Mensagem geral (espanhol — atención)</label>
+          <textarea id="cfg-wa-general" rows="2" placeholder="Hola, necesito atención gratuita del SOS Venezuela">${esc(c.whatsapp_message_general)}</textarea>
+          <small class="admin-hint">Texto que o paciente envia ao clicar em atención por WhatsApp.</small>
         </div>
         <div class="admin-form-group">
-          <label>Mensagem registro (URL-encoded)</label>
-          <input type="text" id="cfg-wa-reg" value="${esc(c.whatsapp_message_registro)}">
+          <label>Mensagem registro (espanhol — ayuda Doctor8)</label>
+          <textarea id="cfg-wa-reg" rows="2" placeholder="Hola, necesito ayuda para registrarme en el SOS Venezuela">${esc(c.whatsapp_message_registro)}</textarea>
+          <small class="admin-hint">Texto para quem precisa de ajuda com o cadastro.</small>
         </div>
         <div class="admin-form-group">
           <label>Fuso horário</label>
-          <input type="text" id="cfg-tz" value="${esc(c.timezone)}">
+          <input type="text" id="cfg-tz" value="${esc(c.timezone)}" placeholder="America/Sao_Paulo">
         </div>
         <div class="admin-form-group">
-          <label>Mensagem fora de horário (ES)</label>
-          <textarea id="cfg-ooh-es">${esc(c.out_of_hours_message_es)}</textarea>
+          <label>Mensagem fora de horário (ES — site público)</label>
+          <textarea id="cfg-ooh-es" rows="4">${esc(c.out_of_hours_message_es)}</textarea>
         </div>
         <div class="admin-form-group">
-          <label>Mensagem fora de horário (PT)</label>
-          <textarea id="cfg-ooh-pt">${esc(c.out_of_hours_message_pt)}</textarea>
+          <label>Mensagem fora de horário (PT — referência admin)</label>
+          <textarea id="cfg-ooh-pt" rows="4">${esc(c.out_of_hours_message_pt)}</textarea>
         </div>
         <button type="button" class="admin-btn" id="cfg-save">Salvar configurações</button>
       </div>
       <div class="admin-panel">
         <h2>Preview público</h2>
+        <p class="admin-hint">Como aparece nas páginas SOS Venezuela para pacientes.</p>
         <div class="admin-preview-box">
-          <p><strong>Aberto agora:</strong> ${preview.isOpen ? 'Sim' : 'Não'}</p>
-          <p><strong>Turnos hoje:</strong> ${(preview.shiftsToday || []).map((s) => `${s.nome} ${s.start}–${s.end}`).join('; ') || '—'}</p>
-          <p><strong>WhatsApp:</strong> ${esc(preview.whatsapp?.number)}</p>
+          <p><span class="badge ${preview.isOpen ? 'badge-em_consulta' : 'badge-alta'}">${preview.isOpen ? 'Aberto agora' : 'Fechado agora'}</span></p>
+          ${plantao ? `<div class="admin-preview-block"><strong>Plantão agora</strong><ul>${plantao}</ul></div>` : ''}
+          ${shiftRows ? `<div class="admin-preview-block"><strong>Turnos hoje</strong><table class="admin-table admin-table-compact"><thead><tr><th>Turno</th><th>Horário</th><th>Voluntário</th></tr></thead><tbody>${shiftRows}</tbody></table></div>` : ''}
+          <div class="admin-preview-block">
+            <strong>WhatsApp</strong>
+            <p>${esc(formatWaDisplay(preview.whatsapp?.number))} <code>${esc(preview.whatsapp?.number)}</code></p>
+            <p><a href="${esc(preview.whatsapp?.linkGeneral)}" target="_blank" rel="noopener">Testar link — atención</a></p>
+            <p><a href="${esc(preview.whatsapp?.linkRegistro)}" target="_blank" rel="noopener">Testar link — registro</a></p>
+          </div>
+          <div class="admin-preview-block">
+            <strong>Fora de horário (ES)</strong>
+            <p class="admin-preview-message">${esc(preview.outOfHoursMessage?.es || '')}</p>
+          </div>
         </div>
       </div>`;
   }
@@ -500,6 +533,7 @@
         }),
       });
       alert('Configurações salvas.');
+      render();
     });
   }
 
