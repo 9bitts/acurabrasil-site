@@ -402,6 +402,7 @@
 
       var script = document.createElement('script');
       script.id = 'paypal-sdk';
+      // SRI não se aplica: URL gerada dinamicamente com client-id, intent e vault na query string.
       var url =
         'https://www.paypal.com/sdk/js?client-id=' +
         encodeURIComponent(paypalState.clientId) +

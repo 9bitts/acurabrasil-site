@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Confirmar inscripción — ACURA BRASIL</title>
+  <link rel="stylesheet" href="css/style.css?v=17">
+  <style>
+    .newsletter-confirm-page {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+    .newsletter-confirm-card {
+      max-width: 32rem;
+      width: 100%;
+      background: var(--branco, #fff);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    }
+    .newsletter-confirm-card h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .newsletter-confirm-card p {
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
+    .newsletter-confirm-status {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+    }
+    .newsletter-confirm-status.error { color: #b42318; }
+    .newsletter-confirm-status.info { color: #475467; }
+  </style>
+</head>
+<body>
+  <main class="newsletter-confirm-page">
+    <div class="newsletter-confirm-card">
+      <h1 id="confirm-title">Confirme su inscripción</h1>
+      <p id="confirm-text">Haga clic en el botón para confirmar su correo en el boletín de ACURA BRASIL. El enlace expira en 48 horas.</p>
+      <button type="button" class="btn btn-verde" id="confirm-btn">Confirmar inscripción</button>
+      <p class="newsletter-confirm-status info" id="confirm-status" hidden role="status" aria-live="polite"></p>
+      <p style="margin-top:1.5rem;"><a href="index.html">← Volver al inicio</a></p>
+    </div>
+  </main>
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var token = params.get('token');
+      var btn = document.getElementById('confirm-btn');
+      var status = document.getElementById('confirm-status');
+      var lang = (document.documentElement.lang || 'es').toLowerCase();
+      var isPt = lang.indexOf('pt') === 0;
+
+      if (isPt) {
+        document.getElementById('confirm-title').textContent = 'Confirme sua inscrição';
+        document.getElementById('confirm-text').textContent =
+          'Clique no botão para confirmar seu e-mail na newsletter da ACURA BRASIL. O link expira em 48 horas.';
+        btn.textContent = 'Confirmar inscrição';
+      }
+
+      if (!token) {
+        status.hidden = false;
+        status.className = 'newsletter-confirm-status error';
+        status.textContent = isPt ? 'Link inválido ou ausente.' : 'Enlace inválido o ausente.';
+        btn.disabled = true;
+        return;
+      }
+
+      btn.addEventListener('click', function () {
+        btn.disabled = true;
+        status.hidden = false;
+        status.className = 'newsletter-confirm-status info';
+        status.textContent = isPt ? 'Confirmando…' : 'Confirmando…';
+
+        fetch('/api/newsletter/confirm', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token: token }),
+        })
+          .then(function (res) {
+            return res.json().then(function (data) {
+              return { ok: res.ok, data: data };
+            });
+          })
+          .then(function (result) {
+            if (result.ok && result.data.ok) {
+              window.location.href = '/index.html?newsletter=confirmed';
+              return;
+            }
+            window.location.href = '/index.html?newsletter=invalid';
+          })
+          .catch(function () {
+            window.location.href = '/index.html?newsletter=invalid';
+          });
+      });
+    })();
+  </script>
+</body>
+</html>

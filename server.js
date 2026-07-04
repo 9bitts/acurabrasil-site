@@ -15,6 +15,7 @@ const { adminGuard, describeAdminGuardMode } = require('./lib/admin-guard');
 const {
   handleNewsletterSubscribe,
   handleNewsletterConfirm,
+  handleNewsletterConfirmPage,
 } = require('./lib/newsletter');
 
 const app = express();
@@ -39,7 +40,7 @@ app.use((req, res, next) => {
 
 app.use((req, res, next) => {
   if (req.secure || req.headers['x-forwarded-proto'] === 'https') {
-    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
   }
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'SAMEORIGIN');
@@ -68,13 +69,14 @@ app.use(compression());
 
 app.get('/api/site-config', (req, res) => {
   res.json({
-    ga4MeasurementId: process.env.GA4_MEASUREMENT_ID || 'G-ZXE5T1VCGS',
+    ga4MeasurementId: process.env.GA4_MEASUREMENT_ID || '',
   });
 });
 
 app.post('/api/contact', handleContactRequest);
 app.post('/api/newsletter', handleNewsletterSubscribe);
-app.get('/api/newsletter/confirm', handleNewsletterConfirm);
+app.get('/api/newsletter/confirm', handleNewsletterConfirmPage);
+app.post('/api/newsletter/confirm', handleNewsletterConfirm);
 app.post('/api/sos-venezuela/intake', handleSosVenezuelaIntakeRequest);
 app.post('/api/sos-venezuela/intake/:protocolo/event', handleIntakeEventRequest);
 registerAdminRoutes(app);

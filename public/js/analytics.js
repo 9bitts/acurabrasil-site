@@ -23,6 +23,8 @@
     if (!id || gtagLoaded) return;
     gtagLoaded = true;
 
+    // SRI não se aplica: a URL do gtag inclui o measurement ID dinâmico (?id=...)
+    // e o Google não publica hashes por propriedade.
     var script = document.createElement('script');
     script.async = true;
     script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(id);
