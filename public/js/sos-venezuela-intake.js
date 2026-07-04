@@ -60,6 +60,18 @@
     toggleNomePaciente();
   }
 
+  const TIPO_PARAM_MAP = {
+    medica: 'medica',
+    psicologica: 'psicologica',
+    psicanalitica: 'psicanalise',
+    integrativa: 'terapias_integrativas',
+  };
+  const tipoSelect = form.querySelector('#tipo_atencion');
+  const urlTipo = new URLSearchParams(window.location.search).get('tipo');
+  if (tipoSelect && urlTipo && TIPO_PARAM_MAP[urlTipo]) {
+    tipoSelect.value = TIPO_PARAM_MAP[urlTipo];
+  }
+
   function trackIntakeEvent(event) {
     if (!currentProtocolo || !event) return;
     const url = '/api/sos-venezuela/intake/' + encodeURIComponent(currentProtocolo) + '/event';
@@ -127,6 +139,7 @@
           sintomas: form.querySelector('#sintomas')?.value.trim() || '',
           observaciones: form.querySelector('#observaciones')?.value.trim() || '',
           consentimiento: form.querySelector('#consentimiento')?.checked || false,
+          lgpd_privacidade: form.querySelector('#lgpd_privacidade')?.checked || false,
           website: form.querySelector('#website')?.value || '',
           referral_source: window.SosVenezuelaPublic?.getStoredReferral?.() || '',
         }),
@@ -155,7 +168,15 @@
           successBlock.hidden = false;
           successBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+        document.dispatchEvent(
+          new CustomEvent('acura:analytics', { detail: { event: 'intake_sos_enviado' } })
+        );
         bindSuccessTracking();
+        return;
+      }
+
+      if (res.status === 400 && data.error === 'lgpd_privacy_required') {
+        showStatus('error', 'sosve.intake.errorPrivacy');
         return;
       }
 

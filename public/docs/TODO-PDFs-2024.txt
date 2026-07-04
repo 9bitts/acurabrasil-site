@@ -1,0 +1,10 @@
+TODO: Subir PDFs reais referenciados em transparencia.html:
+- ata-fundacao.pdf
+- certificacao-oscip.pdf
+- certidoes-publicas.pdf
+- balanco-patrimonial-2024.pdf
+- demonstracao-resultados-2024.pdf
+- informe-conselho-fiscal-2024.pdf
+- informe-anual-2024.pdf
+
+Links já apontam para estes arquivos em /docs/.

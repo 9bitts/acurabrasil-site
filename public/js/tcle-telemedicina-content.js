@@ -14,7 +14,7 @@
     <li>O profissional poderá registrar anotações clínicas no seu prontuário eletrônico na plataforma (ou registro de sessão, no caso de psicólogo(a) e psicanalista).</li>
     <li>Se o atendimento for psicológico, aplicam-se as regras da seção 3 deste termo.</li>
     <li>Após a consulta, voluntários de acompanhamento (chamados Anjos) podem entrar em contato para saber como você está e se precisa de ajuda — conforme a seção 6 deste termo.</li>
-    <li>Em risco iminente à vida, o profissional orientará busca de atendimento presencial de urgência ou emergência.</li>
+    <li>Em risco iminente à vida, o profissional orientará busca de atendimento presencial de urgência ou emergência. <strong>Na Venezuela: 911 (VEN-911).</strong> No Brasil: 192 (SAMU) ou 188 (CVV, crises emocionais).</li>
   </ul>
   <h4>3. Atendimento psicológico a distância (teleconsulta emergencial)</h4>
   <p><strong>1. Objetivo.</strong> Declaro que fui informado(a) de que a presente teleconsulta psicológica possui caráter emergencial, sendo destinada ao acolhimento, à avaliação inicial da demanda e a intervenções psicológicas compatíveis com o atendimento remoto.</p>
@@ -87,7 +87,7 @@
     <li>El profesional podrá registrar anotaciones clínicas en su historial electrónico en la plataforma (o registro de sesión, en el caso de psicólogo(a) y psicoanalista).</li>
     <li>Si la atención es psicológica, aplican las reglas de la sección 3 de este término.</li>
     <li>Después de la consulta, voluntarios de acompañamiento (llamados Ángeles) pueden contactarle para saber cómo está y si necesita ayuda — conforme a la sección 6 de este término.</li>
-    <li>En riesgo inminente de vida, el profesional orientará la búsqueda de atención presencial de urgencia o emergencia.</li>
+    <li>En riesgo inminente de vida, el profesional orientará la búsqueda de atención presencial de urgencia o emergencia. <strong>En Venezuela: 911 (VEN-911).</strong> En Brasil: 192 (SAMU) o 188 (CVV, crisis emocionales).</li>
   </ul>
   <h4>3. Atención psicológica a distancia (teleconsulta de emergencia)</h4>
   <p><strong>1. Objetivo.</strong> Declaro haber sido informado(a) de que la presente teleconsulta psicológica tiene carácter emergencial, destinada al acogimiento, a la evaluación inicial de la demanda e intervenciones psicológicas compatibles con la atención remota.</p>

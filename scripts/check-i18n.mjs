@@ -2,9 +2,11 @@ import fs from 'fs';
 import path from 'path';
 
 const dir = path.join(process.cwd(), 'public');
-const dataCode = fs.readFileSync(path.join(dir, 'js/i18n-data.js'), 'utf8');
-const fn = new Function('window', `${dataCode}; return window.ACURA_I18N;`);
-const ACURA_I18N = fn({});
+const esCode = fs.readFileSync(path.join(dir, 'js/i18n-es.js'), 'utf8');
+const ptCode = fs.readFileSync(path.join(dir, 'js/i18n-pt.js'), 'utf8');
+const esFn = new Function('window', `${esCode}; return window.ACURA_I18N_ES;`);
+const ptFn = new Function('window', `${ptCode}; return window.ACURA_I18N_PT;`);
+const ACURA_I18N = { es: esFn({}), pt: ptFn({}) };
 
 const htmlFiles = fs.readdirSync(dir).filter((f) => f.endsWith('.html'));
 const missing = [];
@@ -23,3 +25,4 @@ for (const file of htmlFiles) {
 
 console.log(`Missing keys: ${missing.length}`);
 missing.slice(0, 40).forEach((x) => console.log(x));
+if (missing.length > 0) process.exit(1);

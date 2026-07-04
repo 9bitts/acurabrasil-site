@@ -5,14 +5,26 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "check:i18n": "node scripts/check-i18n.mjs",
+    "test:pix": "node scripts/test-pix-qr.mjs",
+    "setup:phase2": "node scripts/setup-phase2-assets.mjs && node scripts/bundle-qrcode.mjs && node scripts/split-i18n.mjs && node scripts/patch-phase2-html.mjs"
   },
   "engines": {
     "node": ">=18"
   },
   "dependencies": {
+    "@fontsource/inter": "^5.2.5",
     "better-sqlite3": "^12.11.1",
     "express": "^4.21.2",
-    "nodemailer": "^9.0.1"
+    "nodemailer": "^9.0.1",
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.5",
+    "sharp": "^0.34.2"
+  },
+  "allowScripts": {
+    "sharp@0.34.5": true
   }
 }

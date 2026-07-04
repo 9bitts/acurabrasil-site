@@ -10,14 +10,28 @@ const {
   handleSubscriptionPlan,
   logPaypalOnStartup,
 } = require('./lib/paypal');
+const { adminIpGuard } = require('./lib/admin-ip-guard');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const CANONICAL_HOST = process.env.CANONICAL_HOST || 'www.acurabrasil.org';
 
 app.disable('x-powered-by');
 app.set('trust proxy', 1);
 
 app.use((req, res, next) => {
+  const host = (req.headers.host || '').split(':')[0].toLowerCase();
+  if (host === 'acurabrasil.org') {
+    const target = `https://${CANONICAL_HOST}${req.originalUrl || '/'}`;
+    return res.redirect(301, target);
+  }
+  next();
+});
+
+app.use((req, res, next) => {
+  if (req.secure || req.headers['x-forwarded-proto'] === 'https') {
+    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+  }
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'SAMEORIGIN');
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
@@ -26,11 +40,11 @@ app.use((req, res, next) => {
     'Content-Security-Policy',
     [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' https://www.paypal.com https://www.sandbox.paypal.com",
-      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-      "font-src 'self' https://fonts.gstatic.com",
-      "img-src 'self' data: https://images.unsplash.com https://api.qrserver.com",
-      "connect-src 'self' https://www.paypal.com https://www.sandbox.paypal.com",
+      "script-src 'self' 'unsafe-inline' https://www.paypal.com https://www.sandbox.paypal.com https://www.googletagmanager.com",
+      "style-src 'self' 'unsafe-inline'",
+      "font-src 'self'",
+      "img-src 'self' data: https://www.google-analytics.com",
+      "connect-src 'self' https://www.paypal.com https://www.sandbox.paypal.com https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com",
       "frame-src https://www.paypal.com https://www.sandbox.paypal.com",
       "object-src 'none'",
       "base-uri 'self'",
@@ -42,6 +56,12 @@ app.use((req, res, next) => {
 
 app.use(express.json({ limit: '32kb' }));
 
+app.get('/api/site-config', (req, res) => {
+  res.json({
+    ga4MeasurementId: process.env.GA4_MEASUREMENT_ID || 'G-ZXE5T1VCGS',
+  });
+});
+
 app.post('/api/contact', handleContactRequest);
 app.post('/api/sos-venezuela/intake', handleSosVenezuelaIntakeRequest);
 app.post('/api/sos-venezuela/intake/:protocolo/event', handleIntakeEventRequest);
@@ -49,11 +69,27 @@ registerAdminRoutes(app);
 app.get('/api/paypal/config', handlePaypalConfig);
 app.post('/api/paypal/subscription-plan', handleSubscriptionPlan);
 
-app.get(['/admin', '/admin/'], (req, res) => {
+app.get(['/admin', '/admin/'], adminIpGuard, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin', 'index.html'));
 });
 
-app.use(express.static(path.join(__dirname, 'public'), { redirect: false }));
+app.use((req, res, next) => {
+  if (!req.path.startsWith('/admin')) return next();
+  return adminIpGuard(req, res, next);
+});
+
+const publicPath = path.join(__dirname, 'public');
+app.use(express.static(publicPath, {
+  redirect: false,
+  setHeaders(res, filePath) {
+    const normalized = filePath.replace(/\\/g, '/');
+    if (/\.html?$/i.test(normalized)) {
+      res.setHeader('Cache-Control', 'public, max-age=0');
+    } else if (/\/(css|js|fonts|img)\//.test(normalized)) {
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    }
+  },
+}));
 
 app.use((err, req, res, next) => {
   if (err instanceof SyntaxError && 'body' in err) {
@@ -65,6 +101,13 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
   console.log(`ACURA BRASIL site running on port ${PORT}`);
+  const { parseAdminAllowlist } = require('./lib/admin-ip-guard');
+  const allowlist = parseAdminAllowlist();
+  if (allowlist) {
+    console.log(`Admin IP allowlist active (${allowlist.size} entries)`);
+  } else {
+    console.warn('Admin IP allowlist not set — configure ADMIN_IP_ALLOWLIST or Cloudflare Access');
+  }
   try {
     getDb();
     console.log('SOS admin DB initialized');

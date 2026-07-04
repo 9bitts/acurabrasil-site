@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="fonts/inter-latin-400-normal.woff2?v=16" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/inter-latin-600-normal.woff2?v=16" as="font" type="font/woff2" crossorigin>
     <meta name="description" data-i18n-content="doacao.meta.description" content="Doe para ACURA BRASIL. Apoie atendimento voluntário humanitário e pesquisa científica via Pix, PayPal ou trabalho voluntário.">
-    <title>Doação - ACURA BRASIL</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=11">
-    <script src="js/i18n-data.js"></script>
+    <title>Doação - ACURA BRASIL</title><link rel="stylesheet" href="css/style.css?v=16">
+    <script src="js/analytics-config.js"></script>
+    <script src="js/seo.js"></script>
+    <script src="js/i18n-loader.js?v=16"></script>
     <script>try{var l=localStorage.getItem('acura.lang')||'es';document.documentElement.lang=l==='es'?'es-VE':'pt-BR';}catch(e){}</script>
 </head>
 <body data-i18n-title="doacao.meta.title">
+    <a class="skip-link" href="#main-content" data-i18n="common.skipLink">Ir al contenido principal</a>
+
+    <main id="main-content">
     <header class="header">
         <div class="header-container">
             <a href="index.html" class="logo">
-                <img src="img/logo-acurabrasil.png" alt="ACURABRASIL" class="logo-img">
+                <picture><source srcset="img/logo-acurabrasil.webp?v=16" type="image/webp"><img src="img/logo-acurabrasil.png?v=16" alt="ACURABRASIL" class="logo-img" width="180" height="48"></picture>
             </a>
             <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" data-i18n-aria="common.menuOpen">
                 <span></span><span></span><span></span>
@@ -26,6 +29,7 @@
                     <li><a href="index.html" class="nav-link" data-i18n="nav.home">Inicio</a></li>
                     <li><a href="sos-venezuela.html" class="nav-link" data-i18n="nav.sosVe">SOS Venezuela</a></li>
                     <li><a href="consulta-venezuela.html" class="nav-link nav-link-destaque" data-i18n="nav.consult">Consulta en Línea</a></li>
+                    <li><a href="doacao.html" class="nav-link nav-link-donate" data-i18n="nav.donate">Donar</a></li>
                     <li><a href="instituicao.html" class="nav-link" data-i18n="nav.about">La Institución</a></li>
                     <li><a href="equipe.html" class="nav-link" data-i18n="nav.team">Equipo</a></li>
                     <li class="nav-dropdown">
@@ -34,7 +38,6 @@
                             <li><a href="pesquisas.html" data-i18n="nav.research">Investigaciones</a></li>
                             <li><a href="atendimento-pandemia.html" data-i18n="nav.covid">Pandemia COVID-19</a></li>
                             <li><a href="sos-saude-rs.html" data-i18n="nav.sosRs">SOS Salud RS</a></li>
-                            <li><a href="doacao.html" data-i18n="nav.donate">Doar</a></li>
                             <li><a href="transparencia.html" data-i18n="nav.transparency">Transparencia</a></li>
                         </ul>
                     </li>
@@ -92,13 +95,35 @@
         </div>
     </section>
 
+    <!-- TODO: substituir placeholders por fotos reais dos projetos (COVID, RS, Venezuela) -->
+    <section class="section doacao-allocation-section">
+        <div class="container">
+            <h2 class="section-title-center" data-i18n="doacao.allocation.title">Como usamos sua doação</h2>
+            <p class="section-subtitle-center" data-i18n="doacao.allocation.subtitle">Distribuição estimada dos recursos (valores provisórios — pendente validação com a diretoria).</p>
+            <div class="doacao-allocation">
+                <div class="doacao-allocation-chart" role="img" aria-label="70% atendimento, 20% operações, 10% captação">
+                    <div class="doacao-allocation-segment doacao-allocation-segment--atendimento" title="70%">70%</div>
+                    <div class="doacao-allocation-segment doacao-allocation-segment--operacoes" title="20%">20%</div>
+                    <div class="doacao-allocation-segment doacao-allocation-segment--captacao" title="10%">10%</div>
+                </div>
+                <ul class="doacao-allocation-legend">
+                    <li data-i18n="doacao.allocation.atendimento">Atendimento humanitário — 70%</li>
+                    <li data-i18n="doacao.allocation.operacoes">Operações — 20%</li>
+                    <li data-i18n="doacao.allocation.captacao">Captação — 10%</li>
+                </ul>
+                <p class="doacao-allocation-todo" data-i18n="doacao.allocation.todo">TODO: validar percentuais reais com o Conselho Fiscal antes de publicar números definitivos.</p>
+            </div>
+        </div>
+    </section>
+
     <section class="section section-alt doacao-gallery">
         <div class="container">
             <h2 class="section-title-center" data-i18n="doacao.gallery.title">Nossa história de solidariedade</h2>
             <p class="section-subtitle-center" data-i18n="doacao.gallery.subtitle">Da pandemia de COVID-19 às enchentes do Rio Grande do Sul e agora ao SOS Venezuela — profissionais voluntários conectados pela telemedicina.</p>
             <div class="doacao-gallery-grid">
                 <figure class="doacao-gallery-item">
-                    <img src="https://images.unsplash.com/photo-1584036561561-dedfad3d5817?w=800&q=80" alt="" loading="lazy" width="400" height="280">
+                    <!-- TODO: foto real projeto COVID -->
+                    <img src="img/projetos/covid.webp?v=16" alt="" loading="lazy" width="400" height="280" data-i18n-aria="doacao.gallery.covid.alt">
                     <figcaption>
                         <strong data-i18n="doacao.gallery.covid.title">Pandemia COVID-19</strong>
                         <span data-i18n="doacao.gallery.covid.text">122 médicos voluntários atenderam ~12 mil famílias em cidades com colapso do sistema de saúde.</span>
@@ -106,7 +131,8 @@
                     </figcaption>
                 </figure>
                 <figure class="doacao-gallery-item">
-                    <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=800&q=80" alt="" loading="lazy" width="400" height="280">
+                    <!-- TODO: foto real projeto RS -->
+                    <img src="img/projetos/rs.webp?v=16" alt="" loading="lazy" width="400" height="280" data-i18n-aria="doacao.gallery.rs.alt">
                     <figcaption>
                         <strong data-i18n="doacao.gallery.rs.title">Enchentes RS 2024</strong>
                         <span data-i18n="doacao.gallery.rs.text">2.664 consultas gratuitas em mais de 100 cidades gaúchas — médicos, psicólogos e Anjos voluntários.</span>
@@ -114,7 +140,8 @@
                     </figcaption>
                 </figure>
                 <figure class="doacao-gallery-item">
-                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80" alt="" loading="lazy" width="400" height="280">
+                    <!-- TODO: foto real projeto Venezuela -->
+                    <img src="img/projetos/venezuela.webp?v=16" alt="" loading="lazy" width="400" height="280" data-i18n-aria="doacao.gallery.ve.alt">
                     <figcaption>
                         <strong data-i18n="doacao.gallery.ve.title">SOS Venezuela 2026</strong>
                         <span data-i18n="doacao.gallery.ve.text">Telemedicina gratuita para vítimas dos terremotos — o mesmo modelo humanitário em ação.</span>
@@ -122,7 +149,8 @@
                     </figcaption>
                 </figure>
                 <figure class="doacao-gallery-item">
-                    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80" alt="" loading="lazy" width="400" height="280">
+                    <!-- TODO: foto real pesquisa/ciência -->
+                    <img src="img/projetos/ciencia.webp?v=16" alt="" loading="lazy" width="400" height="280" data-i18n-aria="doacao.gallery.science.alt">
                     <figcaption>
                         <strong data-i18n="doacao.gallery.science.title">Ciência que cura</strong>
                         <span data-i18n="doacao.gallery.science.text">Dados da telemedicina geraram estudos publicados e fundamentam novas pesquisas da ACURA.</span>
@@ -170,7 +198,7 @@
                                 <h3 data-i18n="doacao.pix.title">Pix — Cora SCD</h3>
                                 <p class="doacao-pix-amount" id="pix-amount-display">R$ 50,00</p>
                                 <div class="doacao-pix-qr-wrap">
-                                    <img id="pix-qr" src="" alt="QR Code Pix" width="220" height="220">
+                                    <canvas id="pix-qr" width="220" height="220" aria-label="QR Code Pix"></canvas>
                                 </div>
                                 <div class="doacao-pix-key">
                                     <code>30.350.850/0001-80</code>
@@ -347,6 +375,10 @@
                         <label for="doacao-mensagem" data-i18n="doacao.form.message">Mensagem (opcional)</label>
                         <textarea id="doacao-mensagem" name="mensagem" rows="3" maxlength="2000"></textarea>
                     </div>
+                    <div class="form-group form-group-consent">
+                        <input type="checkbox" id="doacao-privacidade" name="privacidade" required value="on">
+                        <label for="doacao-privacidade" data-i18n="contato.form.privacy" data-i18n-html>Li e aceito a <a href="privacidade.html">Política de Privacidade</a> da ACURA BRASIL.</label>
+                    </div>
                     <button type="submit" class="btn btn-verde" data-i18n="doacao.form.submit">Registrar e solicitar selo</button>
                 </form>
             </div>
@@ -386,11 +418,12 @@
         </div>
     </div>
 
+        </main>
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-brand">
                 <a href="index.html" class="logo">
-                    <img src="img/logo-acurabrasil.png" alt="ACURABRASIL" class="logo-img">
+                    <picture><source srcset="img/logo-acurabrasil.webp?v=16" type="image/webp"><img src="img/logo-acurabrasil.png?v=16" alt="ACURABRASIL" class="logo-img" width="180" height="48"></picture>
                 </a>
                 <p class="footer-desc" data-i18n="footer.desc">Asociación Brasil por la Cura. Entidad sin fines de lucro dedicada al avance de la ciencia, el fomento de la investigación y la asistencia humanitaria.</p>
                 <span class="footer-cnpj" data-i18n="common.cnpj">CNPJ: 30.350.850/0001-80 · OSCIP</span>
@@ -413,6 +446,7 @@
                 <h4 class="footer-title" data-i18n="footer.transparency">Transparencia</h4>
                 <ul class="footer-links">
                     <li><a href="transparencia.html" data-i18n="footer.portal">Portal de Transparencia</a></li>
+                    <li><a href="privacidade.html" data-i18n="footer.privacy">Política de Privacidad</a></li>
                     <li><a href="transparencia.html#estatuto" data-i18n="footer.estatuto">Estatuto Social</a></li>
                     <li><a href="docs/estatuto-social-2022.pdf" target="_blank" rel="noopener" data-i18n="footer.estatutoPdf">Estatuto Social (PDF)</a></li>
                     <li><a href="docs/comprovante-cnpj.pdf" target="_blank" rel="noopener" data-i18n="footer.cnpjPdf">Comprobante CNPJ (PDF)</a></li>
@@ -441,6 +475,9 @@
 
     <script src="js/i18n.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/cookie-consent.js"></script>
+    <script src="js/analytics.js"></script>
+    <script src="js/vendor/qrcode.min.js?v=16"></script>
     <script src="js/doacao.js"></script>
 </body>
 </html>

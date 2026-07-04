@@ -150,6 +150,7 @@
             assunto: assuntoSelect?.value || '',
             mensagem: contactForm.querySelector('#mensagem')?.value.trim() || '',
             website: contactForm.querySelector('#website')?.value || '',
+            privacidade: contactForm.querySelector('#privacidade')?.checked || false,
             ...(window.VolunteerTerms?.getPayload?.() || {}),
           }),
         });
@@ -160,6 +161,9 @@
 
         if (res.ok && data.ok) {
           showStatus('success', 'contato.form.success');
+          document.dispatchEvent(
+            new CustomEvent('acura:analytics', { detail: { event: 'formulario_contato_enviado' } })
+          );
           contactForm.reset();
           const ddiInput = contactForm.querySelector('#ddi');
           if (ddiInput) ddiInput.value = '+55';
@@ -180,6 +184,11 @@
 
         if (res.status === 400 && data.error === 'voluntario_termo_required') {
           showStatus('error', 'voluntario.terms.errorRequired');
+          return;
+        }
+
+        if (res.status === 400 && data.error === 'privacidade_required') {
+          showStatus('error', 'contato.form.errorPrivacy');
           return;
         }
 

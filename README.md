@@ -12,7 +12,8 @@ Site institucional da **ACURA BRASIL** (Associação Brasil pela Cura), OSCIP ce
 | SOS Saúde RS | `sos-saude-rs.html` | Projeto completo com conteúdo do documento oficial |
 | Transparência | `transparencia.html` | Portal da transparência OSCIP |
 | Contato | `contato.html` | Formulário e informações de contato |
-| Associar-se | `associar.html` | Modalidades de ingresso |
+| Doação | `doacao.html` | Pix, PayPal, selos de doador |
+| Privacidade | `privacidade.html` | Política de Privacidade (LGPD) |
 
 ## Desenvolvimento Local
 
@@ -56,6 +57,15 @@ O formulário envia via `POST /api/contact`. **Recomendado: [Resend](https://res
 
 Painel interno de operação (triagem, escala, voluntários) em **`/admin/`** — não linkado no site público.
 
+**Proteção recomendada:** configure [Cloudflare Access](https://developers.cloudflare.com/cloudflare-one/policies/access/) na rota `/admin/*` ou defina `ADMIN_IP_ALLOWLIST` com IPs autorizados (retorna 404 para demais). HSTS e redirect `acurabrasil.org` → `www.acurabrasil.org` estão ativos no servidor.
+
+### Google Analytics 4
+
+1. Crie uma propriedade GA4 em [analytics.google.com](https://analytics.google.com).
+2. Defina `GA4_MEASUREMENT_ID=G-XXXXXXXXXX` no Railway (substitua pelo ID real).
+3. O site usa **Consent Mode v2**: analytics só é ativado após aceite no banner de cookies.
+4. Eventos customizados: `consulta_iniciada`, `doacao_pix_copiada`, `doacao_paypal_clicada`, `formulario_contato_enviado`, `intake_sos_enviado`, `voluntario_cta_clicado`, `whatsapp_clicado`.
+
 ### Variáveis de ambiente
 
 | Variável | Descrição |
@@ -63,6 +73,9 @@ Painel interno de operação (triagem, escala, voluntários) em **`/admin/`** �
 | `ADMIN_USERNAME` | Usuário do login (padrão: `admin`) |
 | `ADMIN_PASSWORD` | Senha em texto (dev) ou use `ADMIN_PASSWORD_HASH` (scrypt) em produção |
 | `ADMIN_SESSION_SECRET` | Segredo HMAC para cookie de sessão (32+ caracteres aleatórios) |
+| `ADMIN_IP_ALLOWLIST` | IPs permitidos para `/admin` e `/api/admin` (opcional; vírgula) |
+| `GA4_MEASUREMENT_ID` | ID de medição Google Analytics 4 (ex.: `G-XXXXXXXXXX`) |
+| `CANONICAL_HOST` | Host canônico para redirect (padrão: `www.acurabrasil.org`) |
 | `DATA_PATH` | Caminho do SQLite (padrão: `./data/acura-sos.db`) |
 | `SOS_VENEZUELA_TO` | E-mail que recebe novas solicitudes |
 

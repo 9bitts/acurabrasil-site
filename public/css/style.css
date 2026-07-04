@@ -1,6 +1,3 @@
-/* ==========================================================================
-   ACURA BRASIL - Design System
-   ========================================================================== */
 :root {
     --azul-institucional: #23729d;
     --azul-escuro: #164e6c;
@@ -21,6 +18,70 @@
     --urgencia: #c0392b;
     --urgencia-escuro: #922b21;
     --urgencia-claro: #fdf2f2;
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../fonts/inter-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../fonts/inter-latin-500-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('../fonts/inter-latin-600-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../fonts/inter-latin-700-normal.woff2') format('woff2');
+}
+
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    z-index: 10000;
+    padding: 0.75rem 1.25rem;
+    background: var(--azul-institucional);
+    color: var(--branco);
+    font-weight: 600;
+    border-radius: var(--radius);
+}
+
+.skip-link:focus-visible {
+    left: 1rem;
+    top: 1rem;
+    width: auto;
+    height: auto;
+    overflow: visible;
+}
+
+:focus-visible {
+    outline: 2px solid var(--azul-institucional);
+    outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
 }
 
 *, *::before, *::after {
@@ -1770,6 +1831,76 @@ a.btn.is-disabled:hover {
     margin-top: 0.25rem;
 }
 
+.doacao-allocation {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.doacao-allocation-chart {
+    display: flex;
+    height: 2.5rem;
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 1.5rem 0 1rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.doacao-allocation-segment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--branco);
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.doacao-allocation-segment--atendimento {
+    width: 70%;
+    background: var(--azul-institucional);
+}
+
+.doacao-allocation-segment--operacoes {
+    width: 20%;
+    background: var(--verde-acao);
+}
+
+.doacao-allocation-segment--captacao {
+    width: 10%;
+    background: var(--azul-escuro);
+}
+
+.doacao-allocation-legend {
+    list-style: none;
+    display: grid;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.doacao-allocation-legend li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.doacao-allocation-legend li::before {
+    content: '';
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.doacao-allocation-legend li:nth-child(1)::before { background: var(--azul-institucional); }
+.doacao-allocation-legend li:nth-child(2)::before { background: var(--verde-acao); }
+.doacao-allocation-legend li:nth-child(3)::before { background: var(--azul-escuro); }
+
+.doacao-allocation-todo {
+    font-size: 0.85rem;
+    color: var(--texto-mutado);
+    font-style: italic;
+}
+
 .doacao-panel-grid {
     display: grid;
     grid-template-columns: 1fr 300px;
@@ -1921,10 +2052,13 @@ a.btn.is-disabled:hover {
     margin-bottom: 1rem;
 }
 
-.doacao-pix-qr-wrap img {
+.doacao-pix-qr-wrap img,
+.doacao-pix-qr-wrap canvas {
     border-radius: var(--radius);
     background: var(--branco);
     padding: 0.5rem;
+    max-width: 100%;
+    height: auto;
 }
 
 .doacao-pix-key {
@@ -2233,6 +2367,102 @@ a.btn.is-disabled:hover {
 .nav-link-destaque:hover,
 .nav-link-destaque.active {
     color: var(--urgencia-escuro) !important;
+}
+
+.nav-link-donate {
+    border: 2px solid var(--verde-acao);
+    border-radius: var(--radius);
+    padding: 0.35rem 0.85rem !important;
+    color: var(--verde-acao) !important;
+    font-weight: 600;
+}
+
+.nav-link-donate:hover,
+.nav-link-donate.active {
+    background: var(--verde-acao);
+    color: var(--branco) !important;
+}
+
+.emergency-notice {
+    margin: 0 0 1.5rem;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius);
+    border-left: 4px solid var(--urgencia);
+    background: #fff5f5;
+    color: var(--texto-escuro);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.emergency-notice--ve {
+    border-left-color: #c0392b;
+    background: linear-gradient(90deg, #fdecea 0%, #fff 100%);
+}
+
+.emergency-notice strong {
+    color: var(--urgencia-escuro);
+}
+
+.emergency-notice--ve strong:first-of-type {
+    color: #c0392b;
+    font-size: 1.05em;
+}
+
+.cookie-consent-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2000;
+    background: var(--branco);
+    border-top: 1px solid var(--cinza-borda);
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.12);
+    padding: 1rem 1.25rem;
+}
+
+.cookie-consent-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.cookie-consent-inner p {
+    flex: 1 1 280px;
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--texto-escuro);
+}
+
+.cookie-consent-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.cookie-consent-link {
+    font-size: 0.85rem;
+    color: var(--azul-institucional);
+    margin-left: 0.25rem;
+}
+
+.privacy-content h2 {
+    margin-top: 2rem;
+    color: var(--azul-institucional);
+    font-size: 1.25rem;
+}
+
+.privacy-content h2:first-child {
+    margin-top: 0;
+}
+
+.consulta-hero .emergency-notice {
+    text-align: left;
+    margin-bottom: 1.25rem;
 }
 
 .consulta-hero {
@@ -2547,6 +2777,78 @@ a.btn.is-disabled:hover {
     .consulta-info-grid { grid-template-columns: 1fr; }
     .consulta-prof-grid { grid-template-columns: 1fr; }
     .consulta-prof-toolbar { flex-direction: column; align-items: stretch; }
+    .consulta-care-types-grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   Consulta — tipos de atendimento
+   ========================================================================== */
+.consulta-care-types {
+    scroll-margin-top: calc(var(--header-height) + 1rem);
+}
+
+.consulta-care-types-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 1100px) {
+    .consulta-care-types-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.consulta-care-type-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    height: 100%;
+}
+
+.consulta-care-type-icon {
+    font-size: 2rem;
+    line-height: 1;
+    margin-bottom: 0.75rem;
+}
+
+.consulta-care-type-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.75rem;
+    color: var(--azul-escuro);
+}
+
+.consulta-care-type-card p {
+    flex: 1;
+    font-size: 0.92rem;
+    color: var(--texto-mutado);
+    margin-bottom: 1.25rem;
+    line-height: 1.55;
+}
+
+.consulta-care-type-btn {
+    align-self: flex-start;
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+}
+
+.consulta-care-types-disclaimer {
+    padding: 1.25rem 1.5rem;
+    background: var(--urgencia-claro);
+    border: 1px solid rgba(192, 57, 43, 0.2);
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--texto-escuro);
+}
+
+.consulta-care-types-disclaimer a {
+    color: var(--azul-institucional);
+    font-weight: 600;
+    text-decoration: underline;
 }
 
 /* ==========================================================================

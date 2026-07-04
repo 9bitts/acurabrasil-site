@@ -3,6 +3,9 @@
   const DEFAULT_LANG = 'es';
 
   function getLang() {
+    if (window.AcuraI18nLoader?.getLang) {
+      return window.AcuraI18nLoader.getLang();
+    }
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored === 'es' || stored === 'pt') return stored;
@@ -17,7 +20,7 @@
   }
 
   function apply(lang) {
-    if (!window.ACURA_I18N) return;
+    if (!window.ACURA_I18N?.[lang] && !window.ACURA_I18N?.es) return;
 
     document.documentElement.lang = lang === 'es' ? 'es-VE' : 'pt-BR';
 
@@ -78,29 +81,44 @@
     document.dispatchEvent(new CustomEvent('acura:langchange', { detail: { lang } }));
   }
 
-  function setLang(lang) {
+  async function setLang(lang) {
     if (lang !== 'es' && lang !== 'pt') return;
     try {
       localStorage.setItem(STORAGE_KEY, lang);
     } catch { /* ignore */ }
+    if (window.AcuraI18nLoader) {
+      await window.AcuraI18nLoader.loadLang(lang);
+    }
     apply(lang);
+  }
+
+  function bindToggle() {
+    const toggle = document.getElementById('lang-toggle');
+    if (!toggle || toggle.dataset.i18nBound) return;
+    toggle.dataset.i18nBound = '1';
+    toggle.addEventListener('click', () => {
+      setLang(getLang() === 'es' ? 'pt' : 'es');
+    });
   }
 
   function init() {
     apply(getLang());
-    const toggle = document.getElementById('lang-toggle');
-    if (toggle) {
-      toggle.addEventListener('click', () => {
-        setLang(getLang() === 'es' ? 'pt' : 'es');
-      });
+    bindToggle();
+  }
+
+  function start() {
+    if (window.AcuraI18nLoader && !window.ACURA_I18N?.[getLang()]) {
+      document.addEventListener('acura:i18n-ready', init, { once: true });
+    } else {
+      init();
     }
   }
 
-  window.AcuraI18n = { getLang, setLang, apply, t, init };
+  window.AcuraI18n = { getLang, setLang, apply, t, init: start };
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', start);
   } else {
-    init();
+    start();
   }
 })();

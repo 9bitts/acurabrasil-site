@@ -69,14 +69,15 @@
   }
 
   function updateQr() {
-    var img = document.getElementById('pix-qr');
-    if (!img) return;
+    var canvas = document.getElementById('pix-qr');
+    if (!canvas || !window.QRCode) return;
     var amount = getActiveAmount();
     var payload = generatePixPayload(amount);
-    img.src =
-      'https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=' +
-      encodeURIComponent(payload);
-    img.alt = 'QR Code Pix R$ ' + amount.toFixed(2);
+    window.QRCode.toCanvas(canvas, payload, { width: 220, margin: 1 }, function (err) {
+      if (err) console.error('Pix QR error:', err);
+    });
+    canvas.setAttribute('role', 'img');
+    canvas.setAttribute('aria-label', 'QR Code Pix R$ ' + amount.toFixed(2));
   }
 
   function updateAmountDisplay() {
@@ -280,6 +281,7 @@
         ddd: String(fd.get('ddd') || '').trim(),
         telefone: String(fd.get('telefone') || '').trim(),
         assunto: 'doacao',
+        privacidade: form.querySelector('#doacao-privacidade')?.checked || false,
         mensagem: [
           'Tipo: ' + tipo,
           'Destino: ' + (fd.get('destino') || state.cause),
@@ -304,6 +306,9 @@
           if (result.ok && result.data.ok) {
             status.className = 'form-status success';
             status.textContent = t('doacao.form.success');
+            document.dispatchEvent(
+              new CustomEvent('acura:analytics', { detail: { event: 'formulario_contato_enviado', params: { form: 'doacao' } } })
+            );
             try {
               localStorage.setItem('acura.badge', JSON.stringify({ id: badge.id, at: Date.now() }));
             } catch (err) { /* ignore */ }
@@ -316,6 +321,11 @@
           if (result.status === 429) {
             status.className = 'form-status error';
             status.textContent = t('contato.form.errorRateLimit');
+            return;
+          }
+          if (result.status === 400 && result.data.error === 'privacidade_required') {
+            status.className = 'form-status error';
+            status.textContent = t('contato.form.errorPrivacy');
             return;
           }
           status.className = 'form-status error';
@@ -447,6 +457,9 @@
         });
       },
       onApprove: function (data, actions) {
+        document.dispatchEvent(
+          new CustomEvent('acura:analytics', { detail: { event: 'doacao_paypal_clicada', params: { type: 'once' } } })
+        );
         return actions.order.capture().then(function (details) {
           var id = details.id || data.orderID || '';
           showPaypalSuccess('once', id);
@@ -487,6 +500,9 @@
           });
       },
       onApprove: function (data) {
+        document.dispatchEvent(
+          new CustomEvent('acura:analytics', { detail: { event: 'doacao_paypal_clicada', params: { type: 'monthly' } } })
+        );
         showPaypalSuccess('monthly', data.subscriptionID || '');
       },
       onError: function (err) {

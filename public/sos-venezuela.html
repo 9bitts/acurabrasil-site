@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="fonts/inter-latin-400-normal.woff2?v=16" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/inter-latin-600-normal.woff2?v=16" as="font" type="font/woff2" crossorigin>
     <meta name="description" data-i18n-content="sosve.meta.description" content="SOS Salud Venezuela - ACURA BRASIL moviliza telemedicina gratuita para víctimas de los terremotos de junio de 2026 vía plataforma Doctor8.">
-    <title>SOS Salud Venezuela - ACURA BRASIL</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=11">
+    <title>SOS Salud Venezuela - ACURA BRASIL</title><link rel="stylesheet" href="css/style.css?v=16">
+    <script src="js/analytics-config.js"></script>
+    <script src="js/seo.js"></script>
     <style>
         .whatsapp-float {
             position: fixed;
@@ -90,14 +90,17 @@
             }
         }
     </style>
-    <script src="js/i18n-data.js"></script>
+    <script src="js/i18n-loader.js?v=16"></script>
     <script>try{var l=localStorage.getItem('acura.lang')||'es';document.documentElement.lang=l==='es'?'es-VE':'pt-BR';}catch(e){}</script>
 </head>
 <body data-i18n-title="sosve.meta.title">
+    <a class="skip-link" href="#main-content" data-i18n="common.skipLink">Ir al contenido principal</a>
+
+    <main id="main-content">
     <header class="header">
         <div class="header-container">
             <a href="index.html" class="logo">
-                <img src="img/logo-acurabrasil.png" alt="ACURABRASIL" class="logo-img">
+                <picture><source srcset="img/logo-acurabrasil.webp?v=16" type="image/webp"><img src="img/logo-acurabrasil.png?v=16" alt="ACURABRASIL" class="logo-img" width="180" height="48"></picture>
             </a>
             <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" data-i18n-aria="common.menuOpen">
                 <span></span><span></span><span></span>
@@ -107,6 +110,7 @@
                     <li><a href="index.html" class="nav-link" data-i18n="nav.home">Inicio</a></li>
                     <li><a href="sos-venezuela.html" class="nav-link" data-i18n="nav.sosVe">SOS Venezuela</a></li>
                     <li><a href="consulta-venezuela.html" class="nav-link nav-link-destaque" data-i18n="nav.consult">Consulta en Línea</a></li>
+                    <li><a href="doacao.html" class="nav-link nav-link-donate" data-i18n="nav.donate">Donar</a></li>
                     <li><a href="instituicao.html" class="nav-link" data-i18n="nav.about">La Institución</a></li>
                     <li><a href="equipe.html" class="nav-link" data-i18n="nav.team">Equipo</a></li>
                     <li class="nav-dropdown">
@@ -115,7 +119,6 @@
                             <li><a href="pesquisas.html" data-i18n="nav.research">Investigaciones</a></li>
                             <li><a href="atendimento-pandemia.html" data-i18n="nav.covid">Pandemia COVID-19</a></li>
                             <li><a href="sos-saude-rs.html" data-i18n="nav.sosRs">SOS Salud RS</a></li>
-                            <li><a href="doacao.html" data-i18n="nav.donate">Doar</a></li>
                             <li><a href="transparencia.html" data-i18n="nav.transparency">Transparencia</a></li>
                         </ul>
                     </li>
@@ -155,6 +158,9 @@
                     </div>
                 </div>
                 <p class="emergency-footnote" data-i18n="index.emergency.footnote">*Cifras oficiales en actualización conforme avanzan los rescates.</p>
+                <aside class="emergency-notice emergency-notice--ve" role="note" data-i18n-aria="common.emergencyNoticeAria" style="margin-top:1rem;text-align:left;">
+                    <p data-i18n="common.emergencyNotice" data-i18n-html>Si estás en <strong>Venezuela</strong>, en caso de emergencia llama al <strong>911 (VEN-911)</strong> o acude al hospital más cercano.</p>
+                </aside>
             </div>
             <div class="emergency-cta-box">
                 <p data-i18n="index.emergency.cta.text">Conozca cómo ACURA BRASIL puede ayudar con telemedicina gratuita vía Doctor8 — el mismo modelo del SOS Salud RS.</p>
@@ -191,11 +197,12 @@
         <div class="cta-voluntario" style="background: linear-gradient(135deg, var(--urgencia-escuro), var(--azul-escuro));"><h3 data-i18n="sosve.cta.volunteer.title">Sea parte de la respuesta humanitaria</h3><p data-i18n="sosve.cta.volunteer.text">Profesionales de salud de Brasil y de la comunidad internacional: su experiencia puede salvar vidas a distancia.</p><div class="cta-voluntario-actions"><a href="contato.html" class="btn btn-verde" data-i18n="sosve.cta.volunteer.btn1">Quiero ser Voluntario</a><a href="sos-saude-rs.html" class="btn btn-transparente" data-i18n="sosve.cta.volunteer.btn2">Ver Modelo SOS Salud RS</a></div></div>
         <h2 data-i18n="sosve.s8.title">8. Fuentes y referencias</h2><p style="font-size: 0.9rem; color: var(--texto-mutado);" data-i18n="sosve.s8.text" data-i18n-html>Información sobre los terremotos compilada a partir de reportajes y datos públicos de junio de 2026: <a href="https://www.elmundo.es/internacional/2026/06/26/6a3d69a2fc6c83b4758b45b3.html" target="_blank" rel="noopener" style="color: var(--azul-institucional);">El Mundo</a>, <a href="https://elpais.com/america/2026-06-26/el-terremoto-en-venezuela-en-vivo.html" target="_blank" rel="noopener" style="color: var(--azul-institucional);">El País</a>, <a href="https://www.dw.com/es/en-mapas-y-fotos-las-zonas-m%C3%A1s-afectadas-por-los-terremotos-en-venezuela/a-77721622" target="_blank" rel="noopener" style="color: var(--azul-institucional);">Deutsche Welle</a>, USGS y comunicados oficiales del gobierno venezolano. Modelo operacional basado en el documento <a href="docs/projeto-sos-saude-rs.pdf" target="_blank" rel="noopener" style="color: var(--azul-institucional);">SOS Salud Río Grande do Sul</a> — ACURA BRASIL, 2024.</p>
     </div></section>
+        </main>
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-brand">
                 <a href="index.html" class="logo">
-                    <img src="img/logo-acurabrasil.png" alt="ACURABRASIL" class="logo-img">
+                    <picture><source srcset="img/logo-acurabrasil.webp?v=16" type="image/webp"><img src="img/logo-acurabrasil.png?v=16" alt="ACURABRASIL" class="logo-img" width="180" height="48"></picture>
                 </a>
                 <p class="footer-desc" data-i18n="footer.desc">Asociación Brasil por la Cura. Entidad sin fines de lucro dedicada al avance de la ciencia, el fomento de la investigación y la asistencia humanitaria.</p>
                 <span class="footer-cnpj" data-i18n="common.cnpj">CNPJ: 30.350.850/0001-80 · OSCIP</span>
@@ -218,6 +225,7 @@
                 <h4 class="footer-title" data-i18n="footer.transparency">Transparencia</h4>
                 <ul class="footer-links">
                     <li><a href="transparencia.html" data-i18n="footer.portal">Portal de Transparencia</a></li>
+                    <li><a href="privacidade.html" data-i18n="footer.privacy">Política de Privacidad</a></li>
                     <li><a href="transparencia.html#estatuto" data-i18n="footer.estatuto">Estatuto Social</a></li>
                     <li><a href="docs/estatuto-social-2022.pdf" target="_blank" rel="noopener" data-i18n="footer.estatutoPdf">Estatuto Social (PDF)</a></li>
                     <li><a href="docs/comprovante-cnpj.pdf" target="_blank" rel="noopener" data-i18n="footer.cnpjPdf">Comprobante CNPJ (PDF)</a></li>
@@ -253,6 +261,8 @@
 
     <script src="js/i18n.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/cookie-consent.js"></script>
+    <script src="js/analytics.js"></script>
     <script src="js/sos-venezuela-public.js"></script>
 </body>
 </html>
