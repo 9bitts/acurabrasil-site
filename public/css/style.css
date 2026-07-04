@@ -3989,16 +3989,19 @@ a.btn.is-disabled:hover {
     font-style: italic;
 }
 
-.social-grid {
+.social-section .social-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.75rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+    max-width: 980px;
+    margin: 2.5rem auto 0;
+    width: 100%;
 }
 
 .social-card {
     display: flex;
     flex-direction: column;
+    min-width: 0;
     background: var(--branco);
     border: 1px solid var(--cinza-borda);
     border-radius: calc(var(--radius) + 4px);
@@ -4020,6 +4023,7 @@ a.btn.is-disabled:hover {
     overflow: hidden;
     aspect-ratio: 16 / 9;
     background: var(--cinza-claro);
+    border-bottom: 1px solid var(--cinza-borda);
 }
 
 .social-card-media img {
@@ -4027,27 +4031,55 @@ a.btn.is-disabled:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top center;
     transition: transform 0.35s ease;
 }
 
 .social-card:hover .social-card-media img {
-    transform: scale(1.03);
+    transform: scale(1.02);
 }
 
 .social-card-body {
-    padding: 1.5rem 1.75rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.35rem 1.5rem 1.5rem;
+}
+
+.social-card-platform {
+    display: inline-block;
+    align-self: flex-start;
+    margin-bottom: 0.65rem;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.social-card--youtube .social-card-platform {
+    background: rgba(255, 0, 0, 0.08);
+    color: #cc0000;
+}
+
+.social-card--instagram .social-card-platform {
+    background: rgba(193, 53, 132, 0.1);
+    color: #c13584;
 }
 
 .social-card-title {
-    margin: 0 0 0.5rem;
-    font-size: 1.2rem;
+    margin: 0 0 0.55rem;
+    font-size: 1.15rem;
     font-weight: 700;
+    line-height: 1.35;
     color: var(--azul-escuro);
 }
 
 .social-card-text {
     margin: 0;
-    font-size: 0.95rem;
+    flex: 1;
+    font-size: 0.93rem;
     line-height: 1.65;
     color: var(--texto-mutado);
 }
@@ -4066,6 +4098,13 @@ a.btn.is-disabled:hover {
 
 .social-card--instagram:hover .social-card-handle {
     color: #c13584;
+}
+
+@media (max-width: 720px) {
+    .social-section .social-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+    }
 }
 
 .site-banner {
@@ -4098,7 +4137,6 @@ a.btn.is-disabled:hover {
 @media (max-width: 900px) {
     .footer-newsletter-inner,
     .vol-how-steps,
-    .social-grid,
     .intake-progress--three {
         grid-template-columns: 1fr;
     }
