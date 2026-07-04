@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es-VE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" data-i18n-content="sosve.intake.meta.description" content="Solicitud de atención médica y psicológica gratuita — SOS Salud Venezuela | ACURA BRASIL">
+    <title>Solicitud de Atención — SOS Venezuela | ACURABRASIL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=13">
+    <style>
+        .page-hero--compact {
+            padding: 2rem 0 1.25rem;
+        }
+        .page-hero--compact h1 {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .page-hero--compact p {
+            max-width: 640px;
+        }
+        .intake-progress {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0 0;
+        }
+        .intake-progress-step {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--texto-mutado);
+        }
+        .intake-progress-step.is-active {
+            color: var(--urgencia-escuro);
+        }
+        .intake-progress-step.is-active .intake-progress-num {
+            background: var(--urgencia);
+            color: #fff;
+        }
+        .intake-progress-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            background: var(--cinza-borda);
+            color: var(--texto-mutado);
+        }
+        .intake-progress-arrow {
+            color: var(--cinza-borda);
+            font-size: 1.1rem;
+        }
+        .intake-form-wrap {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .intake-form-card {
+            background: var(--branco);
+            border: 1px solid var(--cinza-borda);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .intake-success {
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2.5rem 2rem;
+            background: linear-gradient(135deg, #e8faf0 0%, #fff 55%);
+            border: 2px solid var(--verde-acao, #25a55f);
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+        }
+        .intake-success h2 {
+            font-size: 1.75rem;
+            color: var(--verde-acao, #1a5c3a);
+            margin-bottom: 1rem;
+        }
+        .intake-protocol {
+            display: inline-block;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--azul-escuro);
+            background: var(--cinza-claro);
+            padding: 0.5rem 1.25rem;
+            border-radius: 8px;
+            margin: 0.75rem 0 1.25rem;
+            letter-spacing: 0.02em;
+        }
+        .intake-success-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+        .intake-success-actions .btn { min-width: 280px; }
+        .intake-form-note {
+            font-size: 0.88rem;
+            color: var(--texto-mutado);
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .form-group-consent {
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+            text-align: left;
+        }
+        .form-group-consent input { margin-top: 0.25rem; flex-shrink: 0; }
+        .form-group-consent label {
+            font-weight: 400;
+            font-size: 0.88rem;
+            line-height: 1.55;
+            color: var(--texto-escuro);
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 1200;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: #fff;
+        }
+        .whatsapp-float-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.45);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .whatsapp-float-icon svg { width: 32px; height: 32px; fill: #fff; }
+        .whatsapp-float:hover .whatsapp-float-icon,
+        .whatsapp-float:focus-visible .whatsapp-float-icon {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.55);
+        }
+        .whatsapp-float-label {
+            background: #fff;
+            color: #128C7E;
+            font-size: 0.875rem;
+            font-weight: 600;
+            padding: 0.5rem 0.875rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(8px);
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .whatsapp-float:hover .whatsapp-float-label,
+        .whatsapp-float:focus-visible .whatsapp-float-label {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        @media (max-width: 768px) {
+            .whatsapp-float-icon { width: 52px; height: 52px; }
+            .whatsapp-float-icon svg { width: 28px; height: 28px; }
+            .whatsapp-float { bottom: 1.25rem; right: 1.25rem; }
+            .whatsapp-float-label { display: none; }
+            .intake-form-card { padding: 1.25rem; }
+        }
+    </style>
+    <script src="js/i18n-data.js"></script>
+    <script>try{var l=localStorage.getItem('acura.lang')||'es';document.documentElement.lang=l==='es'?'es-VE':'pt-BR';}catch(e){}</script>
+</head>
+<body data-i18n-title="sosve.intake.meta.title">
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="img/logo-acurabrasil.png" alt="ACURABRASIL" class="logo-img">
+            </a>
+            <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" data-i18n-aria="common.menuOpen">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="header-nav">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link" data-i18n="nav.home">Inicio</a></li>
+                    <li><a href="sos-venezuela.html" class="nav-link" data-i18n="nav.sosVe">SOS Venezuela</a></li>
+                    <li><a href="consulta-venezuela.html" class="nav-link nav-link-destaque" data-i18n="nav.consult">Consulta en Línea</a></li>
+                    <li><a href="instituicao.html" class="nav-link" data-i18n="nav.about">La Institución</a></li>
+                    <li><a href="equipe.html" class="nav-link" data-i18n="nav.team">Equipo</a></li>
+                    <li class="nav-dropdown">
+                        <button type="button" class="nav-dropdown-toggle" aria-expanded="false" data-i18n="nav.more">Más</button>
+                        <ul class="nav-dropdown-menu">
+                            <li><a href="pesquisas.html" data-i18n="nav.research">Investigaciones</a></li>
+                            <li><a href="atendimento-pandemia.html" data-i18n="nav.covid">Pandemia COVID-19</a></li>
+                            <li><a href="sos-saude-rs.html" data-i18n="nav.sosRs">SOS Salud RS</a></li>
+                            <li><a href="doacao.html" data-i18n="nav.donate">Donar</a></li>
+                            <li><a href="transparencia.html" data-i18n="nav.transparency">Transparencia</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contato.html" class="nav-link" data-i18n="nav.contact">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button type="button" class="lang-toggle" id="lang-toggle" title="Português">
+                    <span class="lang-toggle-flag" aria-hidden="true">🇧🇷</span>
+                    <span class="lang-toggle-label">PT</span>
+                </button>
+                <a href="associar.html" class="btn btn-verde header-cta" data-i18n="nav.join">Hazte Asociado</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-hero page-hero--compact">
+        <div class="container">
+            <div class="breadcrumb"><a href="index.html" data-i18n="common.breadcrumbHome">Inicio</a> / <a href="sos-venezuela.html" data-i18n="consulta.breadcrumb.sos">SOS Venezuela</a> / <span data-i18n="sosve.intake.breadcrumb">Solicitud de atención</span></div>
+            <h1 data-i18n="sosve.intake.hero.title">Solicitud de atención gratuita</h1>
+            <p data-i18n="sosve.intake.hero.subtitle">Complete el formulario para que nuestro equipo de triaje le oriente. Después, creará su cuenta en Doctor8 para la consulta por videollamada.</p>
+            <div class="intake-progress" aria-label="Progreso del proceso">
+                <div class="intake-progress-step is-active">
+                    <span class="intake-progress-num">1</span>
+                    <span data-i18n="sosve.intake.progress.step1">Solicitud</span>
+                </div>
+                <span class="intake-progress-arrow" aria-hidden="true">→</span>
+                <div class="intake-progress-step">
+                    <span class="intake-progress-num">2</span>
+                    <span data-i18n="sosve.intake.progress.step2">Registro Doctor8</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div id="sos-ve-intake-form-wrap" class="intake-form-wrap">
+                <div class="intake-form-card contact-form">
+                    <div id="sos-ve-intake-status" class="form-status" role="status" aria-live="polite" hidden></div>
+                    <form id="sos-ve-intake-form" action="/api/sos-venezuela/intake" method="post" novalidate>
+                        <div class="form-honeypot" aria-hidden="true">
+                            <label for="website">Website</label>
+                            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="nome" data-i18n="sosve.intake.form.nome.label">Nombre completo</label>
+                            <input type="text" id="nome" name="nome" required maxlength="200" data-i18n-placeholder="sosve.intake.form.nome.placeholder" placeholder="Su nombre completo">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" data-i18n="sosve.intake.form.email.label">Correo electrónico</label>
+                            <input type="email" id="email" name="email" required maxlength="254" data-i18n-placeholder="sosve.intake.form.email.placeholder" placeholder="su@email.com">
+                        </div>
+                        <div class="form-group">
+                            <span class="form-group-label" data-i18n="sosve.intake.form.phone.label">WhatsApp</span>
+                            <div class="form-phone-row">
+                                <div class="form-phone-field form-phone-ddi">
+                                    <label for="ddi" data-i18n="sosve.intake.form.phone.ddi">DDI</label>
+                                    <input type="tel" id="ddi" name="ddi" required value="+58" maxlength="5" inputmode="tel" data-i18n-placeholder="sosve.intake.form.phone.ddiPlaceholder" placeholder="+58">
+                                </div>
+                                <div class="form-phone-field form-phone-ddd">
+                                    <label for="ddd" data-i18n="sosve.intake.form.phone.ddd">Código de área</label>
+                                    <input type="tel" id="ddd" name="ddd" required maxlength="4" inputmode="numeric" data-i18n-placeholder="sosve.intake.form.phone.dddPlaceholder" placeholder="414">
+                                </div>
+                                <div class="form-phone-field form-phone-numero">
+                                    <label for="telefone" data-i18n="sosve.intake.form.phone.number">Número</label>
+                                    <input type="tel" id="telefone" name="telefone" required maxlength="15" inputmode="tel" data-i18n-placeholder="sosve.intake.form.phone.numberPlaceholder" placeholder="1234567">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="relacion" data-i18n="sosve.intake.form.relacion.label">Relación con el paciente</label>
+                            <select id="relacion" name="relacion" required>
+                                <option value="" data-i18n="sosve.intake.form.relacion.placeholder">Seleccione...</option>
+                                <option value="paciente" data-i18n="sosve.intake.form.relacion.paciente">Soy el paciente</option>
+                                <option value="familiar" data-i18n="sosve.intake.form.relacion.familiar">Soy familiar o responsable</option>
+                                <option value="tercero" data-i18n="sosve.intake.form.relacion.tercero">Otra persona solicita ayuda</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="nome-paciente-group" hidden>
+                            <label for="nome_paciente" data-i18n="sosve.intake.form.nomePaciente.label">Nombre del paciente</label>
+                            <input type="text" id="nome_paciente" name="nome_paciente" maxlength="200" data-i18n-placeholder="sosve.intake.form.nomePaciente.placeholder" placeholder="Nombre de quien necesita atención">
+                        </div>
+                        <div class="form-group">
+                            <label for="edad" data-i18n="sosve.intake.form.edad.label">Edad del paciente</label>
+                            <input type="number" id="edad" name="edad" min="0" max="120" inputmode="numeric" data-i18n-placeholder="sosve.intake.form.edad.placeholder" placeholder="Opcional">
+                        </div>
+                        <div class="form-group">
+                            <label for="ubicacion" data-i18n="sosve.intake.form.ubicacion.label">Ciudad y estado (Venezuela)</label>
+                            <input type="text" id="ubicacion" name="ubicacion" required maxlength="200" data-i18n-placeholder="sosve.intake.form.ubicacion.placeholder" placeholder="Ej.: Caracas, Distrito Capital">
+                        </div>
+                        <div class="form-group">
+                            <label for="tipo_atencion" data-i18n="sosve.intake.form.tipo.label">Tipo de atención solicitada</label>
+                            <select id="tipo_atencion" name="tipo_atencion" required>
+                                <option value="" data-i18n="sosve.intake.form.tipo.placeholder">Seleccione...</option>
+                                <option value="medica" data-i18n="sosve.intake.form.tipo.medica">Atención médica</option>
+                                <option value="psicologica" data-i18n="sosve.intake.form.tipo.psicologica">Atención psicológica</option>
+                                <option value="ambas" data-i18n="sosve.intake.form.tipo.ambas">Médica y psicológica</option>
+                                <option value="paliativos" data-i18n="sosve.intake.form.tipo.paliativos">Cuidados paliativos</option>
+                                <option value="orientacion" data-i18n="sosve.intake.form.tipo.orientacion">No estoy seguro/a — necesito orientación</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="prioridad" data-i18n="sosve.intake.form.prioridad.label">Urgencia percibida</label>
+                            <select id="prioridad" name="prioridad" required>
+                                <option value="" data-i18n="sosve.intake.form.prioridad.placeholder">Seleccione...</option>
+                                <option value="emergencia" data-i18n="sosve.intake.form.prioridad.emergencia">Emergencia — riesgo de vida o trauma grave</option>
+                                <option value="alta" data-i18n="sosve.intake.form.prioridad.alta">Alta prioridad — dolor intenso, crisis emocional aguda</option>
+                                <option value="regular" data-i18n="sosve.intake.form.prioridad.regular">Atención regular</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="sintomas" data-i18n="sosve.intake.form.sintomas.label">Describa síntomas, lesiones o necesidad de atención</label>
+                            <textarea id="sintomas" name="sintomas" required maxlength="3000" rows="5" data-i18n-placeholder="sosve.intake.form.sintomas.placeholder" placeholder="Describa con el mayor detalle posible..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="observaciones" data-i18n="sosve.intake.form.observaciones.label">Información adicional</label>
+                            <textarea id="observaciones" name="observaciones" maxlength="2000" rows="3" data-i18n-placeholder="sosve.intake.form.observaciones.placeholder" placeholder="Medicamentos, enfermedades previas, etc. (opcional)"></textarea>
+                        </div>
+                        <div class="form-group form-group-consent">
+                            <input type="checkbox" id="consentimiento" name="consentimiento" required value="on">
+                            <label for="consentimiento" data-i18n="sosve.intake.form.consentimiento" data-i18n-html>He leído y acepto el <strong>Término de Consentimiento para Telemedicina</strong> del proyecto SOS Venezuela — ACURA BRASIL. Autorizo el uso de mis datos para triaje humanitario y atención por telemedicina conforme a la LGPD y normas éticas aplicables. Entiendo que este servicio <strong>no reemplaza</strong> la urgencia presencial en casos graves.</label>
+                        </div>
+                        <button type="submit" class="btn btn-verde" style="width: 100%;" data-i18n="sosve.intake.form.submit">Enviar solicitud</button>
+                        <p class="intake-form-note" data-i18n="sosve.intake.form.note">Paso siguiente: después de enviar, creará su cuenta gratuita en Doctor8.</p>
+                    </form>
+                </div>
+            </div>
+
+            <div id="sos-ve-intake-success" class="intake-success" hidden>
+                <h2 data-i18n="sosve.intake.success.title">¡Solicitud recibida!</h2>
+                <p data-i18n="sosve.intake.success.protocolLabel">Su número de protocolo:</p>
+                <p class="intake-protocol" id="sos-ve-protocolo" aria-live="polite"></p>
+                <p data-i18n="sosve.intake.success.next">Nuestro equipo de triaje revisará su caso. Ahora continúe al paso 2 para registrarse en Doctor8 y entrar en la fila de Atención Inmediata.</p>
+                <div class="intake-success-actions">
+                    <a href="https://app.doctor8.org/register?callbackUrl=%2Furgent" class="btn btn-verde" target="_blank" rel="noopener" data-i18n="sosve.intake.success.btnDoctor8">Continuar — crear cuenta en Doctor8 →</a>
+                    <a href="https://app.doctor8.org/login?callbackUrl=%2Furgent" class="btn btn-outline" target="_blank" rel="noopener" data-i18n="sosve.intake.success.btnLogin">Ya tengo cuenta en Doctor8</a>
+                    <a href="https://wa.me/5531971720053" id="sos-ve-whatsapp-help" class="btn btn-outline" target="_blank" rel="noopener" data-i18n="sosve.intake.success.btnWhatsapp">Ayuda por WhatsApp con el registro</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <img src="img/logo-acurabrasil.png" alt="ACURABRASIL" class="logo-img">
+                </a>
+                <p class="footer-desc" data-i18n="footer.desc">Asociación Brasil por la Cura. Entidad sin fines de lucro dedicada al avance de la ciencia, el fomento de la investigación y la asistencia humanitaria.</p>
+                <span class="footer-cnpj" data-i18n="common.cnpj">CNPJ: 30.350.850/0001-80 · OSCIP</span>
+            </div>
+            <div>
+                <h4 class="footer-title" data-i18n="footer.nav">Navegación</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html" data-i18n="footer.home">Inicio</a></li>
+                    <li><a href="instituicao.html" data-i18n="footer.about">Sobre Nosotros</a></li>
+                    <li><a href="equipe.html" data-i18n="footer.team">Equipo</a></li>
+                    <li><a href="pesquisas.html" data-i18n="footer.areas">Áreas de Actuación</a></li>
+                    <li><a href="doacao.html" data-i18n="footer.donate">Donación</a></li>
+                    <li><a href="sos-saude-rs.html" data-i18n="footer.sosRs">SOS Salud RS</a></li>
+                    <li><a href="consulta-venezuela.html" data-i18n="footer.consult">Consulta en Línea</a></li>
+                    <li><a href="sos-venezuela.html" data-i18n="footer.sosVe">SOS Venezuela</a></li>
+                    <li><a href="contato.html" data-i18n="footer.contactLink">Contacto</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title" data-i18n="footer.transparency">Transparencia</h4>
+                <ul class="footer-links">
+                    <li><a href="transparencia.html" data-i18n="footer.portal">Portal de Transparencia</a></li>
+                    <li><a href="transparencia.html#estatuto" data-i18n="footer.estatuto">Estatuto Social</a></li>
+                    <li><a href="docs/estatuto-social-2022.pdf" target="_blank" rel="noopener" data-i18n="footer.estatutoPdf">Estatuto Social (PDF)</a></li>
+                    <li><a href="docs/comprovante-cnpj.pdf" target="_blank" rel="noopener" data-i18n="footer.cnpjPdf">Comprobante CNPJ (PDF)</a></li>
+                    <li><a href="transparencia.html#balancos" data-i18n="footer.balancos">Balances Financieros</a></li>
+                    <li><a href="transparencia.html#relatorios" data-i18n="footer.relatorios">Informes de Actividades</a></li>
+                    <li><a href="docs/projeto-sos-saude-rs.pdf" target="_blank" rel="noopener" data-i18n="footer.projetoSosRs">Proyecto SOS Salud RS (PDF)</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title" data-i18n="footer.contact">Contacto</h4>
+                <div class="footer-contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span data-i18n="footer.address" data-i18n-html>Rua Ulhôa Cintra, nº 32, Loja 01, Sala 01<br>Barrio Santa Efigênia, Belo Horizonte/MG</span>
+                </div>
+                <div class="footer-contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    <span data-i18n="footer.email">contato@acurabrasil.org</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p data-i18n="common.rights">© 2026 ACURA BRASIL. Todos los derechos reservados.</p>
+            <p data-i18n="common.transparencyFooter">Desarrollado en conformidad con las directrices de transparencia pública.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/5531971720053?text=Hola%2C%20necesito%20atenci%C3%B3n%20gratuita%20del%20SOS%20Venezuela" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Solicitar atención gratuita por WhatsApp">
+        <span class="whatsapp-float-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.881 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </span>
+        <span class="whatsapp-float-label">Atención por WhatsApp</span>
+    </a>
+
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/sos-venezuela-intake.js"></script>
+</body>
+</html>

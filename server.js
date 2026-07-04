@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const { handleContactRequest, verifyEmailOnStartup } = require('./lib/contact');
+const { handleSosVenezuelaIntakeRequest } = require('./lib/sos-venezuela-intake');
 const {
   handlePaypalConfig,
   handleSubscriptionPlan,
@@ -39,6 +40,7 @@ app.use((req, res, next) => {
 app.use(express.json({ limit: '32kb' }));
 
 app.post('/api/contact', handleContactRequest);
+app.post('/api/sos-venezuela/intake', handleSosVenezuelaIntakeRequest);
 app.get('/api/paypal/config', handlePaypalConfig);
 app.post('/api/paypal/subscription-plan', handleSubscriptionPlan);
 
