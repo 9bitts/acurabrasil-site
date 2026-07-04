@@ -4141,25 +4141,55 @@ a.btn.is-disabled:hover {
     color: #0a5c52;
 }
 
-.btn-whatsapp-cta {
+.whatsapp-cta p {
+    margin-bottom: 0.75rem;
+}
+
+.btn-whatsapp-cta,
+.btn-whatsapp-secondary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    margin-top: 0.5rem;
+    max-width: 100%;
+    text-decoration: none;
+}
+
+.btn-whatsapp-cta {
     padding: 0.75rem 1.25rem;
     border-radius: var(--radius);
     font-weight: 600;
-    text-decoration: none;
     background: #0a6b60;
     color: #fff;
     border: 2px solid #0a6b60;
 }
 
-.btn-whatsapp-cta svg {
+.btn-whatsapp-cta:hover {
+    background: #085248;
+    border-color: #085248;
+    color: #fff;
+}
+
+.btn-whatsapp-cta.btn-verde {
+    background: #0a6b60;
+    border-color: #0a6b60;
+}
+
+.btn-whatsapp-cta.btn-verde:hover {
+    background: #085248;
+    border-color: #085248;
+}
+
+.btn-whatsapp-cta svg,
+.btn-whatsapp-secondary svg {
     width: 1.25rem;
     height: 1.25rem;
+    max-width: 1.25rem;
+    max-height: 1.25rem;
     flex-shrink: 0;
     fill: currentColor;
+    display: block;
 }
 
 .consulta-steps--four {
