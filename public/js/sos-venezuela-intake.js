@@ -33,6 +33,16 @@
     statusEl.textContent = '';
   };
 
+  const validatePhoneClient = (ddi, ddd, telefone) => {
+    const ddiDigits = String(ddi || '').replace(/\D/g, '');
+    const dddDigits = String(ddd || '').replace(/\D/g, '');
+    const telDigits = String(telefone || '').replace(/\D/g, '');
+    if (!ddiDigits || !dddDigits || !telDigits) return false;
+    const national = dddDigits + telDigits;
+    if (ddiDigits === '58') return national.length >= 10 && national.length <= 11;
+    return telDigits.length >= 7 && telDigits.length <= 11;
+  };
+
   const toggleNomePaciente = () => {
     const isPaciente = relacionSelect?.value === 'paciente';
     if (nomePacienteGroup) {
@@ -59,6 +69,15 @@
       return;
     }
 
+    const ddi = form.querySelector('#ddi')?.value.trim() || '';
+    const ddd = form.querySelector('#ddd')?.value.trim() || '';
+    const telefone = form.querySelector('#telefone')?.value.trim() || '';
+    if (!validatePhoneClient(ddi, ddd, telefone)) {
+      showStatus('error', 'sosve.intake.errorPhone');
+      form.querySelector('#telefone')?.focus();
+      return;
+    }
+
     if (submitBtn) submitBtn.disabled = true;
     showStatus('info', 'sosve.intake.sending');
 
@@ -73,9 +92,9 @@
         body: JSON.stringify({
           nome: form.querySelector('#nome')?.value.trim() || '',
           email: form.querySelector('#email')?.value.trim() || '',
-          ddi: form.querySelector('#ddi')?.value.trim() || '',
-          ddd: form.querySelector('#ddd')?.value.trim() || '',
-          telefone: form.querySelector('#telefone')?.value.trim() || '',
+          ddi,
+          ddd,
+          telefone,
           relacion: relacionSelect?.value || '',
           nome_paciente: form.querySelector('#nome_paciente')?.value.trim() || '',
           edad: form.querySelector('#edad')?.value.trim() || '',
@@ -124,6 +143,12 @@
         } else {
           showStatus('error', 'sosve.intake.errorRateLimit');
         }
+        return;
+      }
+
+      if (res.status === 400 && data.field === 'phone') {
+        showStatus('error', 'sosve.intake.errorPhone');
+        form.querySelector('#telefone')?.focus();
         return;
       }
 
