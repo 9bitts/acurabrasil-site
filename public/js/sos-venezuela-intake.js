@@ -11,7 +11,9 @@
   const nomePacienteInput = form.querySelector('#nome_paciente');
   const protocoloEl = document.getElementById('sos-ve-protocolo');
   const whatsappHelpLink = document.getElementById('sos-ve-whatsapp-help');
+  const INTAKE_TOKEN_STORAGE_KEY = 'sos_ve_intake_token';
   let currentProtocolo = null;
+  let currentIntakeToken = null;
 
   const t = (key) => {
     if (window.AcuraI18n) {
@@ -94,16 +96,15 @@
   });
 
   function trackIntakeEvent(event) {
-    if (!currentProtocolo || !event) return;
+    if (!currentProtocolo || !currentIntakeToken || !event) return;
     const url = '/api/sos-venezuela/intake/' + encodeURIComponent(currentProtocolo) + '/event';
     const body = JSON.stringify({ event });
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon(url, new Blob([body], { type: 'application/json' }));
-      return;
-    }
     fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Intake-Token': currentIntakeToken,
+      },
       body,
       keepalive: true,
     }).catch(() => {});
@@ -169,8 +170,12 @@
       clearTimeout(timeoutId);
       const data = await res.json().catch(() => ({}));
 
-      if (res.ok && data.ok && data.protocolo) {
+      if (res.ok && data.ok && data.protocolo && data.intakeToken) {
         currentProtocolo = data.protocolo;
+        currentIntakeToken = data.intakeToken;
+        try {
+          sessionStorage.setItem(INTAKE_TOKEN_STORAGE_KEY, data.intakeToken);
+        } catch { /* private mode / quota */ }
         if (protocoloEl) protocoloEl.textContent = data.protocolo;
         if (whatsappHelpLink) {
           const msg = t('sosve.intake.whatsappHelpMsg').replace('{protocolo}', data.protocolo);
