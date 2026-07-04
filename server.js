@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const { handleContactRequest, verifyEmailOnStartup } = require('./lib/contact');
 const { handleSosVenezuelaIntakeRequest } = require('./lib/sos-venezuela-intake');
+const { handleIntakeEventRequest } = require('./lib/intake-events');
 const { registerAdminRoutes } = require('./lib/admin-api');
 const { getDb } = require('./lib/db');
 const {
@@ -43,6 +44,7 @@ app.use(express.json({ limit: '32kb' }));
 
 app.post('/api/contact', handleContactRequest);
 app.post('/api/sos-venezuela/intake', handleSosVenezuelaIntakeRequest);
+app.post('/api/sos-venezuela/intake/:protocolo/event', handleIntakeEventRequest);
 registerAdminRoutes(app);
 app.get('/api/paypal/config', handlePaypalConfig);
 app.post('/api/paypal/subscription-plan', handleSubscriptionPlan);

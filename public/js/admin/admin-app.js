@@ -17,6 +17,34 @@
     regular: 'Regular',
   };
 
+  const RELACION_LABELS = {
+    paciente: 'É o paciente',
+    familiar: 'Familiar ou responsável',
+    tercero: 'Terceiro solicita ajuda',
+  };
+
+  const TIPO_ATENCION_LABELS = {
+    medica: 'Atención médica',
+    psicologica: 'Atención psicológica',
+    ambas: 'Médica y psicológica',
+    psicanalise: 'Psicanálise',
+    terapias_integrativas: 'Terapias integrativas',
+    paliativos: 'Cuidados paliativos (legado)',
+    orientacion: 'Precisa orientação',
+  };
+
+  const DOCTOR8_STATUS_LABELS = {
+    registered: 'E-mail cadastrado no Doctor8',
+    not_found: 'E-mail não encontrado',
+    not_configured: 'API Doctor8 não configurada',
+    error: 'Erro ao consultar Doctor8',
+  };
+
+  function fmtTs(ts) {
+    if (!ts) return '—';
+    return String(ts).slice(0, 16).replace('T', ' ');
+  }
+
   const ROLE_LABELS = {
     triagem: 'Triagem',
     cadastro_wa: 'Cadastro WA',
@@ -367,9 +395,20 @@
         <div class="admin-detail-item"><label>Prioridade</label><span>${badgePrioridad(i.prioridad)}</span></div>
         <div class="admin-detail-item"><label>Status</label><span>${badgeStatus(i.status)}</span></div>
         <div class="admin-detail-item"><label>Paciente</label><span>${esc(i.nome_paciente)}</span></div>
+        <div class="admin-detail-item"><label>Relação</label><span>${esc(RELACION_LABELS[i.relacion] || i.relacion)}</span></div>
+        <div class="admin-detail-item"><label>Idade</label><span>${i.edad != null && i.edad !== '' ? esc(String(i.edad)) : '—'}</span></div>
         <div class="admin-detail-item"><label>Ubicación</label><span>${esc(i.ubicacion)}</span></div>
-        <div class="admin-detail-item"><label>Tipo atención</label><span>${esc(i.tipo_atencion)}</span></div>
+        <div class="admin-detail-item"><label>Tipo atención</label><span>${esc(TIPO_ATENCION_LABELS[i.tipo_atencion] || i.tipo_atencion)}</span></div>
         <div class="admin-detail-item"><label>Origem (UTM)</label><span>${esc(i.referral_source || '—')}</span></div>
+      </div>
+      <div class="admin-panel">
+        <h2>Ações do paciente (pós-envio)</h2>
+        <div class="admin-detail-grid">
+          <div class="admin-detail-item"><label>Clicou Doctor8 (cadastro)</label><span>${fmtTs(i.clicked_doctor8_register_at)}</span></div>
+          <div class="admin-detail-item"><label>Clicou Doctor8 (login)</label><span>${fmtTs(i.clicked_doctor8_login_at)}</span></div>
+          <div class="admin-detail-item"><label>Clicou WhatsApp ajuda</label><span>${fmtTs(i.clicked_whatsapp_help_at)}</span></div>
+        </div>
+        <p class="admin-hint">Registro automático ao clicar nos links da tela de sucesso. Não confirma cadastro concluído.</p>
       </div>
       <div class="admin-panel">
         <h2>Síntomas</h2>
@@ -386,7 +425,16 @@
           <label>Notas de triagem</label>
           <textarea id="intake-notes">${esc(i.triagem_notes)}</textarea>
         </div>
-        <label><input type="checkbox" id="intake-d8" ${i.doctor8_registered ? 'checked' : ''}> Registrado no Doctor8</label>
+        <label><input type="checkbox" id="intake-d8" ${i.doctor8_registered ? 'checked' : ''}> Registrado no Doctor8 (confirmado)</label>
+        <div class="admin-form-group" style="margin-top:0.75rem">
+          <label>Verificação API Doctor8</label>
+          <p class="admin-hint">
+            ${i.doctor8_email_checked_at
+              ? `Última consulta: ${esc(fmtTs(i.doctor8_email_checked_at))} — ${esc(DOCTOR8_STATUS_LABELS[i.doctor8_email_status] || i.doctor8_email_status || '—')}`
+              : 'Ainda não verificado via API.'}
+          </p>
+          <button type="button" class="admin-btn admin-btn-sm" id="intake-d8-check">Verificar e-mail no Doctor8</button>
+        </div>
         <div class="admin-status-actions">
           ${['em_triagem', 'orientado_doctor8', 'na_fila', 'em_consulta', 'concluido', 'cancelado']
             .map((s) => `<button type="button" class="admin-btn admin-btn-sm" data-set-status="${s}">${esc(STATUS_LABELS[s])}</button>`)
@@ -704,6 +752,7 @@
     });
 
     document.getElementById('save-intake')?.addEventListener('click', saveIntake);
+    document.getElementById('intake-d8-check')?.addEventListener('click', checkDoctor8Email);
     document.querySelectorAll('[data-set-status]').forEach((btn) => {
       btn.addEventListener('click', () => patchIntake({ status: btn.dataset.setStatus }));
     });
@@ -825,6 +874,28 @@
       assigned_volunteer_id: document.getElementById('intake-volunteer').value || null,
       doctor8_registered: document.getElementById('intake-d8').checked,
     });
+  }
+
+  async function checkDoctor8Email() {
+    const btn = document.getElementById('intake-d8-check');
+    if (btn) btn.disabled = true;
+    try {
+      const data = await api(
+        '/api/admin/intakes/' + encodeURIComponent(state.selectedProtocolo) + '/doctor8-check',
+        { method: 'POST' }
+      );
+      const msg = DOCTOR8_STATUS_LABELS[data.status] || data.status;
+      if (data.status === 'not_configured') {
+        alert('API Doctor8 não configurada no servidor. Veja DOCTOR8_API_* no .env.');
+      } else {
+        alert('Doctor8: ' + msg + (data.error ? ' (' + data.error + ')' : ''));
+      }
+      render();
+    } catch (err) {
+      alert('Erro: ' + err.message);
+    } finally {
+      if (btn) btn.disabled = false;
+    }
   }
 
   async function patchIntake(extra) {

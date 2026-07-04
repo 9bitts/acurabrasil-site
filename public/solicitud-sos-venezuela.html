@@ -290,7 +290,8 @@
                                 <option value="medica" data-i18n="sosve.intake.form.tipo.medica">Atención médica</option>
                                 <option value="psicologica" data-i18n="sosve.intake.form.tipo.psicologica">Atención psicológica</option>
                                 <option value="ambas" data-i18n="sosve.intake.form.tipo.ambas">Médica y psicológica</option>
-                                <option value="paliativos" data-i18n="sosve.intake.form.tipo.paliativos">Cuidados paliativos</option>
+                                <option value="psicanalise" data-i18n="sosve.intake.form.tipo.psicanalise">Psicoanálisis</option>
+                                <option value="terapias_integrativas" data-i18n="sosve.intake.form.tipo.terapias_integrativas">Terapias integrativas</option>
                                 <option value="orientacion" data-i18n="sosve.intake.form.tipo.orientacion">No estoy seguro/a — necesito orientación</option>
                             </select>
                         </div>
@@ -325,11 +326,11 @@
                 <h2 data-i18n="sosve.intake.success.title">¡Solicitud recibida!</h2>
                 <p data-i18n="sosve.intake.success.protocolLabel">Su número de protocolo:</p>
                 <p class="intake-protocol" id="sos-ve-protocolo" aria-live="polite"></p>
-                <p data-i18n="sosve.intake.success.next">Nuestro equipo de triaje revisará su caso. Ahora continúe al paso 2 para registrarse en Doctor8 y entrar en la fila de Atención Inmediata.</p>
+                <p data-i18n="sosve.intake.success.next">Nuestro equipo de triaje revisará su caso. Ahora continúe al paso 2: regístrese en Doctor8, agende una consulta con un voluntario o entre en la fila de atención del SOS Venezuela.</p>
                 <div class="intake-success-actions">
-                    <a href="https://app.doctor8.org/register?callbackUrl=%2Furgent" class="btn btn-verde" target="_blank" rel="noopener" data-i18n="sosve.intake.success.btnDoctor8">Continuar — crear cuenta en Doctor8 →</a>
-                    <a href="https://app.doctor8.org/login?callbackUrl=%2Furgent" class="btn btn-outline" target="_blank" rel="noopener" data-i18n="sosve.intake.success.btnLogin">Ya tengo cuenta en Doctor8</a>
-                    <a href="https://wa.me/5531971720053" id="sos-ve-whatsapp-help" class="btn btn-outline" target="_blank" rel="noopener" data-i18n="sosve.intake.success.btnWhatsapp">Ayuda por WhatsApp con el registro</a>
+                    <a href="https://app.doctor8.org/register?callbackUrl=%2Furgent" id="sos-ve-doctor8-register" class="btn btn-verde" target="_blank" rel="noopener" data-intake-event="doctor8_register" data-i18n="sosve.intake.success.btnDoctor8">Continuar — crear cuenta en Doctor8 →</a>
+                    <a href="https://app.doctor8.org/login?callbackUrl=%2Furgent" id="sos-ve-doctor8-login" class="btn btn-outline" target="_blank" rel="noopener" data-intake-event="doctor8_login" data-i18n="sosve.intake.success.btnLogin">Ya tengo cuenta en Doctor8</a>
+                    <a href="https://wa.me/5531971720053" id="sos-ve-whatsapp-help" class="btn btn-outline" target="_blank" rel="noopener" data-intake-event="whatsapp_help" data-i18n="sosve.intake.success.btnWhatsapp">Ayuda por WhatsApp con el registro</a>
                 </div>
             </div>
         </div>

@@ -11,6 +11,7 @@
   const nomePacienteInput = form.querySelector('#nome_paciente');
   const protocoloEl = document.getElementById('sos-ve-protocolo');
   const whatsappHelpLink = document.getElementById('sos-ve-whatsapp-help');
+  let currentProtocolo = null;
 
   const t = (key) => {
     if (window.AcuraI18n) {
@@ -57,6 +58,28 @@
   if (relacionSelect) {
     relacionSelect.addEventListener('change', toggleNomePaciente);
     toggleNomePaciente();
+  }
+
+  function trackIntakeEvent(event) {
+    if (!currentProtocolo || !event) return;
+    const url = '/api/sos-venezuela/intake/' + encodeURIComponent(currentProtocolo) + '/event';
+    const body = JSON.stringify({ event });
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(url, new Blob([body], { type: 'application/json' }));
+      return;
+    }
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body,
+      keepalive: true,
+    }).catch(() => {});
+  }
+
+  function bindSuccessTracking() {
+    document.querySelectorAll('[data-intake-event]').forEach((el) => {
+      el.addEventListener('click', () => trackIntakeEvent(el.dataset.intakeEvent));
+    });
   }
 
   form.addEventListener('submit', async (e) => {
@@ -113,6 +136,7 @@
       const data = await res.json().catch(() => ({}));
 
       if (res.ok && data.ok && data.protocolo) {
+        currentProtocolo = data.protocolo;
         if (protocoloEl) protocoloEl.textContent = data.protocolo;
         if (whatsappHelpLink) {
           const msg = t('sosve.intake.whatsappHelpMsg').replace('{protocolo}', data.protocolo);
@@ -131,6 +155,7 @@
           successBlock.hidden = false;
           successBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+        bindSuccessTracking();
         return;
       }
 
