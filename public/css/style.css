@@ -3530,14 +3530,18 @@ a.btn.is-disabled:hover {
 /* Equipe */
 .equipe-intro {
     font-size: 1.05rem;
+    line-height: 1.7;
     color: var(--texto-mutado);
     max-width: 720px;
     margin-bottom: 2.5rem;
 }
 
 .equipe-section-title {
-    margin-top: 2.5rem;
-    margin-bottom: 1.5rem;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    padding-bottom: 0.65rem;
+    border-bottom: 2px solid rgba(35, 114, 157, 0.12);
+    color: var(--azul-escuro);
 }
 
 .equipe-section-title:first-of-type {
@@ -3547,54 +3551,69 @@ a.btn.is-disabled:hover {
 .team-tier--president {
     display: flex;
     justify-content: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .team-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    gap: 1.75rem;
 }
 
 .team-grid--fiscal {
-    margin-top: 1.5rem;
+    margin-top: 2rem;
 }
 
 .team-card {
-    background: var(--branco);
-    border: 1px solid var(--cinza-borda);
-    border-radius: var(--radius);
-    padding: 1.75rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(180deg, var(--branco) 0%, #f8fbfd 100%);
+    border: 1px solid rgba(35, 114, 157, 0.1);
+    border-radius: 14px;
+    padding: 2rem 1.5rem 1.75rem;
     text-align: center;
-    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    box-shadow: 0 4px 18px rgba(35, 114, 157, 0.06);
 }
 
 .team-card:hover {
-    border-color: var(--azul-institucional);
-    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+    border-color: rgba(35, 114, 157, 0.22);
+    box-shadow: 0 14px 34px rgba(35, 114, 157, 0.12);
 }
 
 .team-card--featured {
     max-width: 360px;
     width: 100%;
-    padding: 2.25rem 2rem;
+    padding: 2.5rem 2rem 2.25rem;
     border-width: 2px;
-    border-color: var(--azul-institucional);
-    box-shadow: var(--shadow-md);
+    border-color: rgba(35, 114, 157, 0.28);
+    box-shadow: 0 10px 28px rgba(35, 114, 157, 0.1);
 }
 
 .team-photo {
-    width: 120px;
-    height: 120px;
+    width: 112px;
+    height: 112px;
+    max-width: none;
+    aspect-ratio: 1;
     border-radius: 50%;
-    object-fit: cover;
-    margin: 0 auto 1.25rem;
+    margin: 0 auto 1.35rem;
     display: block;
+    flex-shrink: 0;
+    box-shadow: 0 6px 20px rgba(35, 114, 157, 0.16);
+    outline: 3px solid var(--branco);
+    border: 1px solid rgba(35, 114, 157, 0.12);
+}
+
+.team-card img.team-photo {
+    object-fit: cover;
+    object-position: center 20%;
 }
 
 .team-card--featured .team-photo {
-    width: 140px;
-    height: 140px;
+    width: 132px;
+    height: 132px;
 }
 
 .team-photo--placeholder {
@@ -3606,29 +3625,31 @@ a.btn.is-disabled:hover {
 }
 
 .team-photo-initials {
-    font-size: 2rem;
+    font-size: 1.85rem;
     font-weight: 700;
-    letter-spacing: 0.02em;
-    opacity: 0.9;
+    letter-spacing: 0.04em;
+    opacity: 0.95;
 }
 
 .team-card--featured .team-photo-initials {
-    font-size: 2.25rem;
+    font-size: 2.1rem;
 }
 
 .team-role {
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     font-weight: 600;
     color: var(--azul-institucional);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin: 0 0 0.5rem;
+    letter-spacing: 0.06em;
+    line-height: 1.45;
+    max-width: 240px;
+    margin: 0 auto 0.65rem;
 }
 
 .team-name {
     font-size: 1.1rem;
     font-weight: 700;
-    color: var(--texto);
+    color: var(--azul-escuro);
     margin: 0;
     line-height: 1.35;
 }
