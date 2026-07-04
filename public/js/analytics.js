@@ -71,7 +71,7 @@
           track = 'consulta_iniciada';
         } else if (href.indexOf('wa.me') !== -1) {
           track = 'whatsapp_clicado';
-        } else if (href.indexOf('doctor8.org/register') !== -1 || href.indexOf('volunteer-doctor8') !== -1) {
+        } else if (href.indexOf('doctor8.org/register/professional/signup') !== -1) {
           track = 'voluntario_cta_clicado';
         } else if (el.classList && el.classList.contains('btn-consulta-principal')) {
           track = 'consulta_iniciada';

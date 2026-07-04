@@ -1443,24 +1443,24 @@ a.btn.is-disabled:hover {
 }
 
 .emergency-banner-content h2,
-.emergency-banner-content p,
+.emergency-banner-content > p,
 .emergency-banner-content .emergency-footnote {
     color: #ffffff;
 }
 
+.emergency-banner .emergency-notice,
+.emergency-banner .emergency-notice p,
+.emergency-banner .emergency-notice strong {
+    color: var(--urgencia);
+}
+
 .emergency-banner .emergency-notice {
     background: #fff5f5;
-    color: var(--texto-escuro);
     border-left-color: #c0392b;
 }
 
 .emergency-banner .emergency-notice p {
-    color: var(--texto-escuro);
     margin: 0;
-}
-
-.emergency-banner .emergency-notice strong {
-    color: var(--urgencia-escuro);
 }
 
 .emergency-pulse {
@@ -2406,7 +2406,7 @@ a.btn.is-disabled:hover {
     border-radius: var(--radius);
     border-left: 4px solid var(--urgencia);
     background: #fff5f5;
-    color: var(--texto-escuro);
+    color: var(--urgencia);
     font-size: 0.95rem;
     line-height: 1.6;
 }
@@ -2416,13 +2416,14 @@ a.btn.is-disabled:hover {
     background: linear-gradient(90deg, #fdecea 0%, #fff 100%);
 }
 
-.emergency-notice strong {
-    color: var(--urgencia-escuro);
+.emergency-notice p {
+    margin: 0;
+    color: inherit;
 }
 
-.emergency-notice--ve strong:first-of-type {
-    color: #c0392b;
-    font-size: 1.05em;
+.emergency-notice strong {
+    color: inherit;
+    font-weight: 700;
 }
 
 .cookie-consent-banner {
