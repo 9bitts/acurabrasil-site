@@ -85,27 +85,6 @@
     "initials": "GD"
   },
   {
-    "id": "0695f2b9-a477-4ff3-9cf7-e137754ecd44",
-    "name": "José Augusto Nasser",
-    "slug": "jose-augusto-nasser",
-    "profissao": [
-      "Medicina"
-    ],
-    "especialidade": [
-      "Neurologia",
-      "Oncologia"
-    ],
-    "registro": "",
-    "bio": "Neurológica Integrativa , Neurocirurgia funcional e oncologia Integrativa",
-    "agendamento": "http://wa.me/5531971720053",
-    "curriculo": "",
-    "location": "",
-    "photo": "https://static.wixstatic.com/media/cc9623_5206275b05d6403ca859b889daf43ace~mv2.png/Jos%C3%A9%20Augusto%20Nasser%202.png",
-    "volunteerBadge": true,
-    "doctor8": true,
-    "initials": "JA"
-  },
-  {
     "id": "07edb5a6-5866-4ebe-b47e-a396af21fc35",
     "name": "Camila Marques da Silva",
     "slug": "camila-marques-da-silva",
@@ -145,27 +124,6 @@
     "volunteerBadge": true,
     "doctor8": true,
     "initials": "AA"
-  },
-  {
-    "id": "1652f40d-3b3a-40a5-ab04-0a105ff3600c",
-    "name": "Solange Nunes Martins",
-    "slug": "solange-nunes-martins",
-    "profissao": [
-      "Medicina"
-    ],
-    "especialidade": [
-      "Dermatologia",
-      "Medicina Preventiva"
-    ],
-    "registro": "",
-    "bio": "Dermatologia Integrativa, Medicina Preventiva, Doenças da pele, unhas, cabelos através da visão global da sua saúde",
-    "agendamento": "http://wa.me/5531971720053",
-    "curriculo": "",
-    "location": "",
-    "photo": "https://static.wixstatic.com/media/cc9623_f7fc013d8fe84804b12f86221e4eecf3~mv2.png/Solange%20Nunes%20Martins%202.png",
-    "volunteerBadge": true,
-    "doctor8": true,
-    "initials": "SN"
   },
   {
     "id": "1aebbfb3-f297-4687-8e05-e1275d0468f5",
@@ -271,24 +229,6 @@
     "volunteerBadge": true,
     "doctor8": true,
     "initials": "LS"
-  },
-  {
-    "id": "241635b1-e6e4-40ff-a84f-b2f6272a9f8a",
-    "name": "Roberta Lacerda",
-    "slug": "roberta-lacerda",
-    "profissao": [
-      "Medicina"
-    ],
-    "especialidade": [],
-    "registro": "",
-    "bio": "Infectologista\nCandidíase de Repetição\nInfecção Urinária de Repetição\nInvestigação de Tuberculose Latente\nPneumonias Virais\nInvestigação de Imunossupressão\nSíndrome Pós-COVID",
-    "agendamento": "http://wa.me/5531971720053",
-    "curriculo": "",
-    "location": "",
-    "photo": "https://static.wixstatic.com/media/cc9623_8277cd6ea1b14bdc8d7149a3687386bd~mv2.png/Profissionais%20D8.png",
-    "volunteerBadge": true,
-    "doctor8": true,
-    "initials": "RL"
   },
   {
     "id": "2afda21d-2ecf-4b59-994d-c8912def2a70",
@@ -494,26 +434,6 @@
     "volunteerBadge": true,
     "doctor8": true,
     "initials": "MA"
-  },
-  {
-    "id": "48f0f429-a9ec-4877-be0c-0191e038d964",
-    "name": "Ana Carolina Abuquerque",
-    "slug": "ana-carolina-abuquerque",
-    "profissao": [
-      "Dentista"
-    ],
-    "especialidade": [
-      "Terapia Canabinoide"
-    ],
-    "registro": "CRO 51129",
-    "bio": "Cirutgiã-dentista \nTerapia Canabinoide",
-    "agendamento": "http://wa.me/5531971720053",
-    "curriculo": "",
-    "location": "",
-    "photo": "https://static.wixstatic.com/media/cc9623_07e69f24726e4199823c3283e43fdf30~mv2.png/Ana%20Carolina%20Abuquerque.png",
-    "volunteerBadge": true,
-    "doctor8": true,
-    "initials": "AC"
   },
   {
     "id": "4a00fd58-95d9-4dc4-8c89-0c5c5a9664a5",

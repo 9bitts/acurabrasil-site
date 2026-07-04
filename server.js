@@ -11,7 +11,7 @@ const {
   handleSubscriptionPlan,
   logPaypalOnStartup,
 } = require('./lib/paypal');
-const { adminIpGuard } = require('./lib/admin-ip-guard');
+const { adminGuard, describeAdminGuardMode } = require('./lib/admin-guard');
 const {
   handleNewsletterSubscribe,
   handleNewsletterConfirm,
@@ -27,6 +27,10 @@ app.set('trust proxy', 1);
 app.use((req, res, next) => {
   const host = (req.headers.host || '').split(':')[0].toLowerCase();
   if (host === 'acurabrasil.org') {
+    // Sitemap/robots must answer 200 on the apex host (GSC domain property fetches here).
+    if (req.path === '/sitemap.xml' || req.path === '/robots.txt') {
+      return next();
+    }
     const target = `https://${CANONICAL_HOST}${req.originalUrl || '/'}`;
     return res.redirect(301, target);
   }
@@ -77,16 +81,26 @@ registerAdminRoutes(app);
 app.get('/api/paypal/config', handlePaypalConfig);
 app.post('/api/paypal/subscription-plan', handleSubscriptionPlan);
 
-app.get(['/admin', '/admin/'], adminIpGuard, (req, res) => {
+app.get(['/admin', '/admin/'], adminGuard, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin', 'index.html'));
 });
 
 app.use((req, res, next) => {
   if (!req.path.startsWith('/admin')) return next();
-  return adminIpGuard(req, res, next);
+  return adminGuard(req, res, next);
 });
 
 const publicPath = path.join(__dirname, 'public');
+
+app.get('/sitemap.xml', (req, res) => {
+  res.type('application/xml');
+  res.sendFile(path.join(publicPath, 'sitemap.xml'));
+});
+
+app.get('/robots.txt', (req, res) => {
+  res.type('text/plain');
+  res.sendFile(path.join(publicPath, 'robots.txt'));
+});
 
 app.get('/favicon.ico', (req, res) => {
   res.sendFile(path.join(publicPath, 'img', 'logo-acurabrasil.png'));
@@ -114,12 +128,13 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
   console.log(`ACURA BRASIL site running on port ${PORT}`);
-  const { parseAdminAllowlist } = require('./lib/admin-ip-guard');
-  const allowlist = parseAdminAllowlist();
-  if (allowlist) {
-    console.log(`Admin IP allowlist active (${allowlist.size} entries)`);
+  const guardMode = describeAdminGuardMode();
+  if (guardMode) {
+    console.log(guardMode);
   } else {
-    console.warn('Admin IP allowlist not set — configure ADMIN_IP_ALLOWLIST or Cloudflare Access');
+    console.warn(
+      'Admin guard not configured (dev) — /admin and /api/admin are open; set CF_ACCESS_* or ADMIN_IP_ALLOWLIST in production'
+    );
   }
   try {
     getDb();
