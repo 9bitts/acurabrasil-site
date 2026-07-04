@@ -52,6 +52,42 @@ O formulário envia via `POST /api/contact`. **Recomendado: [Resend](https://res
 | `CONTACT_TO` | `contato@acurabrasil.org` |
 | `CONTACT_FROM` | igual ao `SMTP_USER` |
 
+## Admin SOS Venezuela
+
+Painel interno de operação (triagem, escala, voluntários) em **`/admin/`** — não linkado no site público.
+
+### Variáveis de ambiente
+
+| Variável | Descrição |
+|----------|-----------|
+| `ADMIN_USERNAME` | Usuário do login (padrão: `admin`) |
+| `ADMIN_PASSWORD` | Senha em texto (dev) ou use `ADMIN_PASSWORD_HASH` (scrypt) em produção |
+| `ADMIN_SESSION_SECRET` | Segredo HMAC para cookie de sessão (32+ caracteres aleatórios) |
+| `DATA_PATH` | Caminho do SQLite (padrão: `./data/acura-sos.db`) |
+| `SOS_VENEZUELA_TO` | E-mail que recebe novas solicitudes |
+
+### Primeiro acesso
+
+1. Defina `ADMIN_USERNAME`, `ADMIN_PASSWORD` e `ADMIN_SESSION_SECRET` no `.env` ou no Railway.
+2. Acesse `/admin/login.html` e faça login.
+3. Na primeira inicialização, o banco é criado com **dados de exemplo**: 4 turnos, 4 voluntários fictícios e escala dos próximos 7 dias.
+
+### Persistência no Railway (Volume)
+
+Para que solicitudes, escala e configurações sobrevivam a redeploys:
+
+1. No projeto Railway, adicione um **Volume** montado em `/data`.
+2. Configure `DATA_PATH=/data/acura-sos.db`.
+3. Redeploy — o SQLite ficará no volume persistente.
+
+### Fluxo operacional
+
+1. Paciente preenche `solicitud-sos-venezuela.html` → `POST /api/sos-venezuela/intake`.
+2. Solicitud é salva em SQLite (`sos_intakes`, status `nova`) e e-mail enviado à equipe.
+3. Operador acessa `/admin/` → fila de solicitudes → triagem, notas, status.
+4. Escala do dia indica quem está de plantão (turnos + voluntários).
+5. Páginas públicas SOS consultam `GET /api/sos-venezuela/public-info` para horários e WhatsApp.
+
 ## Deploy no Railway
 
 ### Opção 1 — Via GitHub (recomendado)

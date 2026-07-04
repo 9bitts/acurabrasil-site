@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const { handleContactRequest, verifyEmailOnStartup } = require('./lib/contact');
 const { handleSosVenezuelaIntakeRequest } = require('./lib/sos-venezuela-intake');
+const { registerAdminRoutes } = require('./lib/admin-api');
+const { getDb } = require('./lib/db');
 const {
   handlePaypalConfig,
   handleSubscriptionPlan,
@@ -41,8 +43,14 @@ app.use(express.json({ limit: '32kb' }));
 
 app.post('/api/contact', handleContactRequest);
 app.post('/api/sos-venezuela/intake', handleSosVenezuelaIntakeRequest);
+registerAdminRoutes(app);
 app.get('/api/paypal/config', handlePaypalConfig);
 app.post('/api/paypal/subscription-plan', handleSubscriptionPlan);
+
+app.get('/admin', (req, res) => res.redirect('/admin/'));
+app.get('/admin/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'admin', 'index.html'));
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -56,6 +64,12 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
   console.log(`ACURA BRASIL site running on port ${PORT}`);
+  try {
+    getDb();
+    console.log('SOS admin DB initialized');
+  } catch (err) {
+    console.error('SOS admin DB init failed:', err.message);
+  }
   verifyEmailOnStartup();
   logPaypalOnStartup();
 });

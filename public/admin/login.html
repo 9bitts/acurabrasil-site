@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Login — Admin SOS Venezuela | ACURA Brasil</title>
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body class="admin-login-page">
+    <div class="admin-login-box">
+        <h1>Admin SOS Venezuela</h1>
+        <p>Painel interno de operação — ACURA Brasil</p>
+        <form id="admin-login-form">
+            <div class="admin-form-group">
+                <label for="username">Usuário</label>
+                <input type="text" id="username" name="username" autocomplete="username" required>
+            </div>
+            <div class="admin-form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" autocomplete="current-password" required>
+            </div>
+            <button type="submit" class="admin-btn" style="width:100%">Entrar</button>
+            <p id="login-error" class="admin-error admin-hidden"></p>
+        </form>
+    </div>
+    <script>
+        document.getElementById('admin-login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const errEl = document.getElementById('login-error');
+            errEl.classList.add('admin-hidden');
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            try {
+                const res = await fetch('/api/admin/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify({ username, password }),
+                });
+                const data = await res.json();
+                if (data.ok) {
+                    window.location.href = '/admin/';
+                    return;
+                }
+                errEl.textContent = res.status === 429
+                    ? 'Muitas tentativas. Aguarde 15 minutos.'
+                    : 'Usuário ou senha inválidos.';
+                errEl.classList.remove('admin-hidden');
+            } catch {
+                errEl.textContent = 'Erro de conexão. Tente novamente.';
+                errEl.classList.remove('admin-hidden');
+            }
+        });
+    </script>
+</body>
+</html>

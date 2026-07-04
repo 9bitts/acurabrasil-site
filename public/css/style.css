@@ -3217,3 +3217,62 @@ img:not(.logo-img) {
     .team-grid { grid-template-columns: 1fr; }
     .team-card--featured { max-width: 100%; }
 }
+
+/* SOS Venezuela — horários dinâmicos (public-info API) */
+.sos-schedule-info {
+    margin-bottom: 1.5rem;
+}
+
+.sos-schedule-badge {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.sos-schedule-badge--open {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.sos-schedule-badge--closed {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.sos-schedule-shifts {
+    margin: 0.75rem 0 0;
+    padding-left: 1.25rem;
+    font-size: 0.9rem;
+}
+
+.sos-schedule-message {
+    margin: 0.75rem 0 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.sos-schedule-next {
+    margin: 0.5rem 0 0;
+    color: var(--texto-mutado);
+}
+
+.sos-schedule-hours {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin: 0.75rem 0 0;
+}
+
+.sos-schedule-closed-wrap,
+.sos-schedule-open-wrap {
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    border: 1px solid var(--borda, #dde3ea);
+    background: var(--fundo-card, #fff);
+}
+
+.sos-schedule-closed-wrap {
+    border-color: #fcd34d;
+    background: #fffbeb;
+}

@@ -1,0 +1,400 @@
+/* Admin SOS Venezuela — ACURA Brasil */
+:root {
+  --admin-sidebar: #1a2332;
+  --admin-sidebar-text: #e8ecf1;
+  --admin-accent: #2d6a4f;
+  --admin-accent-hover: #40916c;
+  --admin-bg: #f4f6f9;
+  --admin-card: #fff;
+  --admin-border: #dde3ea;
+  --admin-danger: #c1121f;
+  --admin-warn: #e09f3e;
+}
+
+body.admin-body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: var(--admin-bg);
+  color: #1a1a1a;
+  min-height: 100vh;
+}
+
+.admin-login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a2332 0%, #2d6a4f 100%);
+}
+
+.admin-login-box {
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+}
+
+.admin-login-box h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.35rem;
+  color: var(--admin-sidebar);
+}
+
+.admin-login-box p {
+  margin: 0 0 1.5rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.admin-form-group {
+  margin-bottom: 1rem;
+}
+
+.admin-form-group label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.admin-form-group input,
+.admin-form-group select,
+.admin-form-group textarea {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+
+.admin-form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.admin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--admin-accent);
+  color: #fff;
+  text-decoration: none;
+}
+
+.admin-btn:hover {
+  background: var(--admin-accent-hover);
+}
+
+.admin-btn-secondary {
+  background: #6c757d;
+}
+
+.admin-btn-secondary:hover {
+  background: #5a6268;
+}
+
+.admin-btn-danger {
+  background: var(--admin-danger);
+}
+
+.admin-btn-sm {
+  padding: 0.35rem 0.65rem;
+  font-size: 0.8rem;
+}
+
+.admin-error {
+  color: var(--admin-danger);
+  font-size: 0.875rem;
+  margin-top: 0.75rem;
+}
+
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.admin-sidebar {
+  width: 240px;
+  background: var(--admin-sidebar);
+  color: var(--admin-sidebar-text);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-sidebar-header {
+  padding: 1.25rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-sidebar-header h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.admin-sidebar-header small {
+  opacity: 0.7;
+  font-size: 0.75rem;
+}
+
+.admin-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0.75rem 0;
+  flex: 1;
+}
+
+.admin-nav li button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.65rem 1rem;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.admin-nav li button:hover,
+.admin-nav li button.active {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.admin-sidebar-footer {
+  padding: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.8rem;
+}
+
+.admin-main {
+  flex: 1;
+  padding: 1.5rem 2rem;
+  overflow-x: auto;
+}
+
+.admin-main h1 {
+  margin: 0 0 1.25rem;
+  font-size: 1.5rem;
+}
+
+.admin-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.admin-card {
+  background: var(--admin-card);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--admin-border);
+}
+
+.admin-card-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--admin-accent);
+}
+
+.admin-card-label {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+.admin-panel {
+  background: var(--admin-card);
+  border-radius: 8px;
+  padding: 1.25rem;
+  border: 1px solid var(--admin-border);
+  margin-bottom: 1.25rem;
+}
+
+.admin-panel h2 {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+}
+
+.admin-table-wrap {
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-table th {
+  background: #f8f9fa;
+  font-weight: 600;
+}
+
+.admin-table tr:hover td {
+  background: #f8fafb;
+}
+
+.admin-table tr.clickable {
+  cursor: pointer;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge-nova { background: #dbeafe; color: #1e40af; }
+.badge-em_triagem { background: #fef3c7; color: #92400e; }
+.badge-orientado_doctor8 { background: #e0e7ff; color: #3730a3; }
+.badge-na_fila { background: #fce7f3; color: #9d174d; }
+.badge-em_consulta { background: #d1fae5; color: #065f46; }
+.badge-concluido { background: #e5e7eb; color: #374151; }
+.badge-cancelado { background: #fee2e2; color: #991b1b; }
+
+.badge-emergencia { background: #fee2e2; color: #991b1b; }
+.badge-alta { background: #fef3c7; color: #92400e; }
+.badge-regular { background: #dbeafe; color: #1e40af; }
+
+.admin-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.admin-filters select,
+.admin-filters input {
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 6px;
+}
+
+.admin-schedule-grid {
+  overflow-x: auto;
+}
+
+.admin-schedule-table {
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  min-width: 100%;
+}
+
+.admin-schedule-table th,
+.admin-schedule-table td {
+  border: 1px solid var(--admin-border);
+  padding: 0.4rem;
+  vertical-align: top;
+}
+
+.admin-schedule-table th {
+  background: #f8f9fa;
+  text-align: center;
+  min-width: 110px;
+}
+
+.admin-schedule-table td:first-child {
+  font-weight: 600;
+  background: #f8f9fa;
+  white-space: nowrap;
+}
+
+.admin-schedule-table select {
+  width: 100%;
+  min-width: 120px;
+  font-size: 0.75rem;
+  padding: 0.3rem;
+}
+
+.admin-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.admin-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.admin-detail-item label {
+  display: block;
+  font-size: 0.75rem;
+  color: #666;
+  margin-bottom: 0.15rem;
+}
+
+.admin-detail-item span {
+  font-weight: 500;
+}
+
+.admin-status-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.admin-hidden {
+  display: none !important;
+}
+
+.admin-role-checkboxes label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-right: 1rem;
+  font-size: 0.875rem;
+}
+
+.admin-preview-box {
+  background: #f8f9fa;
+  border: 1px dashed var(--admin-border);
+  border-radius: 6px;
+  padding: 1rem;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .admin-layout {
+    flex-direction: column;
+  }
+  .admin-sidebar {
+    width: 100%;
+  }
+  .admin-nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+  }
+  .admin-nav li button {
+    width: auto;
+    padding: 0.5rem 0.75rem;
+  }
+}
