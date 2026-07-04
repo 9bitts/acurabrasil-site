@@ -40,6 +40,15 @@
     error: 'Erro ao consultar Doctor8',
   };
 
+  const DOCTOR8_ERROR_LABELS = {
+    unauthorized: 'Token inválido (401)',
+    rate_limit: 'Rate limit Doctor8 (429)',
+    invalid_email: 'E-mail inválido (400)',
+    timeout: 'Timeout na API Doctor8',
+    network: 'Erro de rede',
+    not_configured: 'API não configurada',
+  };
+
   function fmtTs(ts) {
     if (!ts) return '—';
     return String(ts).slice(0, 16).replace('T', ' ');
@@ -888,7 +897,8 @@
       if (data.status === 'not_configured') {
         alert('API Doctor8 não configurada no servidor. Veja DOCTOR8_API_* no .env.');
       } else {
-        alert('Doctor8: ' + msg + (data.error ? ' (' + data.error + ')' : ''));
+        const errDetail = data.error ? (DOCTOR8_ERROR_LABELS[data.error] || data.error) : '';
+        alert('Doctor8: ' + msg + (errDetail ? ' — ' + errDetail : ''));
       }
       render();
     } catch (err) {
