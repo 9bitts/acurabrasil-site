@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=13">
+    <link rel="stylesheet" href="css/style.css?v=15">
     <script src="js/i18n-data.js"></script>
     <script>try{var l=localStorage.getItem('acura.lang')||'es';document.documentElement.lang=l==='es'?'es-VE':'pt-BR';}catch(e){}</script>
 </head>
@@ -82,8 +82,9 @@
                         <h3 data-i18n="contato.volunteer.title">Faça parte da resposta humanitária</h3>
                         <p data-i18n="contato.volunteer.text">Faça login, complete seu cadastro e aguarde o contato da nossa equipe.</p>
                         <div class="cta-voluntario-actions">
-                            <a href="https://app.doctor8.org/register/professional/signup" class="btn btn-verde" target="_blank" rel="noopener" data-i18n="contato.volunteer.btn">Quero ser Voluntário</a>
+                            <a href="https://app.doctor8.org/register/professional/signup" id="volunteer-doctor8-link" class="btn btn-verde" target="_blank" rel="noopener" data-i18n="contato.volunteer.btn">Quero ser Voluntário</a>
                         </div>
+                        <p class="form-hint" style="margin-top:0.75rem" data-i18n="contato.volunteer.termsHint">Aceite o Termo de Adesão no formulário abaixo para habilitar o cadastro na Doctor8.</p>
                     </div>
                     <div class="contact-form">
                     <h3 style="margin-bottom: 1.5rem; color: var(--texto-escuro);" data-i18n="contato.form.title">Envíe su mensaje</h3>
@@ -124,6 +125,17 @@
                             <option value="outro" data-i18n="contato.form.subject.outro">Otro</option>
                         </select></div>
                         <div class="form-group"><label for="mensagem" data-i18n="contato.form.message.label">Mensaje</label><textarea id="mensagem" name="mensagem" required data-i18n-placeholder="contato.form.message.placeholder" placeholder="Escriba su mensaje..."></textarea></div>
+                        <div id="volunteer-terms-group" class="volunteer-terms-group" hidden>
+                            <details class="legal-terms-details">
+                                <summary data-i18n="voluntario.terms.toggle">Termo de Adesão ao Serviço Voluntário — Selo AcuraBrasil</summary>
+                                <div id="volunteer-terms-body" class="legal-terms-body" aria-live="polite"></div>
+                            </details>
+                            <p class="form-hint legal-terms-meta" data-i18n="voluntario.terms.version">Versão 1.0 · atualizado em 29/06/2026 · <a href="https://app.doctor8.org/acura-voluntariado" target="_blank" rel="noopener">versão completa na Doctor8</a></p>
+                            <div class="form-group form-group-consent">
+                                <input type="checkbox" id="voluntario-termo" name="voluntario_termo" value="on">
+                                <label for="voluntario-termo" data-i18n="voluntario.terms.checkbox" data-i18n-html>Li e aceito o <strong>Termo de Adesão ao Serviço Voluntário</strong> (Selo Voluntário AcuraBrasil · ACURA BRASIL · Doctor8), versão 1.0, e declaro que atuarei conforme a Lei 9.608/1998 e a LGPD.</label>
+                            </div>
+                        </div>
                         <button type="submit" class="btn btn-verde" style="width: 100%;" data-i18n="contato.form.submit">Enviar Mensaje</button>
                     </form>
                     </div>
@@ -185,6 +197,8 @@
     </footer>
 
     <script src="js/i18n.js"></script>
+    <script src="js/volunteer-terms-content.js"></script>
+    <script src="js/volunteer-terms.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

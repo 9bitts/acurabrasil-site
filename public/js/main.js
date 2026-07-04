@@ -111,11 +111,19 @@
     if (assuntoSelect && presetAssunto) {
       const option = assuntoSelect.querySelector(`option[value="${presetAssunto}"]`);
       if (option) assuntoSelect.value = presetAssunto;
+      assuntoSelect.dispatchEvent(new Event('change'));
     }
 
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       clearStatus();
+
+      if (window.VolunteerTerms && !window.VolunteerTerms.isAccepted()) {
+        showStatus('error', 'voluntario.terms.errorRequired');
+        document.getElementById('volunteer-terms-group')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        document.querySelector('#volunteer-terms-group details')?.setAttribute('open', 'open');
+        return;
+      }
 
       if (!contactForm.checkValidity()) {
         contactForm.reportValidity();
@@ -142,6 +150,7 @@
             assunto: assuntoSelect?.value || '',
             mensagem: contactForm.querySelector('#mensagem')?.value.trim() || '',
             website: contactForm.querySelector('#website')?.value || '',
+            ...(window.VolunteerTerms?.getPayload?.() || {}),
           }),
         });
 
@@ -158,11 +167,19 @@
             const option = assuntoSelect.querySelector(`option[value="${presetAssunto}"]`);
             if (option) assuntoSelect.value = presetAssunto;
           }
+          if (window.VolunteerTerms && typeof assuntoSelect?.dispatchEvent === 'function') {
+            assuntoSelect.dispatchEvent(new Event('change'));
+          }
           return;
         }
 
         if (res.status === 429) {
           showStatus('error', 'contato.form.errorRateLimit');
+          return;
+        }
+
+        if (res.status === 400 && data.error === 'voluntario_termo_required') {
+          showStatus('error', 'voluntario.terms.errorRequired');
           return;
         }
 
