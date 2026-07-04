@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="yt-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#164e6c"/>
+      <stop offset="100%" stop-color="#23729d"/>
+    </linearGradient>
+    <linearGradient id="yt-shine" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#yt-bg)"/>
+  <rect width="640" height="360" fill="url(#yt-shine)"/>
+  <circle cx="320" cy="180" r="52" fill="rgba(255,255,255,0.15)"/>
+  <circle cx="320" cy="180" r="44" fill="#ff0000"/>
+  <path d="M305 155 L355 180 L305 205 Z" fill="#ffffff"/>
+  <g transform="translate(32, 28)">
+    <rect x="0" y="8" width="72" height="52" rx="12" fill="#ff0000"/>
+    <path d="M30 22 L30 46 L52 34 Z" fill="#ffffff"/>
+  </g>
+  <text x="32" y="330" fill="rgba(255,255,255,0.85)" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="600">@acuraparatodos</text>
+</svg>
