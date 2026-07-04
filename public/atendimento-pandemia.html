@@ -39,6 +39,7 @@
                             <li><a href="atendimento-pandemia.html" data-i18n="nav.covid">Pandemia COVID-19</a></li>
                             <li><a href="sos-saude-rs.html" data-i18n="nav.sosRs">SOS Salud RS</a></li>
                             <li><a href="transparencia.html" data-i18n="nav.transparency">Transparencia</a></li>
+                            <li><a href="voluntarios.html" data-i18n="nav.volunteers">Voluntariado profesional</a></li>
                         </ul>
                     </li>
                     <li><a href="contato.html" class="nav-link" data-i18n="nav.contact">Contacto</a></li>
@@ -107,7 +108,8 @@
                     <li><a href="sos-saude-rs.html" data-i18n="footer.sosRs">SOS Salud RS</a></li>
                     <li><a href="consulta-venezuela.html" data-i18n="footer.consult">Consulta en Línea</a></li>
                     <li><a href="sos-venezuela.html" data-i18n="footer.sosVe">SOS Venezuela</a></li>
-                    <li><a href="contato.html" data-i18n="footer.contactLink">Contacto</a></li>
+                                        <li><a href="voluntarios.html" data-i18n="footer.volunteers">Voluntariado</a></li>
+<li><a href="contato.html" data-i18n="footer.contactLink">Contacto</a></li>
                 </ul>
             </div>
             <div>
@@ -135,6 +137,31 @@
                 </div>
             </div>
         </div>
+        <div class="footer-newsletter">
+            <div class="container footer-newsletter-inner">
+                <div class="footer-newsletter-copy">
+                    <h3 data-i18n="footer.newsletter.title">Boletín ACURA</h3>
+                    <p data-i18n="footer.newsletter.text">Reciba noticias sobre proyectos humanitarios, transparencia y formas de ayudar.</p>
+                </div>
+                <form class="footer-newsletter-form" action="/api/newsletter" method="post" novalidate>
+                    <div class="form-honeypot" aria-hidden="true">
+                        <label for="newsletter-website">Website</label>
+                        <input type="text" id="newsletter-website" name="website" tabindex="-1" autocomplete="off">
+                    </div>
+                    <div class="footer-newsletter-fields">
+                        <input type="text" name="nome" required maxlength="120" data-i18n-placeholder="footer.newsletter.nomePlaceholder" placeholder="Su nombre" aria-label="Nombre">
+                        <input type="email" name="email" required maxlength="254" data-i18n-placeholder="footer.newsletter.emailPlaceholder" placeholder="su@email.com" aria-label="Email">
+                        <button type="submit" class="btn btn-verde" data-i18n="footer.newsletter.submit">Suscribirse</button>
+                    </div>
+                    <label class="footer-newsletter-consent">
+                        <input type="checkbox" name="privacidade" required value="on">
+                        <span data-i18n="footer.newsletter.privacy" data-i18n-html>Autorizo el tratamiento de mis datos conforme a la <a href="privacidade.html">Política de Privacidad</a>.</span>
+                    </label>
+                    <p class="footer-newsletter-status" role="status" aria-live="polite" hidden></p>
+                </form>
+            </div>
+        </div>
+
         <div class="footer-bottom">
             <p data-i18n="common.rights">© 2026 ACURA BRASIL. Todos los derechos reservados.</p>
             <p data-i18n="common.transparencyFooter">Desarrollado en conformidad con las directrices de transparencia pública.</p>
@@ -145,5 +172,6 @@
     <script src="js/main.js"></script>
     <script src="js/cookie-consent.js"></script>
     <script src="js/analytics.js"></script>
+    <script src="js/newsletter.js?v=16"></script>
 </body>
 </html>

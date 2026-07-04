@@ -39,6 +39,7 @@
                             <li><a href="atendimento-pandemia.html" data-i18n="nav.covid">Pandemia COVID-19</a></li>
                             <li><a href="sos-saude-rs.html" data-i18n="nav.sosRs">SOS Salud RS</a></li>
                             <li><a href="transparencia.html" data-i18n="nav.transparency">Transparencia</a></li>
+                            <li><a href="voluntarios.html" data-i18n="nav.volunteers">Voluntariado profesional</a></li>
                         </ul>
                     </li>
                     <li><a href="contato.html" class="nav-link" data-i18n="nav.contact">Contacto</a></li>
@@ -63,6 +64,39 @@
             <h2 data-i18n="inst.who.title">Quiénes Somos</h2>
             <p data-i18n="inst.who.p1" data-i18n-html>La <strong>ACURA BRASIL</strong> (Asociación Brasil por la Cura) es una entidad sin fines de lucro, calificada como <strong>OSCIP</strong> (Organización de la Sociedad Civil de Interés Público), dedicada al avance de la ciencia, el fomento de la investigación y la asistencia humanitaria en todo el territorio nacional.</p>
             <p data-i18n="inst.who.p2">Nuestra misión es promover el desarrollo científico brasileño, uniendo rigor académico al acogimiento humano. De la biología y genética estructural a la atención humanitaria en situaciones de emergencia, transformamos investigaciones avanzadas en impacto real para humanos y animales.</p>
+
+            <h2 id="timeline" data-i18n="inst.timeline.title">Nuestra trayectoria</h2>
+            <ol class="inst-timeline">
+                <li class="inst-timeline-item">
+                    <span class="inst-timeline-year">2018</span>
+                    <div>
+                        <h3 data-i18n="inst.timeline.2018.title">2018 — Fundación</h3>
+                        <p data-i18n="inst.timeline.2018.text">Constitución de ACURA BRASIL (CNPJ 30.350.850/0001-80) en Belo Horizonte.</p>
+                    </div>
+                </li>
+                <li class="inst-timeline-item">
+                    <span class="inst-timeline-year">2020</span>
+                    <div>
+                        <h3 data-i18n="inst.timeline.2020.title">2020-2021 — Pandemia COVID-19</h3>
+                        <p data-i18n="inst.timeline.2020.text">122 médicos voluntarios atendieron ~12 mil familias.</p>
+                    </div>
+                </li>
+                <li class="inst-timeline-item">
+                    <span class="inst-timeline-year">2024</span>
+                    <div>
+                        <h3 data-i18n="inst.timeline.2024.title">2024 — SOS Salud RS</h3>
+                        <p data-i18n="inst.timeline.2024.text">2.664 consultas gratuitas en más de 100 ciudades gaúchas.</p>
+                    </div>
+                </li>
+                <li class="inst-timeline-item">
+                    <span class="inst-timeline-year">2026</span>
+                    <div>
+                        <h3 data-i18n="inst.timeline.2026.title">2026 — SOS Salud Venezuela</h3>
+                        <p data-i18n="inst.timeline.2026.text">Telemedicina gratuita para víctimas de los terremotos.</p>
+                    </div>
+                </li>
+            </ol>
+
             <h2 data-i18n="inst.mvv.title">Misión, Visión y Valores</h2>
             <div class="info-grid">
                 <div class="info-card">
@@ -130,7 +164,8 @@
                     <li><a href="sos-saude-rs.html" data-i18n="footer.sosRs">SOS Salud RS</a></li>
                     <li><a href="consulta-venezuela.html" data-i18n="footer.consult">Consulta en Línea</a></li>
                     <li><a href="sos-venezuela.html" data-i18n="footer.sosVe">SOS Venezuela</a></li>
-                    <li><a href="contato.html" data-i18n="footer.contactLink">Contacto</a></li>
+                                        <li><a href="voluntarios.html" data-i18n="footer.volunteers">Voluntariado</a></li>
+<li><a href="contato.html" data-i18n="footer.contactLink">Contacto</a></li>
                 </ul>
             </div>
             <div>
@@ -158,6 +193,31 @@
                 </div>
             </div>
         </div>
+        <div class="footer-newsletter">
+            <div class="container footer-newsletter-inner">
+                <div class="footer-newsletter-copy">
+                    <h3 data-i18n="footer.newsletter.title">Boletín ACURA</h3>
+                    <p data-i18n="footer.newsletter.text">Reciba noticias sobre proyectos humanitarios, transparencia y formas de ayudar.</p>
+                </div>
+                <form class="footer-newsletter-form" action="/api/newsletter" method="post" novalidate>
+                    <div class="form-honeypot" aria-hidden="true">
+                        <label for="newsletter-website">Website</label>
+                        <input type="text" id="newsletter-website" name="website" tabindex="-1" autocomplete="off">
+                    </div>
+                    <div class="footer-newsletter-fields">
+                        <input type="text" name="nome" required maxlength="120" data-i18n-placeholder="footer.newsletter.nomePlaceholder" placeholder="Su nombre" aria-label="Nombre">
+                        <input type="email" name="email" required maxlength="254" data-i18n-placeholder="footer.newsletter.emailPlaceholder" placeholder="su@email.com" aria-label="Email">
+                        <button type="submit" class="btn btn-verde" data-i18n="footer.newsletter.submit">Suscribirse</button>
+                    </div>
+                    <label class="footer-newsletter-consent">
+                        <input type="checkbox" name="privacidade" required value="on">
+                        <span data-i18n="footer.newsletter.privacy" data-i18n-html>Autorizo el tratamiento de mis datos conforme a la <a href="privacidade.html">Política de Privacidad</a>.</span>
+                    </label>
+                    <p class="footer-newsletter-status" role="status" aria-live="polite" hidden></p>
+                </form>
+            </div>
+        </div>
+
         <div class="footer-bottom">
             <p data-i18n="common.rights">© 2026 ACURA BRASIL. Todos los derechos reservados.</p>
             <p data-i18n="common.transparencyFooter">Desarrollado en conformidad con las directrices de transparencia pública.</p>
@@ -168,5 +228,6 @@
     <script src="js/main.js"></script>
     <script src="js/cookie-consent.js"></script>
     <script src="js/analytics.js"></script>
+    <script src="js/newsletter.js?v=16"></script>
 </body>
 </html>

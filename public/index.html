@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preload" href="fonts/inter-latin-400-normal.woff2?v=16" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="fonts/inter-latin-600-normal.woff2?v=16" as="font" type="font/woff2" crossorigin>
+    <link rel="icon" href="/favicon.ico" type="image/png">
+    <link rel="preload" href="fonts/inter-latin-400-normal.woff2?v=17" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/inter-latin-600-normal.woff2?v=17" as="font" type="font/woff2" crossorigin>
     <meta name="description" data-i18n-content="index.meta.description" content="ACURA BRASIL - Asociación Brasil por la Cura. Fomento de la investigación científica, atención humanitaria y transparencia pública.">
     <title>ACURA BRASIL - Asociación Brasil por la Cura</title>
-    <link rel="stylesheet" href="css/style.css?v=16">
-    <script src="js/analytics-config.js"></script>
-    <script src="js/seo.js"></script>
-    <script src="js/i18n-loader.js?v=16"></script>
+    <link rel="preload" href="css/style.css?v=17" as="style">
+    <link rel="stylesheet" href="css/style.css?v=17">
+    <script src="js/analytics-config.js" defer></script>
+    <script src="js/seo.js" defer></script>
+    <script src="js/i18n-loader.js?v=17" defer></script>
     <script>try{var l=localStorage.getItem('acura.lang')||'es';document.documentElement.lang=l==='es'?'es-VE':'pt-BR';}catch(e){}</script>
     <script type="application/ld+json">
     {
@@ -190,6 +192,35 @@
         </div>
     </section>
 
+    <section class="section section-alt testimonials-section" id="depoimentos">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title-center" data-i18n="index.testimonials.title">Historias de quienes confían en nosotros</h2>
+                <p class="section-subtitle-center" data-i18n="index.testimonials.subtitle">Pacientes, voluntarios y donantes.</p>
+            </div>
+            <p class="testimonials-todo" data-i18n="index.testimonials.todo">TODO: reemplazar placeholders por testimonios reales.</p>
+            <div class="testimonials-grid">
+                <article class="testimonial-card">
+                    <p data-i18n="index.testimonials.1.text">Placeholder — paciente.</p>
+                    <footer data-i18n="index.testimonials.1.author">María G.</footer>
+                </article>
+                <article class="testimonial-card testimonial-card--video">
+                    <!-- TODO: substituir VIDEO_ID por depoimento real autorizado -->
+                    <div class="video-facade" data-video-id="placeholder" data-video-title="Depoimento ACURA" tabindex="0" role="button" data-i18n-aria="index.testimonials.videoTitle">
+                        <img src="img/projetos/rs.webp?v=16" alt="" width="400" height="225" loading="lazy">
+                        <button type="button" class="video-facade-play" aria-hidden="true">▶</button>
+                    </div>
+                    <p data-i18n="index.testimonials.2.text">Placeholder — médico voluntario.</p>
+                    <footer data-i18n="index.testimonials.2.author">Dr. [Nombre]</footer>
+                </article>
+                <article class="testimonial-card">
+                    <p data-i18n="index.testimonials.3.text">Placeholder — doante.</p>
+                    <footer data-i18n="index.testimonials.3.author">Ana R.</footer>
+                </article>
+            </div>
+        </div>
+    </section>
+
     <section class="section" id="atuacao">
         <div class="container">
             <div class="section-header">
@@ -343,6 +374,31 @@
                 </div>
             </div>
         </div>
+        <div class="footer-newsletter">
+            <div class="container footer-newsletter-inner">
+                <div class="footer-newsletter-copy">
+                    <h3 data-i18n="footer.newsletter.title">Boletín ACURA</h3>
+                    <p data-i18n="footer.newsletter.text">Reciba noticias sobre proyectos humanitarios, transparencia y formas de ayudar.</p>
+                </div>
+                <form class="footer-newsletter-form" action="/api/newsletter" method="post" novalidate>
+                    <div class="form-honeypot" aria-hidden="true">
+                        <label for="newsletter-website">Website</label>
+                        <input type="text" id="newsletter-website" name="website" tabindex="-1" autocomplete="off">
+                    </div>
+                    <div class="footer-newsletter-fields">
+                        <input type="text" name="nome" required maxlength="120" data-i18n-placeholder="footer.newsletter.nomePlaceholder" placeholder="Su nombre" aria-label="Nombre">
+                        <input type="email" name="email" required maxlength="254" data-i18n-placeholder="footer.newsletter.emailPlaceholder" placeholder="su@email.com" aria-label="Email">
+                        <button type="submit" class="btn btn-verde" data-i18n="footer.newsletter.submit">Suscribirse</button>
+                    </div>
+                    <label class="footer-newsletter-consent">
+                        <input type="checkbox" name="privacidade" required value="on">
+                        <span data-i18n="footer.newsletter.privacy" data-i18n-html>Autorizo el tratamiento de mis datos conforme a la <a href="privacidade.html">Política de Privacidad</a>.</span>
+                    </label>
+                    <p class="footer-newsletter-status" role="status" aria-live="polite" hidden></p>
+                </form>
+            </div>
+        </div>
+
         <div class="footer-bottom">
             <p data-i18n="common.rights">&copy; 2026 ACURA BRASIL. Todos los derechos reservados.</p>
             <p data-i18n="common.transparencyFooter">Desarrollado en conformidad con las directrices de transparencia pública.</p>
@@ -352,5 +408,7 @@
     <script src="js/i18n.js"></script><script src="js/main.js"></script>
     <script src="js/cookie-consent.js"></script>
     <script src="js/analytics.js"></script>
+    <script src="js/newsletter.js?v=16"></script>
+    <script src="js/video-facade.js?v=16"></script>
 </body>
 </html>

@@ -100,21 +100,17 @@
       /* fallback abaixo */
     }
 
-    if (!info) {
-      applyWhatsAppLinks(null);
-      return;
+    applyWhatsAppLinks(info);
+    if (!info) return;
+
+    const isIntakePage = /solicitud-sos-venezuela/i.test(window.location.pathname || '');
+
+    if (!isIntakePage) {
+      renderScheduleBlock(document.getElementById('sos-schedule-status'), info);
     }
 
-    applyWhatsAppLinks(info);
-
-    const formBlock = document.getElementById('sos-schedule-status');
-    renderScheduleBlock(formBlock, info);
-
-    const consultaAside = document.getElementById('sos-schedule-info');
-    renderScheduleBlock(consultaAside, info);
-
-    const ctaHours = document.getElementById('sos-schedule-hours');
-    renderInlineHours(ctaHours, info);
+    renderScheduleBlock(document.getElementById('sos-schedule-info'), info);
+    renderInlineHours(document.getElementById('sos-schedule-hours'), info);
   }
 
   function captureReferral() {

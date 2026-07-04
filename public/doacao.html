@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preload" href="fonts/inter-latin-400-normal.woff2?v=16" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="fonts/inter-latin-600-normal.woff2?v=16" as="font" type="font/woff2" crossorigin>
+    <link rel="icon" href="/favicon.ico" type="image/png">
+    <link rel="preload" href="fonts/inter-latin-400-normal.woff2?v=17" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/inter-latin-600-normal.woff2?v=17" as="font" type="font/woff2" crossorigin>
     <meta name="description" data-i18n-content="doacao.meta.description" content="Doe para ACURA BRASIL. Apoie atendimento voluntário humanitário e pesquisa científica via Pix, PayPal ou trabalho voluntário.">
-    <title>Doação - ACURA BRASIL</title><link rel="stylesheet" href="css/style.css?v=16">
-    <script src="js/analytics-config.js"></script>
-    <script src="js/seo.js"></script>
-    <script src="js/i18n-loader.js?v=16"></script>
+    <title>Doação - ACURA BRASIL</title>
+    <link rel="preload" href="css/style.css?v=17" as="style">
+    <link rel="stylesheet" href="css/style.css?v=17">
+    <script src="js/analytics-config.js" defer></script>
+    <script src="js/seo.js" defer></script>
+    <script src="js/i18n-loader.js?v=17" defer></script>
     <script>try{var l=localStorage.getItem('acura.lang')||'es';document.documentElement.lang=l==='es'?'es-VE':'pt-BR';}catch(e){}</script>
 </head>
 <body data-i18n-title="doacao.meta.title">
@@ -39,6 +42,7 @@
                             <li><a href="atendimento-pandemia.html" data-i18n="nav.covid">Pandemia COVID-19</a></li>
                             <li><a href="sos-saude-rs.html" data-i18n="nav.sosRs">SOS Salud RS</a></li>
                             <li><a href="transparencia.html" data-i18n="nav.transparency">Transparencia</a></li>
+                            <li><a href="voluntarios.html" data-i18n="nav.volunteers">Voluntariado profesional</a></li>
                         </ul>
                     </li>
                     <li><a href="contato.html" class="nav-link" data-i18n="nav.contact">Contacto</a></li>
@@ -180,13 +184,15 @@
 
                     <p class="doacao-amount-label" data-i18n="doacao.amount.label">Escolha o valor:</p>
                     <div class="doacao-amounts">
-                        <button type="button" class="doacao-amount-btn" data-amount="30">R$ 30</button>
-                        <button type="button" class="doacao-amount-btn active" data-amount="50">R$ 50</button>
-                        <button type="button" class="doacao-amount-btn" data-amount="100">R$ 100</button>
-                        <button type="button" class="doacao-amount-btn" data-amount="250">R$ 250</button>
-                        <button type="button" class="doacao-amount-btn" data-amount="500">R$ 500</button>
-                        <button type="button" class="doacao-amount-btn" data-amount="1000">R$ 1.000</button>
+                        <button type="button" class="doacao-amount-btn" data-amount="30" data-impact-key="doacao.impact.30">R$ 30</button>
+                        <button type="button" class="doacao-amount-btn active" data-amount="50" data-impact-key="doacao.impact.50">R$ 50</button>
+                        <button type="button" class="doacao-amount-btn" data-amount="100" data-impact-key="doacao.impact.100">R$ 100</button>
+                        <button type="button" class="doacao-amount-btn" data-amount="250" data-impact-key="doacao.impact.250">R$ 250</button>
+                        <button type="button" class="doacao-amount-btn" data-amount="500" data-impact-key="doacao.impact.500">R$ 500</button>
+                        <button type="button" class="doacao-amount-btn" data-amount="1000" data-impact-key="doacao.impact.1000">R$ 1.000</button>
                     </div>
+                    <p class="doacao-impact-display" id="doacao-impact-display" data-i18n="doacao.impact.50">R$ 50 ≈ X consultas médicas</p>
+                    <p class="doacao-impact-todo" data-i18n="doacao.impact.todo">TODO: validar custo médio por consulta com a diretoria.</p>
                     <div class="doacao-custom-amount">
                         <label for="custom-amount" data-i18n="doacao.amount.custom">Outro valor (R$)</label>
                         <input type="number" id="custom-amount" min="1" step="1" placeholder="0,00" data-i18n-placeholder="doacao.amount.customPlaceholder">
@@ -439,7 +445,8 @@
                     <li><a href="sos-saude-rs.html" data-i18n="footer.sosRs">SOS Salud RS</a></li>
                     <li><a href="consulta-venezuela.html" data-i18n="footer.consult">Consulta en Línea</a></li>
                     <li><a href="sos-venezuela.html" data-i18n="footer.sosVe">SOS Venezuela</a></li>
-                    <li><a href="contato.html" data-i18n="footer.contactLink">Contacto</a></li>
+                                        <li><a href="voluntarios.html" data-i18n="footer.volunteers">Voluntariado</a></li>
+<li><a href="contato.html" data-i18n="footer.contactLink">Contacto</a></li>
                 </ul>
             </div>
             <div>
@@ -467,6 +474,31 @@
                 </div>
             </div>
         </div>
+        <div class="footer-newsletter">
+            <div class="container footer-newsletter-inner">
+                <div class="footer-newsletter-copy">
+                    <h3 data-i18n="footer.newsletter.title">Boletín ACURA</h3>
+                    <p data-i18n="footer.newsletter.text">Reciba noticias sobre proyectos humanitarios, transparencia y formas de ayudar.</p>
+                </div>
+                <form class="footer-newsletter-form" action="/api/newsletter" method="post" novalidate>
+                    <div class="form-honeypot" aria-hidden="true">
+                        <label for="newsletter-website">Website</label>
+                        <input type="text" id="newsletter-website" name="website" tabindex="-1" autocomplete="off">
+                    </div>
+                    <div class="footer-newsletter-fields">
+                        <input type="text" name="nome" required maxlength="120" data-i18n-placeholder="footer.newsletter.nomePlaceholder" placeholder="Su nombre" aria-label="Nombre">
+                        <input type="email" name="email" required maxlength="254" data-i18n-placeholder="footer.newsletter.emailPlaceholder" placeholder="su@email.com" aria-label="Email">
+                        <button type="submit" class="btn btn-verde" data-i18n="footer.newsletter.submit">Suscribirse</button>
+                    </div>
+                    <label class="footer-newsletter-consent">
+                        <input type="checkbox" name="privacidade" required value="on">
+                        <span data-i18n="footer.newsletter.privacy" data-i18n-html>Autorizo el tratamiento de mis datos conforme a la <a href="privacidade.html">Política de Privacidad</a>.</span>
+                    </label>
+                    <p class="footer-newsletter-status" role="status" aria-live="polite" hidden></p>
+                </form>
+            </div>
+        </div>
+
         <div class="footer-bottom">
             <p data-i18n="common.rights">© 2026 ACURA BRASIL. Todos los derechos reservados.</p>
             <p data-i18n="common.transparencyFooter">Desarrollado en conformidad con las directrices de transparencia pública.</p>
@@ -477,6 +509,7 @@
     <script src="js/main.js"></script>
     <script src="js/cookie-consent.js"></script>
     <script src="js/analytics.js"></script>
+    <script src="js/newsletter.js?v=16"></script>
     <script src="js/vendor/qrcode.min.js?v=16"></script>
     <script src="js/doacao.js"></script>
 </body>

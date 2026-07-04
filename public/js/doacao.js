@@ -195,8 +195,29 @@
           b.classList.toggle('active', b === btn);
         });
         updateAmountDisplay();
+        updateImpactDisplay(state.amount, btn);
+        trackDonationAmount(state.amount);
       });
     });
+  }
+
+  function updateImpactDisplay(amount, btn) {
+    var el = document.getElementById('doacao-impact-display');
+    if (!el || !window.AcuraI18n) return;
+    var key = (btn && btn.getAttribute('data-impact-key')) || 'doacao.impact.custom';
+    if (amount && [30, 50, 100, 250, 500, 1000].indexOf(amount) !== -1) {
+      key = 'doacao.impact.' + amount;
+    }
+    el.textContent = window.AcuraI18n.t(window.AcuraI18n.getLang(), key);
+    el.setAttribute('data-i18n', key);
+  }
+
+  function trackDonationAmount(amount) {
+    document.dispatchEvent(
+      new CustomEvent('acura:analytics', {
+        detail: { event: 'doacao_valor_selecionado', params: { value: amount } },
+      })
+    );
   }
 
   function bindTypeTabs() {
@@ -589,6 +610,7 @@
     bindRegisterForm();
     initPaypal();
     updateAmountDisplay();
+    updateImpactDisplay(50, document.querySelector('[data-amount="50"]'));
 
     var angelBtn = document.getElementById('angel-register-btn');
     if (angelBtn) angelBtn.href = CONFIG.angelRegisterUrl;

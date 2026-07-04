@@ -72,6 +72,27 @@
     tipoSelect.value = TIPO_PARAM_MAP[urlTipo];
   }
 
+  function setIntakeProgress(step) {
+    const fill = document.getElementById('intake-progress-fill');
+    const bar = document.getElementById('intake-progress-bar');
+    const pct = step === 3 ? '100%' : step === 2 ? '66%' : '33%';
+    if (fill) fill.style.width = pct;
+    if (bar) bar.setAttribute('aria-valuenow', String(step));
+    document.querySelectorAll('.intake-progress-step[data-step]').forEach((el) => {
+      const s = Number(el.getAttribute('data-step'));
+      el.classList.toggle('is-active', s === step);
+      el.classList.toggle('is-complete', s < step);
+    });
+  }
+
+  setIntakeProgress(1);
+  ['consentimiento', 'lgpd_privacidade'].forEach((id) => {
+    const field = form.querySelector('#' + id);
+    if (field) {
+      field.addEventListener('focus', () => setIntakeProgress(2));
+    }
+  });
+
   function trackIntakeEvent(event) {
     if (!currentProtocolo || !event) return;
     const url = '/api/sos-venezuela/intake/' + encodeURIComponent(currentProtocolo) + '/event';
@@ -168,6 +189,7 @@
           successBlock.hidden = false;
           successBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+        setIntakeProgress(3);
         document.dispatchEvent(
           new CustomEvent('acura:analytics', { detail: { event: 'intake_sos_enviado' } })
         );

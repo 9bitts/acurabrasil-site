@@ -18,7 +18,21 @@
     };
 
     menuToggle.addEventListener('click', () => {
-      setMenuOpen(!navMenu.classList.contains('open'));
+      const willOpen = !navMenu.classList.contains('open');
+      setMenuOpen(willOpen);
+      if (willOpen) {
+        const firstLink = navMenu.querySelector('.nav-link, .nav-dropdown-menu a');
+        if (firstLink) firstLink.focus();
+      } else {
+        menuToggle.focus();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navMenu.classList.contains('open')) {
+        setMenuOpen(false);
+        menuToggle.focus();
+      }
     });
 
     navMenu.querySelectorAll('.nav-link, .nav-dropdown-menu a').forEach((link) => {
@@ -200,4 +214,21 @@
       }
     });
   }
+
+  (function showNewsletterBanner() {
+    const params = new URLSearchParams(window.location.search);
+    const status = params.get('newsletter');
+    if (!status) return;
+    const key =
+      status === 'confirmed'
+        ? 'footer.newsletter.confirmedBanner'
+        : 'footer.newsletter.invalidBanner';
+    const banner = document.createElement('div');
+    banner.className = 'site-banner site-banner--' + status;
+    banner.setAttribute('role', 'status');
+    const t = (k) => (window.AcuraI18n ? window.AcuraI18n.t(window.AcuraI18n.getLang(), k) : k);
+    banner.textContent = t(key);
+    document.body.prepend(banner);
+    setTimeout(() => banner.remove(), 12000);
+  })();
 })();

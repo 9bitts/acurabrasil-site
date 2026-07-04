@@ -1,4 +1,5 @@
 const express = require('express');
+const compression = require('compression');
 const path = require('path');
 const { handleContactRequest, verifyEmailOnStartup } = require('./lib/contact');
 const { handleSosVenezuelaIntakeRequest } = require('./lib/sos-venezuela-intake');
@@ -11,6 +12,10 @@ const {
   logPaypalOnStartup,
 } = require('./lib/paypal');
 const { adminIpGuard } = require('./lib/admin-ip-guard');
+const {
+  handleNewsletterSubscribe,
+  handleNewsletterConfirm,
+} = require('./lib/newsletter');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -43,9 +48,9 @@ app.use((req, res, next) => {
       "script-src 'self' 'unsafe-inline' https://www.paypal.com https://www.sandbox.paypal.com https://www.googletagmanager.com",
       "style-src 'self' 'unsafe-inline'",
       "font-src 'self'",
-      "img-src 'self' data: https://www.google-analytics.com",
+      "img-src 'self' data: https://www.google-analytics.com https://images.unsplash.com https://api.qrserver.com https://static.wixstatic.com",
       "connect-src 'self' https://www.paypal.com https://www.sandbox.paypal.com https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com",
-      "frame-src https://www.paypal.com https://www.sandbox.paypal.com",
+      "frame-src https://www.paypal.com https://www.sandbox.paypal.com https://www.youtube-nocookie.com",
       "object-src 'none'",
       "base-uri 'self'",
       "form-action 'self'",
@@ -55,6 +60,7 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json({ limit: '32kb' }));
+app.use(compression());
 
 app.get('/api/site-config', (req, res) => {
   res.json({
@@ -63,6 +69,8 @@ app.get('/api/site-config', (req, res) => {
 });
 
 app.post('/api/contact', handleContactRequest);
+app.post('/api/newsletter', handleNewsletterSubscribe);
+app.get('/api/newsletter/confirm', handleNewsletterConfirm);
 app.post('/api/sos-venezuela/intake', handleSosVenezuelaIntakeRequest);
 app.post('/api/sos-venezuela/intake/:protocolo/event', handleIntakeEventRequest);
 registerAdminRoutes(app);
@@ -79,6 +87,11 @@ app.use((req, res, next) => {
 });
 
 const publicPath = path.join(__dirname, 'public');
+
+app.get('/favicon.ico', (req, res) => {
+  res.sendFile(path.join(publicPath, 'img', 'logo-acurabrasil.png'));
+});
+
 app.use(express.static(publicPath, {
   redirect: false,
   setHeaders(res, filePath) {

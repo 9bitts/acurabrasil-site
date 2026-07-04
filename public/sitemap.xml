@@ -15,4 +15,9 @@
   <url><loc>https://www.acurabrasil.org/pesquisas.html</loc><changefreq>monthly</changefreq><priority>0.65</priority></url>
   <url><loc>https://www.acurabrasil.org/sos-saude-rs.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.acurabrasil.org/atendimento-pandemia.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url>
+    <loc>https://www.acurabrasil.org/voluntarios.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
 </urlset>
