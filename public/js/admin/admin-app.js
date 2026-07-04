@@ -24,6 +24,13 @@
     backup: 'Backup',
   };
 
+  const HUB_STATUS_LABELS = {
+    pendente: 'Pendente',
+    em_cadastro: 'Em cadastro',
+    publicado: 'Publicado',
+    rejeitado: 'Rejeitado',
+  };
+
   let state = {
     tab: 'dashboard',
     volunteers: [],
@@ -89,8 +96,31 @@
     return `<span class="badge badge-${esc(s)}">${esc(STATUS_LABELS[s] || s)}</span>`;
   }
 
+  function badgeHubStatus(s) {
+    const cls = s === 'publicado' ? 'badge-em_consulta' : s === 'em_cadastro' ? 'badge-em_triagem' : s === 'rejeitado' ? 'badge-cancelado' : 'badge-nova';
+    return `<span class="badge ${cls}">${esc(HUB_STATUS_LABELS[s] || s)}</span>`;
+  }
+
   function badgePrioridad(p) {
     return `<span class="badge badge-${esc(p)}">${esc(PRIORIDAD_LABELS[p] || p)}</span>`;
+  }
+
+  async function copyText(text, btn) {
+    try {
+      await navigator.clipboard.writeText(text);
+      if (btn) {
+        const orig = btn.textContent;
+        btn.textContent = 'Copiado!';
+        setTimeout(() => { btn.textContent = orig; }, 1500);
+      }
+    } catch {
+      alert('Não foi possível copiar. Selecione o texto manualmente.');
+    }
+  }
+
+  function updateNavHubBadge(published, total) {
+    const el = document.getElementById('nav-hub-badge');
+    if (el) el.textContent = `${published || 0}/${total || 4} publicados`;
   }
 
   async function init() {
@@ -117,6 +147,12 @@
 
     await loadVolunteers();
     await loadTemplates();
+    try {
+      const hubData = await api('/api/admin/hubs');
+      state.hubsPublished = hubData.published;
+      state.hubsTotal = hubData.total;
+      updateNavHubBadge(hubData.published, hubData.total);
+    } catch { /* ignore */ }
     render();
   }
 
@@ -141,6 +177,7 @@
       else if (state.tab === 'templates') main.innerHTML = await renderTemplates();
       else if (state.tab === 'volunteers') main.innerHTML = await renderVolunteers();
       else if (state.tab === 'config') main.innerHTML = await renderConfig();
+      else if (state.tab === 'divulgacao') main.innerHTML = await renderDivulgacao();
       bindEvents();
     } catch (err) {
       main.innerHTML = `<p class="admin-error">Erro: ${esc(err.message)}</p>`;
@@ -164,6 +201,7 @@
         <div class="admin-card"><div class="admin-card-value">${d.byStatus?.nova || 0}</div><div class="admin-card-label">Novas</div></div>
         <div class="admin-card"><div class="admin-card-value">${d.byStatus?.em_triagem || 0}</div><div class="admin-card-label">Em triagem</div></div>
         <div class="admin-card"><div class="admin-card-value">${d.isOpen ? 'Aberto' : 'Fechado'}</div><div class="admin-card-label">Status agora</div></div>
+        <div class="admin-card admin-card--link" data-goto="divulgacao"><div class="admin-card-value">${d.hubsPublished || 0}/${d.hubsTotal || 4}</div><div class="admin-card-label">Hubs publicados</div></div>
       </div>
       ${statusCards ? `<div class="admin-cards">${statusCards}</div>` : ''}
       <div class="admin-panel">
@@ -171,6 +209,7 @@
         <ul>${turno}</ul>
         ${d.nextOpenAt && !d.isOpen ? `<p><small>Próxima abertura: ${esc(d.nextOpenAt)}</small></p>` : ''}
         <button type="button" class="admin-btn admin-btn-sm" data-goto="intakes">Ver fila de solicitudes →</button>
+        <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" data-goto="divulgacao" style="margin-left:0.5rem">Divulgação / Hubs →</button>
       </div>`;
   }
 
@@ -459,6 +498,14 @@
       render();
     });
 
+    document.querySelectorAll('[data-goto="divulgacao"]').forEach((el) => {
+      el.addEventListener('click', () => {
+        state.tab = 'divulgacao';
+        document.querySelectorAll('.admin-nav button').forEach((b) => b.classList.toggle('active', b.dataset.tab === 'divulgacao'));
+        render();
+      });
+    });
+
     document.getElementById('filter-apply')?.addEventListener('click', () => {
       state.intakeFilterStatus = document.getElementById('filter-status')?.value || '';
       state.intakeFilterPrioridad = document.getElementById('filter-prioridad')?.value || '';
@@ -535,6 +582,63 @@
       alert('Configurações salvas.');
       render();
     });
+
+    document.getElementById('kit-save')?.addEventListener('click', async () => {
+      const splitList = (id) =>
+        document
+          .getElementById(id)
+          .value.split(',')
+          .map((s) => s.trim())
+          .filter(Boolean);
+      await api('/api/admin/listing-kit', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          titulo_es: document.getElementById('kit-titulo').value,
+          subtitulo_es: document.getElementById('kit-subtitulo').value,
+          descricao_curta_es: document.getElementById('kit-curta').value,
+          descricao_longa_es: document.getElementById('kit-longa').value,
+          categorias_es: splitList('kit-categorias'),
+          palavras_chave_es: splitList('kit-palavras'),
+          organizacao: document.getElementById('kit-org').value,
+          cnpj: document.getElementById('kit-cnpj').value,
+          email_contato: document.getElementById('kit-email').value,
+          cobertura: document.getElementById('kit-cobertura').value,
+          idioma_atendimento: document.getElementById('kit-idioma').value,
+          costo: document.getElementById('kit-costo').value,
+        }),
+      });
+      alert('Kit salvo.');
+      render();
+    });
+
+    document.getElementById('kit-copy-curta')?.addEventListener('click', (e) => {
+      copyText(document.getElementById('kit-curta').value, e.target);
+    });
+    document.getElementById('kit-copy-longa')?.addEventListener('click', (e) => {
+      copyText(document.getElementById('kit-longa').value, e.target);
+    });
+
+    document.querySelectorAll('.btn-copy-utm').forEach((btn) => {
+      btn.addEventListener('click', () => copyText(btn.dataset.copy, btn));
+    });
+
+    document.querySelectorAll('.hub-save').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const card = btn.closest('[data-hub-slug]');
+        const slug = card.dataset.hubSlug;
+        await api('/api/admin/hubs/' + encodeURIComponent(slug), {
+          method: 'PATCH',
+          body: JSON.stringify({
+            status: card.querySelector('.hub-status').value,
+            data_cadastro: card.querySelector('.hub-data').value || null,
+            url_listagem_publicada: card.querySelector('.hub-url-listagem').value || null,
+            notas: card.querySelector('.hub-notas').value,
+          }),
+        });
+        alert('Hub salvo.');
+        render();
+      });
+    });
   }
 
   async function saveIntake() {
@@ -597,6 +701,127 @@
     });
     await api('/api/admin/schedule/bulk', { method: 'POST', body: JSON.stringify({ items }) });
     alert('Escala salva.');
+  }
+
+  async function renderDivulgacao() {
+    const [hubData, kitData] = await Promise.all([
+      api('/api/admin/hubs'),
+      api('/api/admin/listing-kit'),
+    ]);
+    const kit = kitData.kit;
+    updateNavHubBadge(hubData.published, hubData.total);
+
+    const categorias = (kit.categorias_es || []).join(', ');
+    const palavras = (kit.palavras_chave_es || []).join(', ');
+
+    const hubCards = hubData.hubs
+      .map((hub) => {
+        const links = hub.utmLinks || {};
+        return `
+          <div class="admin-hub-card" data-hub-slug="${esc(hub.slug)}">
+            <div class="admin-hub-card-header">
+              <h3>${esc(hub.nome)} ${badgeHubStatus(hub.status)}</h3>
+              <a href="${esc(hub.url_site)}" target="_blank" rel="noopener">${esc(hub.url_site)}</a>
+            </div>
+            <div class="admin-form-group">
+              <label>Status</label>
+              <select class="hub-status">
+                ${Object.entries(HUB_STATUS_LABELS).map(([k, v]) => `<option value="${k}" ${hub.status === k ? 'selected' : ''}>${v}</option>`).join('')}
+              </select>
+            </div>
+            <div class="admin-form-group">
+              <label>Data cadastro</label>
+              <input type="date" class="hub-data" value="${esc(hub.data_cadastro || '')}">
+            </div>
+            <div class="admin-form-group">
+              <label>URL listagem publicada</label>
+              <input type="url" class="hub-url-listagem" value="${esc(hub.url_listagem_publicada || '')}" placeholder="https://...">
+            </div>
+            <div class="admin-form-group">
+              <label>Notas internas</label>
+              <textarea class="hub-notas" rows="2">${esc(hub.notas)}</textarea>
+            </div>
+            <div class="admin-utm-links">
+              <label>Links UTM (copiar para cadastro no hub)</label>
+              ${['solicitud', 'landing', 'consulta'].map((dest) => `
+                <div class="admin-utm-row">
+                  <span class="admin-utm-label">${dest}</span>
+                  <input type="text" class="admin-utm-input" readonly value="${esc(links[dest] || '')}">
+                  <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary btn-copy-utm" data-copy="${esc(links[dest] || '')}">Copiar</button>
+                </div>`).join('')}
+            </div>
+            <details class="admin-hub-instructions">
+              <summary>Instruções de cadastro (PT)</summary>
+              <ol>
+                <li>Acesse <a href="${esc(hub.url_site)}" target="_blank" rel="noopener">${esc(hub.url_site)}</a></li>
+                <li>Procure &quot;Agregar recurso&quot;, &quot;Enviar ayuda&quot; ou formulário de cadastro de organizações/recursos</li>
+                <li>Cole do kit: título, descripción corta/larga, URL de solicitud (UTM), WhatsApp e e-mail de contato</li>
+                <li>Marque status <strong>Em cadastro</strong> enquanto aguarda; após aprovação, <strong>Publicado</strong> + URL da listagem</li>
+              </ol>
+            </details>
+            <button type="button" class="admin-btn admin-btn-sm hub-save">Salvar hub</button>
+          </div>`;
+      })
+      .join('');
+
+    const campaignRows = (hubData.campaignLinks || [])
+      .map(
+        (l) =>
+          `<tr><td>${esc(l.hubNome)}</td><td>${esc(l.destino)}</td><td><code class="admin-utm-code">${esc(l.url)}</code></td><td><button type="button" class="admin-btn admin-btn-sm admin-btn-secondary btn-copy-utm" data-copy="${esc(l.url)}">Copiar</button></td></tr>`
+      )
+      .join('');
+
+    return `
+      <h1>Divulgação / Hubs</h1>
+      <p class="admin-hint">Checklist itens 5–8: cadastro manual nos diretórios humanitários. Use o kit em espanhol e links UTM abaixo.</p>
+
+      <div class="admin-panel">
+        <h2>A — Kit de listagem (espanhol)</h2>
+        <div class="admin-form-group"><label>Título</label><input type="text" id="kit-titulo" value="${esc(kit.titulo_es)}"></div>
+        <div class="admin-form-group"><label>Subtítulo</label><input type="text" id="kit-subtitulo" value="${esc(kit.subtitulo_es)}"></div>
+        <div class="admin-form-group"><label>Descripción corta (~280 chars)</label><textarea id="kit-curta" rows="3">${esc(kit.descricao_curta_es)}</textarea></div>
+        <div class="admin-form-group"><label>Descripción larga</label><textarea id="kit-longa" rows="10">${esc(kit.descricao_longa_es)}</textarea></div>
+        <div class="admin-form-group"><label>Categorías (separadas por vírgula)</label><input type="text" id="kit-categorias" value="${esc(categorias)}"></div>
+        <div class="admin-form-group"><label>Palabras clave (separadas por vírgula)</label><input type="text" id="kit-palavras" value="${esc(palavras)}"></div>
+        <div class="admin-detail-grid">
+          <div class="admin-form-group"><label>Organización</label><input type="text" id="kit-org" value="${esc(kit.organizacao)}"></div>
+          <div class="admin-form-group"><label>CNPJ</label><input type="text" id="kit-cnpj" value="${esc(kit.cnpj)}"></div>
+          <div class="admin-form-group"><label>E-mail</label><input type="email" id="kit-email" value="${esc(kit.email_contato)}"></div>
+          <div class="admin-form-group"><label>Cobertura</label><input type="text" id="kit-cobertura" value="${esc(kit.cobertura)}"></div>
+          <div class="admin-form-group"><label>Idioma</label><input type="text" id="kit-idioma" value="${esc(kit.idioma_atendimento)}"></div>
+          <div class="admin-form-group"><label>Costo</label><input type="text" id="kit-costo" value="${esc(kit.costo)}"></div>
+        </div>
+        <div class="admin-toolbar">
+          <button type="button" class="admin-btn admin-btn-sm" id="kit-save">Salvar kit</button>
+          <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" id="kit-copy-curta">Copiar descripción corta</button>
+          <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" id="kit-copy-longa">Copiar descripción larga</button>
+        </div>
+        <div class="admin-preview-block">
+          <strong>Preview card (hub)</strong>
+          <div class="admin-hub-preview">
+            <h4>${esc(kit.titulo_es)}</h4>
+            <p class="admin-hub-preview-sub">${esc(kit.subtitulo_es)}</p>
+            <p>${esc(kit.descricao_curta_es)}</p>
+            <p><small>${esc(kit.organizacao)} · ${esc(kit.costo)} · ${esc(kit.cobertura)}</small></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-panel">
+        <h2>B — Hubs (${hubData.published}/${hubData.total} publicados)</h2>
+        <div class="admin-hub-grid">${hubCards}</div>
+      </div>
+
+      <div class="admin-panel">
+        <h2>C — Links de campanha (UTM)</h2>
+        <p class="admin-hint">Base: ${esc(hubData.siteBase)} · Tracking de cliques via analytics futuro; por ora centralize estes links nos cadastros.</p>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead><tr><th>Hub</th><th>Destino</th><th>URL</th><th></th></tr></thead>
+            <tbody>${campaignRows}</tbody>
+          </table>
+        </div>
+      </div>`;
   }
 
   function showVolForm(vol) {

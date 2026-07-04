@@ -28,10 +28,11 @@
     }
   }
 
-  function applyWhatsAppLinks(info) {
+  function applyWhatsAppLinks(info, opts = {}) {
     const wa = info?.whatsapp || FALLBACK_WA;
+    const skipIds = new Set(opts.skipIds || []);
     document.querySelectorAll('.whatsapp-float, .btn-whatsapp-secondary, .btn-whatsapp-cta, #sos-ve-whatsapp-help').forEach((el) => {
-      if (!el) return;
+      if (!el || skipIds.has(el.id)) return;
       const isRegistro =
         el.classList.contains('btn-whatsapp-cta') ||
         el.id === 'sos-ve-whatsapp-help' ||
@@ -114,6 +115,14 @@
     const ctaHours = document.getElementById('sos-schedule-hours');
     renderInlineHours(ctaHours, info);
   }
+
+  window.SosVenezuelaPublic = {
+    applyWhatsAppLinks,
+    buildWaHelpLink(number, text) {
+      const n = String(number || FALLBACK_WA.number).replace(/\D/g, '');
+      return `https://wa.me/${n}?text=${encodeURIComponent(text)}`;
+    },
+  };
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

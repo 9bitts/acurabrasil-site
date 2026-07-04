@@ -88,6 +88,20 @@ Para que solicitudes, escala e configurações sobrevivam a redeploys:
 4. Escala do dia indica quem está de plantão (turnos + voluntários).
 5. Páginas públicas SOS consultam `GET /api/sos-venezuela/public-info` para horários e WhatsApp.
 
+### Cadastro nos hubs (divulgação)
+
+Checklist itens 5–8: cadastro manual nos diretórios humanitários venezuelanos.
+
+1. Acesse `/admin/` → aba **Divulgação**
+2. Revise o **Kit de listagem** (textos em espanhol) — copie descripción corta/larga
+3. Para cada hub, copie o **link UTM de solicitud** e cadastre no site externo
+4. Atualize status: `pendente` → `em_cadastro` → `publicado`
+5. Quando publicado, salve a **URL da listagem** no hub
+
+Hubs seedados: venezuela-ayuda.org, reconstruyamosvenezuela.org, info-central-terremoto-venezuela.com, ayudaavenezuela.org
+
+Variável opcional `SITE_URL` gera links UTM absolutos (ex.: `https://www.acurabrasil.org/solicitud-sos-venezuela.html?utm_source=...`).
+
 ## Deploy no Railway
 
 ### Opção 1 — Via GitHub (recomendado)

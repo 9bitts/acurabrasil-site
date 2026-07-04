@@ -96,7 +96,15 @@
         if (protocoloEl) protocoloEl.textContent = data.protocolo;
         if (whatsappHelpLink) {
           const msg = t('sosve.intake.whatsappHelpMsg').replace('{protocolo}', data.protocolo);
-          whatsappHelpLink.href = `https://wa.me/5531971720053?text=${encodeURIComponent(msg)}`;
+          let number = '5531971720053';
+          try {
+            const infoRes = await fetch('/api/sos-venezuela/public-info');
+            if (infoRes.ok) {
+              const info = await infoRes.json();
+              if (info?.whatsapp?.number) number = info.whatsapp.number;
+            }
+          } catch { /* fallback */ }
+          whatsappHelpLink.href = `https://wa.me/${String(number).replace(/\D/g, '')}?text=${encodeURIComponent(msg)}`;
         }
         if (formWrap) formWrap.hidden = true;
         if (successBlock) {
