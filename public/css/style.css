@@ -1275,6 +1275,10 @@ img:not(.logo-img) {
     margin-bottom: 0.75rem;
 }
 
+.tcle-group .legal-terms-body {
+    max-height: 420px;
+}
+
 a.btn.is-disabled,
 a.btn.is-disabled:hover {
     opacity: 0.55;

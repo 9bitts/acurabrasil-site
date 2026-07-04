@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=14">
+    <link rel="stylesheet" href="css/style.css?v=15">
     <style>
         .page-hero--compact {
             padding: 2rem 0 1.25rem;
@@ -312,9 +312,16 @@
                             <label for="observaciones" data-i18n="sosve.intake.form.observaciones.label">Información adicional</label>
                             <textarea id="observaciones" name="observaciones" maxlength="2000" rows="3" data-i18n-placeholder="sosve.intake.form.observaciones.placeholder" placeholder="Medicamentos, enfermedades previas, etc. (opcional)"></textarea>
                         </div>
-                        <div class="form-group form-group-consent">
-                            <input type="checkbox" id="consentimiento" name="consentimiento" required value="on">
-                            <label for="consentimiento" data-i18n="sosve.intake.form.consentimiento" data-i18n-html>He leído y acepto el <strong>Término de Consentimiento para Telemedicina</strong> del proyecto SOS Venezuela — ACURA BRASIL. Autorizo el uso de mis datos para triaje humanitario y atención por telemedicina conforme a la LGPD y normas éticas aplicables. Entiendo que este servicio <strong>no reemplaza</strong> la urgencia presencial en casos graves.</label>
+                        <div class="form-group tcle-group">
+                            <details class="legal-terms-details">
+                                <summary data-i18n="sosve.intake.tcle.toggle">TCLE — Consentimiento para teleconsulta (Doctor8)</summary>
+                                <div id="tcle-body" class="legal-terms-body" aria-live="polite"></div>
+                            </details>
+                            <p class="form-hint legal-terms-meta" data-i18n="sosve.intake.tcle.meta">Término de Consentimiento Libre e Informado · Telemedicina humanitaria SOS Venezuela · ACURA BRASIL</p>
+                            <div class="form-group form-group-consent">
+                                <input type="checkbox" id="consentimiento" name="consentimiento" required value="on">
+                                <label for="consentimiento" data-i18n="sosve.intake.form.consentimiento" data-i18n-html>He leído y acepto el <strong>Término de Consentimiento Libre e Informado (TCLE)</strong> para Atención a Distancia.</label>
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-verde" style="width: 100%;" data-i18n="sosve.intake.form.submit">Enviar solicitud</button>
                         <p class="intake-form-note" data-i18n="sosve.intake.form.note">Paso siguiente: después de enviar, creará su cuenta gratuita en Doctor8.</p>
@@ -399,6 +406,8 @@
     <script src="js/i18n.js"></script>
     <script src="js/main.js"></script>
     <script src="js/sos-venezuela-public.js"></script>
+    <script src="js/tcle-telemedicina-content.js"></script>
+    <script src="js/tcle-telemedicina.js"></script>
     <script src="js/sos-venezuela-intake.js"></script>
 </body>
 </html>
