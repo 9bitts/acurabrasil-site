@@ -1448,6 +1448,21 @@ a.btn.is-disabled:hover {
     color: #ffffff;
 }
 
+.emergency-banner .emergency-notice {
+    background: #fff5f5;
+    color: var(--texto-escuro);
+    border-left-color: #c0392b;
+}
+
+.emergency-banner .emergency-notice p {
+    color: var(--texto-escuro);
+    margin: 0;
+}
+
+.emergency-banner .emergency-notice strong {
+    color: var(--urgencia-escuro);
+}
+
 .emergency-pulse {
     display: inline-flex;
     align-items: center;
@@ -4115,9 +4130,24 @@ a.btn.is-disabled:hover {
 }
 
 .btn-whatsapp-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+    text-decoration: none;
     background: #0a6b60;
     color: #fff;
     border: 2px solid #0a6b60;
+}
+
+.btn-whatsapp-cta svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+    fill: currentColor;
 }
 
 .consulta-steps--four {

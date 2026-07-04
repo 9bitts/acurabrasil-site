@@ -107,11 +107,10 @@
   }
 
   function start() {
-    if (window.AcuraI18nLoader && !window.ACURA_I18N?.[getLang()]) {
-      document.addEventListener('acura:i18n-ready', init, { once: true });
-    } else {
-      init();
+    if (window.AcuraI18nLoader) {
+      document.addEventListener('acura:i18n-ready', () => apply(getLang()), { once: true });
     }
+    init();
   }
 
   window.AcuraI18n = { getLang, setLang, apply, t, init: start };
