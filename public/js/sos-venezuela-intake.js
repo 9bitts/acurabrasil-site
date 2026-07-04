@@ -95,7 +95,7 @@
       if (res.ok && data.ok && data.protocolo) {
         if (protocoloEl) protocoloEl.textContent = data.protocolo;
         if (whatsappHelpLink) {
-          const msg = `Hola, envié mi solicitud SOS Venezuela (protocolo ${data.protocolo}) y necesito ayuda con el registro`;
+          const msg = t('sosve.intake.whatsappHelpMsg').replace('{protocolo}', data.protocolo);
           whatsappHelpLink.href = `https://wa.me/5531971720053?text=${encodeURIComponent(msg)}`;
         }
         if (formWrap) formWrap.hidden = true;
