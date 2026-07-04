@@ -7,7 +7,7 @@ Acura Brasil + Doctor8 | Criado em 04/07/2026
 - [ ] 2. Adicionar botão de WhatsApp nas páginas SOS Venezuela
 - [ ] 3. Criar número de WhatsApp do SOS Venezuela (cadastro assistido pelos Anjos)
 - [ ] 4. Definir janelas fixas de atendimento com escala de voluntários
-- [ ] 5. Cadastrar o SOS Venezuela no hub venezuela-ayuda.org
+- [ ] 5. Cadastrar o SOS Venezuela no hub venezuela-ayuda.vercel.app (não existe venezuela-ayuda.org)
 - [ ] 6. Cadastrar o SOS Venezuela no hub reconstruyamosvenezuela.org
 - [ ] 7. Cadastrar o SOS Venezuela no hub info-central-terremoto-venezuela.com
 - [ ] 8. Cadastrar o SOS Venezuela no hub ayudaavenezuela.org

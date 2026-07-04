@@ -98,9 +98,21 @@ Checklist itens 5–8: cadastro manual nos diretórios humanitários venezuelano
 4. Atualize status: `pendente` → `em_cadastro` → `publicado`
 5. Quando publicado, salve a **URL da listagem** no hub
 
-Hubs seedados: venezuela-ayuda.org, reconstruyamosvenezuela.org, info-central-terremoto-venezuela.com, ayudaavenezuela.org
+Hubs seedados: [venezuela-ayuda.vercel.app](https://venezuela-ayuda.vercel.app) (item 5 — **não** usar venezuela-ayuda.org), reconstruyamosvenezuela.org, info-central-terremoto-venezuela.com, ayudaavenezuela.org
+
+**Prioridade telemedicina:** cadastre primeiro em ayudaavenezuela.org (“Postula tu iniciativa”, categoria Salud).
 
 Variável opcional `SITE_URL` gera links UTM absolutos (ex.: `https://www.acurabrasil.org/solicitud-sos-venezuela.html?utm_source=...`).
+
+### Parcerias BR e métricas (checklist 9–14)
+
+1. Acesse `/admin/` → aba **Parcerias**
+2. Acompanhe ONGs, igrejas e associações (itens 9–14) com status e datas de contato
+3. Copie **template de e-mail** ou link UTM `utm_source=acnur|caritas|...`
+4. Subaba **Métricas semanais**: funil live, origem UTM, snapshots semanais
+5. Dashboard mostra parcerias ativas e solicitudes da semana
+
+Parcerias seedadas: ACNUR, Cáritas, AVSI, FSF, Associações venezuelanas, Igrejas (Norte e SP).
 
 ## Deploy no Railway
 

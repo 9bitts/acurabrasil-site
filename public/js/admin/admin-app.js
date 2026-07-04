@@ -31,6 +31,61 @@
     rejeitado: 'Rejeitado',
   };
 
+  /** Instruções específicas por hub (checklist 5–8) */
+  const HUB_REGISTRATION_INSTRUCTIONS = {
+    'venezuela-ayuda': [
+      '<strong>venezuela-ayuda.org não existe.</strong> A plataforma real é <code>venezuela-ayuda.vercel.app</code> (Vercel).',
+      'Acesse a seção <strong>Puedo ayudar</strong> ou o mapa de ayuda e registre o serviço de telemedicina gratuita.',
+      'Cole do kit: título, descripción, URL solicitud (UTM), WhatsApp e e-mail.',
+      'Marque <strong>Em cadastro</strong> enquanto aguarda; após publicar, <strong>Publicado</strong> + URL da listagem.',
+    ],
+    reconstruyamos: [
+      'Acesse reconstruyamosvenezuela.org e role até o formulário <strong>Proponer campaña</strong> (rodapé).',
+      'Preencha: organização ACURA BRASIL, site oficial, categoria salud/telemedicina, descripción do SOS Venezuela.',
+      'URL principal: link UTM <strong>solicitud</strong> (não a homepage sem UTM).',
+      'Após aprovação, salve a URL da campaña listada no hub.',
+    ],
+    'info-central': [
+      'Hub agregador em info-central-terremoto-venezuela.com (marca "Ayuda Venezuela").',
+      'Solicite inclusão na seção <strong>Links de ayuda</strong> — categoria atención médica / psicológica.',
+      'Informe: SOS Salud Venezuela, 100% gratuito, formulário + Doctor8, link UTM solicitud.',
+      'Se houver formulário de aporte comunitário, use o kit em espanhol.',
+    ],
+    ayudaavenezuela: [
+      '<strong>Prioridade para telemedicina.</strong> Botão <strong>Postula tu iniciativa</strong> na homepage.',
+      'Categoria: <strong>Salud</strong>. Organização: ACURA BRASIL — SOS Salud Venezuela.',
+      'URL: link UTM solicitud. Descripción: kit longa + 100% gratuito + CFM/CRP voluntarios.',
+      'Este hub é o mais indicado para serviços de saúde; cadastre aqui antes dos demais se tiver pouco tempo.',
+    ],
+  };
+
+  function hubInstructionsHtml(slug, hub) {
+    const steps = HUB_REGISTRATION_INSTRUCTIONS[slug] || [
+      `Acesse ${hub.url_site}`,
+      'Procure formulário de cadastro de iniciativas ou recursos de ayuda',
+      'Cole do kit: título, descripción, URL solicitud (UTM), WhatsApp e e-mail',
+      'Atualize status conforme progresso do cadastro',
+    ];
+    return steps.map((step) => `<li>${step}</li>`).join('');
+  }
+
+  const PARTNER_STATUS_LABELS = {
+    nao_contatado: 'Não contatado',
+    contato_enviado: 'Contato enviado',
+    em_conversa: 'Em conversa',
+    parceria_ativa: 'Parceria ativa',
+    recusado: 'Recusado',
+    sem_resposta: 'Sem resposta',
+  };
+
+  const PARTNER_TIPO_LABELS = {
+    ong_internacional: 'ONG internacional',
+    ong_nacional: 'ONG nacional',
+    associacao: 'Associação',
+    igreja: 'Igreja',
+    outro: 'Outro',
+  };
+
   let state = {
     tab: 'dashboard',
     volunteers: [],
@@ -123,6 +178,25 @@
     if (el) el.textContent = `${published || 0}/${total || 4} publicados`;
   }
 
+  function updateNavPartnerBadge(emConversa) {
+    const el = document.getElementById('nav-partner-badge');
+    if (el) el.textContent = `${emConversa || 0} em conversa`;
+  }
+
+  function badgePartnerStatus(s) {
+    const cls =
+      s === 'parceria_ativa'
+        ? 'badge-em_consulta'
+        : s === 'em_conversa'
+          ? 'badge-em_triagem'
+          : s === 'recusado'
+            ? 'badge-cancelado'
+            : s === 'contato_enviado'
+              ? 'badge-orientado_doctor8'
+              : 'badge-nova';
+    return `<span class="badge ${cls}">${esc(PARTNER_STATUS_LABELS[s] || s)}</span>`;
+  }
+
   async function init() {
     try {
       const me = await api('/api/admin/me');
@@ -153,6 +227,10 @@
       state.hubsTotal = hubData.total;
       updateNavHubBadge(hubData.published, hubData.total);
     } catch { /* ignore */ }
+    try {
+      const partnerData = await api('/api/admin/partnerships');
+      updateNavPartnerBadge(partnerData.emConversa);
+    } catch { /* ignore */ }
     render();
   }
 
@@ -178,6 +256,7 @@
       else if (state.tab === 'volunteers') main.innerHTML = await renderVolunteers();
       else if (state.tab === 'config') main.innerHTML = await renderConfig();
       else if (state.tab === 'divulgacao') main.innerHTML = await renderDivulgacao();
+      else if (state.tab === 'parcerias') main.innerHTML = await renderParcerias();
       bindEvents();
     } catch (err) {
       main.innerHTML = `<p class="admin-error">Erro: ${esc(err.message)}</p>`;
@@ -202,6 +281,8 @@
         <div class="admin-card"><div class="admin-card-value">${d.byStatus?.em_triagem || 0}</div><div class="admin-card-label">Em triagem</div></div>
         <div class="admin-card"><div class="admin-card-value">${d.isOpen ? 'Aberto' : 'Fechado'}</div><div class="admin-card-label">Status agora</div></div>
         <div class="admin-card admin-card--link" data-goto="divulgacao"><div class="admin-card-value">${d.hubsPublished || 0}/${d.hubsTotal || 4}</div><div class="admin-card-label">Hubs publicados</div></div>
+        <div class="admin-card admin-card--link" data-goto="parcerias"><div class="admin-card-value">${d.partnershipsAtivas || 0}</div><div class="admin-card-label">Parcerias ativas</div></div>
+        <div class="admin-card admin-card--link" data-goto="parcerias" data-parcerias-section="metrics"><div class="admin-card-value">${d.weekIntakes || 0}</div><div class="admin-card-label">Solicitudes esta semana</div></div>
       </div>
       ${statusCards ? `<div class="admin-cards">${statusCards}</div>` : ''}
       <div class="admin-panel">
@@ -210,6 +291,7 @@
         ${d.nextOpenAt && !d.isOpen ? `<p><small>Próxima abertura: ${esc(d.nextOpenAt)}</small></p>` : ''}
         <button type="button" class="admin-btn admin-btn-sm" data-goto="intakes">Ver fila de solicitudes →</button>
         <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" data-goto="divulgacao" style="margin-left:0.5rem">Divulgação / Hubs →</button>
+        <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" data-goto="parcerias" style="margin-left:0.5rem">Parcerias / Métricas →</button>
       </div>`;
   }
 
@@ -233,6 +315,7 @@
           <td>${esc(i.nome)}</td>
           <td>${badgePrioridad(i.prioridad)}</td>
           <td>${badgeStatus(i.status)}</td>
+          <td>${esc(i.referral_source || '—')}</td>
           <td>${esc(i.assigned_volunteer_nome || '—')}</td>
         </tr>`
       )
@@ -254,8 +337,8 @@
       </div>
       <div class="admin-table-wrap">
         <table class="admin-table">
-          <thead><tr><th>Protocolo</th><th>Data</th><th>Nome</th><th>Prioridade</th><th>Status</th><th>Responsável</th></tr></thead>
-          <tbody>${rows || '<tr><td colspan="6">Nenhuma solicitud encontrada</td></tr>'}</tbody>
+          <thead><tr><th>Protocolo</th><th>Data</th><th>Nome</th><th>Prioridade</th><th>Status</th><th>Origem</th><th>Responsável</th></tr></thead>
+          <tbody>${rows || '<tr><td colspan="7">Nenhuma solicitud encontrada</td></tr>'}</tbody>
         </table>
       </div>`;
   }
@@ -286,6 +369,7 @@
         <div class="admin-detail-item"><label>Paciente</label><span>${esc(i.nome_paciente)}</span></div>
         <div class="admin-detail-item"><label>Ubicación</label><span>${esc(i.ubicacion)}</span></div>
         <div class="admin-detail-item"><label>Tipo atención</label><span>${esc(i.tipo_atencion)}</span></div>
+        <div class="admin-detail-item"><label>Origem (UTM)</label><span>${esc(i.referral_source || '—')}</span></div>
       </div>
       <div class="admin-panel">
         <h2>Síntomas</h2>
@@ -506,6 +590,100 @@
       });
     });
 
+    document.querySelectorAll('[data-goto="parcerias"]').forEach((el) => {
+      el.addEventListener('click', () => {
+        state.tab = 'parcerias';
+        state.parceriasSection = el.dataset.parceriasSection || 'partners';
+        state.selectedPartnerSlug = null;
+        document.querySelectorAll('.admin-nav button').forEach((b) => b.classList.toggle('active', b.dataset.tab === 'parcerias'));
+        render();
+      });
+    });
+
+    document.querySelectorAll('[data-parcerias-section]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        state.parceriasSection = btn.dataset.parceriasSection;
+        if (state.parceriasSection !== 'partners') state.selectedPartnerSlug = null;
+        render();
+      });
+    });
+
+    document.querySelectorAll('[data-partner-slug]').forEach((tr) => {
+      tr.addEventListener('click', () => {
+        state.selectedPartnerSlug = tr.dataset.partnerSlug;
+        render();
+      });
+    });
+
+    document.getElementById('partner-back')?.addEventListener('click', () => {
+      state.selectedPartnerSlug = null;
+      render();
+    });
+
+    document.getElementById('partner-filter-apply')?.addEventListener('click', () => {
+      state.partnerFilterStatus = document.getElementById('partner-filter-status')?.value || '';
+      state.partnerFilterTipo = document.getElementById('partner-filter-tipo')?.value || '';
+      render();
+    });
+
+    document.getElementById('partner-save')?.addEventListener('click', async () => {
+      const slug = state.selectedPartnerSlug;
+      await api('/api/admin/partnerships/' + encodeURIComponent(slug), {
+        method: 'PATCH',
+        body: JSON.stringify({
+          contato_nome: document.getElementById('p-contato-nome').value,
+          contato_email: document.getElementById('p-contato-email').value,
+          contato_telefone: document.getElementById('p-contato-tel').value,
+          contato_url: document.getElementById('p-contato-url').value || null,
+          regiao: document.getElementById('p-regiao').value,
+          status: document.getElementById('p-status').value,
+          data_primeiro_contato: document.getElementById('p-data1').value || null,
+          data_ultimo_contato: document.getElementById('p-data2').value || null,
+          data_proxima_acao: document.getElementById('p-data3').value || null,
+          notas: document.getElementById('p-notas').value,
+        }),
+      });
+      alert('Parceria salva.');
+      render();
+    });
+
+    document.getElementById('partner-log')?.addEventListener('click', async () => {
+      await api('/api/admin/partnerships/' + encodeURIComponent(state.selectedPartnerSlug) + '/log', {
+        method: 'POST',
+        body: JSON.stringify({
+          action: document.getElementById('p-log-action').value,
+          note: document.getElementById('p-log-note').value,
+        }),
+      });
+      render();
+    });
+
+    document.querySelectorAll('.btn-copy-email').forEach((btn) => {
+      btn.addEventListener('click', () => copyText(btn.dataset.copy, btn));
+    });
+
+    document.getElementById('tpl-save')?.addEventListener('click', async () => {
+      await api('/api/admin/email-templates', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          template_parceria_ong_pt: document.getElementById('tpl-ong').value,
+          template_igreja_pt: document.getElementById('tpl-igreja').value,
+          template_associacao_pt: document.getElementById('tpl-associacao').value,
+        }),
+      });
+      alert('Templates salvos.');
+      render();
+    });
+
+    document.getElementById('metrics-snapshot')?.addEventListener('click', async () => {
+      await api('/api/admin/metrics/snapshots', {
+        method: 'POST',
+        body: JSON.stringify({ notas: document.getElementById('metrics-notas')?.value || '' }),
+      });
+      alert('Snapshot da semana gerado.');
+      render();
+    });
+
     document.getElementById('filter-apply')?.addEventListener('click', () => {
       state.intakeFilterStatus = document.getElementById('filter-status')?.value || '';
       state.intakeFilterPrioridad = document.getElementById('filter-prioridad')?.value || '';
@@ -722,6 +900,7 @@
             <div class="admin-hub-card-header">
               <h3>${esc(hub.nome)} ${badgeHubStatus(hub.status)}</h3>
               <a href="${esc(hub.url_site)}" target="_blank" rel="noopener">${esc(hub.url_site)}</a>
+              ${hub.url_cadastro && hub.url_cadastro !== hub.url_site ? `<p class="admin-hint">Cadastro: <a href="${esc(hub.url_cadastro)}" target="_blank" rel="noopener">${esc(hub.url_cadastro)}</a></p>` : ''}
             </div>
             <div class="admin-form-group">
               <label>Status</label>
@@ -752,12 +931,7 @@
             </div>
             <details class="admin-hub-instructions">
               <summary>Instruções de cadastro (PT)</summary>
-              <ol>
-                <li>Acesse <a href="${esc(hub.url_site)}" target="_blank" rel="noopener">${esc(hub.url_site)}</a></li>
-                <li>Procure &quot;Agregar recurso&quot;, &quot;Enviar ayuda&quot; ou formulário de cadastro de organizações/recursos</li>
-                <li>Cole do kit: título, descripción corta/larga, URL de solicitud (UTM), WhatsApp e e-mail de contato</li>
-                <li>Marque status <strong>Em cadastro</strong> enquanto aguarda; após aprovação, <strong>Publicado</strong> + URL da listagem</li>
-              </ol>
+              <ol>${hubInstructionsHtml(hub.slug, hub)}</ol>
             </details>
             <button type="button" class="admin-btn admin-btn-sm hub-save">Salvar hub</button>
           </div>`;
@@ -821,6 +995,193 @@
             <tbody>${campaignRows}</tbody>
           </table>
         </div>
+      </div>`;
+  }
+
+  async function renderParcerias() {
+    const section = state.parceriasSection || 'partners';
+    if (section === 'metrics') return renderMetricas();
+
+    const data = await api('/api/admin/partnerships');
+    updateNavPartnerBadge(data.emConversa);
+    const templates = data.templates || {};
+
+    if (section === 'templates') {
+      return `
+        <h1>Parcerias — Templates de e-mail</h1>
+        <div class="admin-subnav">
+          <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" data-parcerias-section="partners">← Parcerias</button>
+        </div>
+        <div class="admin-panel">
+          <div class="admin-form-group"><label>Template ONG (ACNUR, Cáritas, AVSI, FSF)</label><textarea id="tpl-ong" rows="12">${esc(templates.template_parceria_ong_pt || '')}</textarea></div>
+          <div class="admin-form-group"><label>Template Igrejas</label><textarea id="tpl-igreja" rows="10">${esc(templates.template_igreja_pt || '')}</textarea></div>
+          <div class="admin-form-group"><label>Template Associações</label><textarea id="tpl-associacao" rows="10">${esc(templates.template_associacao_pt || '')}</textarea></div>
+          <p class="admin-hint">Use <code>{link_solicitud}</code> no texto — será substituído pelo link UTM de cada parceria.</p>
+          <button type="button" class="admin-btn" id="tpl-save">Salvar templates</button>
+        </div>`;
+    }
+
+    if (state.selectedPartnerSlug) {
+      const detail = await api('/api/admin/partnerships/' + encodeURIComponent(state.selectedPartnerSlug));
+      const p = detail.partnership;
+      const logRows = (p.log || [])
+        .map((l) => `<tr><td>${esc(l.created_at?.slice(0, 16))}</td><td>${esc(l.action)}</td><td>${esc(l.note)}</td></tr>`)
+        .join('');
+      return `
+        <h1>${esc(p.nome)}</h1>
+        <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" id="partner-back">← Voltar</button>
+        <div class="admin-panel" style="margin-top:1rem">
+          ${badgePartnerStatus(p.status)} · Item ${p.checklist_item} · ${esc(PARTNER_TIPO_LABELS[p.tipo] || p.tipo)}
+          <div class="admin-detail-grid" style="margin-top:1rem">
+            <div class="admin-form-group"><label>Contato</label><input id="p-contato-nome" value="${esc(p.contato_nome)}"></div>
+            <div class="admin-form-group"><label>E-mail</label><input id="p-contato-email" value="${esc(p.contato_email)}"></div>
+            <div class="admin-form-group"><label>Telefone</label><input id="p-contato-tel" value="${esc(p.contato_telefone)}"></div>
+            <div class="admin-form-group"><label>URL contato</label><input id="p-contato-url" value="${esc(p.contato_url || '')}"></div>
+            <div class="admin-form-group"><label>Região</label><input id="p-regiao" value="${esc(p.regiao || '')}"></div>
+            <div class="admin-form-group"><label>Status</label>
+              <select id="p-status">${Object.entries(PARTNER_STATUS_LABELS).map(([k, v]) => `<option value="${k}" ${p.status === k ? 'selected' : ''}>${v}</option>`).join('')}</select>
+            </div>
+            <div class="admin-form-group"><label>1º contato</label><input type="date" id="p-data1" value="${esc(p.data_primeiro_contato || '')}"></div>
+            <div class="admin-form-group"><label>Último contato</label><input type="date" id="p-data2" value="${esc(p.data_ultimo_contato || '')}"></div>
+            <div class="admin-form-group"><label>Próxima ação</label><input type="date" id="p-data3" value="${esc(p.data_proxima_acao || '')}"></div>
+          </div>
+          <div class="admin-form-group"><label>Notas</label><textarea id="p-notas" rows="3">${esc(p.notas)}</textarea></div>
+          <div class="admin-utm-links">
+            <label>Link solicitud UTM</label>
+            <div class="admin-utm-row">
+              <input type="text" class="admin-utm-input" readonly value="${esc(p.utmLinks?.solicitud || '')}">
+              <button type="button" class="admin-btn admin-btn-sm btn-copy-utm" data-copy="${esc(p.utmLinks?.solicitud || '')}">Copiar link</button>
+            </div>
+          </div>
+          <div class="admin-toolbar">
+            <button type="button" class="admin-btn admin-btn-sm btn-copy-email" data-copy="${esc(p.emailPreview)}">Copiar e-mail</button>
+            <a class="admin-btn admin-btn-sm admin-btn-secondary" href="${esc(p.mailtoLink)}">Abrir mailto:</a>
+            <button type="button" class="admin-btn admin-btn-sm" id="partner-save">Salvar</button>
+          </div>
+          <details open><summary>Preview e-mail</summary><pre class="admin-email-preview">${esc(p.emailPreview)}</pre></details>
+        </div>
+        <div class="admin-panel">
+          <h2>Registrar ação</h2>
+          <div class="admin-form-group"><label>Ação</label><input id="p-log-action" placeholder="Ex.: E-mail enviado, Reunião agendada"></div>
+          <div class="admin-form-group"><label>Nota</label><textarea id="p-log-note" rows="2"></textarea></div>
+          <button type="button" class="admin-btn admin-btn-sm" id="partner-log">Adicionar ao histórico</button>
+          ${logRows ? `<table class="admin-table" style="margin-top:1rem"><thead><tr><th>Data</th><th>Ação</th><th>Nota</th></tr></thead><tbody>${logRows}</tbody></table>` : ''}
+        </div>`;
+    }
+
+    const filterStatus = state.partnerFilterStatus || '';
+    const filterTipo = state.partnerFilterTipo || '';
+    let partners = data.partnerships || [];
+    if (filterStatus) partners = partners.filter((p) => p.status === filterStatus);
+    if (filterTipo) partners = partners.filter((p) => p.tipo === filterTipo);
+
+    const rows = partners
+      .map(
+        (p) => `<tr class="clickable" data-partner-slug="${esc(p.slug)}">
+          <td>#${p.checklist_item}</td>
+          <td>${esc(p.nome)}</td>
+          <td>${esc(PARTNER_TIPO_LABELS[p.tipo] || p.tipo)}</td>
+          <td>${esc(p.regiao || '—')}</td>
+          <td>${badgePartnerStatus(p.status)}</td>
+          <td>${esc(p.contato_email || '—')}</td>
+        </tr>`
+      )
+      .join('');
+
+    return `
+      <h1>Parcerias BR (checklist 9–14)</h1>
+      <p class="admin-hint">${data.ativas} ativas · ${data.emConversa} em conversa · ${data.total} total</p>
+      <div class="admin-subnav">
+        <button type="button" class="admin-btn admin-btn-sm ${section === 'partners' ? '' : 'admin-btn-secondary'}" data-parcerias-section="partners">Parcerias</button>
+        <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" data-parcerias-section="metrics">Métricas semanais</button>
+        <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" data-parcerias-section="templates">Templates e-mail</button>
+      </div>
+      <div class="admin-filters">
+        <select id="partner-filter-status">
+          <option value="">Todos status</option>
+          ${Object.entries(PARTNER_STATUS_LABELS).map(([k, v]) => `<option value="${k}" ${filterStatus === k ? 'selected' : ''}>${v}</option>`).join('')}
+        </select>
+        <select id="partner-filter-tipo">
+          <option value="">Todos tipos</option>
+          ${Object.entries(PARTNER_TIPO_LABELS).map(([k, v]) => `<option value="${k}" ${filterTipo === k ? 'selected' : ''}>${v}</option>`).join('')}
+        </select>
+        <button type="button" class="admin-btn admin-btn-sm" id="partner-filter-apply">Filtrar</button>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>Item</th><th>Nome</th><th>Tipo</th><th>Região</th><th>Status</th><th>E-mail</th></tr></thead>
+          <tbody>${rows || '<tr><td colspan="6">Nenhuma parceria</td></tr>'}</tbody>
+        </table>
+      </div>`;
+  }
+
+  async function renderMetricas() {
+    const [current, snaps] = await Promise.all([
+      api('/api/admin/metrics/current'),
+      api('/api/admin/metrics/snapshots'),
+    ]);
+    const m = current.metrics;
+    const funnel = m.intakes || {};
+    const funnelMax = Math.max(...Object.values(funnel).map(Number), 1);
+
+    const funnelBars = [
+      'nova', 'em_triagem', 'orientado_doctor8', 'na_fila', 'em_consulta', 'concluido',
+    ]
+      .map((k) => {
+        const v = funnel[k] || 0;
+        const pct = Math.round((v / funnelMax) * 100);
+        return `<div class="admin-funnel-row"><span class="admin-funnel-label">${esc(STATUS_LABELS[k] || k)}</span><div class="admin-funnel-bar-wrap"><div class="admin-funnel-bar" style="width:${pct}%"></div></div><span class="admin-funnel-val">${v}</span></div>`;
+      })
+      .join('');
+
+    const snapRows = (snaps.snapshots || [])
+      .map((s) => `<tr><td>${esc(s.week_start)}</td><td>${s.intakes_total}</td><td>${s.intakes_nova}</td><td>${s.intakes_concluido}</td><td>${s.hubs_publicados}</td><td>${esc(s.notas || '')}</td></tr>`)
+      .join('');
+
+    const chartBars = (snaps.snapshots || [])
+      .slice()
+      .reverse()
+      .slice(-8)
+      .map((s) => {
+        const max = Math.max(...(snaps.snapshots || []).map((x) => x.intakes_total), 1);
+        const h = Math.round((s.intakes_total / max) * 100);
+        return `<div class="admin-week-bar" title="${esc(s.week_start)}: ${s.intakes_total}"><div class="admin-week-bar-fill" style="height:${h}%"></div><small>${esc(s.week_start.slice(5))}</small></div>`;
+      })
+      .join('');
+
+    const referralRows = (m.referralBreakdown || [])
+      .map((r) => `<tr><td>${esc(r.src)}</td><td>${r.c}</td></tr>`)
+      .join('');
+
+    return `
+      <h1>Métricas SOS — funil semanal</h1>
+      <div class="admin-subnav">
+        <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" data-parcerias-section="partners">← Parcerias</button>
+      </div>
+      <div class="admin-cards">
+        <div class="admin-card"><div class="admin-card-value">${m.weekIntakes || 0}</div><div class="admin-card-label">Solicitudes esta semana</div></div>
+        <div class="admin-card"><div class="admin-card-value">${m.hubs?.publicados || 0}/${m.hubs?.total || 4}</div><div class="admin-card-label">Hubs publicados</div></div>
+        <div class="admin-card"><div class="admin-card-value">${m.partnerships?.ativas || 0}</div><div class="admin-card-label">Parcerias ativas</div></div>
+      </div>
+      <div class="admin-panel">
+        <h2>Funil de solicitudes (live)</h2>
+        <div class="admin-funnel">${funnelBars}</div>
+      </div>
+      <div class="admin-panel">
+        <h2>Origem (referral / UTM)</h2>
+        <table class="admin-table admin-table-compact"><thead><tr><th>utm_source</th><th>Total</th></tr></thead><tbody>${referralRows || '<tr><td colspan="2">Sem dados ainda</td></tr>'}</tbody></table>
+      </div>
+      <div class="admin-panel">
+        <h2>Snapshot semanal</h2>
+        <p class="admin-hint">Semana atual (segunda): ${esc(snaps.currentWeek || m.weekStart)}</p>
+        <div class="admin-form-group"><label>Notas da semana</label><textarea id="metrics-notas" rows="2"></textarea></div>
+        <button type="button" class="admin-btn admin-btn-sm" id="metrics-snapshot">Gerar snapshot desta semana</button>
+      </div>
+      ${chartBars ? `<div class="admin-panel"><h2>Intakes por semana</h2><div class="admin-week-chart">${chartBars}</div></div>` : ''}
+      <div class="admin-panel">
+        <h2>Histórico de snapshots</h2>
+        <table class="admin-table"><thead><tr><th>Semana</th><th>Intakes</th><th>Nova*</th><th>Concluídos</th><th>Hubs</th><th>Notas</th></tr></thead><tbody>${snapRows || '<tr><td colspan="6">Nenhum snapshot</td></tr>'}</tbody></table>
+        <p class="admin-hint">* Nova = total em status nova no momento do snapshot</p>
       </div>`;
   }
 

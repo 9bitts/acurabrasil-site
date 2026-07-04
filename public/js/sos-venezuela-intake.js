@@ -86,6 +86,7 @@
           observaciones: form.querySelector('#observaciones')?.value.trim() || '',
           consentimiento: form.querySelector('#consentimiento')?.checked || false,
           website: form.querySelector('#website')?.value || '',
+          referral_source: window.SosVenezuelaPublic?.getStoredReferral?.() || '',
         }),
       });
 

@@ -91,6 +91,7 @@
   }
 
   async function init() {
+    captureReferral();
     let info;
     try {
       const res = await fetch('/api/sos-venezuela/public-info');
@@ -116,8 +117,29 @@
     renderInlineHours(ctaHours, info);
   }
 
+  function captureReferral() {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const src = params.get('utm_source');
+      if (src) {
+        localStorage.setItem('sos_ve_referral', String(src).slice(0, 64));
+      }
+    } catch {
+      /* ignore */
+    }
+  }
+
+  function getStoredReferral() {
+    try {
+      return localStorage.getItem('sos_ve_referral') || '';
+    } catch {
+      return '';
+    }
+  }
+
   window.SosVenezuelaPublic = {
     applyWhatsAppLinks,
+    getStoredReferral,
     buildWaHelpLink(number, text) {
       const n = String(number || FALLBACK_WA.number).replace(/\D/g, '');
       return `https://wa.me/${n}?text=${encodeURIComponent(text)}`;
