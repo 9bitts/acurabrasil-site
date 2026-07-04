@@ -47,12 +47,11 @@ registerAdminRoutes(app);
 app.get('/api/paypal/config', handlePaypalConfig);
 app.post('/api/paypal/subscription-plan', handleSubscriptionPlan);
 
-app.get('/admin', (req, res) => res.redirect('/admin/'));
-app.get('/admin/', (req, res) => {
+app.get(['/admin', '/admin/'], (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin', 'index.html'));
 });
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), { redirect: false }));
 
 app.use((err, req, res, next) => {
   if (err instanceof SyntaxError && 'body' in err) {
