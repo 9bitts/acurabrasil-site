@@ -116,7 +116,14 @@
       }
 
       if (res.status === 429) {
-        showStatus('error', 'sosve.intake.errorRateLimit');
+        const secs = data.retryAfterSeconds;
+        if (statusEl && secs > 0) {
+          statusEl.hidden = false;
+          statusEl.className = 'form-status error';
+          statusEl.textContent = `${t('sosve.intake.errorRateLimit')} (${secs}s)`;
+        } else {
+          showStatus('error', 'sosve.intake.errorRateLimit');
+        }
         return;
       }
 
