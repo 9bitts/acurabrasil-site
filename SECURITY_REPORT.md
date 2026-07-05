@@ -1,4 +1,4 @@
-# Relatório de Segurança — ACURA BRASIL (acurabrasil-site)
+# Relatório de Segurança — ACURABRASIL (acurabrasil-site)
 
 **Data da auditoria:** 4 de julho de 2026  
 **Escopo:** código-fonte completo do repositório (backend Node.js/Express, frontend estático, SQLite, integrações Resend/PayPal/Doctor8)  

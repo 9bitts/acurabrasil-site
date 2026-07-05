@@ -3,7 +3,7 @@
 
   var CONFIG = {
     pixKey: '30.350.850/0001-80',
-    pixName: 'ACURA BRASIL',
+    pixName: 'ACURABRASIL',
     pixCity: 'BELO HORIZONTE',
     angelRegisterUrl: 'https://app.doctor8.org/register/angel',
   };
@@ -472,7 +472,7 @@
           purchase_units: [
             {
               amount: { currency_code: 'BRL', value: amount.toFixed(2) },
-              description: 'Doação ACURA BRASIL — ' + getCauseLabel(),
+              description: 'Doação ACURABRASIL — ' + getCauseLabel(),
               custom_id: 'doacao-' + state.cause,
             },
           ],

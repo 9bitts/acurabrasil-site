@@ -1,6 +1,6 @@
-# ACURA BRASIL — Site Institucional
+# ACURABRASIL — Site Institucional
 
-Site institucional da **ACURA BRASIL** (Associação Brasil pela Cura), OSCIP certificada dedicada ao avanço da ciência, fomento à pesquisa e assistência humanitária.
+Site institucional da **ACURABRASIL** (Associação Brasil pela Cura), OSCIP certificada dedicada ao avanço da ciência, fomento à pesquisa e assistência humanitária.
 
 ## Páginas
 

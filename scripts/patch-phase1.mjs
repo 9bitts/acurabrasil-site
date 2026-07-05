@@ -22,8 +22,8 @@ const JSON_LD = `    <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": ["NGO", "MedicalOrganization"],
-      "name": "ACURA BRASIL — Associação Brasil pela Cura",
-      "alternateName": "ACURA BRASIL",
+      "name": "ACURABRASIL — Associação Brasil pela Cura",
+      "alternateName": "ACURABRASIL",
       "taxID": "30.350.850/0001-80",
       "url": "https://www.acurabrasil.org/",
       "logo": "https://www.acurabrasil.org/img/logo-acurabrasil.png",

@@ -129,7 +129,7 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`ACURA BRASIL site running on port ${PORT}`);
+  console.log(`ACURABRASIL site running on port ${PORT}`);
   const guardMode = describeAdminGuardMode();
   if (guardMode) {
     console.log(guardMode);

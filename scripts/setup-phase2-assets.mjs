@@ -70,7 +70,7 @@ async function createWebpPlaceholder(name, color) {
     return;
   }
   ensureDir(projetosDst);
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="560"><rect fill="${color}" width="800" height="560"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="28">ACURA BRASIL — placeholder</text></svg>`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="560"><rect fill="${color}" width="800" height="560"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="28">ACURABRASIL — placeholder</text></svg>`;
   await sharp(Buffer.from(svg)).webp({ quality: 80 }).toFile(path.join(projetosDst, name));
   console.log('Placeholder:', name);
 }
@@ -109,6 +109,11 @@ copyFonts();
 copyQrcode();
 createPdfTodo();
 for (const [name, color] of Object.entries(PLACEHOLDER_COLORS)) {
+  const target = path.join(projetosDst, name);
+  if (fs.existsSync(target) && fs.statSync(target).size > 20_000) {
+    console.log('Skip (real photo exists):', name);
+    continue;
+  }
   await createWebpPlaceholder(name, color);
 }
 await createLogoWebp();

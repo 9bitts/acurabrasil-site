@@ -78,7 +78,7 @@
     ],
     reconstruyamos: [
       'Acesse reconstruyamosvenezuela.org e role até o formulário <strong>Proponer campaña</strong> (rodapé).',
-      'Preencha: organização ACURA BRASIL, site oficial, categoria salud/telemedicina, descripción do SOS Venezuela.',
+      'Preencha: organização ACURABRASIL, site oficial, categoria salud/telemedicina, descripción do SOS Venezuela.',
       'URL principal: link UTM <strong>solicitud</strong> (não a homepage sem UTM).',
       'Após aprovação, salve a URL da campaña listada no hub.',
     ],
@@ -90,7 +90,7 @@
     ],
     ayudaavenezuela: [
       '<strong>Prioridade para telemedicina.</strong> Botão <strong>Postula tu iniciativa</strong> na homepage.',
-      'Categoria: <strong>Salud</strong>. Organização: ACURA BRASIL — SOS Salud Venezuela.',
+      'Categoria: <strong>Salud</strong>. Organização: ACURABRASIL — SOS Salud Venezuela.',
       'URL: link UTM solicitud. Descripción: kit longa + 100% gratuito + CFM/CRP voluntarios.',
       'Este hub é o mais indicado para serviços de saúde; cadastre aqui antes dos demais se tiver pouco tempo.',
     ],

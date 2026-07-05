@@ -1,14 +1,15 @@
 {
   "name": "acurabrasil-site",
   "version": "1.0.0",
-  "description": "Site institucional da ACURA BRASIL - Associação Brasil pela Cura",
+  "description": "Site institucional da ACURABRASIL - Associação Brasil pela Cura",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
     "check:i18n": "node scripts/check-i18n.mjs",
     "test:pix": "node scripts/test-pix-qr.mjs",
-    "setup:phase2": "node scripts/setup-phase2-assets.mjs && node scripts/bundle-qrcode.mjs && node scripts/split-i18n.mjs && node scripts/patch-phase2-html.mjs"
+    "setup:phase2": "node scripts/setup-phase2-assets.mjs && node scripts/bundle-qrcode.mjs && node scripts/split-i18n.mjs && node scripts/patch-phase2-html.mjs",
+    "fetch:projetos-photos": "node scripts/fetch-projetos-photos.mjs"
   },
   "engines": {
     "node": ">=18"

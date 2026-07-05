@@ -83,7 +83,7 @@
     upsertLink('alternate', canonical, { hreflang: 'x-default' });
 
     upsertMeta('property', 'og:type', 'website');
-    upsertMeta('property', 'og:site_name', 'ACURA BRASIL');
+    upsertMeta('property', 'og:site_name', 'ACURABRASIL');
     upsertMeta('property', 'og:title', meta.title);
     upsertMeta('property', 'og:description', meta.description);
     upsertMeta('property', 'og:url', canonical);

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="ACURA BRASIL">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="ACURABRASIL">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#0d3b66"/>
@@ -6,7 +6,7 @@
     </linearGradient>
   </defs>
   <rect width="1200" height="630" fill="url(#bg)"/>
-  <text x="600" y="280" text-anchor="middle" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="700">ACURA BRASIL</text>
+  <text x="600" y="280" text-anchor="middle" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="700">ACURABRASIL</text>
   <text x="600" y="350" text-anchor="middle" fill="#e8f5e9" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="500">Telemedicina humanitaria · Ciencia · Transparencia</text>
   <text x="600" y="420" text-anchor="middle" fill="#a8dadc" font-family="Inter, Arial, sans-serif" font-size="22">www.acurabrasil.org</text>
 </svg>

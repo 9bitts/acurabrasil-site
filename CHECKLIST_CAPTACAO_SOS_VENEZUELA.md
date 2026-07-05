@@ -1,5 +1,5 @@
 # CHECKLIST — Captação de Pacientes SOS Venezuela
-Acura Brasil + Doctor8 | Criado em 04/07/2026
+ACURABRASIL + Doctor8 | Criado em 04/07/2026
 
 ## FASE 1 — Esta semana (custo zero)
 
