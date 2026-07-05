@@ -3528,20 +3528,55 @@ a.btn.is-disabled:hover {
 }
 
 /* Equipe */
+.section--equipe {
+    background: linear-gradient(180deg, #ffffff 0%, #f0f7fc 55%, #e6f1f9 100%);
+    padding: 4.5rem 0;
+}
+
+.section--equipe-fiscal {
+    background: linear-gradient(135deg, #e8f5f0 0%, #edf6fb 45%, #f2f0fa 100%);
+    padding: 4.5rem 0;
+}
+
 .equipe-intro {
     font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--texto-escuro);
+    max-width: 760px;
+    margin-bottom: 2.75rem;
+    padding: 1.35rem 1.5rem 1.35rem 1.25rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(240, 247, 252, 0.85) 100%);
+    border-left: 4px solid var(--azul-institucional);
+    border-radius: 0 14px 14px 0;
+    box-shadow: 0 4px 20px rgba(35, 114, 157, 0.08);
+}
+
+.equipe-fiscal-intro {
+    font-size: 1rem;
     line-height: 1.7;
     color: var(--texto-mutado);
     max-width: 720px;
-    margin-bottom: 2.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .equipe-section-title {
     margin-top: 3rem;
     margin-bottom: 2rem;
-    padding-bottom: 0.65rem;
-    border-bottom: 2px solid rgba(35, 114, 157, 0.12);
+    padding-bottom: 0.75rem;
     color: var(--azul-escuro);
+    border-bottom: none;
+    position: relative;
+}
+
+.equipe-section-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 72px;
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--azul-institucional), var(--verde-acao));
 }
 
 .equipe-section-title:first-of-type {
@@ -3551,7 +3586,7 @@ a.btn.is-disabled:hover {
 .team-tier--president {
     display: flex;
     justify-content: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .team-grid {
@@ -3560,63 +3595,103 @@ a.btn.is-disabled:hover {
     gap: 1.75rem;
 }
 
+.team-grid--directors {
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.team-grid--directors .team-card {
+    grid-column: span 2;
+}
+
+.team-grid--directors .team-card:nth-child(4) {
+    grid-column: 2 / span 2;
+}
+
+.team-grid--directors .team-card:nth-child(5) {
+    grid-column: 4 / span 2;
+}
+
 .team-grid--fiscal {
     margin-top: 2rem;
 }
 
 .team-card {
+    --card-accent: var(--azul-institucional);
+    --card-tint: rgba(35, 114, 157, 0.06);
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: linear-gradient(180deg, var(--branco) 0%, #f8fbfd 100%);
-    border: 1px solid rgba(35, 114, 157, 0.1);
-    border-radius: 14px;
-    padding: 2rem 1.5rem 1.75rem;
+    overflow: hidden;
+    background: linear-gradient(160deg, #ffffff 0%, var(--card-tint) 100%);
+    border: 1px solid rgba(35, 114, 157, 0.12);
+    border-radius: 16px;
+    padding: 2.1rem 1.5rem 1.85rem;
     text-align: center;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-    box-shadow: 0 4px 18px rgba(35, 114, 157, 0.06);
+    transition: transform 0.28s ease, box-shadow 0.28s ease;
+    box-shadow: 0 6px 24px rgba(35, 114, 157, 0.08);
+}
+
+.team-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--card-accent), color-mix(in srgb, var(--card-accent) 55%, var(--verde-acao)));
 }
 
 .team-card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(35, 114, 157, 0.22);
-    box-shadow: 0 14px 34px rgba(35, 114, 157, 0.12);
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(35, 114, 157, 0.14);
 }
+
+.team-grid--directors .team-card:nth-child(1) { --card-accent: #23729d; --card-tint: rgba(35, 114, 157, 0.07); }
+.team-grid--directors .team-card:nth-child(2) { --card-accent: #2d8a6e; --card-tint: rgba(45, 138, 110, 0.08); }
+.team-grid--directors .team-card:nth-child(3) { --card-accent: #5b6eae; --card-tint: rgba(91, 110, 174, 0.08); }
+.team-grid--directors .team-card:nth-child(4) { --card-accent: #8b5a9c; --card-tint: rgba(139, 90, 156, 0.08); }
+.team-grid--directors .team-card:nth-child(5) { --card-accent: #c07a3a; --card-tint: rgba(192, 122, 58, 0.08); }
+
+.team-grid--fiscal .team-card:nth-child(1) { --card-accent: #23729d; --card-tint: rgba(35, 114, 157, 0.07); }
+.team-grid--fiscal .team-card:nth-child(2) { --card-accent: #3a8f7b; --card-tint: rgba(58, 143, 123, 0.08); }
+.team-grid--fiscal .team-card:nth-child(3) { --card-accent: #6a7fb5; --card-tint: rgba(106, 127, 181, 0.08); }
 
 .team-card--featured {
-    max-width: 360px;
+    --card-accent: var(--azul-institucional);
+    --card-tint: rgba(35, 114, 157, 0.1);
+    max-width: 380px;
     width: 100%;
-    padding: 2.5rem 2rem 2.25rem;
-    border-width: 2px;
-    border-color: rgba(35, 114, 157, 0.28);
-    box-shadow: 0 10px 28px rgba(35, 114, 157, 0.1);
+    padding: 2.6rem 2rem 2.35rem;
+    border: 2px solid rgba(35, 114, 157, 0.18);
+    box-shadow: 0 14px 36px rgba(35, 114, 157, 0.14);
 }
 
-.team-photo {
-    width: 112px;
-    height: 112px;
-    max-width: none;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    margin: 0 auto 1.35rem;
-    display: block;
+.team-card--featured::before {
+    height: 5px;
+    background: linear-gradient(90deg, var(--azul-institucional), var(--verde-acao), var(--azul-institucional));
+}
+
+.team-photo-frame {
+    width: 116px;
+    height: 116px;
     flex-shrink: 0;
-    box-shadow: 0 6px 20px rgba(35, 114, 157, 0.16);
+    margin: 0 0 1.4rem;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(35, 114, 157, 0.2);
     outline: 3px solid var(--branco);
-    border: 1px solid rgba(35, 114, 157, 0.12);
+    border: 2px solid rgba(35, 114, 157, 0.15);
+    background: linear-gradient(135deg, #dceaf3 0%, #c8dde9 100%);
 }
 
-.team-card img.team-photo {
-    object-fit: cover;
-    object-position: center 20%;
+.team-photo-frame--lg {
+    width: 136px;
+    height: 136px;
 }
 
-.team-card--featured .team-photo {
-    width: 132px;
-    height: 132px;
-}
-
-.team-photo--placeholder {
+.team-photo-frame--placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3624,26 +3699,40 @@ a.btn.is-disabled:hover {
     color: var(--branco);
 }
 
+.team-photo-frame .team-photo {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    margin: 0;
+    border: none;
+    outline: none;
+    border-radius: 0;
+    box-shadow: none;
+    object-fit: cover;
+    object-position: center 18%;
+    display: block;
+}
+
 .team-photo-initials {
-    font-size: 1.85rem;
+    font-size: 1.9rem;
     font-weight: 700;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.05em;
     opacity: 0.95;
 }
 
-.team-card--featured .team-photo-initials {
-    font-size: 2.1rem;
+.team-photo-frame--lg .team-photo-initials {
+    font-size: 2.15rem;
 }
 
 .team-role {
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: var(--azul-institucional);
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--card-accent, var(--azul-institucional));
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    line-height: 1.45;
-    max-width: 240px;
-    margin: 0 auto 0.65rem;
+    letter-spacing: 0.07em;
+    line-height: 1.5;
+    max-width: 220px;
+    margin: 0 auto 0.7rem;
 }
 
 .team-name {
@@ -3666,12 +3755,34 @@ a.btn.is-disabled:hover {
 }
 
 @media (max-width: 900px) {
-    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .team-grid,
+    .team-grid--directors,
+    .team-grid--fiscal {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .team-grid--directors .team-card,
+    .team-grid--directors .team-card:nth-child(4),
+    .team-grid--directors .team-card:nth-child(5) {
+        grid-column: auto;
+    }
 }
 
 @media (max-width: 640px) {
-    .team-grid { grid-template-columns: 1fr; }
-    .team-card--featured { max-width: 100%; }
+    .section--equipe,
+    .section--equipe-fiscal {
+        padding: 3.5rem 0;
+    }
+
+    .team-grid,
+    .team-grid--directors,
+    .team-grid--fiscal {
+        grid-template-columns: 1fr;
+    }
+
+    .team-card--featured {
+        max-width: 100%;
+    }
 }
 
 /* SOS Venezuela — horários dinâmicos (public-info API) */

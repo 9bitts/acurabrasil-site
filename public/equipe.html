@@ -6,7 +6,7 @@
     <link rel="preload" href="fonts/inter-latin-400-normal.woff2?v=16" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/inter-latin-600-normal.woff2?v=16" as="font" type="font/woff2" crossorigin>
     <meta name="description" data-i18n-content="equipe.meta.description" content="Conozca la dirección, el equipo directivo y el Consejo Fiscal de ACURA BRASIL.">
-    <title>Equipo - ACURA BRASIL</title><link rel="stylesheet" href="css/style.css?v=22">
+    <title>Equipo - ACURA BRASIL</title><link rel="stylesheet" href="css/style.css?v=23">
     <script src="js/analytics-config.js"></script>
     <script src="js/seo.js"></script>
     <script src="js/i18n-loader.js?v=18"></script>
@@ -61,7 +61,7 @@
         <p data-i18n="equipe.hero.subtitle">La dirección y el cuerpo directivo que conducen ACURA BRASIL con rigor, transparencia y compromiso social.</p>
     </section>
 
-    <section class="section">
+    <section class="section section--equipe">
         <div class="container content-block">
             <p class="equipe-intro" data-i18n="equipe.intro">ACURA BRASIL está conducida por una dirección ejecutiva y un Consejo Fiscal comprometidos con la excelencia operacional y la gobernanza transparente exigida de las organizaciones OSCIP.</p>
 
@@ -69,7 +69,9 @@
             <h2 class="equipe-section-title" data-i18n="equipe.president.title">Presidente</h2>
             <div class="team-tier team-tier--president">
                 <article class="team-card team-card--featured">
-                    <img src="img/equipe/claudia-solmucci.png" alt="Claudia de Bessa Solmucci" class="team-photo" width="140" height="140" loading="lazy">
+                    <div class="team-photo-frame team-photo-frame--lg">
+                        <img src="img/equipe/claudia-solmucci.png?v=2" alt="Claudia de Bessa Solmucci" class="team-photo" loading="lazy">
+                    </div>
                     <p class="team-role" data-i18n="equipe.president.role">Presidente</p>
                     <h3 class="team-name">Claudia de Bessa Solmucci</h3>
                 </article>
@@ -77,31 +79,39 @@
 
             <!-- Diretoria -->
             <h2 class="equipe-section-title" data-i18n="equipe.directors.title">Diretoria</h2>
-            <div class="team-grid">
+            <div class="team-grid team-grid--directors">
                 <article class="team-card">
-                    <div class="team-photo team-photo--placeholder" aria-hidden="true">
+                    <div class="team-photo-frame team-photo-frame--placeholder" aria-hidden="true">
                         <span class="team-photo-initials">DA</span>
                     </div>
                     <p class="team-role" data-i18n="equipe.dir.financeiro.role">Diretor Financeiro</p>
                     <h3 class="team-name">Diego Albs</h3>
                 </article>
                 <article class="team-card">
-                    <img src="img/equipe/cristiane-lhullier.png" alt="Cristiane Lhullier" class="team-photo" width="120" height="120" loading="lazy">
+                    <div class="team-photo-frame">
+                        <img src="img/equipe/cristiane-lhullier.png?v=2" alt="Cristiane Lhullier" class="team-photo" loading="lazy">
+                    </div>
                     <p class="team-role" data-i18n="equipe.dir.social.role">Diretora Social e de Saúde Mental</p>
                     <h3 class="team-name">Cristiane Lhullier</h3>
                 </article>
                 <article class="team-card">
-                    <img src="img/equipe/gisele-marins.png" alt="Gisele Marins" class="team-photo" width="120" height="120" loading="lazy">
+                    <div class="team-photo-frame">
+                        <img src="img/equipe/gisele-marins.png?v=2" alt="Gisele Marins" class="team-photo" loading="lazy">
+                    </div>
                     <p class="team-role" data-i18n="equipe.dir.saude.role">Diretora de Operações em Saúde</p>
                     <h3 class="team-name">Gisele Marins</h3>
                 </article>
                 <article class="team-card">
-                    <img src="img/equipe/thamara-kalil.png" alt="Thâmara Kalil" class="team-photo" width="120" height="120" loading="lazy">
+                    <div class="team-photo-frame">
+                        <img src="img/equipe/thamara-kalil.png?v=2" alt="Thâmara Kalil" class="team-photo" loading="lazy">
+                    </div>
                     <p class="team-role" data-i18n="equipe.dir.psicanalise.role">Diretora de Atendimento em Psicanálise</p>
                     <h3 class="team-name">Thâmara Kalil</h3>
                 </article>
                 <article class="team-card">
-                    <img src="img/equipe/celestina-goncalves.png?v=2" alt="Celestina Gonçalves" class="team-photo" width="120" height="120" loading="lazy">
+                    <div class="team-photo-frame">
+                        <img src="img/equipe/celestina-goncalves.png?v=2" alt="Celestina Gonçalves" class="team-photo" loading="lazy">
+                    </div>
                     <p class="team-role" data-i18n="equipe.dir.terapias.role">Diretora de Atendimento em Terapias Integrativas</p>
                     <h3 class="team-name">Celestina Gonçalves</h3>
                 </article>
@@ -109,25 +119,27 @@
         </div>
     </section>
 
-    <section class="section section-alt">
+    <section class="section section--equipe-fiscal">
         <div class="container content-block">
             <h2 class="equipe-section-title" data-i18n="equipe.fiscal.title">Conselho Fiscal</h2>
-            <p data-i18n="equipe.fiscal.intro">Responsável pela fiscalização contábil, financeira, orçamentária, operacional e patrimonial da entidade, em conformidade com o estatuto social e a legislação aplicável às OSCIPs.</p>
+            <p class="equipe-fiscal-intro" data-i18n="equipe.fiscal.intro">Responsável pela fiscalização contábil, financeira, orçamentária, operacional e patrimonial da entidade, em conformidade com o estatuto social e a legislação aplicável às OSCIPs.</p>
             <div class="team-grid team-grid--fiscal">
                 <article class="team-card">
-                    <img src="img/equipe/nara-amaral.png" alt="Nara Amaral" class="team-photo" width="120" height="120" loading="lazy">
+                    <div class="team-photo-frame">
+                        <img src="img/equipe/nara-amaral.png?v=2" alt="Nara Amaral" class="team-photo" loading="lazy">
+                    </div>
                     <p class="team-role" data-i18n="equipe.fiscal.member.role">Conselheiro(a) Fiscal</p>
                     <h3 class="team-name">Nara Amaral</h3>
                 </article>
                 <article class="team-card">
-                    <div class="team-photo team-photo--placeholder" aria-hidden="true">
+                    <div class="team-photo-frame team-photo-frame--placeholder" aria-hidden="true">
                         <span class="team-photo-initials">FM</span>
                     </div>
                     <p class="team-role" data-i18n="equipe.fiscal.member.role">Conselheiro(a) Fiscal</p>
                     <h3 class="team-name">Fabrício Miar</h3>
                 </article>
                 <article class="team-card">
-                    <div class="team-photo team-photo--placeholder" aria-hidden="true">
+                    <div class="team-photo-frame team-photo-frame--placeholder" aria-hidden="true">
                         <span class="team-photo-initials">RS</span>
                     </div>
                     <p class="team-role" data-i18n="equipe.fiscal.member.role">Conselheiro(a) Fiscal</p>
