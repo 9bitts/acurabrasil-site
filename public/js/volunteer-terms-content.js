@@ -36,13 +36,13 @@
     <li>Tratamento de dados conforme a LGPD.</li>
   </ul>
   <h4>8. Obrigações da ACURABRASIL e INFO8</h4>
-  <p>Oferecer orientação operacional, comunicar resultados com transparência em <a href="transparencia.html">acurabrasil.org/transparencia</a> e manter regras claras de uso da plataforma. Não há exigência de carga horária fixa, número mínimo de consultas ou metas de quota.</p>
+  <p>Oferecer orientação operacional, comunicar resultados com transparência em <a href="/transparencia">acurabrasil.org/transparencia</a> e manter regras claras de uso da plataforma. Não há exigência de carga horária fixa, número mínimo de consultas ou metas de quota.</p>
   <h4>9. Responsabilidade profissional</h4>
   <p>A responsabilidade clínica e ética é exclusiva do profissional. O programa <strong>não substitui</strong> serviços de urgência e emergência presenciais.</p>
   <h4>10. Proteção de dados (LGPD)</h4>
   <p>Dados pessoais e sensíveis dos pacientes devem ser usados apenas para finalidade assistencial, com confidencialidade e sigilo profissional. Incidentes de segurança ou privacidade devem ser reportados imediatamente pelos canais oficiais.</p>
   <h4>11. Vigência, aceite e rescisão</h4>
-  <p>A vigência inicia no aceite digital (checkbox), conforme art. 2º da Lei 9.608/1998. Alterações serão comunicadas por e-mail ou aviso na plataforma. Qualquer parte pode rescindir a adesão a qualquer tempo. Foro: Belo Horizonte/MG. Contato: <a href="contato.html">acurabrasil.org/contato</a>.</p>
+  <p>A vigência inicia no aceite digital (checkbox), conforme art. 2º da Lei 9.608/1998. Alterações serão comunicadas por e-mail ou aviso na plataforma. Qualquer parte pode rescindir a adesão a qualquer tempo. Foro: Belo Horizonte/MG. Contato: <a href="/contato">acurabrasil.org/contato</a>.</p>
 </article>`;
 
   const ES = `
@@ -82,13 +82,13 @@
     <li>Tratamiento de datos conforme a la LGPD.</li>
   </ul>
   <h4>8. Obligaciones de ACURABRASIL e INFO8</h4>
-  <p>Ofrecer orientación operacional, comunicar resultados con transparencia en <a href="transparencia.html">acurabrasil.org/transparencia</a>. No hay exigencia de carga horaria fija ni metas de consultas.</p>
+  <p>Ofrecer orientación operacional, comunicar resultados con transparencia en <a href="/transparencia">acurabrasil.org/transparencia</a>. No hay exigencia de carga horaria fija ni metas de consultas.</p>
   <h4>9. Responsabilidad profesional</h4>
   <p>La responsabilidad clínica y ética es exclusiva del profesional. El programa <strong>no sustituye</strong> servicios de urgencia presenciales.</p>
   <h4>10. Protección de datos (LGPD)</h4>
   <p>Los datos personales y sensibles de pacientes deben usarse solo con fines asistenciales, con confidencialidad y sigilo profesional.</p>
   <h4>11. Vigencia, aceptación y rescisión</h4>
-  <p>La vigencia inicia con la aceptación digital (checkbox). Las modificaciones serán comunicadas. Cualquier parte puede rescindir en cualquier momento. Foro: Belo Horizonte/MG. Contacto: <a href="contato.html">acurabrasil.org/contato</a>.</p>
+  <p>La vigencia inicia con la aceptación digital (checkbox). Las modificaciones serán comunicadas. Cualquier parte puede rescindir en cualquier momento. Foro: Belo Horizonte/MG. Contacto: <a href="/contato">acurabrasil.org/contato</a>.</p>
 </article>`;
 
   window.VolunteerTermsContent = { pt: PT, es: ES, version: '1.0' };

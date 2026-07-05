@@ -46,7 +46,7 @@
       <p id="confirm-text">Haga clic en el botón para confirmar su correo en el boletín de ACURABRASIL. El enlace expira en 48 horas.</p>
       <button type="button" class="btn btn-verde" id="confirm-btn">Confirmar inscripción</button>
       <p class="newsletter-confirm-status info" id="confirm-status" hidden role="status" aria-live="polite"></p>
-      <p style="margin-top:1.5rem;"><a href="index.html">← Volver al inicio</a></p>
+      <p style="margin-top:1.5rem;"><a href="/">← Volver al inicio</a></p>
     </div>
   </main>
   <script>
@@ -91,13 +91,13 @@
           })
           .then(function (result) {
             if (result.ok && result.data.ok) {
-              window.location.href = '/index.html?newsletter=confirmed';
+              window.location.href = '/?newsletter=confirmed';
               return;
             }
-            window.location.href = '/index.html?newsletter=invalid';
+            window.location.href = '/?newsletter=invalid';
           })
           .catch(function () {
-            window.location.href = '/index.html?newsletter=invalid';
+            window.location.href = '/?newsletter=invalid';
           });
       });
     })();

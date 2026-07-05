@@ -5,9 +5,10 @@
   var OG_IMAGE = SITE + '/img/og-cover.svg';
 
   function pageSlug() {
-    var path = window.location.pathname.replace(/^\//, '');
-    if (!path || path.endsWith('/')) path += 'index.html';
-    return path.split('/').pop() || 'index.html';
+    var path = window.location.pathname.replace(/^\/+|\/+$/g, '');
+    if (!path) return 'index';
+    if (/\.html$/i.test(path)) path = path.replace(/\.html$/i, '');
+    return path.split('/').pop() || 'index';
   }
 
   function metaFromI18n(lang, titleKey, descKey) {
@@ -21,20 +22,20 @@
   }
 
   var PAGE_META = {
-    'index.html': { titleKey: 'index.meta.title', descKey: 'index.meta.description' },
-    'instituicao.html': { titleKey: 'inst.meta.title', descKey: 'inst.meta.description' },
-    'equipe.html': { titleKey: 'equipe.meta.title', descKey: 'equipe.meta.description' },
-    'pesquisas.html': { titleKey: 'pesq.meta.title', descKey: 'pesq.meta.description' },
-    'atendimento-pandemia.html': { titleKey: 'covid.meta.title', descKey: 'covid.meta.description' },
-    'sos-saude-rs.html': { titleKey: 'sosrs.meta.title', descKey: 'sosrs.meta.description' },
-    'sos-venezuela.html': { titleKey: 'sosve.meta.title', descKey: 'sosve.meta.description' },
-    'consulta-venezuela.html': { titleKey: 'consulta.meta.title', descKey: 'consulta.meta.description' },
-    'solicitud-sos-venezuela.html': { titleKey: 'sosve.intake.meta.title', descKey: 'sosve.intake.meta.description' },
-    'doacao.html': { titleKey: 'doacao.meta.title', descKey: 'doacao.meta.description' },
-    'transparencia.html': { titleKey: 'trans.meta.title', descKey: 'trans.meta.description' },
-    'contato.html': { titleKey: 'contato.meta.title', descKey: 'contato.meta.description' },
-    'associar.html': { titleKey: 'associar.meta.title', descKey: 'associar.meta.description' },
-    'privacidade.html': { titleKey: 'privacy.meta.title', descKey: 'privacy.meta.description' },
+    'index': { titleKey: 'index.meta.title', descKey: 'index.meta.description' },
+    'instituicao': { titleKey: 'inst.meta.title', descKey: 'inst.meta.description' },
+    'equipe': { titleKey: 'equipe.meta.title', descKey: 'equipe.meta.description' },
+    'pesquisas': { titleKey: 'pesq.meta.title', descKey: 'pesq.meta.description' },
+    'atendimento-pandemia': { titleKey: 'covid.meta.title', descKey: 'covid.meta.description' },
+    'sos-saude-rs': { titleKey: 'sosrs.meta.title', descKey: 'sosrs.meta.description' },
+    'sos-venezuela': { titleKey: 'sosve.meta.title', descKey: 'sosve.meta.description' },
+    'consulta-venezuela': { titleKey: 'consulta.meta.title', descKey: 'consulta.meta.description' },
+    'solicitud-sos-venezuela': { titleKey: 'sosve.intake.meta.title', descKey: 'sosve.intake.meta.description' },
+    'doacao': { titleKey: 'doacao.meta.title', descKey: 'doacao.meta.description' },
+    'transparencia': { titleKey: 'trans.meta.title', descKey: 'trans.meta.description' },
+    'contato': { titleKey: 'contato.meta.title', descKey: 'contato.meta.description' },
+    'associar': { titleKey: 'associar.meta.title', descKey: 'associar.meta.description' },
+    'privacidade': { titleKey: 'privacy.meta.title', descKey: 'privacy.meta.description' },
   };
 
   function upsertMeta(attr, name, content) {
@@ -74,7 +75,7 @@
     } catch (e) { /* ignore */ }
 
     var meta = metaFromI18n(lang, cfg.titleKey, cfg.descKey);
-    var canonical = SITE + '/' + (slug === 'index.html' ? '' : slug);
+    var canonical = SITE + (slug === 'index' ? '' : '/' + slug);
     var locale = lang === 'pt' ? 'pt_BR' : 'es_VE';
 
     upsertLink('canonical', canonical);

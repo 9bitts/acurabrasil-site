@@ -65,12 +65,22 @@
     });
   });
 
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  function pageSlugFromPath(pathname) {
+    const slug = pathname.replace(/^\/+|\/+$/g, '').replace(/\.html$/i, '');
+    return slug.split('/').pop() || 'index';
+  }
+
+  function pageSlugFromHref(href) {
+    const path = href.split('?')[0].split('#')[0];
+    if (path === '/' || path === '') return 'index';
+    return path.replace(/^\/+/, '').replace(/\.html$/i, '') || 'index';
+  }
+
+  const currentPage = pageSlugFromPath(window.location.pathname);
   document.querySelectorAll('.nav-link, .nav-dropdown-menu a, .footer-links a').forEach((link) => {
     const href = link.getAttribute('href');
     if (!href || href.startsWith('#') || href.startsWith('http')) return;
-    const page = href.split('#')[0];
-    if (page === currentPage || (currentPage === '' && page === 'index.html')) {
+    if (pageSlugFromHref(href) === currentPage) {
       link.classList.add('active');
     }
   });

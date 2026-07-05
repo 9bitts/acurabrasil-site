@@ -109,6 +109,16 @@ app.get('/favicon.ico', (req, res) => {
   res.sendFile(path.join(publicPath, 'img', 'logo-acurabrasil.png'));
 });
 
+app.use((req, res, next) => {
+  if (req.method !== 'GET' && req.method !== 'HEAD') return next();
+  if (!/\.html$/i.test(req.path) || req.path.startsWith('/admin')) return next();
+
+  let clean = req.path.replace(/\.html$/i, '');
+  if (clean === '/index' || clean === '') clean = '/';
+  const qs = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
+  return res.redirect(301, clean + qs);
+});
+
 function resolvePublicHtml(urlPath) {
   const normalized = urlPath.replace(/\/+$/, '') || '/';
   if (path.extname(normalized)) return null;

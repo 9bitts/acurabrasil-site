@@ -56,7 +56,7 @@
       '<div class="cookie-consent-actions">' +
       '<button type="button" class="btn btn-verde btn-sm" id="cookie-accept-all" data-i18n="cookie.banner.accept"></button>' +
       '<button type="button" class="btn btn-outline btn-sm" id="cookie-essential-only" data-i18n="cookie.banner.essential"></button>' +
-      '<a href="privacidade.html" class="cookie-consent-link" data-i18n="footer.privacy">Política de Privacidade</a>' +
+      '<a href="/privacidade" class="cookie-consent-link" data-i18n="footer.privacy">Política de Privacidade</a>' +
       '</div></div>';
 
     document.body.appendChild(banner);
