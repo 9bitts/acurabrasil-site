@@ -1,5 +1,6 @@
 const express = require('express');
 const compression = require('compression');
+const fs = require('fs');
 const path = require('path');
 const { handleContactRequest, verifyEmailOnStartup } = require('./lib/contact');
 const { handleSosVenezuelaIntakeRequest } = require('./lib/sos-venezuela-intake');
@@ -108,8 +109,37 @@ app.get('/favicon.ico', (req, res) => {
   res.sendFile(path.join(publicPath, 'img', 'logo-acurabrasil.png'));
 });
 
+function resolvePublicHtml(urlPath) {
+  const normalized = urlPath.replace(/\/+$/, '') || '/';
+  if (path.extname(normalized)) return null;
+  const slug = normalized === '/' ? '' : normalized.slice(1);
+  if (slug.includes('..') || slug.includes('/')) return null;
+  const filePath = path.join(publicPath, slug ? `${slug}.html` : 'index.html');
+  const resolved = path.resolve(filePath);
+  const publicResolved = path.resolve(publicPath);
+  if (resolved !== publicResolved && !resolved.startsWith(`${publicResolved}${path.sep}`)) {
+    return null;
+  }
+  return resolved;
+}
+
+app.use((req, res, next) => {
+  if (req.method !== 'GET' && req.method !== 'HEAD') return next();
+  if (req.path.startsWith('/api') || req.path.startsWith('/admin')) return next();
+
+  const htmlPath = resolvePublicHtml(req.path);
+  if (!htmlPath) return next();
+
+  fs.stat(htmlPath, (err, stat) => {
+    if (err || !stat.isFile()) return next();
+    res.setHeader('Cache-Control', 'public, max-age=0');
+    res.sendFile(htmlPath);
+  });
+});
+
 app.use(express.static(publicPath, {
   redirect: false,
+  extensions: ['html'],
   setHeaders(res, filePath) {
     const normalized = filePath.replace(/\\/g, '/');
     if (/\.html?$/i.test(normalized)) {
