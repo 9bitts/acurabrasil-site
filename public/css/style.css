@@ -1576,9 +1576,8 @@ a.btn.is-disabled:hover {
 
 .sos-partners-inner {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.25rem;
+    justify-content: center;
+    width: 100%;
 }
 
 .sos-partners-row {
@@ -1599,9 +1598,11 @@ a.btn.is-disabled:hover {
     flex: 0 0 auto;
 }
 
-.sos-partners-row--lead .sos-partner-logo {
-    height: 56px;
-    max-width: 200px;
+/* Logos com composição vertical ou margens internas no PNG — deixa max-width definir o tamanho */
+.sos-partner-logo--medicos,
+.sos-partner-logo--nise {
+    height: auto;
+    max-width: 160px;
 }
 
 .btn-urgencia {
@@ -3545,9 +3546,10 @@ a.btn.is-disabled:hover {
         height: 40px;
         max-width: 130px;
     }
-    .sos-partners-row--lead .sos-partner-logo {
-        height: 48px;
-        max-width: 160px;
+    .sos-partner-logo--medicos,
+    .sos-partner-logo--nise {
+        height: auto;
+        max-width: 130px;
     }
 }
 
