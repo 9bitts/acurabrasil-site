@@ -106,7 +106,8 @@ app.get('/robots.txt', (req, res) => {
 });
 
 app.get('/favicon.ico', (req, res) => {
-  res.sendFile(path.join(publicPath, 'img', 'logo-acurabrasil.png'));
+  res.type('image/png');
+  res.sendFile(path.join(publicPath, 'img', 'og-share.png'));
 });
 
 app.use((req, res, next) => {

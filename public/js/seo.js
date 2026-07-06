@@ -2,7 +2,7 @@
   'use strict';
 
   var SITE = 'https://www.acurabrasil.org';
-  var OG_IMAGE = SITE + '/img/og-cover.svg';
+  var OG_IMAGE = SITE + '/img/og-share.png';
 
   function pageSlug() {
     var path = window.location.pathname.replace(/^\/+|\/+$/g, '');
@@ -89,12 +89,14 @@
     upsertMeta('property', 'og:description', meta.description);
     upsertMeta('property', 'og:url', canonical);
     upsertMeta('property', 'og:image', OG_IMAGE);
-    upsertMeta('property', 'og:image:width', '1200');
-    upsertMeta('property', 'og:image:height', '630');
+    upsertMeta('property', 'og:image:width', '500');
+    upsertMeta('property', 'og:image:height', '500');
+    upsertMeta('property', 'og:image:alt', 'ACURABRASIL');
+    upsertMeta('property', 'og:image:type', 'image/png');
     upsertMeta('property', 'og:locale', locale);
     upsertMeta('property', 'og:locale:alternate', lang === 'pt' ? 'es_VE' : 'pt_BR');
 
-    upsertMeta('name', 'twitter:card', 'summary_large_image');
+    upsertMeta('name', 'twitter:card', 'summary');
     upsertMeta('name', 'twitter:title', meta.title);
     upsertMeta('name', 'twitter:description', meta.description);
     upsertMeta('name', 'twitter:image', OG_IMAGE);
