@@ -1571,35 +1571,37 @@ a.btn.is-disabled:hover {
 .sos-partners-strip {
     background: #ffffff;
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    padding: 1.75rem 0;
+    padding: 1.5rem 0;
 }
 
-.sos-partners-logos {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1.5rem 2rem;
-    align-items: center;
-    justify-items: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.sos-partners-logos li {
-    width: 100%;
-    height: 72px;
+.sos-partners-inner {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.sos-partners-row {
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    gap: 1.25rem 2rem;
+    width: 100%;
 }
 
 .sos-partner-logo {
     display: block;
-    max-width: 100%;
-    max-height: 72px;
     width: auto;
-    height: auto;
+    height: 48px;
+    max-width: 160px;
     object-fit: contain;
+    flex: 0 0 auto;
+}
+
+.sos-partners-row--lead .sos-partner-logo {
+    height: 56px;
+    max-width: 200px;
 }
 
 .btn-urgencia {
@@ -3536,15 +3538,16 @@ a.btn.is-disabled:hover {
         text-align: center;
         line-height: 1.35;
     }
-    .sos-partners-logos {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1.25rem 1rem;
-    }
-    .sos-partners-logos li {
-        height: 60px;
+    .sos-partners-row {
+        gap: 1rem 1.25rem;
     }
     .sos-partner-logo {
-        max-height: 60px;
+        height: 40px;
+        max-width: 130px;
+    }
+    .sos-partners-row--lead .sos-partner-logo {
+        height: 48px;
+        max-width: 160px;
     }
 }
 
