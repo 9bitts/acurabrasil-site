@@ -1555,6 +1555,19 @@ a.btn.is-disabled:hover {
     line-height: 1.5;
 }
 
+.emergency-cta-box--light {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+.emergency-cta-box--light .emergency-cta-logo {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    margin: 0 auto 1.25rem;
+}
+
 .btn-urgencia {
     background-color: #c0392b;
     color: #ffffff;
