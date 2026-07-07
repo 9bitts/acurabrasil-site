@@ -31,4 +31,4 @@ ACURABRASIL + Doctor8 | Criado em 04/07/2026
 
 ## EXTRA — Decisão da diretoria
 
-- [ ] 20. Conversar com a diretoria da Acura sobre foco jurídico (pacientes no Brasil vs. na Venezuela)
+- [ ] 20. Conversar com a diretoria da ACURABRASIL sobre foco jurídico (pacientes no Brasil vs. na Venezuela)

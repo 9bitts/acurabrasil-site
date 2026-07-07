@@ -14,7 +14,7 @@ const NEWSLETTER = `
         <div class="footer-newsletter">
             <div class="container footer-newsletter-inner">
                 <div class="footer-newsletter-copy">
-                    <h3 data-i18n="footer.newsletter.title">Boletín ACURA</h3>
+                    <h3 data-i18n="footer.newsletter.title">Boletín ACURABRASIL</h3>
                     <p data-i18n="footer.newsletter.text">Reciba noticias sobre proyectos humanitarios, transparencia y formas de ayudar.</p>
                 </div>
                 <form class="footer-newsletter-form" action="/api/newsletter" method="post" novalidate>

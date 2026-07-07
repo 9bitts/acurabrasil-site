@@ -30,7 +30,7 @@ const JSON_LD = `    <script type="application/ld+json">
       "description": "Associação humanitária sem fins lucrativos — telemedicina gratuita, pesquisa científica e transparência OSCIP.",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Rua Ulhôa Cintra, nº 32, Loja 01, Sala 01",
+        "streetAddress": "Rua Jornalista Djalma Andrade, nº 1505, Sala 01",
         "addressLocality": "Belo Horizonte",
         "addressRegion": "MG",
         "addressCountry": "BR"

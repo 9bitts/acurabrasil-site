@@ -1,9 +1,9 @@
 (function () {
   const PT = `
 <article class="legal-terms-article">
-  <p class="legal-terms-lead"><strong>Selo Voluntário AcuraBrasil</strong> · ACURABRASIL · Doctor8</p>
+  <p class="legal-terms-lead"><strong>Selo Voluntário ACURABRASIL</strong> · Doctor8</p>
   <h4>1. Identificação e objeto</h4>
-  <p>A <strong>ACURABRASIL</strong> (CNPJ 30.350.850/0001-80), OSCIP sediada em Belo Horizonte/MG, e a <strong>INFO8</strong> (CNPJ 20.251.527/0001-04), operadora da plataforma Doctor8, estabelecem este termo para o programa <strong>Selo Voluntário AcuraBrasil</strong>, conectando profissionais de saúde e apoiadores qualificados a pacientes em situação de vulnerabilidade social, inclusive em campanhas humanitárias como o SOS Salud Venezuela.</p>
+  <p>A <strong>ACURABRASIL</strong> (CNPJ 30.350.850/0001-80), OSCIP sediada em Belo Horizonte/MG, e a <strong>INFO8</strong> (CNPJ 20.251.527/0001-04), operadora da plataforma Doctor8, estabelecem este termo para o programa <strong>Selo Voluntário ACURABRASIL</strong>, conectando profissionais de saúde e apoiadores qualificados a pacientes em situação de vulnerabilidade social, inclusive em campanhas humanitárias como o SOS Salud Venezuela.</p>
   <h4>2. Fundamentação legal</h4>
   <p>Este termo observa a Lei nº 9.608/1998 (voluntariado), a LGPD (Lei nº 13.709/2018), a Lei nº 13.989/2020 (telemedicina) e a Resolução CFM nº 2.314/2022, além dos documentos da Doctor8: Termos de Uso, Política de Privacidade e TCLE de Telemedicina (<a href="https://app.doctor8.org/acura-voluntariado" target="_blank" rel="noopener">versão completa em app.doctor8.org/acura-voluntariado</a>).</p>
   <h4>3. Definições</h4>
@@ -12,12 +12,12 @@
     <li><strong>Horário voluntário</strong> — bloco de agenda reservado ao programa (identificação visual em verde na Doctor8);</li>
     <li><strong>Horário particular</strong> — atendimentos remunerados fora do bloco voluntário;</li>
     <li><strong>Selo</strong> — identificação do profissional aderente ao programa;</li>
-    <li><strong>Rede humanitária AcuraBrasil</strong> — rede solidária de cuidado coordenada pela ACURABRASIL.</li>
+    <li><strong>Rede humanitária ACURABRASIL</strong> — rede solidária de cuidado coordenada pela ACURABRASIL.</li>
   </ul>
   <h4>4. Natureza da relação</h4>
   <p>Nos termos do art. 1º, parágrafo único, da Lei 9.608/1998, o serviço voluntário <strong>não gera vínculo empregatício</strong>, obrigação trabalhista nem remuneração. É permitido modelo híbrido (voluntário + particular). A INFO8 atua exclusivamente como intermediadora tecnológica.</p>
   <h4>5. Funcionamento na Doctor8</h4>
-  <p>O participante deve manter conta verificada, marcar <strong>“Sou voluntário AcuraBrasil”</strong> no cadastro e configurar disponibilidade nos blocos verdes. Atendimentos particulares permanecem pagos fora desses horários. Campanhas internacionais podem exigir orientações adicionais conforme licenças locais.</p>
+  <p>O participante deve manter conta verificada, marcar <strong>“Sou voluntário ACURABRASIL”</strong> no cadastro e configurar disponibilidade nos blocos verdes. Atendimentos particulares permanecem pagos fora desses horários. Campanhas internacionais podem exigir orientações adicionais conforme licenças locais.</p>
   <h4>6. Obrigações do voluntário</h4>
   <ul>
     <li>Atuar com ética profissional e registro ativo no conselho (CFM, CRP ou equivalente);</li>
@@ -47,9 +47,9 @@
 
   const ES = `
 <article class="legal-terms-article">
-  <p class="legal-terms-lead"><strong>Sello Voluntario AcuraBrasil</strong> · ACURABRASIL · Doctor8</p>
+  <p class="legal-terms-lead"><strong>Sello Voluntario ACURABRASIL</strong> · Doctor8</p>
   <h4>1. Identificación y objeto</h4>
-  <p><strong>ACURABRASIL</strong> (CNPJ 30.350.850/0001-80), OSCIP con sede en Belo Horizonte/MG, e <strong>INFO8</strong> (CNPJ 20.251.527/0001-04), operadora de la plataforma Doctor8, establecen este término para el programa <strong>Sello Voluntario AcuraBrasil</strong>, conectando profesionales de salud y apoyo calificado con pacientes en situación de vulnerabilidad social, incluidas campañas humanitarias como SOS Salud Venezuela.</p>
+  <p><strong>ACURABRASIL</strong> (CNPJ 30.350.850/0001-80), OSCIP con sede en Belo Horizonte/MG, e <strong>INFO8</strong> (CNPJ 20.251.527/0001-04), operadora de la plataforma Doctor8, establecen este término para el programa <strong>Sello Voluntario ACURABRASIL</strong>, conectando profesionales de salud y apoyo calificado con pacientes en situación de vulnerabilidad social, incluidas campañas humanitarias como SOS Salud Venezuela.</p>
   <h4>2. Fundamentación legal</h4>
   <p>Este término observa la legislación brasileña aplicable al voluntariado (Ley nº 9.608/1998), la LGPD, la Ley nº 13.989/2020 (telemedicina) y la Resolución CFM nº 2.314/2022, además de los documentos de Doctor8: Términos de Uso, Política de Privacidad y TCLE de Telemedicina (<a href="https://app.doctor8.org/acura-voluntariado" target="_blank" rel="noopener">versión completa en app.doctor8.org/acura-voluntariado</a>).</p>
   <h4>3. Definiciones</h4>
@@ -58,12 +58,12 @@
     <li><strong>Horario voluntario</strong> — bloque de agenda reservado al programa (identificación visual en verde en Doctor8);</li>
     <li><strong>Horario particular</strong> — atenciones remuneradas fuera del bloque voluntario;</li>
     <li><strong>Sello</strong> — identificación del profesional adherente;</li>
-    <li><strong>Red humanitaria AcuraBrasil</strong> — red solidaria de cuidado coordinada por ACURABRASIL.</li>
+    <li><strong>Red humanitaria ACURABRASIL</strong> — red solidaria de cuidado coordinada por ACURABRASIL.</li>
   </ul>
   <h4>4. Naturaleza de la relación</h4>
   <p>El servicio voluntario <strong>no genera vínculo laboral</strong> ni remuneración. Se permite modelo híbrido (voluntario + particular). INFO8 actúa solo como intermediaria tecnológica.</p>
   <h4>5. Funcionamiento en Doctor8</h4>
-  <p>El participante debe mantener cuenta verificada, marcar <strong>“Sou voluntário AcuraBrasil”</strong> en el registro y configurar disponibilidad en bloques verdes. Las campañas internacionales pueden requerir orientaciones adicionales según licencias locales.</p>
+  <p>El participante debe mantener cuenta verificada, marcar <strong>“Sou voluntário ACURABRASIL”</strong> en el registro y configurar disponibilidad en bloques verdes. Las campañas internacionales pueden requerir orientaciones adicionales según licencias locales.</p>
   <h4>6. Obligaciones del voluntario</h4>
   <ul>
     <li>Actuar con ética profesional y registro activo en el consejo (CFM, CRP o equivalente);</li>
