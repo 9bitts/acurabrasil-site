@@ -1600,7 +1600,8 @@ a.btn.is-disabled:hover {
 
 /* Logos com composição vertical ou margens internas no PNG — deixa max-width definir o tamanho */
 .sos-partner-logo--medicos,
-.sos-partner-logo--nise {
+.sos-partner-logo--nise,
+.sos-partner-logo--w3midia {
     height: auto;
     max-width: 160px;
 }
@@ -3547,7 +3548,8 @@ a.btn.is-disabled:hover {
         max-width: 130px;
     }
     .sos-partner-logo--medicos,
-    .sos-partner-logo--nise {
+    .sos-partner-logo--nise,
+    .sos-partner-logo--w3midia {
         height: auto;
         max-width: 130px;
     }
