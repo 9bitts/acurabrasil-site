@@ -13,10 +13,21 @@
     return DEFAULT_LANG;
   }
 
+  const BRAND_WITH_SPACE_RE = /\bACURA\s+BRASIL\b/gi;
+  const BRAND_TITLE_CASE_RE = /\bAcura\s+Brasil\b/g;
+
+  function normalizeBrandText(text) {
+    if (!text || typeof text !== 'string') return text;
+    return text
+      .replace(BRAND_WITH_SPACE_RE, 'ACURABRASIL')
+      .replace(BRAND_TITLE_CASE_RE, 'ACURABRASIL');
+  }
+
   function t(lang, key) {
     const dict = window.ACURA_I18N;
     if (!dict) return key;
-    return dict[lang]?.[key] ?? dict.es?.[key] ?? dict.pt?.[key] ?? key;
+    const value = dict[lang]?.[key] ?? dict.es?.[key] ?? dict.pt?.[key] ?? key;
+    return normalizeBrandText(value);
   }
 
   function apply(lang) {
