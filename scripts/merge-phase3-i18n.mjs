@@ -9,7 +9,7 @@ const data = fn({});
 const es = {
   "nav.volunteers": "Voluntariado profesional",
   "footer.volunteers": "Voluntariado",
-  "footer.newsletter.title": "Boletín ACURABRASIL",
+  "footer.newsletter.title": "Boletín AcuraBrasil",
   "footer.newsletter.text": "Reciba noticias sobre proyectos humanitarios, transparencia y formas de ayudar.",
   "footer.newsletter.nome": "Nombre",
   "footer.newsletter.nomePlaceholder": "Su nombre",
@@ -104,7 +104,7 @@ const es = {
 const pt = {
   "nav.volunteers": "Voluntariado profissional",
   "footer.volunteers": "Voluntariado",
-  "footer.newsletter.title": "Newsletter ACURABRASIL",
+  "footer.newsletter.title": "Boletim AcuraBrasil",
   "footer.newsletter.text": "Receba novidades sobre projetos humanitários, transparência e formas de ajudar.",
   "footer.newsletter.nome": "Nome",
   "footer.newsletter.nomePlaceholder": "Seu nome",
