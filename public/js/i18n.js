@@ -117,11 +117,25 @@
     bindToggle();
   }
 
+  function dictReady(lang) {
+    return !!(window.ACURA_I18N?.[lang] || window.ACURA_I18N?.es || window.ACURA_I18N?.pt);
+  }
+
   function start() {
+    bindToggle();
+    const lang = getLang();
+    const run = () => apply(lang);
+
     if (window.AcuraI18nLoader) {
-      document.addEventListener('acura:i18n-ready', () => apply(getLang()), { once: true });
+      if (dictReady(lang)) {
+        run();
+      } else {
+        document.addEventListener('acura:i18n-ready', run, { once: true });
+      }
+      return;
     }
-    init();
+
+    run();
   }
 
   window.AcuraI18n = { getLang, setLang, apply, t, init: start };
