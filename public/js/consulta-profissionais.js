@@ -6,7 +6,7 @@
   const filterSelect = document.getElementById('consulta-prof-filter');
   const countEl = document.getElementById('consulta-prof-count');
   const emptyEl = document.getElementById('consulta-prof-empty');
-  const DOCTOR8_URL = 'https://app.doctor8.org/urgent';
+  const DOCTOR8_URGENT_URL = 'https://app.doctor8.org/urgent';
 
   let professionals = [];
   let profissoes = [];
@@ -82,9 +82,11 @@
       badges.push(`<span class="consulta-prof-badge consulta-prof-badge--d8">Doctor8</span>`);
     }
 
+    const bookingUrl = safeHttpUrl(prof.bookingUrl) || safeHttpUrl(prof.publicUrl) || DOCTOR8_URGENT_URL;
+
     const actions = [];
     actions.push(
-      `<a href="${DOCTOR8_URL}" class="btn btn-consulta-principal consulta-prof-btn-primary" target="_blank" rel="noopener">${escapeHtml(t('consulta.prof.btn.consult'))}</a>`
+      `<a href="${escapeHtml(bookingUrl)}" class="btn btn-consulta-principal consulta-prof-btn-primary" target="_blank" rel="noopener">${escapeHtml(t('consulta.prof.btn.consult'))}</a>`
     );
 
     const agendamentoUrl = safeHttpUrl(prof.agendamento);
@@ -174,18 +176,44 @@
     filterSelect.value = current;
   };
 
+  const rebuildProfissoes = () => {
+    profissoes = [...new Set(professionals.flatMap((p) => p.profissao || []))].sort((a, b) =>
+      a.localeCompare(b, 'pt-BR')
+    );
+  };
+
+  const loadStaticFallback = async () => {
+    const res = await fetch('data/profissionais-consulta.json');
+    if (!res.ok) throw new Error('fetch failed');
+    professionals = await res.json();
+    rebuildProfissoes();
+  };
+
   const init = async () => {
     try {
-      const res = await fetch('data/profissionais-consulta.json');
-      if (!res.ok) throw new Error('fetch failed');
-      professionals = await res.json();
-      profissoes = [...new Set(professionals.flatMap((p) => p.profissao || []))].sort((a, b) =>
-        a.localeCompare(b, 'pt-BR')
-      );
+      const lang = window.AcuraI18n ? window.AcuraI18n.getLang() : 'pt';
+      const res = await fetch(`/api/consulta-profissionais?lang=${encodeURIComponent(lang)}`);
+      if (res.ok) {
+        const payload = await res.json();
+        if (Array.isArray(payload.professionals) && payload.professionals.length > 0) {
+          professionals = payload.professionals;
+          rebuildProfissoes();
+          populateFilter();
+          render();
+          return;
+        }
+      }
+      await loadStaticFallback();
       populateFilter();
       render();
     } catch {
-      grid.innerHTML = `<p class="consulta-prof-error">${escapeHtml(t('consulta.prof.error'))}</p>`;
+      try {
+        await loadStaticFallback();
+        populateFilter();
+        render();
+      } catch {
+        grid.innerHTML = `<p class="consulta-prof-error">${escapeHtml(t('consulta.prof.error'))}</p>`;
+      }
     }
   };
 

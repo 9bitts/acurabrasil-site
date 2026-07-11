@@ -14,6 +14,9 @@ const {
 } = require('./lib/paypal');
 const { adminGuard, describeAdminGuardMode } = require('./lib/admin-guard');
 const {
+  handleConsultaProfissionaisRequest,
+} = require('./lib/doctor8-volunteers');
+const {
   handleNewsletterSubscribe,
   handleNewsletterConfirm,
   handleNewsletterConfirmPage,
@@ -54,8 +57,8 @@ app.use((req, res, next) => {
       "script-src 'self' 'unsafe-inline' https://www.paypal.com https://www.sandbox.paypal.com https://www.googletagmanager.com",
       "style-src 'self' 'unsafe-inline'",
       "font-src 'self'",
-      "img-src 'self' data: https://www.google-analytics.com https://images.unsplash.com https://api.qrserver.com https://static.wixstatic.com",
-      "connect-src 'self' https://www.paypal.com https://www.sandbox.paypal.com https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com",
+      "img-src 'self' data: https://www.google-analytics.com https://images.unsplash.com https://api.qrserver.com https://static.wixstatic.com https://app.doctor8.org https://doctor8.app",
+      "connect-src 'self' https://www.paypal.com https://www.sandbox.paypal.com https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://app.doctor8.org https://doctor8.app",
       "frame-src https://www.paypal.com https://www.sandbox.paypal.com https://www.youtube-nocookie.com",
       "object-src 'none'",
       "base-uri 'self'",
@@ -83,6 +86,7 @@ app.post('/api/sos-venezuela/intake/:protocolo/event', handleIntakeEventRequest)
 registerAdminRoutes(app);
 app.get('/api/paypal/config', handlePaypalConfig);
 app.post('/api/paypal/subscription-plan', handleSubscriptionPlan);
+app.get('/api/consulta-profissionais', handleConsultaProfissionaisRequest);
 
 app.get(['/admin', '/admin/'], adminGuard, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin', 'index.html'));
