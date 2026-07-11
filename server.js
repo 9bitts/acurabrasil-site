@@ -57,7 +57,7 @@ app.use((req, res, next) => {
       "script-src 'self' 'unsafe-inline' https://www.paypal.com https://www.sandbox.paypal.com https://www.googletagmanager.com",
       "style-src 'self' 'unsafe-inline'",
       "font-src 'self'",
-      "img-src 'self' data: https://www.google-analytics.com https://images.unsplash.com https://api.qrserver.com https://static.wixstatic.com https://app.doctor8.org https://doctor8.app",
+      "img-src 'self' data: https://www.google-analytics.com https://images.unsplash.com https://api.qrserver.com https://app.doctor8.org https://doctor8.app",
       "connect-src 'self' https://www.paypal.com https://www.sandbox.paypal.com https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://app.doctor8.org https://doctor8.app",
       "frame-src https://www.paypal.com https://www.sandbox.paypal.com https://www.youtube-nocookie.com",
       "object-src 'none'",

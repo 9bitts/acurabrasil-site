@@ -182,47 +182,38 @@
     );
   };
 
-  const loadStaticFallback = async () => {
-    const res = await fetch('data/profissionais-consulta.json');
-    if (!res.ok) throw new Error('fetch failed');
-    professionals = await res.json();
+  const loadFromApi = async () => {
+    const lang = window.AcuraI18n ? window.AcuraI18n.getLang() : 'pt';
+    const res = await fetch(`/api/consulta-profissionais?lang=${encodeURIComponent(lang)}`);
+    const payload = await res.json().catch(() => ({}));
+    if (!res.ok || payload.ok === false) {
+      throw new Error(payload.error || 'fetch failed');
+    }
+    professionals = Array.isArray(payload.professionals) ? payload.professionals : [];
     rebuildProfissoes();
   };
 
   const init = async () => {
     try {
-      const lang = window.AcuraI18n ? window.AcuraI18n.getLang() : 'pt';
-      const res = await fetch(`/api/consulta-profissionais?lang=${encodeURIComponent(lang)}`);
-      if (res.ok) {
-        const payload = await res.json();
-        if (Array.isArray(payload.professionals) && payload.professionals.length > 0) {
-          professionals = payload.professionals;
-          rebuildProfissoes();
-          populateFilter();
-          render();
-          return;
-        }
-      }
-      await loadStaticFallback();
+      await loadFromApi();
       populateFilter();
       render();
     } catch {
-      try {
-        await loadStaticFallback();
-        populateFilter();
-        render();
-      } catch {
-        grid.innerHTML = `<p class="consulta-prof-error">${escapeHtml(t('consulta.prof.error'))}</p>`;
-      }
+      grid.innerHTML = `<p class="consulta-prof-error">${escapeHtml(t('consulta.prof.error'))}</p>`;
     }
   };
 
   searchInput?.addEventListener('input', render);
   filterSelect?.addEventListener('change', render);
 
-  document.addEventListener('acura:langchange', () => {
-    populateFilter();
-    render();
+  document.addEventListener('acura:langchange', async () => {
+    try {
+      await loadFromApi();
+      populateFilter();
+      render();
+    } catch {
+      grid.innerHTML = `<p class="consulta-prof-error">${escapeHtml(t('consulta.prof.error'))}</p>`;
+    }
   });
 
   init();
