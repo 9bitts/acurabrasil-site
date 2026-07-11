@@ -22,11 +22,11 @@
     <meta name="twitter:description" content="Consulta médica y psicológica en línea gratuita para víctimas de los terremotos en Venezuela — ACURABRASIL vía plataforma Doctor8. Atención inmediata con profesionales disponibles.">
     <meta name="twitter:image" content="https://www.acurabrasil.org/img/og-share.png">
     <title>Consulta en Línea — SOS Venezuela | ACURABRASIL</title>
-    <link rel="preload" href="css/style.css?v=21" as="style">
-    <link rel="stylesheet" href="css/style.css?v=21">
+    <link rel="preload" href="css/style.css?v=22" as="style">
+    <link rel="stylesheet" href="css/style.css?v=22">
     <script src="js/analytics-config.js" defer></script>
     <script src="js/seo.js" defer></script>
-    <script src="js/i18n-loader.js?v=24" defer></script>
+    <script src="js/i18n-loader.js?v=25" defer></script>
     <script>try{var l=localStorage.getItem('acura.lang')||'es';document.documentElement.lang=l==='es'?'es-VE':'pt-BR';}catch(e){}</script>
 </head>
 <body data-i18n-title="consulta.meta.title">
@@ -149,21 +149,34 @@
         </div>
         <aside class="consulta-prof-banner" role="note" data-i18n-aria="consulta.prof.banner.aria">
             <p class="consulta-prof-banner-lead" data-i18n="consulta.prof.banner.lead" data-i18n-html>La atención del SOS Venezuela <strong>no se realiza en este sitio web</strong>.</p>
-            <p class="consulta-prof-banner-text" data-i18n="consulta.prof.banner.text" data-i18n-html>Las consultas se realizan exclusivamente en la plataforma <strong>Doctor8</strong>. Use el botón de abajo para acceder a la atención inmediata. La lista de profesionales a continuación reúne a voluntarios que han participado en diversas acciones humanitarias realizadas conjuntamente por <strong>ACURABRASIL</strong> y <strong>Doctor8</strong>.</p>
+            <p class="consulta-prof-banner-text" data-i18n="consulta.prof.banner.text" data-i18n-html>Las consultas se realizan exclusivamente en la plataforma <strong>Doctor8</strong>. Use el banner de abajo para buscar voluntarios AcuraBrasil y agendar su consulta gratuita.</p>
             <a href="/solicitud-sos-venezuela" class="btn btn-consulta-principal consulta-prof-banner-btn" data-i18n="consulta.prof.banner.btn">Completar solicitud de atención →</a>
         </aside>
-        <div class="consulta-prof-toolbar">
-            <label class="consulta-prof-search-wrap">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                <input type="search" id="consulta-prof-search" class="consulta-prof-search" autocomplete="off" data-i18n-placeholder="consulta.prof.search" placeholder="Buscar por nombre o especialidad…">
-            </label>
-            <select id="consulta-prof-filter" class="consulta-prof-filter" data-i18n-aria="consulta.prof.filter.aria">
-                <option value="" data-i18n="consulta.prof.filter.all">Todas las profesiones</option>
-            </select>
-            <p id="consulta-prof-count" class="consulta-prof-count" aria-live="polite"></p>
-        </div>
-        <div id="consulta-prof-grid" class="consulta-prof-grid" aria-live="polite"></div>
-        <p id="consulta-prof-empty" class="consulta-prof-empty" hidden data-i18n="consulta.prof.empty">Ningún profesional coincide con su búsqueda.</p>
+        <a href="https://app.doctor8.org/" class="consulta-d8-vol-banner" target="_blank" rel="noopener" data-i18n-aria="consulta.prof.d8banner.aria">
+            <div class="consulta-d8-vol-banner-head">
+                <svg class="consulta-d8-vol-banner-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9 9"/><path d="m15 5-3 4"/></svg>
+                <h3 class="consulta-d8-vol-banner-title" data-i18n="consulta.prof.d8banner.title">Atendimento voluntário AcuraBrasil</h3>
+                <span class="consulta-d8-vol-badge">
+                    <img src="img/logo-acurabrasil.png?v=16" alt="" class="consulta-d8-vol-badge-logo" width="72" height="18" loading="lazy">
+                    <span data-i18n="consulta.prof.d8banner.badge">Voluntário</span>
+                </span>
+            </div>
+            <p class="consulta-d8-vol-banner-desc" data-i18n="consulta.prof.d8banner.desc">Atendimento gratuito para refugiados venezuelanos e vítimas dos terremotos. Busque apenas voluntários AcuraBrasil.</p>
+            <div class="consulta-d8-vol-banner-form" aria-hidden="true">
+                <span class="consulta-d8-vol-field">
+                    <span data-i18n="consulta.prof.d8banner.specialty">Psicólogo</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+                <span class="consulta-d8-vol-field">
+                    <span data-i18n="consulta.prof.d8banner.city">Online</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+                <span class="consulta-d8-vol-search-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <span data-i18n="consulta.prof.d8banner.search">Buscar voluntários</span>
+                </span>
+            </div>
+        </a>
     </div></section>
     <section class="section"><div class="container"><div class="consulta-info-grid">
         <div class="consulta-info-card"><h3 data-i18n="consulta.info.care.title">¿Qué tipo de atención recibo?</h3><ul><li data-i18n="consulta.info.care.li1">Evaluación médica por videollamada</li><li data-i18n="consulta.info.care.li2">Apoyo psicológico y primeros auxilios emocionales</li><li data-i18n="consulta.info.care.li3">Orientación sobre medicamentos y cuidados</li><li data-i18n="consulta.info.care.li4">Derivación a especialistas si es necesario</li></ul></div>
@@ -268,12 +281,11 @@
         <span class="whatsapp-float-label" data-i18n="common.whatsapp.floatLabel">Atención por WhatsApp</span>
     </a>
 
-    <script src="js/i18n.js?v=24"></script>
+    <script src="js/i18n.js?v=25"></script>
     <script src="js/main.js"></script>
     <script src="js/cookie-consent.js"></script>
     <script src="js/analytics.js"></script>
     <script src="js/newsletter.js?v=16"></script>
     <script src="js/sos-venezuela-public.js"></script>
-    <script src="js/consulta-profissionais.js?v=22"></script>
 </body>
 </html>
