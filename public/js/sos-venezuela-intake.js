@@ -55,8 +55,8 @@
       pt: 'A idade deve ser um número entre 0 e 120.',
     },
     'sosve.intake.validation.estado': {
-      es: 'Seleccione el estado.',
-      pt: 'Selecione o estado.',
+      es: 'Ingrese el estado o región.',
+      pt: 'Informe o estado ou região.',
     },
     'sosve.intake.validation.ciudad': {
       es: 'Ingrese la ciudad.',
@@ -167,11 +167,9 @@
 
   function buildUbicacion() {
     const ciudad = form.querySelector('#ciudad')?.value.trim() || '';
-    const estadoSelect = form.querySelector('#estado');
-    const estadoValue = estadoSelect?.value || '';
-    const estadoLabel = estadoSelect?.selectedOptions?.[0]?.textContent?.trim() || estadoValue;
-    if (!ciudad || !estadoValue) return '';
-    return `${ciudad}, ${estadoLabel}`;
+    const estado = form.querySelector('#estado')?.value.trim() || '';
+    if (!ciudad || !estado) return '';
+    return `${ciudad}, ${estado}`;
   }
 
   function setFieldError(fieldId, message) {

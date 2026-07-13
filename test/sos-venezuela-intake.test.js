@@ -136,6 +136,14 @@ describe('SOS Venezuela intake', () => {
       });
       assert.equal(ubicacion, 'Caracas, Distrito Capital');
     });
+
+    it('combines ciudad and free-text estado into ubicacion', () => {
+      const ubicacion = resolveUbicacionFromBody({
+        ciudad: 'São Paulo',
+        estado: 'São Paulo',
+      });
+      assert.equal(ubicacion, 'São Paulo, São Paulo');
+    });
   });
 
   describe('rate limits', () => {
