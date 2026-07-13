@@ -15,7 +15,9 @@
   const emergencyNotice = document.getElementById('sos-ve-emergency-notice');
   const nomePacienteGroup = document.getElementById('nome-paciente-group');
   const nomePacienteInput = form.querySelector('#nome_paciente');
-  const whatsappInput = form.querySelector('#whatsapp');
+  const ddiInput = form.querySelector('#ddi');
+  const dddInput = form.querySelector('#ddd');
+  const telefoneInput = form.querySelector('#telefone');
   const protocoloEl = document.getElementById('sos-ve-protocolo');
   const whatsappHelpLink = document.getElementById('sos-ve-whatsapp-help');
   const whatsappProtocolLink = document.getElementById('sos-ve-whatsapp-protocol');
@@ -37,8 +39,8 @@
       pt: 'Informe um e-mail válido.',
     },
     'sosve.intake.validation.whatsapp': {
-      es: 'WhatsApp incompleto. Use operadora + 7 dígitos (ej.: 414 1234567).',
-      pt: 'WhatsApp incompleto. Use operadora + 7 dígitos (ex.: 414 1234567).',
+      es: 'WhatsApp incompleto. Ingrese DDI, código de área y número.',
+      pt: 'WhatsApp incompleto. Informe DDI, DDD e número.',
     },
     'sosve.intake.validation.relacion': {
       es: 'Seleccione su relación con el paciente.',
@@ -81,8 +83,8 @@
       pt: 'É necessário autorizar o tratamento de dados conforme a Política de Privacidade.',
     },
     'sosve.intake.errorPhone': {
-      es: 'WhatsApp incompleto. Use operadora + 7 dígitos (ej.: 414 1234567).',
-      pt: 'WhatsApp incompleto. Use operadora + 7 dígitos (ex.: 414 1234567).',
+      es: 'WhatsApp incompleto. Ingrese DDI, código de área y número.',
+      pt: 'WhatsApp incompleto. Informe DDI, DDD e número.',
     },
     'sosve.intake.errorPrivacy': {
       es: 'Debe autorizar el tratamiento de datos conforme a la Política de Privacidad.',
@@ -141,17 +143,26 @@
     return MSG_FALLBACK[key]?.es || 'Revise este campo e intente de nuevo.';
   }
 
-  function parseVenezuelaWhatsApp(raw) {
-    let digits = String(raw || '').replace(/\D/g, '');
-    if (!digits) return null;
-    if (digits.startsWith('58') && digits.length > 10) digits = digits.slice(2);
-    while (digits.startsWith('0') && digits.length > 10) digits = digits.slice(1);
-    if (digits.startsWith('58') && digits.length > 10) digits = digits.slice(2);
-    if (digits.length < 10 || digits.length > 11) return null;
-    const ddd = digits.length === 10 ? digits.slice(0, 3) : digits.slice(0, 4);
-    const telefone = digits.slice(-7);
-    if (telefone.length !== 7 || ddd.length < 3 || ddd.length > 4) return null;
-    return { ddi: '58', ddd, telefone };
+  function validatePhoneFields(ddi, ddd, telefone) {
+    const ddiDigits = String(ddi || '').replace(/\D/g, '');
+    const dddDigits = String(ddd || '').replace(/\D/g, '');
+    const telDigits = String(telefone || '').replace(/\D/g, '');
+
+    if (!ddiDigits || ddiDigits.length < 1 || ddiDigits.length > 4) return null;
+    if (!dddDigits || dddDigits.length < 2 || dddDigits.length > 4) return null;
+    if (!telDigits || telDigits.length < 4) return null;
+
+    const national = dddDigits + telDigits;
+    if (ddiDigits === '58') {
+      if (national.length < 10 || national.length > 11) return null;
+      const telefonePart = national.slice(-7);
+      const dddPart = national.slice(0, national.length - 7);
+      if (telefonePart.length !== 7 || dddPart.length < 3) return null;
+    } else if (telDigits.length < 7 || telDigits.length > 11 || national.length < 8) {
+      return null;
+    }
+
+    return { ddi: ddiDigits, ddd: dddDigits, telefone: telDigits };
   }
 
   function buildUbicacion() {
@@ -171,6 +182,17 @@
       el.hidden = !message;
     }
     if (input) input.classList.toggle('is-invalid', !!message);
+  }
+
+  function setPhoneError(message) {
+    const el = document.getElementById('telefone-error');
+    [ddiInput, dddInput, telefoneInput].forEach((input) => {
+      if (input) input.classList.toggle('is-invalid', !!message);
+    });
+    if (el) {
+      el.textContent = message;
+      el.hidden = !message;
+    }
   }
 
   function clearFieldErrors() {
@@ -193,8 +215,12 @@
       errors.push({ id: 'email', msg: t('sosve.intake.validation.email') });
     }
 
-    const phone = parseVenezuelaWhatsApp(whatsappInput?.value || '');
-    if (!phone) errors.push({ id: 'whatsapp', msg: t('sosve.intake.validation.whatsapp') });
+    const phone = validatePhoneFields(
+      ddiInput?.value || '',
+      dddInput?.value || '',
+      telefoneInput?.value || ''
+    );
+    if (!phone) setPhoneError(t('sosve.intake.validation.whatsapp'));
 
     const relacion = relacionSelect?.value || '';
     if (!relacion) errors.push({ id: 'relacion', msg: t('sosve.intake.validation.relacion') });
@@ -235,9 +261,9 @@
 
     errors.forEach(({ id, msg }) => setFieldError(id, msg));
 
-    if (errors.length) {
-      const first = form.querySelector(`#${errors[0].id}`);
-      first?.focus();
+    if (errors.length || !phone) {
+      if (!phone) ddiInput?.focus();
+      else form.querySelector(`#${errors[0].id}`)?.focus();
       return null;
     }
 
@@ -277,7 +303,9 @@
     return {
       nome: form.querySelector('#nome')?.value || '',
       email: form.querySelector('#email')?.value || '',
-      whatsapp: whatsappInput?.value || '',
+      ddi: ddiInput?.value || '',
+      ddd: dddInput?.value || '',
+      telefone: telefoneInput?.value || '',
       relacion: relacionSelect?.value || '',
       nome_paciente: nomePacienteInput?.value || '',
       edad: form.querySelector('#edad')?.value || '',
@@ -294,7 +322,18 @@
     if (!data || typeof data !== 'object') return;
     if (data.nome != null) form.querySelector('#nome').value = data.nome;
     if (data.email != null) form.querySelector('#email').value = data.email;
-    if (data.whatsapp != null && whatsappInput) whatsappInput.value = data.whatsapp;
+    if (data.ddi != null && ddiInput) ddiInput.value = data.ddi;
+    if (data.ddd != null && dddInput) dddInput.value = data.ddd;
+    if (data.telefone != null && telefoneInput) telefoneInput.value = data.telefone;
+    if (data.whatsapp != null && telefoneInput && !data.telefone) {
+      const parsed = String(data.whatsapp).replace(/\D/g, '');
+      if (parsed.startsWith('58') && parsed.length > 10) {
+        const national = parsed.slice(2);
+        if (ddiInput) ddiInput.value = '+58';
+        if (dddInput) dddInput.value = national.length === 10 ? national.slice(0, 3) : national.slice(0, 4);
+        telefoneInput.value = national.slice(-7);
+      }
+    }
     if (data.relacion != null && relacionSelect) relacionSelect.value = data.relacion;
     if (data.nome_paciente != null && nomePacienteInput) nomePacienteInput.value = data.nome_paciente;
     if (data.edad != null) form.querySelector('#edad').value = data.edad;
@@ -498,7 +537,6 @@
         body: JSON.stringify({
           nome: form.querySelector('#nome')?.value.trim() || '',
           email: form.querySelector('#email')?.value.trim() || '',
-          whatsapp: whatsappInput?.value.trim() || '',
           ddi: phone.ddi,
           ddd: phone.ddd,
           telefone: phone.telefone,
@@ -571,8 +609,8 @@
       }
 
       if (res.status === 400 && data.field === 'phone') {
-        setFieldError('whatsapp', t('sosve.intake.errorPhone'));
-        whatsappInput?.focus();
+        setPhoneError(t('sosve.intake.errorPhone'));
+        ddiInput?.focus();
         return;
       }
 

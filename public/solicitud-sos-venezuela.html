@@ -139,13 +139,23 @@
                             <p class="form-field-error" id="email-error" role="alert" hidden></p>
                         </div>
                         <div class="form-group">
-                            <label for="whatsapp" data-i18n="sosve.intake.form.phone.label">WhatsApp</label>
-                            <div class="form-whatsapp-row">
-                                <span class="form-whatsapp-prefix" aria-hidden="true">+58</span>
-                                <input type="tel" id="whatsapp" name="whatsapp" inputmode="tel" autocomplete="tel" maxlength="20" data-i18n-placeholder="sosve.intake.form.phone.placeholder" placeholder="414 123 4567" aria-describedby="whatsapp-hint whatsapp-error">
+                            <span class="form-group-label" data-i18n="sosve.intake.form.phone.label">WhatsApp</span>
+                            <div class="form-phone-row">
+                                <div class="form-phone-field form-phone-ddi">
+                                    <label for="ddi" data-i18n="sosve.intake.form.phone.ddi">DDI</label>
+                                    <input type="tel" id="ddi" name="ddi" value="+58" maxlength="5" inputmode="tel" autocomplete="tel-country-code" data-i18n-placeholder="sosve.intake.form.phone.ddiPlaceholder" placeholder="+58" aria-describedby="phone-hint telefone-error">
+                                </div>
+                                <div class="form-phone-field form-phone-ddd">
+                                    <label for="ddd" data-i18n="sosve.intake.form.phone.ddd">Código de área</label>
+                                    <input type="tel" id="ddd" name="ddd" maxlength="4" inputmode="numeric" autocomplete="tel-area-code" data-i18n-placeholder="sosve.intake.form.phone.dddPlaceholder" placeholder="414" aria-describedby="phone-hint telefone-error">
+                                </div>
+                                <div class="form-phone-field form-phone-numero">
+                                    <label for="telefone" data-i18n="sosve.intake.form.phone.number">Número</label>
+                                    <input type="tel" id="telefone" name="telefone" maxlength="15" inputmode="tel" autocomplete="tel-national" data-i18n-placeholder="sosve.intake.form.phone.numberPlaceholder" placeholder="1234567" aria-describedby="phone-hint telefone-error">
+                                </div>
                             </div>
-                            <p class="form-hint" id="whatsapp-hint" data-i18n="sosve.intake.form.phone.hint">Operadora + número. Ej.: 414 1234567, 04141234567 o +584141234567</p>
-                            <p class="form-field-error" id="whatsapp-error" role="alert" hidden></p>
+                            <p class="form-hint" id="phone-hint" data-i18n="sosve.intake.form.phone.hint">DDI (país) + código de área + número. Ej. Venezuela: +58 / 414 / 1234567</p>
+                            <p class="form-field-error" id="telefone-error" role="alert" hidden></p>
                         </div>
                         <div class="form-group">
                             <label for="relacion" data-i18n="sosve.intake.form.relacion.label">Relación con el paciente</label>
@@ -381,6 +391,6 @@
     <script src="js/sos-venezuela-public.js?v=26"></script>
     <script src="js/tcle-telemedicina-content.js"></script>
     <script src="js/tcle-telemedicina.js"></script>
-    <script src="js/sos-venezuela-intake.js?v=26"></script>
+    <script src="js/sos-venezuela-intake.js?v=27"></script>
 </body>
 </html>
