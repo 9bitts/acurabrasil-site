@@ -578,4 +578,8 @@
       if (submitBtn) submitBtn.disabled = false;
     }
   });
+
+  document.addEventListener('acura:langchange', () => {
+    if (currentProtocolo) setupWhatsappLinks(currentProtocolo);
+  });
 })();

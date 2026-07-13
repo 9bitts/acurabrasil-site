@@ -91,6 +91,15 @@
     });
   }
 
+  document.addEventListener('acura:langchange', () => {
+    if (!menuToggle || !navMenu || !window.AcuraI18n) return;
+    const open = navMenu.classList.contains('open');
+    menuToggle.setAttribute(
+      'aria-label',
+      window.AcuraI18n.t(window.AcuraI18n.getLang(), open ? 'common.menuClose' : 'common.menuOpen')
+    );
+  });
+
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', (e) => {
       const targetId = anchor.getAttribute('href');

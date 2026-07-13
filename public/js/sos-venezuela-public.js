@@ -13,13 +13,28 @@
   };
 
   let cachedWaNumber = FALLBACK_WA.number;
+  let cachedPublicInfo = null;
 
-  function getSolicitudMessage() {
+  function getLang() {
+    if (window.AcuraI18n?.getLang) {
+      return window.AcuraI18n.getLang();
+    }
+    return document.documentElement.lang?.startsWith('pt') ? 'pt' : 'es';
+  }
+
+  function i18n(key) {
     const lang = getLang();
     if (window.AcuraI18n?.t) {
-      const fromI18n = window.AcuraI18n.t(lang, 'sosve.whatsapp.solicitud.message');
-      if (fromI18n && fromI18n !== 'sosve.whatsapp.solicitud.message') return fromI18n;
+      const value = window.AcuraI18n.t(lang, key);
+      if (value && value !== key) return value;
     }
+    return key;
+  }
+
+  function getSolicitudMessage() {
+    const fromI18n = i18n('sosve.whatsapp.solicitud.message');
+    if (fromI18n && fromI18n !== 'sosve.whatsapp.solicitud.message') return fromI18n;
+    const lang = getLang();
     return FALLBACK_SOLICITUD_MSG[lang] || FALLBACK_SOLICITUD_MSG.es;
   }
 
@@ -34,8 +49,17 @@
     });
   }
 
-  function getLang() {
-    return document.documentElement.lang?.startsWith('pt') ? 'pt' : 'es';
+  function buildWaLink(number, message) {
+    const n = String(number || FALLBACK_WA.number).replace(/\D/g, '');
+    return `https://wa.me/${n}?text=${encodeURIComponent(message)}`;
+  }
+
+  function buildLocalizedWhatsAppLinks(number) {
+    return {
+      number: String(number || FALLBACK_WA.number).replace(/\D/g, ''),
+      linkGeneral: buildWaLink(number, i18n('common.whatsapp.msgGeneral')),
+      linkRegistro: buildWaLink(number, i18n('common.whatsapp.msgRegistro')),
+    };
   }
 
   function formatNextOpen(isoStr, timezone) {
@@ -56,31 +80,33 @@
   }
 
   function applyWhatsAppLinks(info, opts = {}) {
-    const wa = info?.whatsapp || FALLBACK_WA;
-    const skipIds = new Set(opts.skipIds || []);
-    document.querySelectorAll('.whatsapp-float, .btn-whatsapp-secondary, .btn-whatsapp-cta, #sos-ve-whatsapp-help').forEach((el) => {
+    const waNumber = info?.whatsapp?.number || cachedWaNumber || FALLBACK_WA.number;
+    const wa = buildLocalizedWhatsAppLinks(waNumber);
+    const skipIds = new Set(['sos-ve-whatsapp-help', 'sos-ve-whatsapp-protocol', ...(opts.skipIds || [])]);
+
+    document.querySelectorAll('.whatsapp-float, .btn-whatsapp-cta').forEach((el) => {
       if (!el || skipIds.has(el.id)) return;
-      const isRegistro =
-        el.classList.contains('btn-whatsapp-cta') ||
-        el.id === 'sos-ve-whatsapp-help' ||
-        (el.href && el.href.includes('registrarme'));
-      el.href = isRegistro ? wa.linkRegistro : wa.linkGeneral;
+      el.href = el.classList.contains('btn-whatsapp-cta') ? wa.linkRegistro : wa.linkGeneral;
+    });
+
+    document.querySelectorAll('.btn-whatsapp-secondary').forEach((el) => {
+      if (!el || skipIds.has(el.id)) return;
+      el.href = wa.linkGeneral;
     });
   }
 
   function renderScheduleBlock(container, info) {
     if (!container || !info) return;
 
-    const lang = getLang();
-    const msg = lang === 'pt' ? info.outOfHoursMessage?.pt : info.outOfHoursMessage?.es;
+    const msg = getLang() === 'pt' ? info.outOfHoursMessage?.pt : info.outOfHoursMessage?.es;
 
     if (info.isOpen) {
       const shifts = (info.shiftsToday || [])
-        .map((s) => `<li>${escapeHtml(s.nome)}: ${escapeHtml(s.start)}–${escapeHtml(s.end)}${s.volunteer ? '' : ''}</li>`)
+        .map((s) => `<li>${escapeHtml(s.nome)}: ${escapeHtml(s.start)}–${escapeHtml(s.end)}</li>`)
         .join('');
       container.innerHTML = `
         <div class="sos-schedule-open" role="status">
-          <span class="sos-schedule-badge sos-schedule-badge--open">${lang === 'pt' ? 'Em horário de atendimento' : 'Estamos en horario de atención'}</span>
+          <span class="sos-schedule-badge sos-schedule-badge--open">${escapeHtml(i18n('sosve.schedule.open'))}</span>
           ${shifts ? `<ul class="sos-schedule-shifts">${shifts}</ul>` : ''}
         </div>`;
       container.classList.remove('sos-schedule-closed');
@@ -89,9 +115,9 @@
       const next = formatNextOpen(info.nextOpenAt, info.timezone);
       container.innerHTML = `
         <div class="sos-schedule-closed" role="alert">
-          <span class="sos-schedule-badge sos-schedule-badge--closed">${lang === 'pt' ? 'Fora do horário' : 'Fuera de horario'}</span>
+          <span class="sos-schedule-badge sos-schedule-badge--closed">${escapeHtml(i18n('sosve.schedule.closed'))}</span>
           <p class="sos-schedule-message">${escapeHtml(msg || '')}</p>
-          ${next ? `<p class="sos-schedule-next"><small>${lang === 'pt' ? 'Próximo atendimento:' : 'Próxima atención:'} ${escapeHtml(next)}</small></p>` : ''}
+          ${next ? `<p class="sos-schedule-next"><small>${escapeHtml(i18n('sosve.schedule.nextOpen'))} ${escapeHtml(next)}</small></p>` : ''}
         </div>`;
       container.classList.remove('sos-schedule-open-wrap');
       container.classList.add('sos-schedule-closed-wrap');
@@ -100,15 +126,37 @@
 
   function renderInlineHours(container, info) {
     if (!container || !info) return;
-    const lang = getLang();
-    const label = lang === 'pt' ? 'Horários de atendimento hoje' : 'Horarios de atención hoy';
+    const label = i18n('sosve.schedule.hoursToday');
     const shifts = (info.shiftsToday || [])
       .map((s) => `${s.nome} ${s.start}–${s.end}`)
       .join(' · ');
     const status = info.isOpen
-      ? (lang === 'pt' ? ' (aberto agora)' : ' (abierto ahora)')
-      : (lang === 'pt' ? ' (fechado agora)' : ' (cerrado ahora)');
+      ? i18n('sosve.schedule.statusOpen')
+      : i18n('sosve.schedule.statusClosed');
     container.textContent = shifts ? `${label}: ${shifts}${status}` : label + status;
+  }
+
+  function renderPublicSurfaces(info) {
+    if (!info) return;
+
+    const scheduleStatus = document.getElementById('sos-schedule-status');
+    const scheduleInfo = document.getElementById('sos-schedule-info');
+
+    if (scheduleStatus) {
+      renderScheduleBlock(scheduleStatus, info);
+      scheduleStatus.hidden = false;
+    }
+    if (scheduleInfo) {
+      renderScheduleBlock(scheduleInfo, info);
+    }
+
+    renderInlineHours(document.getElementById('sos-schedule-hours'), info);
+  }
+
+  function refreshLocalizedContent() {
+    applyWhatsAppLinks(cachedPublicInfo);
+    applySolicitudWhatsAppLinks(cachedPublicInfo?.whatsapp?.number || cachedWaNumber);
+    renderPublicSurfaces(cachedPublicInfo);
   }
 
   function escapeHtml(s) {
@@ -127,22 +175,8 @@
       /* fallback abaixo */
     }
 
-    applyWhatsAppLinks(info);
-    applySolicitudWhatsAppLinks(info?.whatsapp?.number || FALLBACK_WA.number);
-    if (!info) return;
-
-    const scheduleStatus = document.getElementById('sos-schedule-status');
-    const scheduleInfo = document.getElementById('sos-schedule-info');
-
-    if (scheduleStatus) {
-      renderScheduleBlock(scheduleStatus, info);
-      scheduleStatus.hidden = false;
-    }
-    if (scheduleInfo) {
-      renderScheduleBlock(scheduleInfo, info);
-    }
-
-    renderInlineHours(document.getElementById('sos-schedule-hours'), info);
+    cachedPublicInfo = info || null;
+    refreshLocalizedContent();
   }
 
   function captureReferral() {
@@ -168,16 +202,14 @@
   window.SosVenezuelaPublic = {
     applyWhatsAppLinks,
     applySolicitudWhatsAppLinks,
+    refreshLocalizedContent,
     getStoredReferral,
     buildWaHelpLink(number, text) {
-      const n = String(number || FALLBACK_WA.number).replace(/\D/g, '');
-      return `https://wa.me/${n}?text=${encodeURIComponent(text)}`;
+      return buildWaLink(number, text);
     },
   };
 
-  document.addEventListener('acura:langchange', () => {
-    applySolicitudWhatsAppLinks(cachedWaNumber);
-  });
+  document.addEventListener('acura:langchange', refreshLocalizedContent);
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

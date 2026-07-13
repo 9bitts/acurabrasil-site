@@ -72,6 +72,8 @@
       logo.alt = t(lang, 'common.logoAlt');
     }
 
+    applyOptionLabels(lang);
+
     const toggle = document.getElementById('lang-toggle');
     if (toggle) {
       const label = toggle.querySelector('.lang-toggle-label');
@@ -90,6 +92,14 @@
     }
 
     document.dispatchEvent(new CustomEvent('acura:langchange', { detail: { lang } }));
+  }
+
+  function applyOptionLabels(lang) {
+    document.querySelectorAll('select option[data-i18n]').forEach((option) => {
+      const key = option.getAttribute('data-i18n');
+      const value = t(lang, key);
+      option.textContent = value;
+    });
   }
 
   async function setLang(lang) {
