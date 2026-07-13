@@ -383,7 +383,7 @@
   });
 
   async function resolveWhatsappNumber() {
-    let number = '5531971720053';
+    let number = (window.ACURA_WHATSAPP_CONTACT && window.ACURA_WHATSAPP_CONTACT.number) || '491749803699';
     try {
       const infoRes = await fetch('/api/sos-venezuela/public-info');
       if (infoRes.ok) {
@@ -391,7 +391,12 @@
         if (info?.whatsapp?.number) number = info.whatsapp.number;
       }
     } catch { /* fallback */ }
-    return String(number).replace(/\D/g, '');
+    if (window.ACURA_WHATSAPP_CONTACT?.normalize) {
+      return window.ACURA_WHATSAPP_CONTACT.normalize(number);
+    }
+    const digits = String(number).replace(/\D/g, '');
+    if (digits === '5531971720053' || digits === '553197170053') return '491749803699';
+    return digits || '491749803699';
   }
 
   function buildWaLink(number, message) {

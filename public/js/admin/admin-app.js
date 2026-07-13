@@ -580,10 +580,10 @@
       <h1>Configurações SOS</h1>
       <div class="admin-panel">
         <h2>WhatsApp</h2>
-        <p class="admin-hint">Número usado nos botões do site e links wa.me. Informe só dígitos (ex.: 5531971720053).</p>
+        <p class="admin-hint">Número usado nos botões do site e links wa.me. Informe só dígitos (ex.: 491749803699 — Doctor8 WABA +49).</p>
         <div class="admin-form-group">
           <label>Número WhatsApp</label>
-          <input type="text" id="cfg-wa" value="${esc(c.whatsapp_number)}" inputmode="numeric" placeholder="5531971720053">
+          <input type="text" id="cfg-wa" value="${esc(c.whatsapp_number)}" inputmode="numeric" placeholder="491749803699">
           <small class="admin-hint">Exibido como: ${esc(formatWaDisplay(c.whatsapp_number))}</small>
         </div>
         <div class="admin-form-group">

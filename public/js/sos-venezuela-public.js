@@ -2,9 +2,9 @@
   'use strict';
 
   const FALLBACK_WA = {
-    number: '5531971720053',
-    linkGeneral: 'https://wa.me/5531971720053?text=Hola%2C%20necesito%20atenci%C3%B3n%20gratuita%20del%20SOS%20Venezuela',
-    linkRegistro: 'https://wa.me/5531971720053?text=Hola%2C%20necesito%20ayuda%20para%20registrarme%20en%20el%20SOS%20Venezuela',
+    number: (window.ACURA_WHATSAPP_CONTACT && window.ACURA_WHATSAPP_CONTACT.number) || '491749803699',
+    linkGeneral: 'https://wa.me/491749803699?text=Hola%2C%20necesito%20atenci%C3%B3n%20gratuita%20del%20SOS%20Venezuela',
+    linkRegistro: 'https://wa.me/491749803699?text=Hola%2C%20necesito%20ayuda%20para%20registrarme%20en%20el%20SOS%20Venezuela',
   };
 
   const FALLBACK_SOLICITUD_MSG = {
@@ -40,8 +40,17 @@
 
   // Solicitudes por cartão whatsapp-solicitud: el equipo de triaje las registra manualmente
   // en el admin SOS — no pasan por /api/sos-venezuela/intake.
+  function normalizeWaNumber(raw) {
+    if (window.ACURA_WHATSAPP_CONTACT?.normalize) {
+      return window.ACURA_WHATSAPP_CONTACT.normalize(raw);
+    }
+    const digits = String(raw || '').replace(/\D/g, '');
+    if (digits === '5531971720053' || digits === '553197170053') return '491749803699';
+    return digits || '491749803699';
+  }
+
   function applySolicitudWhatsAppLinks(number) {
-    const n = String(number || cachedWaNumber || FALLBACK_WA.number).replace(/\D/g, '');
+    const n = normalizeWaNumber(number || cachedWaNumber || FALLBACK_WA.number);
     cachedWaNumber = n;
     const href = `https://wa.me/${n}?text=${encodeURIComponent(getSolicitudMessage())}`;
     document.querySelectorAll('.btn-whatsapp-solicitud').forEach((el) => {
@@ -50,13 +59,13 @@
   }
 
   function buildWaLink(number, message) {
-    const n = String(number || FALLBACK_WA.number).replace(/\D/g, '');
+    const n = normalizeWaNumber(number || FALLBACK_WA.number);
     return `https://wa.me/${n}?text=${encodeURIComponent(message)}`;
   }
 
   function buildLocalizedWhatsAppLinks(number) {
     return {
-      number: String(number || FALLBACK_WA.number).replace(/\D/g, ''),
+      number: normalizeWaNumber(number || FALLBACK_WA.number),
       linkGeneral: buildWaLink(number, i18n('common.whatsapp.msgGeneral')),
       linkRegistro: buildWaLink(number, i18n('common.whatsapp.msgRegistro')),
     };
