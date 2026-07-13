@@ -13,7 +13,7 @@ window.ACURA_I18N_PT = {
   "nav.donate": "Doar",
   "nav.team": "Equipe",
   "common.menuOpen": "Abrir menu",
-  "common.whatsapp.floatLabel": "Atendimento por WhatsApp",
+  "common.whatsapp.floatLabel": "Atendimento Doctor8",
   "common.whatsapp.floatAria": "Solicitar atendimento gratuito por WhatsApp",
   "common.whatsapp.msgGeneral": "Olá, preciso de atendimento gratuito do SOS Venezuela",
   "common.whatsapp.msgRegistro": "Olá, preciso de ajuda para me cadastrar no SOS Venezuela",
