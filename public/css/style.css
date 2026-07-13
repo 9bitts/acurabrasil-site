@@ -1226,10 +1226,14 @@ img:not(.logo-img) {
 }
 
 .form-phone-field label {
+    display: block;
     font-size: 0.78rem;
     font-weight: 600;
     color: var(--texto-mutado);
     margin-bottom: 0.3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .form-phone-field input {

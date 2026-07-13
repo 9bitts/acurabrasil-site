@@ -3,7 +3,7 @@
 
   var STORAGE_KEY = 'acura.lang';
   var DEFAULT_LANG = 'es';
-  var ASSET_V = '26';
+  var ASSET_V = '27';
   var loadPromises = {};
 
   window.ACURA_I18N = window.ACURA_I18N || { es: null, pt: null };
