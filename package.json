@@ -7,6 +7,7 @@
     "start": "node server.js",
     "dev": "node server.js",
     "check:i18n": "node scripts/check-i18n.mjs",
+    "test": "node --test test/*.test.js",
     "test:pix": "node scripts/test-pix-qr.mjs",
     "setup:phase2": "node scripts/setup-phase2-assets.mjs && node scripts/bundle-qrcode.mjs && node scripts/split-i18n.mjs && node scripts/patch-phase2-html.mjs",
     "fetch:projetos-photos": "node scripts/fetch-projetos-photos.mjs"

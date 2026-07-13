@@ -80,6 +80,7 @@
             <div class="breadcrumb"><a href="/" data-i18n="common.breadcrumbHome">Inicio</a> / <a href="/sos-venezuela" data-i18n="consulta.breadcrumb.sos">SOS Venezuela</a> / <span data-i18n="sosve.intake.breadcrumb">Solicitud de atención</span></div>
             <h1 data-i18n="sosve.intake.hero.title">Solicitud de atención gratuita</h1>
             <p data-i18n="sosve.intake.hero.subtitle">Complete el formulario para que nuestro equipo de triaje le oriente. Después, creará su cuenta en Doctor8 para la consulta por videollamada.</p>
+            <p class="intake-hero-expectation" data-i18n="sosve.time.expectation">Si hay profesionales en línea, la atención puede ser inmediata; si no, nuestro equipo de triaje responde en hasta 24 horas.</p>
             <aside class="emergency-notice emergency-notice--ve" role="note" data-i18n-aria="common.emergencyNoticeAria" style="margin-top:1rem;">
                 <p data-i18n="common.emergencyNotice" data-i18n-html>Si estás en <strong>Venezuela</strong>, en caso de emergencia llama al <strong>911 (VEN-911)</strong> o acude al hospital más cercano.</p>
             </aside>
@@ -107,7 +108,17 @@
 
     <section class="section">
         <div class="container">
+            <!-- Solicitudes por este cartão: el equipo de triaje las registra manualmente en el admin SOS. -->
+            <aside class="whatsapp-solicitud-card" role="complementary" data-i18n-aria="sosve.whatsapp.solicitud.aria">
+                <h2 data-i18n="sosve.whatsapp.solicitud.title">¿Sin correo electrónico o con internet lenta? Solicite por WhatsApp</h2>
+                <p data-i18n="sosve.whatsapp.solicitud.text">Envíe un mensaje con sus datos esenciales. Un voluntario le atenderá y registrará su solicitud.</p>
+                <a href="https://wa.me/5531971720053?text=Hola%2C%20solicito%20atenci%C3%B3n%20gratuita%20SOS%20Venezuela.%0A%0ANombre%3A%20%0ACiudad%3A%20%0ATipo%20de%20atenci%C3%B3n%20(m%C3%A9dica%2Fpsicol%C3%B3gica)%3A%20%0AS%C3%ADntomas%3A%20" class="btn btn-verde btn-whatsapp-solicitud" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.881 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    <span data-i18n="sosve.whatsapp.solicitud.btn">Solicitar por WhatsApp</span>
+                </a>
+            </aside>
             <div id="sos-schedule-status" class="sos-schedule-info sos-schedule-info--intake" aria-live="polite" hidden></div>
+            <p class="intake-form-expectation" data-i18n="sosve.time.expectation">Si hay profesionales en línea, la atención puede ser inmediata; si no, nuestro equipo de triaje responde en hasta 24 horas.</p>
             <div id="sos-ve-intake-form-wrap" class="intake-form-wrap">
                 <div class="intake-form-card contact-form">
                     <div id="sos-ve-intake-status" class="form-status" role="status" aria-live="polite" hidden></div>
@@ -115,57 +126,86 @@
                         <div class="form-honeypot" aria-hidden="true">
                             <label for="website">Website</label>
                             <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                            <input type="hidden" id="form_started_at" name="form_started_at" value="">
                         </div>
                         <div class="form-group">
                             <label for="nome" data-i18n="sosve.intake.form.nome.label">Nombre completo</label>
-                            <input type="text" id="nome" name="nome" required maxlength="200" data-i18n-placeholder="sosve.intake.form.nome.placeholder" placeholder="Su nombre completo">
+                            <input type="text" id="nome" name="nome" maxlength="200" autocomplete="name" data-i18n-placeholder="sosve.intake.form.nome.placeholder" placeholder="Su nombre completo" aria-describedby="nome-error">
+                            <p class="form-field-error" id="nome-error" role="alert" hidden></p>
                         </div>
                         <div class="form-group">
                             <label for="email" data-i18n="sosve.intake.form.email.label">Correo electrónico</label>
-                            <input type="email" id="email" name="email" required maxlength="254" data-i18n-placeholder="sosve.intake.form.email.placeholder" placeholder="su@email.com">
+                            <input type="email" id="email" name="email" maxlength="254" autocomplete="email" data-i18n-placeholder="sosve.intake.form.email.placeholder" placeholder="su@email.com" aria-describedby="email-error">
+                            <p class="form-field-error" id="email-error" role="alert" hidden></p>
                         </div>
                         <div class="form-group">
-                            <span class="form-group-label" data-i18n="sosve.intake.form.phone.label">WhatsApp</span>
-                            <div class="form-phone-row">
-                                <div class="form-phone-field form-phone-ddi">
-                                    <label for="ddi" data-i18n="sosve.intake.form.phone.ddi">DDI</label>
-                                    <input type="tel" id="ddi" name="ddi" required value="+58" maxlength="5" inputmode="tel" data-i18n-placeholder="sosve.intake.form.phone.ddiPlaceholder" placeholder="+58">
-                                </div>
-                                <div class="form-phone-field form-phone-ddd">
-                                    <label for="ddd" data-i18n="sosve.intake.form.phone.ddd">Código de área</label>
-                                    <input type="tel" id="ddd" name="ddd" required maxlength="4" inputmode="numeric" data-i18n-placeholder="sosve.intake.form.phone.dddPlaceholder" placeholder="414">
-                                </div>
-                                <div class="form-phone-field form-phone-numero">
-                                    <label for="telefone" data-i18n="sosve.intake.form.phone.number">Número</label>
-                                    <input type="tel" id="telefone" name="telefone" required minlength="7" maxlength="15" inputmode="tel" data-i18n-placeholder="sosve.intake.form.phone.numberPlaceholder" placeholder="1234567">
-                                </div>
+                            <label for="whatsapp" data-i18n="sosve.intake.form.phone.label">WhatsApp</label>
+                            <div class="form-whatsapp-row">
+                                <span class="form-whatsapp-prefix" aria-hidden="true">+58</span>
+                                <input type="tel" id="whatsapp" name="whatsapp" inputmode="tel" autocomplete="tel" maxlength="20" data-i18n-placeholder="sosve.intake.form.phone.placeholder" placeholder="414 123 4567" aria-describedby="whatsapp-hint whatsapp-error">
                             </div>
-                            <p class="form-hint" data-i18n="sosve.intake.form.phone.hint">Código de área + número (7 dígitos). Ej.: 414 1234567</p>
+                            <p class="form-hint" id="whatsapp-hint" data-i18n="sosve.intake.form.phone.hint">Operadora + número. Ej.: 414 1234567, 04141234567 o +584141234567</p>
+                            <p class="form-field-error" id="whatsapp-error" role="alert" hidden></p>
                         </div>
                         <div class="form-group">
                             <label for="relacion" data-i18n="sosve.intake.form.relacion.label">Relación con el paciente</label>
-                            <select id="relacion" name="relacion" required>
+                            <select id="relacion" name="relacion" aria-describedby="relacion-error">
                                 <option value="" data-i18n="sosve.intake.form.relacion.placeholder">Seleccione...</option>
                                 <option value="paciente" data-i18n="sosve.intake.form.relacion.paciente">Soy el paciente</option>
                                 <option value="familiar" data-i18n="sosve.intake.form.relacion.familiar">Soy familiar o responsable</option>
                                 <option value="tercero" data-i18n="sosve.intake.form.relacion.tercero">Otra persona solicita ayuda</option>
                             </select>
+                            <p class="form-field-error" id="relacion-error" role="alert" hidden></p>
                         </div>
                         <div class="form-group" id="nome-paciente-group" hidden>
                             <label for="nome_paciente" data-i18n="sosve.intake.form.nomePaciente.label">Nombre del paciente</label>
-                            <input type="text" id="nome_paciente" name="nome_paciente" maxlength="200" data-i18n-placeholder="sosve.intake.form.nomePaciente.placeholder" placeholder="Nombre de quien necesita atención">
+                            <input type="text" id="nome_paciente" name="nome_paciente" maxlength="200" autocomplete="name" data-i18n-placeholder="sosve.intake.form.nomePaciente.placeholder" placeholder="Nombre de quien necesita atención" aria-describedby="nome_paciente-error">
+                            <p class="form-field-error" id="nome_paciente-error" role="alert" hidden></p>
                         </div>
                         <div class="form-group">
                             <label for="edad" data-i18n="sosve.intake.form.edad.label">Edad del paciente</label>
-                            <input type="number" id="edad" name="edad" min="0" max="120" inputmode="numeric" data-i18n-placeholder="sosve.intake.form.edad.placeholder" placeholder="Opcional">
+                            <input type="number" id="edad" name="edad" min="0" max="120" inputmode="numeric" autocomplete="off" data-i18n-placeholder="sosve.intake.form.edad.placeholder" placeholder="Opcional" aria-describedby="edad-error">
+                            <p class="form-field-error" id="edad-error" role="alert" hidden></p>
                         </div>
                         <div class="form-group">
-                            <label for="ubicacion" data-i18n="sosve.intake.form.ubicacion.label">Ciudad y estado (Venezuela)</label>
-                            <input type="text" id="ubicacion" name="ubicacion" required maxlength="200" data-i18n-placeholder="sosve.intake.form.ubicacion.placeholder" placeholder="Ej.: Caracas, Distrito Capital">
+                            <label for="estado" data-i18n="sosve.intake.form.estado.label">Estado</label>
+                            <select id="estado" name="estado" aria-describedby="estado-error">
+                                <option value="" data-i18n="sosve.intake.form.estado.placeholder">Seleccione...</option>
+                                <option value="amazonas">Amazonas</option>
+                                <option value="anzoategui">Anzoátegui</option>
+                                <option value="apure">Apure</option>
+                                <option value="aragua">Aragua</option>
+                                <option value="barinas">Barinas</option>
+                                <option value="bolivar">Bolívar</option>
+                                <option value="carabobo">Carabobo</option>
+                                <option value="cojedes">Cojedes</option>
+                                <option value="delta-amacuro">Delta Amacuro</option>
+                                <option value="distrito-capital">Distrito Capital</option>
+                                <option value="falcon">Falcón</option>
+                                <option value="guarico">Guárico</option>
+                                <option value="lara">Lara</option>
+                                <option value="merida">Mérida</option>
+                                <option value="miranda">Miranda</option>
+                                <option value="monagas">Monagas</option>
+                                <option value="nueva-esparta">Nueva Esparta</option>
+                                <option value="portuguesa">Portuguesa</option>
+                                <option value="sucre">Sucre</option>
+                                <option value="tachira">Táchira</option>
+                                <option value="trujillo">Trujillo</option>
+                                <option value="la-guaira">La Guaira</option>
+                                <option value="yaracuy">Yaracuy</option>
+                                <option value="zulia">Zulia</option>
+                            </select>
+                            <p class="form-field-error" id="estado-error" role="alert" hidden></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="ciudad" data-i18n="sosve.intake.form.ciudad.label">Ciudad</label>
+                            <input type="text" id="ciudad" name="ciudad" maxlength="120" autocomplete="address-level2" data-i18n-placeholder="sosve.intake.form.ciudad.placeholder" placeholder="Ej.: Caracas" aria-describedby="ciudad-error">
+                            <p class="form-field-error" id="ciudad-error" role="alert" hidden></p>
                         </div>
                         <div class="form-group">
                             <label for="tipo_atencion" data-i18n="sosve.intake.form.tipo.label">Tipo de atención solicitada</label>
-                            <select id="tipo_atencion" name="tipo_atencion" required>
+                            <select id="tipo_atencion" name="tipo_atencion" aria-describedby="tipo_atencion-error">
                                 <option value="" data-i18n="sosve.intake.form.tipo.placeholder">Seleccione...</option>
                                 <option value="medica" data-i18n="sosve.intake.form.tipo.medica">Atención médica</option>
                                 <option value="psicologica" data-i18n="sosve.intake.form.tipo.psicologica">Atención psicológica</option>
@@ -174,23 +214,30 @@
                                 <option value="terapias_integrativas" data-i18n="sosve.intake.form.tipo.terapias_integrativas">Terapias integrativas</option>
                                 <option value="orientacion" data-i18n="sosve.intake.form.tipo.orientacion">No estoy seguro/a — necesito orientación</option>
                             </select>
+                            <p class="form-field-error" id="tipo_atencion-error" role="alert" hidden></p>
                         </div>
                         <div class="form-group">
                             <label for="prioridad" data-i18n="sosve.intake.form.prioridad.label">Urgencia percibida</label>
-                            <select id="prioridad" name="prioridad" required>
+                            <select id="prioridad" name="prioridad" aria-describedby="prioridad-error">
                                 <option value="" data-i18n="sosve.intake.form.prioridad.placeholder">Seleccione...</option>
                                 <option value="emergencia" data-i18n="sosve.intake.form.prioridad.emergencia">Emergencia — riesgo de vida o trauma grave</option>
                                 <option value="alta" data-i18n="sosve.intake.form.prioridad.alta">Alta prioridad — dolor intenso, crisis emocional aguda</option>
                                 <option value="regular" data-i18n="sosve.intake.form.prioridad.regular">Atención regular</option>
                             </select>
+                            <p class="form-field-error" id="prioridad-error" role="alert" hidden></p>
+                        </div>
+                        <div id="sos-ve-emergency-notice" class="alert-info intake-emergency-notice" role="alert" hidden>
+                            <p data-i18n="sosve.intake.emergency.notice" data-i18n-html>Si hay <strong>riesgo de vida</strong>, llame al <strong>911 (VEN-911)</strong> o acuda al hospital más cercano. La teleconsulta <strong>no sustituye</strong> la atención presencial de emergencia. Puede continuar enviando su solicitud si aún necesita orientación.</p>
                         </div>
                         <div class="form-group">
                             <label for="sintomas" data-i18n="sosve.intake.form.sintomas.label">Describa síntomas, lesiones o necesidad de atención</label>
-                            <textarea id="sintomas" name="sintomas" required maxlength="3000" rows="5" data-i18n-placeholder="sosve.intake.form.sintomas.placeholder" placeholder="Describa con el mayor detalle posible..."></textarea>
+                            <textarea id="sintomas" name="sintomas" maxlength="3000" rows="5" autocomplete="off" data-i18n-placeholder="sosve.intake.form.sintomas.placeholder" placeholder="Describa con el mayor detalle posible..." aria-describedby="sintomas-error"></textarea>
+                            <p class="form-field-error" id="sintomas-error" role="alert" hidden></p>
                         </div>
                         <div class="form-group">
                             <label for="observaciones" data-i18n="sosve.intake.form.observaciones.label">Información adicional</label>
-                            <textarea id="observaciones" name="observaciones" maxlength="2000" rows="3" data-i18n-placeholder="sosve.intake.form.observaciones.placeholder" placeholder="Medicamentos, enfermedades previas, etc. (opcional)"></textarea>
+                            <textarea id="observaciones" name="observaciones" maxlength="2000" rows="3" autocomplete="off" data-i18n-placeholder="sosve.intake.form.observaciones.placeholder" placeholder="Medicamentos, enfermedades previas, etc. (opcional)" aria-describedby="observaciones-error"></textarea>
+                            <p class="form-field-error" id="observaciones-error" role="alert" hidden></p>
                         </div>
                         <div class="form-group tcle-group">
                             <details class="legal-terms-details">
@@ -199,13 +246,15 @@
                             </details>
                             <p class="form-hint legal-terms-meta" data-i18n="sosve.intake.tcle.meta">Término de Consentimiento Libre e Informado · Telemedicina humanitaria SOS Venezuela · ACURABRASIL</p>
                             <div class="form-group form-group-consent">
-                                <input type="checkbox" id="consentimiento" name="consentimiento" required value="on">
+                                <input type="checkbox" id="consentimiento" name="consentimiento" value="on" aria-describedby="consentimiento-error">
                                 <label for="consentimiento" data-i18n="sosve.intake.form.consentimiento" data-i18n-html>He leído y acepto el <strong>Término de Consentimiento Libre e Informado (TCLE)</strong> para Atención a Distancia.</label>
                             </div>
+                            <p class="form-field-error" id="consentimiento-error" role="alert" hidden></p>
                         </div>
                         <div class="form-group form-group-consent">
-                            <input type="checkbox" id="lgpd_privacidade" name="lgpd_privacidade" required value="on">
+                            <input type="checkbox" id="lgpd_privacidade" name="lgpd_privacidade" value="on" aria-describedby="lgpd_privacidade-error">
                             <label for="lgpd_privacidade" data-i18n="sosve.intake.form.lgpd" data-i18n-html>Autorizo el tratamiento de mis datos personales, incluidos datos de salud, por ACURABRASIL, para fines de triaje y atención humanitaria, conforme a la <a href="/privacidade">Política de Privacidad</a>.</label>
+                            <p class="form-field-error" id="lgpd_privacidade-error" role="alert" hidden></p>
                         </div>
                         <button type="submit" class="btn btn-verde" style="width: 100%;" data-i18n="sosve.intake.form.submit">Enviar solicitud</button>
                         <p class="intake-form-note" data-i18n="sosve.intake.form.note">Paso siguiente: después de enviar, creará su cuenta gratuita en Doctor8.</p>
@@ -217,7 +266,12 @@
                 <h2 data-i18n="sosve.intake.success.title">¡Solicitud recibida!</h2>
                 <p data-i18n="sosve.intake.success.protocolLabel">Su número de protocolo:</p>
                 <p class="intake-protocol" id="sos-ve-protocolo" aria-live="polite"></p>
-                <p data-i18n="sosve.intake.success.estimate" data-i18n-html>Tiempo estimado de respuesta del triaje: <strong>2 a 24 horas</strong>.</p>
+                <div class="intake-protocol-actions">
+                    <button type="button" id="sos-ve-copy-protocol" class="btn btn-outline" data-i18n="sosve.intake.success.btnCopyProtocol">Copiar protocolo</button>
+                    <a href="#" id="sos-ve-whatsapp-protocol" class="btn btn-whatsapp-secondary" target="_blank" rel="noopener" data-i18n="sosve.intake.success.btnWhatsappProtocol">Enviarme mi protocolo por WhatsApp</a>
+                </div>
+                <p id="sos-ve-copy-feedback" class="intake-copy-feedback" role="status" aria-live="polite" hidden></p>
+                <p data-i18n="sosve.intake.success.estimate">Si hay profesionales en línea, la atención puede ser inmediata; si no, nuestro equipo de triaje responde en hasta 24 horas. Guarde su protocolo.</p>
                 <h3 class="intake-success-subtitle" data-i18n="sosve.intake.success.doctor8Title">Paso 3 — Doctor8</h3>
                 <p data-i18n="sosve.intake.success.doctor8Steps" data-i18n-html>1) Cree su cuenta · 2) Atención Inmediata · 3) Elija profesional · 4) Videollamada</p>
                 <div class="intake-success-actions">

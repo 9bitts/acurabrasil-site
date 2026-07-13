@@ -7,6 +7,33 @@
     linkRegistro: 'https://wa.me/5531971720053?text=Hola%2C%20necesito%20ayuda%20para%20registrarme%20en%20el%20SOS%20Venezuela',
   };
 
+  const FALLBACK_SOLICITUD_MSG = {
+    es: 'Hola, solicito atención gratuita SOS Venezuela.\n\nNombre: \nCiudad: \nTipo de atención (médica/psicológica): \nSíntomas: ',
+    pt: 'Olá, solicito atendimento gratuito SOS Venezuela.\n\nNome: \nCidade: \nTipo de atendimento (médica/psicológica): \nSintomas: ',
+  };
+
+  let cachedWaNumber = FALLBACK_WA.number;
+
+  function getSolicitudMessage() {
+    const lang = getLang();
+    if (window.AcuraI18n?.t) {
+      const fromI18n = window.AcuraI18n.t(lang, 'sosve.whatsapp.solicitud.message');
+      if (fromI18n && fromI18n !== 'sosve.whatsapp.solicitud.message') return fromI18n;
+    }
+    return FALLBACK_SOLICITUD_MSG[lang] || FALLBACK_SOLICITUD_MSG.es;
+  }
+
+  // Solicitudes por cartão whatsapp-solicitud: el equipo de triaje las registra manualmente
+  // en el admin SOS — no pasan por /api/sos-venezuela/intake.
+  function applySolicitudWhatsAppLinks(number) {
+    const n = String(number || cachedWaNumber || FALLBACK_WA.number).replace(/\D/g, '');
+    cachedWaNumber = n;
+    const href = `https://wa.me/${n}?text=${encodeURIComponent(getSolicitudMessage())}`;
+    document.querySelectorAll('.btn-whatsapp-solicitud').forEach((el) => {
+      el.href = href;
+    });
+  }
+
   function getLang() {
     return document.documentElement.lang?.startsWith('pt') ? 'pt' : 'es';
   }
@@ -101,15 +128,20 @@
     }
 
     applyWhatsAppLinks(info);
+    applySolicitudWhatsAppLinks(info?.whatsapp?.number || FALLBACK_WA.number);
     if (!info) return;
 
-    const isIntakePage = /solicitud-sos-venezuela/i.test(window.location.pathname || '');
+    const scheduleStatus = document.getElementById('sos-schedule-status');
+    const scheduleInfo = document.getElementById('sos-schedule-info');
 
-    if (!isIntakePage) {
-      renderScheduleBlock(document.getElementById('sos-schedule-status'), info);
+    if (scheduleStatus) {
+      renderScheduleBlock(scheduleStatus, info);
+      scheduleStatus.hidden = false;
+    }
+    if (scheduleInfo) {
+      renderScheduleBlock(scheduleInfo, info);
     }
 
-    renderScheduleBlock(document.getElementById('sos-schedule-info'), info);
     renderInlineHours(document.getElementById('sos-schedule-hours'), info);
   }
 
@@ -135,12 +167,17 @@
 
   window.SosVenezuelaPublic = {
     applyWhatsAppLinks,
+    applySolicitudWhatsAppLinks,
     getStoredReferral,
     buildWaHelpLink(number, text) {
       const n = String(number || FALLBACK_WA.number).replace(/\D/g, '');
       return `https://wa.me/${n}?text=${encodeURIComponent(text)}`;
     },
   };
+
+  document.addEventListener('acura:langchange', () => {
+    applySolicitudWhatsAppLinks(cachedWaNumber);
+  });
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

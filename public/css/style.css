@@ -1188,6 +1188,43 @@ img:not(.logo-img) {
     gap: 0.65rem;
 }
 
+.form-whatsapp-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+}
+
+.form-whatsapp-prefix {
+    display: flex;
+    align-items: center;
+    padding: 0 0.85rem;
+    border: 1px solid var(--cinza-borda);
+    border-right: none;
+    border-radius: 6px 0 0 6px;
+    background: var(--cinza-claro, #f4f6f8);
+    font-weight: 600;
+    color: var(--texto-escuro);
+    white-space: nowrap;
+}
+
+.form-whatsapp-row input {
+    flex: 1;
+    min-width: 0;
+    border-radius: 0 6px 6px 0;
+}
+
+.form-field-error {
+    margin: 0.35rem 0 0;
+    font-size: 0.85rem;
+    color: var(--urgencia);
+}
+
+.form-group input.is-invalid,
+.form-group select.is-invalid,
+.form-group textarea.is-invalid {
+    border-color: var(--urgencia);
+}
+
 .form-phone-field label {
     font-size: 0.78rem;
     font-weight: 600;
@@ -2602,6 +2639,25 @@ a.btn.is-disabled:hover {
 .consulta-hero-nota {
     font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.55);
+}
+
+.consulta-hero-expectation,
+.intake-hero-expectation,
+.intake-form-expectation {
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0 0 1.25rem;
+    max-width: 42rem;
+}
+
+.intake-hero-expectation {
+    margin-top: 0.75rem;
+}
+
+.intake-form-expectation {
+    color: var(--texto-mutado);
+    text-align: center;
+    margin: 0 0 1.25rem;
 }
 
 .btn-consulta-principal {
@@ -4248,6 +4304,30 @@ a.btn.is-disabled:hover {
 
 .intake-success-actions .btn { min-width: 280px; }
 
+.intake-protocol-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin: 0.75rem 0 1.25rem;
+}
+
+.intake-protocol-actions .btn { min-width: 240px; }
+
+.intake-copy-feedback {
+    text-align: center;
+    font-size: 0.9rem;
+    margin: 0 0 1rem;
+    color: var(--texto-mutado);
+}
+
+.intake-copy-feedback.is-success { color: var(--verde-escuro); }
+.intake-copy-feedback.is-error { color: var(--urgencia); }
+
+.intake-emergency-notice {
+    margin: 0 0 1.25rem;
+}
+
 .intake-form-note {
     font-size: 0.88rem;
     color: var(--texto-mutado);
@@ -4508,6 +4588,44 @@ a.btn.is-disabled:hover {
     border: 2px solid #128C7E;
     border-radius: 12px;
     text-align: center;
+}
+
+.section--whatsapp-solicitud {
+    padding-top: 0;
+}
+
+.whatsapp-solicitud-card {
+    max-width: 820px;
+    margin: 0 auto 1.5rem;
+    padding: 1.5rem 1.75rem;
+    background: linear-gradient(135deg, #e8faf0 0%, #fff 60%);
+    border: 2px solid #128C7E;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.whatsapp-solicitud-card h2 {
+    font-size: 1.15rem;
+    color: #0a5c52;
+    margin: 0 0 0.5rem;
+}
+
+.whatsapp-solicitud-card p {
+    margin: 0 0 1rem;
+    color: var(--texto-mutado);
+    font-size: 0.95rem;
+}
+
+.btn-whatsapp-solicitud {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.btn-whatsapp-solicitud svg {
+    flex-shrink: 0;
 }
 
 .whatsapp-cta h2 {
