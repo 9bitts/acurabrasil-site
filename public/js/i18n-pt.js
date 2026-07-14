@@ -753,7 +753,7 @@ window.ACURA_I18N_PT = {
   "consulta.careTypes.disclaimer": "⚠️ Aviso importante: a telemedicina da ACURABRASIL é um serviço humanitário gratuito e não substitui atendimento presencial de urgência ou emergência. Se você está na Venezuela, em caso de risco de vida ligue 911 (VEN-911) ou vá ao hospital mais próximo. Se você está no Brasil, ligue 192 (SAMU) ou, para crises emocionais, 188 (CVV, 24h). Médicos e psicólogos possuem registro ativo no CRM e no CRP, respectivamente; psicanalistas e terapeutas integrativos possuem formação certificada e atuam sob os critérios de qualificação e supervisão ética da ACURABRASIL. Seus dados de saúde são protegidos pela LGPD, conforme nossa <a href=\"/privacidade\">Política de Privacidade</a> e o TCLE da plataforma Doctor8.",
   "consulta.prof.title": "Profissionais voluntários",
   "consulta.prof.banner.lead": "O atendimento do SOS Venezuela <strong>não acontece neste site</strong>.",
-  "consulta.prof.banner.text": "As consultas são realizadas exclusivamente na plataforma <strong>Doctor8</strong>. Use o banner abaixo para buscar voluntários AcuraBrasil e agendar sua consulta gratuita.",
+  "consulta.prof.banner.text": "As consultas são realizadas exclusivamente na plataforma <strong>Doctor8</strong>. Use o botão abaixo para completar sua solicitação de atendimento gratuito.",
   "consulta.prof.banner.btn": "Completar solicitação de atendimento →",
   "consulta.prof.banner.aria": "Informação sobre atendimento Doctor8",
   "consulta.prof.d8banner.aria": "Buscar voluntários AcuraBrasil na Doctor8",
