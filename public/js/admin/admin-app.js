@@ -294,7 +294,13 @@
       else if (state.tab === 'config') main.innerHTML = await renderConfig();
       else if (state.tab === 'divulgacao') main.innerHTML = await renderDivulgacao();
       else if (state.tab === 'parcerias') main.innerHTML = await renderParcerias();
+      else if (state.tab === 'campanhas') {
+        main.innerHTML = await window.AcuraAdminCampaigns.render(api, state);
+      }
       bindEvents();
+      if (state.tab === 'campanhas' && window.AcuraAdminCampaigns) {
+        window.AcuraAdminCampaigns.bind(api, state, render);
+      }
     } catch (err) {
       main.innerHTML = `<p class="admin-error">Erro: ${esc(err.message)}</p>`;
     }

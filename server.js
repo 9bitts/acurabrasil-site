@@ -5,6 +5,7 @@ const path = require('path');
 const { handleContactRequest, verifyEmailOnStartup } = require('./lib/contact');
 const { handleIntakeEventRequest } = require('./lib/intake-events');
 const { registerAdminRoutes } = require('./lib/admin-api');
+const { registerCampaignRoutes } = require('./lib/campaigns-api');
 const { getDb } = require('./lib/db');
 const {
   handlePaypalConfig,
@@ -67,7 +68,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.json({ limit: '32kb' }));
+app.use(express.json({ limit: '256kb' }));
 app.use(compression());
 
 app.get('/api/site-config', (req, res) => {
@@ -85,12 +86,20 @@ app.post('/api/sos-venezuela/intake', (req, res) => {
 });
 app.post('/api/sos-venezuela/intake/:protocolo/event', handleIntakeEventRequest);
 registerAdminRoutes(app);
+registerCampaignRoutes(app);
 app.get('/api/paypal/config', handlePaypalConfig);
 app.post('/api/paypal/subscription-plan', handleSubscriptionPlan);
 app.get('/api/consulta-profissionais', handleConsultaProfissionaisRequest);
 
 app.get(['/solicitud-sos-venezuela', '/solicitud-sos-venezuela/'], (req, res) => {
   return res.redirect(301, 'https://app.doctor8.org/atendimentohumanitario');
+});
+
+app.get(['/campanhas/:slug', '/campanhas/:slug/'], (req, res, next) => {
+  const slug = String(req.params.slug || '').toLowerCase();
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) return next();
+  res.setHeader('Cache-Control', 'public, max-age=0');
+  res.sendFile(path.join(__dirname, 'public', 'campanha.html'));
 });
 
 app.get(['/admin', '/admin/'], adminGuard, (req, res) => {

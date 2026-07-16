@@ -24,6 +24,7 @@
     <title>Doação - ACURABRASIL</title>
     <link rel="preload" href="css/style.css?v=21" as="style">
     <link rel="stylesheet" href="css/style.css?v=21">
+    <link rel="stylesheet" href="css/campanhas.css?v=1">
     <script src="js/analytics-config.js" defer></script>
     <script src="js/seo.js" defer></script>
     <script src="js/i18n-loader.js?v=24" defer></script>
@@ -46,6 +47,7 @@
                     <li><a href="/" class="nav-link" data-i18n="nav.home">Inicio</a></li>
                     <li><a href="/sos-venezuela" class="nav-link" data-i18n="nav.sosVe">SOS Venezuela</a></li>
                     <li><a href="/consulta-venezuela" class="nav-link nav-link-destaque" data-i18n="nav.consult">Consulta en Línea</a></li>
+                    <li><a href="/campanhas" class="nav-link" data-i18n="nav.campaigns">Campañas</a></li>
                     <li><a href="/doacao" class="nav-link nav-link-donate" data-i18n="nav.donate">Donar</a></li>
                     <li><a href="/instituicao" class="nav-link" data-i18n="nav.about">La Institución</a></li>
                     <li><a href="/equipe" class="nav-link" data-i18n="nav.team">Equipo</a></li>
@@ -84,6 +86,16 @@
                 <div class="doacao-hero-stat"><strong>~2500</strong><span data-i18n="doacao.hero.stat2">Profissionais da saúde voluntários na pandemia</span></div>
                 <div class="doacao-hero-stat"><strong>~500</strong><span data-i18n="doacao.hero.stat3">Cidades atendidas</span></div>
             </div>
+        </div>
+    </section>
+
+
+    <section class="section" id="campanhas-hub">
+        <div class="container">
+            <h2 class="section-title-center" data-i18n="doacao.hub.campaigns">Campanhas ativas</h2>
+            <p class="section-subtitle-center" data-i18n="doacao.hub.campaignsText">Prefere apoiar uma causa específica? Veja as campanhas em andamento.</p>
+            <div id="doacao-campanhas-hub" class="campanhas-grid"></div>
+            <p style="text-align:center;margin-top:1.25rem"><a href="/campanhas" class="btn btn-verde" data-i18n="campanhas.card.cta">Doe agora</a></p>
         </div>
     </section>
 
@@ -523,5 +535,6 @@
     <script src="js/newsletter.js?v=16"></script>
     <script src="js/vendor/qrcode.min.js?v=16"></script>
     <script src="js/doacao.js"></script>
+    <script src="js/doacao-campanhas-hub.js"></script>
 </body>
 </html>

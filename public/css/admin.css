@@ -634,3 +634,48 @@ body.admin-body {
     padding: 0.5rem 0.75rem;
   }
 }
+
+.admin-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1rem;
+}
+
+@media (max-width: 900px) {
+  .admin-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-check {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.admin-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.admin-header-row h1 {
+  margin: 0;
+}
+
+.admin-muted {
+  color: #667;
+  font-size: 0.9rem;
+}
+
+.admin-btn-danger {
+  background: var(--admin-danger);
+}
+
+.admin-btn-danger:hover {
+  background: #a50e18;
+}

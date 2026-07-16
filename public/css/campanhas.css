@@ -1,0 +1,392 @@
+/* Campanhas públicas */
+.campanhas-hero {
+  padding: 2.5rem 0 1.5rem;
+  background: linear-gradient(160deg, #e8f5ef 0%, #f7faf8 45%, #fff 100%);
+}
+
+.campanhas-hero h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  margin: 0.5rem 0 0.75rem;
+  color: #1a2332;
+}
+
+.campanhas-hero p {
+  max-width: 40rem;
+  color: #445;
+  margin: 0 0 1.25rem;
+}
+
+.campanhas-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.campanhas-filter {
+  border: 1px solid #c5d4cb;
+  background: #fff;
+  color: #2d6a4f;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.campanhas-filter.active,
+.campanhas-filter:hover {
+  background: #2d6a4f;
+  border-color: #2d6a4f;
+  color: #fff;
+}
+
+.campanhas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.campanha-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #e2e8e4;
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.campanha-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(26, 35, 50, 0.1);
+}
+
+.campanha-card-cover {
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  width: 100%;
+  background: #dfe8e3;
+}
+
+.campanha-card-body {
+  padding: 1.1rem 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.campanha-card-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #2d6a4f;
+  background: #e8f5ef;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.campanha-card-badge--emergency {
+  color: #9b2226;
+  background: #fde8e8;
+}
+
+.campanha-card h2 {
+  font-size: 1.15rem;
+  margin: 0;
+  color: #1a2332;
+}
+
+.campanha-card p {
+  margin: 0;
+  color: #556;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  flex: 1;
+}
+
+.campanha-thermo {
+  margin-top: 0.5rem;
+}
+
+.campanha-thermo-bar {
+  height: 8px;
+  background: #e6eee9;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.campanha-thermo-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2d6a4f, #52b788);
+  border-radius: 999px;
+}
+
+.campanha-thermo-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #667;
+  margin-top: 0.35rem;
+}
+
+.campanhas-loading,
+.campanhas-empty {
+  color: #667;
+  padding: 2rem 0;
+}
+
+.campanhas-closed-wrap {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e2e8e4;
+}
+
+.campanhas-closed-wrap h2 {
+  font-size: 1.25rem;
+  margin: 0 0 1rem;
+}
+
+/* Detalhe */
+.campanha-layout {
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 360px);
+  gap: 2rem;
+  align-items: start;
+  padding: 1.5rem 0 3rem;
+}
+
+@media (max-width: 900px) {
+  .campanha-layout {
+    grid-template-columns: 1fr;
+  }
+  .campanha-donate-panel {
+    order: -1;
+  }
+}
+
+.campanha-cover {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1.25rem;
+}
+
+.campanha-story h1 {
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  margin: 0.35rem 0 0.75rem;
+}
+
+.campanha-story-body {
+  white-space: pre-wrap;
+  line-height: 1.65;
+  color: #333;
+}
+
+.campanha-status-banner {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: #fff3cd;
+  color: #664d03;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.campanha-status-banner--closed {
+  background: #e9ecef;
+  color: #343a40;
+}
+
+.campanha-donate-panel {
+  position: sticky;
+  top: 5.5rem;
+  background: #fff;
+  border: 1px solid #e2e8e4;
+  border-radius: 14px;
+  padding: 1.25rem;
+  box-shadow: 0 8px 24px rgba(26, 35, 50, 0.06);
+}
+
+.campanha-donate-panel h2 {
+  font-size: 1.1rem;
+  margin: 0 0 0.75rem;
+}
+
+.campanha-amounts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.75rem 0;
+}
+
+.campanha-amount-btn {
+  border: 1px solid #c5d4cb;
+  background: #fff;
+  padding: 0.45rem 0.7rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #1a2332;
+}
+
+.campanha-amount-btn.active {
+  background: #2d6a4f;
+  border-color: #2d6a4f;
+  color: #fff;
+}
+
+.campanha-type-tabs {
+  display: flex;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.campanha-type-tabs button {
+  flex: 1;
+  border: 1px solid #c5d4cb;
+  background: #f7faf8;
+  padding: 0.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.campanha-type-tabs button.active {
+  background: #1a2332;
+  border-color: #1a2332;
+  color: #fff;
+}
+
+.campanha-pix-box {
+  text-align: center;
+  margin: 0.75rem 0;
+}
+
+.campanha-pix-box canvas {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.campanha-pix-key {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.campanha-pix-key code {
+  font-size: 0.85rem;
+  background: #f0f4f1;
+  padding: 0.35rem 0.5rem;
+  border-radius: 4px;
+}
+
+.campanha-updates,
+.campanha-faqs,
+.campanha-donors {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e8eee9;
+}
+
+.campanha-updates h2,
+.campanha-faqs h2,
+.campanha-donors h2 {
+  font-size: 1.2rem;
+  margin: 0 0 1rem;
+}
+
+.campanha-update {
+  margin-bottom: 1.25rem;
+}
+
+.campanha-update time {
+  font-size: 0.8rem;
+  color: #778;
+}
+
+.campanha-faq details {
+  border: 1px solid #e2e8e4;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.campanha-donor-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.campanha-donor-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.9rem;
+}
+
+.campanha-register {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e8eee9;
+}
+
+.campanha-register .form-group {
+  margin-bottom: 0.65rem;
+}
+
+.campanha-register label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.campanha-register input {
+  width: 100%;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid #c5d4cb;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.paypal-button-container {
+  min-height: 45px;
+  margin-top: 0.5rem;
+}
+
+.campanha-success {
+  background: #d8f3dc;
+  color: #1b4332;
+  padding: 0.65rem 0.75rem;
+  border-radius: 8px;
+  margin-top: 0.75rem;
+  font-weight: 600;
+}
+
+.campanha-share {
+  margin-top: 0.75rem;
+}
+
+.campanha-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.campanha-gallery img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 8px;
+}
