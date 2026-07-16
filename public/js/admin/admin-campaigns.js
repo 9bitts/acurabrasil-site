@@ -160,7 +160,7 @@
       matching_text_pt: val('c-match-pt'),
       matching_text_es: val('c-match-es'),
       matching_cap: numVal('c-match-cap'),
-      enable_pix: val('c-pix'),
+      enable_pix: false,
       enable_paypal: val('c-paypal'),
       enable_paypal_monthly: val('c-paypal-m'),
       show_donor_wall: val('c-wall'),
@@ -338,7 +338,6 @@
           ${field('c-accepts', 'Aceita doação financeira', campaign.accepts_donation, { type: 'checkbox' })}
           ${field('c-once', 'Permitir doação única', campaign.allow_once, { type: 'checkbox' })}
           ${field('c-monthly', 'Permitir mensal', campaign.allow_monthly, { type: 'checkbox' })}
-          ${field('c-pix', 'Habilitar Pix', campaign.enable_pix, { type: 'checkbox' })}
           ${field('c-paypal', 'Habilitar PayPal (cartão)', campaign.enable_paypal, { type: 'checkbox' })}
           ${field('c-paypal-m', 'Habilitar PayPal mensal', campaign.enable_paypal_monthly, { type: 'checkbox' })}
           ${field('c-wall', 'Mural de doadores', campaign.show_donor_wall, { type: 'checkbox' })}

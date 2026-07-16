@@ -1,12 +1,6 @@
 (function () {
   'use strict';
 
-  var PIX = {
-    key: '30.350.850/0001-80',
-    name: 'ACURABRASIL',
-    city: 'BELO HORIZONTE',
-  };
-
   var paypalState = {
     clientId: '',
     enabled: false,
@@ -60,38 +54,6 @@
     return parts[parts.length - 1] || '';
   }
 
-  function crc16(payload) {
-    var polynomial = 0x1021;
-    var crc = 0xffff;
-    for (var i = 0; i < payload.length; i++) {
-      crc ^= payload.charCodeAt(i) << 8;
-      for (var j = 0; j < 8; j++) {
-        if (crc & 0x8000) crc = (crc << 1) ^ polynomial;
-        else crc <<= 1;
-        crc &= 0xffff;
-      }
-    }
-    return crc.toString(16).toUpperCase().padStart(4, '0');
-  }
-
-  function emv(id, value) {
-    return id + String(value.length).padStart(2, '0') + value;
-  }
-
-  function generatePixPayload(amount) {
-    var key = PIX.key.replace(/\D/g, '');
-    var merchantAccount = emv('00', 'br.gov.bcb.pix') + emv('01', key);
-    var payload = emv('00', '01') + emv('26', merchantAccount);
-    payload += emv('52', '0000') + emv('53', '986');
-    if (amount && amount > 0) payload += emv('54', amount.toFixed(2));
-    payload += emv('58', 'BR');
-    payload += emv('59', PIX.name.substring(0, 25));
-    payload += emv('60', PIX.city.substring(0, 15));
-    payload += emv('62', emv('05', (campaign.slug || 'doacao').substring(0, 25)));
-    payload += '6304';
-    return payload + crc16(payload);
-  }
-
   function getActiveAmount() {
     if (state.customAmount) {
       var custom = parseFloat(String(state.customAmount).replace(',', '.'));
@@ -115,17 +77,6 @@
     return 'amigo';
   }
 
-  function updateQr() {
-    var canvas = document.getElementById('pix-qr');
-    if (!canvas || !window.QRCode) return;
-    var amount = getActiveAmount();
-    window.QRCode.toCanvas(canvas, generatePixPayload(amount), { width: 200, margin: 1 }, function (err) {
-      if (err) console.error(err);
-    });
-    var disp = document.getElementById('pix-amount-display');
-    if (disp) disp.textContent = money(amount);
-  }
-
   function youtubeEmbed(url) {
     if (!url) return '';
     var m = String(url).match(/(?:youtu\.be\/|v=|\/embed\/)([\w-]{6,})/);
@@ -139,10 +90,10 @@
 
   function progressBlock(c, variant) {
     var pct = c.goal_amount > 0 ? Math.min(100, c.progress_pct != null ? c.progress_pct : 0) : 0;
-    var raisedLabel = t('campanha.progress.raised');
-    var goalLabel = t('campanha.progress.goal');
-    var donorsLabel = t('campanha.progress.donors');
-    var cls = variant === 'hero' ? 'campanha-progress campanha-progress--hero' : 'campanha-progress campanha-progress--side';
+    var cls =
+      variant === 'hero'
+        ? 'campanha-progress campanha-progress--hero'
+        : 'campanha-progress campanha-progress--side';
     var bar =
       c.show_thermometer && c.goal_amount > 0
         ? '<div class="campanha-thermo-bar" role="progressbar" aria-valuenow="' +
@@ -154,36 +105,126 @@
     return (
       '<div class="' +
       cls +
+      '" id="' +
+      (variant === 'hero' ? 'campanha-progress-hero' : '') +
       '">' +
       '<div class="campanha-progress-stats">' +
       '<div class="campanha-progress-stat">' +
-      '<strong>' +
+      '<strong id="progress-raised">' +
       esc(money(c.raised_amount)) +
       '</strong>' +
       '<span>' +
-      esc(raisedLabel) +
-      (c.goal_amount > 0 ? ' · ' + esc(goalLabel) + ' ' + esc(money(c.goal_amount)) : '') +
+      esc(t('campanha.progress.raised')) +
+      (c.goal_amount > 0
+        ? ' · ' + esc(t('campanha.progress.goal')) + ' ' + esc(money(c.goal_amount))
+        : '') +
       '</span>' +
       '</div>' +
       '<div class="campanha-progress-stat campanha-progress-stat--donors">' +
-      '<strong>' +
+      '<strong id="progress-donors">' +
       esc(String(c.donor_count || 0)) +
       '</strong>' +
       '<span>' +
-      esc(donorsLabel) +
+      esc(t('campanha.progress.donors')) +
       '</span>' +
       '</div>' +
       '</div>' +
       bar +
       (c.goal_amount > 0 && c.show_thermometer
-        ? '<p class="campanha-progress-pct">' + pct + '% ' + esc(t('campanha.progress.ofGoal')) + '</p>'
+        ? '<p class="campanha-progress-pct" id="progress-pct">' +
+          pct +
+          '% ' +
+          esc(t('campanha.progress.ofGoal')) +
+          '</p>'
         : '') +
       '</div>'
     );
   }
 
+  function updateProgressUI(c) {
+    campaign = Object.assign({}, campaign, c);
+    var pct =
+      campaign.goal_amount > 0
+        ? Math.min(100, Math.round((campaign.raised_amount / campaign.goal_amount) * 100))
+        : 0;
+    campaign.progress_pct = pct;
+
+    var raisedEl = document.getElementById('progress-raised');
+    var donorsEl = document.getElementById('progress-donors');
+    var pctEl = document.getElementById('progress-pct');
+    var fill = document.querySelector('#campanha-progress-hero .campanha-thermo-fill');
+    var hero = document.getElementById('campanha-progress-hero');
+
+    if (raisedEl) raisedEl.textContent = money(campaign.raised_amount);
+    if (donorsEl) donorsEl.textContent = String(campaign.donor_count || 0);
+    if (pctEl) pctEl.textContent = pct + '% ' + t('campanha.progress.ofGoal');
+    if (fill) fill.style.width = pct + '%';
+    if (hero) {
+      hero.classList.remove('campanha-progress--pulse');
+      void hero.offsetWidth;
+      hero.classList.add('campanha-progress--pulse');
+      hero.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  function showThankYou(amount, frequency) {
+    var existing = document.getElementById('campanha-thanks');
+    if (existing) existing.remove();
+
+    var overlay = document.createElement('div');
+    overlay.id = 'campanha-thanks';
+    overlay.className = 'campanha-thanks';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.innerHTML =
+      '<div class="campanha-thanks-card">' +
+      '<div class="campanha-thanks-icon" aria-hidden="true">♥</div>' +
+      '<p class="campanha-thanks-eyebrow">' +
+      esc(t('campanha.thanks.eyebrow')) +
+      '</p>' +
+      '<h2>' +
+      esc(t('campanha.thanks.title')) +
+      '</h2>' +
+      '<p class="campanha-thanks-amount">' +
+      esc(money(amount)) +
+      (frequency === 'monthly' ? ' <span>/ ' + esc(t('campanha.type.monthly')) + '</span>' : '') +
+      '</p>' +
+      '<p class="campanha-thanks-text">' +
+      esc(t('campanha.thanks.text')) +
+      '</p>' +
+      '<p class="campanha-thanks-bar-note">' +
+      esc(t('campanha.thanks.barNote')) +
+      '</p>' +
+      '<button type="button" class="btn btn-verde" id="campanha-thanks-close">' +
+      esc(t('campanha.thanks.cta')) +
+      '</button>' +
+      '</div>';
+
+    document.body.appendChild(overlay);
+    requestAnimationFrame(function () {
+      overlay.classList.add('is-visible');
+    });
+
+    function close() {
+      overlay.classList.remove('is-visible');
+      setTimeout(function () {
+        if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+        var hero = document.getElementById('campanha-progress-hero');
+        if (hero) hero.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 280);
+    }
+
+    document.getElementById('campanha-thanks-close').addEventListener('click', close);
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) close();
+    });
+  }
+
   function renderPage(detail) {
     campaign = detail.campaign;
+    campaign.enable_paypal = true;
+    campaign.enable_paypal_monthly = campaign.allow_monthly !== false;
+
     var title = pick(campaign, 'title_pt', 'title_es');
     var summary = pick(campaign, 'summary_pt', 'summary_es');
     var body = pick(campaign, 'body_pt', 'body_es');
@@ -206,9 +247,10 @@
       ogImage.setAttribute('content', img);
     }
 
-    var amounts = campaign.suggested_amounts && campaign.suggested_amounts.length
-      ? campaign.suggested_amounts
-      : [30, 50, 100, 250, 500, 1000];
+    var amounts =
+      campaign.suggested_amounts && campaign.suggested_amounts.length
+        ? campaign.suggested_amounts
+        : [30, 50, 100, 250, 500, 1000];
     if (!amounts.includes(state.amount)) state.amount = amounts[1] || amounts[0] || 50;
 
     var statusBanner = '';
@@ -288,19 +330,14 @@
     var donatePanel = !canDonate
       ? '<aside class="campanha-donate-panel" id="doar"><p>' +
         esc(t('campanha.donate.unavailable')) +
-        '</p>' +
-        (ctaLabel && campaign.secondary_cta_url
-          ? '<a class="btn btn-verde" href="' +
-            esc(campaign.secondary_cta_url) +
-            '">' +
-            esc(ctaLabel) +
-            '</a>'
-          : '') +
-        '</aside>'
+        '</p></aside>'
       : '<aside class="campanha-donate-panel" id="doar">' +
         '<h2>' +
         esc(t('campanha.donate.title')) +
         '</h2>' +
+        '<p class="campanha-pay-note">' +
+        esc(t('campanha.donate.paypalOnly')) +
+        '</p>' +
         (matching ? '<p class="campanha-matching">' + esc(matching) + '</p>' : '') +
         (impact ? '<p class="campanha-impact">' + esc(impact) + '</p>' : '') +
         (campaign.allow_once && campaign.allow_monthly
@@ -320,67 +357,22 @@
         '" max="' +
         campaign.max_amount +
         '" step="1" placeholder="0,00"></div>' +
-        (campaign.enable_pix
-          ? '<div class="campanha-pix-box" data-panel="unica">' +
-            '<h3>' +
-            esc(t('doacao.pix.title')) +
-            '</h3>' +
-            '<p id="pix-amount-display" class="campanha-pix-amount"></p>' +
-            '<canvas id="pix-qr" width="200" height="200"></canvas>' +
-            '<p class="campanha-pix-key-label">' +
-            esc(t('campanha.pix.keyLabel')) +
-            '</p>' +
-            '<div class="campanha-pix-key"><code id="pix-key-value">' +
-            PIX.key +
-            '</code><button type="button" class="btn btn-outline btn-sm" id="copy-pix">' +
-            esc(t('doacao.pix.copy')) +
-            '</button></div>' +
-            '<p class="campanha-pix-bank">' +
-            esc(t('campanha.pix.bank')) +
-            '</p></div>'
-          : '') +
-        (campaign.enable_pix && campaign.allow_monthly
-          ? '<div data-panel="mensal" hidden><h3>' +
-            esc(t('doacao.pix.monthly.title')) +
-            '</h3><p>' +
-            esc(t('doacao.pix.monthly.text')) +
-            '</p><p class="campanha-pix-key-label">' +
-            esc(t('campanha.pix.keyLabel')) +
-            '</p><div class="campanha-pix-key"><code>' +
-            PIX.key +
-            '</code><button type="button" class="btn btn-outline btn-sm" id="copy-pix-m">' +
-            esc(t('doacao.pix.copy')) +
-            '</button></div></div>'
-          : '') +
-        (campaign.enable_paypal
-          ? '<div data-panel="unica"><h3>' +
-            esc(t('doacao.paypal.once.title')) +
-            '</h3><div id="paypal-once-container" class="paypal-button-container"></div><p id="paypal-once-unavailable" hidden>' +
-            esc(t('doacao.paypal.unavailable')) +
-            '</p><p id="paypal-once-success" class="campanha-success" hidden></p></div>'
-          : '') +
-        (campaign.enable_paypal_monthly && campaign.allow_monthly
+        '<div data-panel="unica">' +
+        '<h3>' +
+        esc(t('doacao.paypal.once.title')) +
+        '</h3>' +
+        '<div id="paypal-once-container" class="paypal-button-container"></div>' +
+        '<p id="paypal-once-unavailable" hidden>' +
+        esc(t('doacao.paypal.unavailable')) +
+        '</p></div>' +
+        (campaign.allow_monthly
           ? '<div data-panel="mensal" hidden><h3>' +
             esc(t('doacao.paypal.monthly.title')) +
-            '</h3><div id="paypal-monthly-container" class="paypal-button-container"></div><p id="paypal-monthly-unavailable" hidden>' +
+            '</h3><div id="paypal-monthly-container" class="paypal-button-container"></div>' +
+            '<p id="paypal-monthly-unavailable" hidden>' +
             esc(t('doacao.paypal.unavailable')) +
-            '</p><p id="paypal-monthly-success" class="campanha-success" hidden></p></div>'
+            '</p></div>'
           : '') +
-        '<div class="campanha-register"><h3>' +
-        esc(t('campanha.register.title')) +
-        '</h3><form id="campanha-register-form">' +
-        '<div class="form-group"><label>' +
-        esc(t('campanha.register.name')) +
-        '</label><input name="nome" required maxlength="120"></div>' +
-        '<div class="form-group"><label>E-mail</label><input type="email" name="email" required maxlength="200"></div>' +
-        '<label class="admin-check" style="margin:0.5rem 0"><input type="checkbox" name="anonymous"> ' +
-        esc(t('campanha.register.anonymous')) +
-        '</label>' +
-        '<button type="submit" class="btn btn-verde" style="width:100%;margin-top:0.5rem">' +
-        esc(t('campanha.register.submit')) +
-        '</button>' +
-        '<p id="register-status" role="status" hidden></p>' +
-        '</form></div>' +
         '<div class="campanha-share"><button type="button" class="btn btn-outline btn-sm" id="share-campaign">' +
         esc(t('campanha.share')) +
         '</button></div>' +
@@ -445,10 +437,7 @@
       '</div>';
 
     bindDonateUi();
-    if (canDonate) {
-      updateQr();
-      initPaypal();
-    }
+    if (canDonate) initPaypal();
   }
 
   function syncPanels() {
@@ -470,7 +459,6 @@
         document.querySelectorAll('.campanha-amount-btn').forEach(function (b) {
           b.classList.toggle('active', b === btn);
         });
-        updateQr();
         schedulePaypalRender();
       });
     });
@@ -482,7 +470,6 @@
         document.querySelectorAll('.campanha-amount-btn').forEach(function (b) {
           b.classList.remove('active');
         });
-        updateQr();
         schedulePaypalRender();
       });
     }
@@ -496,82 +483,17 @@
     });
     syncPanels();
 
-    function copyPix() {
-      navigator.clipboard.writeText(PIX.key).then(function () {
-        alert(t('doacao.pix.copied'));
-      });
-    }
-    document.getElementById('copy-pix') &&
-      document.getElementById('copy-pix').addEventListener('click', copyPix);
-    document.getElementById('copy-pix-m') &&
-      document.getElementById('copy-pix-m').addEventListener('click', copyPix);
-
     var shareBtn = document.getElementById('share-campaign');
     if (shareBtn) {
       shareBtn.addEventListener('click', function () {
-      var url = location.href;
-      if (navigator.share) {
-        navigator.share({ title: document.title, url: url }).catch(function () {});
-      } else {
-        navigator.clipboard.writeText(url).then(function () {
-          alert(t('campanha.share.copied'));
-        });
-      }
-      });
-    }
-
-    var form = document.getElementById('campanha-register-form');
-    if (form) {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var fd = new FormData(form);
-        var amount = getActiveAmount();
-        var badge = getBadgeId(amount, state.type);
-        var payload = {
-          amount: amount,
-          method: 'pix',
-          frequency: state.type === 'mensal' ? 'monthly' : 'once',
-          donor_name: fd.get('nome'),
-          donor_email: fd.get('email'),
-          anonymous: !!fd.get('anonymous'),
-          badge_id: badge,
-          status: 'reported',
-          notes: 'Registro via página da campanha',
-        };
-        var status = document.getElementById('register-status');
-        fetch('/api/campaigns/' + encodeURIComponent(campaign.slug) + '/donations', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        })
-          .then(function (r) {
-            return r.json().then(function (j) {
-              return { ok: r.ok, j: j };
-            });
-          })
-          .then(function (res) {
-            if (status) {
-              status.hidden = false;
-              status.textContent = res.ok
-                ? t('campanha.register.ok')
-                : t('campanha.register.error');
-              status.className = res.ok ? 'campanha-success' : '';
-            }
-            if (res.ok) {
-              try {
-                localStorage.setItem(
-                  'acura.badge',
-                  JSON.stringify({ id: badge, at: Date.now(), campaign: campaign.slug })
-                );
-              } catch (err) { /* ignore */ }
-            }
-          })
-          .catch(function () {
-            if (status) {
-              status.hidden = false;
-              status.textContent = t('campanha.register.error');
-            }
+        var url = location.href;
+        if (navigator.share) {
+          navigator.share({ title: document.title, url: url }).catch(function () {});
+        } else {
+          navigator.clipboard.writeText(url).then(function () {
+            alert(t('campanha.share.copied'));
           });
+        }
       });
     }
   }
@@ -612,30 +534,73 @@
       if (paypalState.onceButtons && paypalState.onceButtons.close) paypalState.onceButtons.close();
       if (paypalState.monthlyButtons && paypalState.monthlyButtons.close)
         paypalState.monthlyButtons.close();
-    } catch (e) { /* ignore */ }
+    } catch (e) {
+      /* ignore */
+    }
     paypalState.onceButtons = null;
     paypalState.monthlyButtons = null;
   }
 
-  function recordPaypalDonation(providerId, frequency) {
+  function afterPaypalSuccess(providerId, frequency, payerName) {
+    var amount = getActiveAmount();
     return fetch('/api/campaigns/' + encodeURIComponent(campaign.slug) + '/donations', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        amount: getActiveAmount(),
+        amount: amount,
         method: 'paypal',
         frequency: frequency,
         provider_payment_id: providerId || '',
+        donor_name: payerName || '',
         status: 'confirmed',
-        badge_id: getBadgeId(getActiveAmount(), frequency === 'monthly' ? 'mensal' : 'unica'),
+        badge_id: getBadgeId(amount, frequency === 'monthly' ? 'mensal' : 'unica'),
         notes: 'PayPal checkout',
       }),
-    });
+    })
+      .then(function (r) {
+        return r.json().then(function (j) {
+          return { ok: r.ok, j: j };
+        });
+      })
+      .then(function (res) {
+        if (res.ok && res.j.campaign) {
+          updateProgressUI(res.j.campaign);
+        } else {
+          updateProgressUI({
+            raised_amount: Number(campaign.raised_amount || 0) + amount,
+            donor_count: Number(campaign.donor_count || 0) + 1,
+            goal_amount: campaign.goal_amount,
+            show_thermometer: campaign.show_thermometer,
+          });
+        }
+        showThankYou(amount, frequency);
+        try {
+          localStorage.setItem(
+            'acura.badge',
+            JSON.stringify({
+              id: getBadgeId(amount, frequency === 'monthly' ? 'mensal' : 'unica'),
+              at: Date.now(),
+              campaign: campaign.slug,
+            })
+          );
+        } catch (e) {
+          /* ignore */
+        }
+      })
+      .catch(function () {
+        updateProgressUI({
+          raised_amount: Number(campaign.raised_amount || 0) + amount,
+          donor_count: Number(campaign.donor_count || 0) + 1,
+          goal_amount: campaign.goal_amount,
+          show_thermometer: campaign.show_thermometer,
+        });
+        showThankYou(amount, frequency);
+      });
   }
 
   function renderPaypalOnce() {
     var container = document.getElementById('paypal-once-container');
-    if (!container || !window.paypal || state.type !== 'unica' || !campaign.enable_paypal) return;
+    if (!container || !window.paypal || state.type !== 'unica') return;
     closePaypalButtons();
     container.innerHTML = '';
     var amount = getActiveAmount();
@@ -656,12 +621,11 @@
       onApprove: function (data, actions) {
         return actions.order.capture().then(function (details) {
           var id = details.id || data.orderID || '';
-          var el = document.getElementById('paypal-once-success');
-          if (el) {
-            el.hidden = false;
-            el.textContent = t('doacao.paypal.successOnce').replace('{id}', id);
-          }
-          recordPaypalDonation(id, 'once');
+          var payerName =
+            details.payer && details.payer.name
+              ? [details.payer.name.given_name, details.payer.name.surname].filter(Boolean).join(' ')
+              : '';
+          return afterPaypalSuccess(id, 'once', payerName);
         });
       },
     });
@@ -674,13 +638,7 @@
 
   function renderPaypalMonthly() {
     var container = document.getElementById('paypal-monthly-container');
-    if (
-      !container ||
-      !window.paypal ||
-      state.type !== 'mensal' ||
-      !campaign.enable_paypal_monthly
-    )
-      return;
+    if (!container || !window.paypal || state.type !== 'mensal' || !campaign.allow_monthly) return;
     closePaypalButtons();
     container.innerHTML = '';
     var amount = getActiveAmount();
@@ -696,21 +654,15 @@
             cause: campaign.destination === 'pesquisa' ? 'pesquisa' : 'humanitaria',
             campaignLabel: label,
           }),
-        })
-          .then(function (res) {
-            return res.json().then(function (json) {
-              if (!res.ok || !json.planId) throw new Error('plan_failed');
-              return actions.subscription.create({ plan_id: json.planId });
-            });
+        }).then(function (res) {
+          return res.json().then(function (json) {
+            if (!res.ok || !json.planId) throw new Error('plan_failed');
+            return actions.subscription.create({ plan_id: json.planId });
           });
+        });
       },
       onApprove: function (data) {
-        var el = document.getElementById('paypal-monthly-success');
-        if (el) {
-          el.hidden = false;
-          el.textContent = t('doacao.paypal.successMonthly');
-        }
-        recordPaypalDonation(data.subscriptionID || '', 'monthly');
+        return afterPaypalSuccess(data.subscriptionID || '', 'monthly', '');
       },
     });
     if (paypalState.monthlyButtons.isEligible()) {
@@ -777,9 +729,7 @@
       })
       .catch(function () {
         document.getElementById('campanha-root').innerHTML =
-          '<div class="container"><p class="campanhas-empty">' +
-          esc(t('campanhas.error')) +
-          '</div>';
+          '<div class="container"><p class="campanhas-empty">' + esc(t('campanhas.error')) + '</p></div>';
       });
   }
 
