@@ -2,13 +2,21 @@
   'use strict';
 
   function t(key) {
-    if (window.AcuraI18n && typeof window.AcuraI18n.t === 'function') {
-      return window.AcuraI18n.t(key);
+    if (window.AcuraI18n && typeof window.AcuraI18n.getLang === 'function') {
+      var current = window.AcuraI18n.getLang();
+      if (typeof window.AcuraI18n.t === 'function') {
+        return window.AcuraI18n.t(current, key);
+      }
+      var dict = window.ACURA_I18N && (window.ACURA_I18N[current] || window.ACURA_I18N.es);
+      if (dict && dict[key]) return dict[key];
     }
     return key;
   }
 
   function lang() {
+    if (window.AcuraI18n && typeof window.AcuraI18n.getLang === 'function') {
+      return window.AcuraI18n.getLang();
+    }
     try {
       return localStorage.getItem('acura.lang') || 'es';
     } catch (e) {
