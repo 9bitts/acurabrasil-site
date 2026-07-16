@@ -336,6 +336,16 @@
   color: #fff;
 }
 
+.campanha-pix-box {
+  text-align: center;
+  margin: 0.75rem 0;
+}
+
+.campanha-pix-box canvas {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
 .campanha-pix-box h3 {
   font-size: 1rem;
   margin: 0 0 0.5rem;
