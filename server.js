@@ -172,6 +172,7 @@ app.use(express.static(publicPath, {
   setHeaders(res, filePath) {
     const normalized = filePath.replace(/\\/g, '/');
     if (/\.html?$/i.test(normalized)) {
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
       res.setHeader('Cache-Control', 'public, max-age=0');
     } else if (/\/(css|js|fonts|img)\//.test(normalized)) {
       res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
