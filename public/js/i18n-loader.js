@@ -3,10 +3,11 @@
 
   var STORAGE_KEY = 'acura.lang';
   var DEFAULT_LANG = 'es';
-  var ASSET_V = '31';
+  var ASSET_V = '32';
   var loadPromises = {};
 
   window.ACURA_I18N = window.ACURA_I18N || { es: null, pt: null };
+  window.__ACURA_I18N_READY__ = false;
 
   function getLang() {
     try {
@@ -53,6 +54,7 @@
     return loadLangScript(lang).catch(function () {
       if (lang !== DEFAULT_LANG) return loadLangScript(DEFAULT_LANG);
     }).then(function () {
+      window.__ACURA_I18N_READY__ = true;
       document.dispatchEvent(new CustomEvent('acura:i18n-ready', { detail: { lang: getLang() } }));
     });
   }

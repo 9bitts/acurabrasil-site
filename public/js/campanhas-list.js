@@ -2,20 +2,33 @@
   'use strict';
 
   function t(key) {
-    if (window.AcuraI18n && typeof window.AcuraI18n.getLang === 'function') {
-      var current = window.AcuraI18n.getLang();
-      if (typeof window.AcuraI18n.t === 'function') {
-        return window.AcuraI18n.t(current, key);
-      }
-      var dict = window.ACURA_I18N && (window.ACURA_I18N[current] || window.ACURA_I18N.es);
-      if (dict && dict[key]) return dict[key];
-    }
+    var current = lang();
+    var fromApi =
+      window.AcuraI18n && typeof window.AcuraI18n.t === 'function'
+        ? window.AcuraI18n.t(current, key)
+        : null;
+    if (fromApi && fromApi !== key) return fromApi;
+
+    var bundled =
+      (current === 'pt' ? window.ACURA_I18N_PT : window.ACURA_I18N_ES) ||
+      window.ACURA_I18N_ES ||
+      window.ACURA_I18N_PT;
+    if (bundled && bundled[key]) return bundled[key];
+
+    var mapped =
+      window.ACURA_I18N &&
+      (window.ACURA_I18N[current] || window.ACURA_I18N.es || window.ACURA_I18N.pt);
+    if (mapped && mapped[key]) return mapped[key];
+
     return key;
   }
 
   function lang() {
     if (window.AcuraI18n && typeof window.AcuraI18n.getLang === 'function') {
       return window.AcuraI18n.getLang();
+    }
+    if (window.AcuraI18nLoader && typeof window.AcuraI18nLoader.getLang === 'function') {
+      return window.AcuraI18nLoader.getLang();
     }
     try {
       return localStorage.getItem('acura.lang') || 'es';

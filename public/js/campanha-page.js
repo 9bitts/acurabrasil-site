@@ -18,14 +18,24 @@
   };
 
   function t(key) {
-    if (window.AcuraI18n && typeof window.AcuraI18n.getLang === 'function') {
-      var current = window.AcuraI18n.getLang();
-      if (typeof window.AcuraI18n.t === 'function') {
-        return window.AcuraI18n.t(current, key);
-      }
-      var dict = window.ACURA_I18N && (window.ACURA_I18N[current] || window.ACURA_I18N.es);
-      if (dict && dict[key]) return dict[key];
-    }
+    var current = lang();
+    var fromApi =
+      window.AcuraI18n && typeof window.AcuraI18n.t === 'function'
+        ? window.AcuraI18n.t(current, key)
+        : null;
+    if (fromApi && fromApi !== key) return fromApi;
+
+    var bundled =
+      (current === 'pt' ? window.ACURA_I18N_PT : window.ACURA_I18N_ES) ||
+      window.ACURA_I18N_ES ||
+      window.ACURA_I18N_PT;
+    if (bundled && bundled[key]) return bundled[key];
+
+    var mapped =
+      window.ACURA_I18N &&
+      (window.ACURA_I18N[current] || window.ACURA_I18N.es || window.ACURA_I18N.pt);
+    if (mapped && mapped[key]) return mapped[key];
+
     return key;
   }
 
@@ -33,11 +43,46 @@
     if (window.AcuraI18n && typeof window.AcuraI18n.getLang === 'function') {
       return window.AcuraI18n.getLang();
     }
+    if (window.AcuraI18nLoader && typeof window.AcuraI18nLoader.getLang === 'function') {
+      return window.AcuraI18nLoader.getLang();
+    }
     try {
       return localStorage.getItem('acura.lang') || 'es';
     } catch (e) {
       return 'es';
     }
+  }
+
+  function i18nReady() {
+    if (window.__ACURA_I18N_READY__) return true;
+    if (window.ACURA_I18N_ES || window.ACURA_I18N_PT) return true;
+    var current = lang();
+    return !!(
+      window.ACURA_I18N &&
+      (window.ACURA_I18N[current] || window.ACURA_I18N.es || window.ACURA_I18N.pt)
+    );
+  }
+
+  function whenI18nReady(cb) {
+    if (i18nReady()) {
+      cb();
+      return;
+    }
+    var done = false;
+    function run() {
+      if (done) return;
+      done = true;
+      cb();
+    }
+    document.addEventListener('acura:i18n-ready', run, { once: true });
+    var tries = 0;
+    var timer = setInterval(function () {
+      tries += 1;
+      if (i18nReady() || tries > 40) {
+        clearInterval(timer);
+        run();
+      }
+    }, 50);
   }
 
   function pick(obj, ptKey, esKey) {
@@ -735,7 +780,10 @@
             '</a></p></div>';
           return;
         }
-        renderPage(res.j);
+        lastDetail = res.j;
+        whenI18nReady(function () {
+          renderPage(lastDetail);
+        });
       })
       .catch(function () {
         document.getElementById('campanha-root').innerHTML =
@@ -745,7 +793,10 @@
 
   document.addEventListener('DOMContentLoaded', load);
   document.addEventListener('acura:langchange', function () {
-    if (lastDetail) renderPage(lastDetail);
+    if (!lastDetail) return;
+    whenI18nReady(function () {
+      renderPage(lastDetail);
+    });
   });
   document.addEventListener('acura:i18n-ready', function () {
     if (lastDetail) renderPage(lastDetail);
