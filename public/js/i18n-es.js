@@ -1111,6 +1111,10 @@ window.ACURA_I18N_ES = {
   "campanha.donors": "Donantes recientes",
   "campanha.donor.anonymous": "Donante anónimo",
   "campanha.notFound": "Campaña no encontrada.",
+  "campanha.progress.raised": "Ya recaudado",
+  "campanha.progress.goal": "meta",
+  "campanha.progress.donors": "personas donaron",
+  "campanha.progress.ofGoal": "de la meta",
   "doacao.hub.campaigns": "Campañas activas",
   "doacao.hub.campaignsText": "¿Prefiere apoyar una causa específica? Vea las campañas en curso."
 };

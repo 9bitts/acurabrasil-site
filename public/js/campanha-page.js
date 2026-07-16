@@ -137,6 +137,51 @@
     );
   }
 
+  function progressBlock(c, variant) {
+    var pct = c.goal_amount > 0 ? Math.min(100, c.progress_pct != null ? c.progress_pct : 0) : 0;
+    var raisedLabel = t('campanha.progress.raised');
+    var goalLabel = t('campanha.progress.goal');
+    var donorsLabel = t('campanha.progress.donors');
+    var cls = variant === 'hero' ? 'campanha-progress campanha-progress--hero' : 'campanha-progress campanha-progress--side';
+    var bar =
+      c.show_thermometer && c.goal_amount > 0
+        ? '<div class="campanha-thermo-bar" role="progressbar" aria-valuenow="' +
+          pct +
+          '" aria-valuemin="0" aria-valuemax="100"><div class="campanha-thermo-fill" style="width:' +
+          pct +
+          '%"></div></div>'
+        : '';
+    return (
+      '<div class="' +
+      cls +
+      '">' +
+      '<div class="campanha-progress-stats">' +
+      '<div class="campanha-progress-stat">' +
+      '<strong>' +
+      esc(money(c.raised_amount)) +
+      '</strong>' +
+      '<span>' +
+      esc(raisedLabel) +
+      (c.goal_amount > 0 ? ' · ' + esc(goalLabel) + ' ' + esc(money(c.goal_amount)) : '') +
+      '</span>' +
+      '</div>' +
+      '<div class="campanha-progress-stat campanha-progress-stat--donors">' +
+      '<strong>' +
+      esc(String(c.donor_count || 0)) +
+      '</strong>' +
+      '<span>' +
+      esc(donorsLabel) +
+      '</span>' +
+      '</div>' +
+      '</div>' +
+      bar +
+      (c.goal_amount > 0 && c.show_thermometer
+        ? '<p class="campanha-progress-pct">' + pct + '% ' + esc(t('campanha.progress.ofGoal')) + '</p>'
+        : '') +
+      '</div>'
+    );
+  }
+
   function renderPage(detail) {
     campaign = detail.campaign;
     var title = pick(campaign, 'title_pt', 'title_es');
@@ -256,18 +301,6 @@
         '<h2>' +
         esc(t('campanha.donate.title')) +
         '</h2>' +
-        (campaign.show_thermometer
-          ? '<div class="campanha-thermo"><div class="campanha-thermo-bar"><div class="campanha-thermo-fill" style="width:' +
-            Math.min(100, campaign.progress_pct || 0) +
-            '%"></div></div><div class="campanha-thermo-meta"><span>' +
-            esc(money(campaign.raised_amount)) +
-            (campaign.goal_amount > 0 ? ' / ' + esc(money(campaign.goal_amount)) : '') +
-            '</span><span>' +
-            esc(String(campaign.donor_count || 0)) +
-            ' ' +
-            esc(t('campanhas.donors')) +
-            '</span></div></div>'
-          : '') +
         (matching ? '<p class="campanha-matching">' + esc(matching) + '</p>' : '') +
         (impact ? '<p class="campanha-impact">' + esc(impact) + '</p>' : '') +
         (campaign.allow_once && campaign.allow_monthly
@@ -362,6 +395,7 @@
       esc(campaign.cover_url) +
       '" alt="">' +
       youtubeEmbed(campaign.video_url) +
+      progressBlock(campaign, 'hero') +
       '<h1>' +
       esc(title) +
       '</h1>' +
