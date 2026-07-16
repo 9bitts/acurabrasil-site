@@ -221,9 +221,13 @@
     }
   }
 
-  function showThankYou(amount, frequency) {
+  function showThankYou(amount, frequency, registered) {
     var existing = document.getElementById('campanha-thanks');
     if (existing) existing.remove();
+
+    var barNote = registered
+      ? t('campanha.thanks.barNote')
+      : t('campanha.thanks.barNotePending');
 
     var overlay = document.createElement('div');
     overlay.id = 'campanha-thanks';
@@ -246,8 +250,10 @@
       '<p class="campanha-thanks-text">' +
       esc(t('campanha.thanks.text')) +
       '</p>' +
-      '<p class="campanha-thanks-bar-note">' +
-      esc(t('campanha.thanks.barNote')) +
+      '<p class="campanha-thanks-bar-note' +
+      (registered ? '' : ' campanha-thanks-bar-note--warn') +
+      '">' +
+      esc(barNote) +
       '</p>' +
       '<button type="button" class="btn btn-verde" id="campanha-thanks-close">' +
       esc(t('campanha.thanks.cta')) +
@@ -645,15 +651,11 @@
       .then(function (res) {
         if (res.ok && res.j.campaign) {
           updateProgressUI(res.j.campaign);
+          showThankYou(amount, frequency, true);
         } else {
-          updateProgressUI({
-            raised_amount: Number(campaign.raised_amount || 0) + amount,
-            donor_count: Number(campaign.donor_count || 0) + 1,
-            goal_amount: campaign.goal_amount,
-            show_thermometer: campaign.show_thermometer,
-          });
+          console.warn('campaign donation register failed', res.j);
+          showThankYou(amount, frequency, false);
         }
-        showThankYou(amount, frequency);
         try {
           localStorage.setItem(
             'acura.badge',
@@ -667,14 +669,9 @@
           /* ignore */
         }
       })
-      .catch(function () {
-        updateProgressUI({
-          raised_amount: Number(campaign.raised_amount || 0) + amount,
-          donor_count: Number(campaign.donor_count || 0) + 1,
-          goal_amount: campaign.goal_amount,
-          show_thermometer: campaign.show_thermometer,
-        });
-        showThankYou(amount, frequency);
+      .catch(function (err) {
+        console.warn('campaign donation register error', err);
+        showThankYou(amount, frequency, false);
       });
   }
 

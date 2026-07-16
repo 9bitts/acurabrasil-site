@@ -1102,6 +1102,7 @@ window.ACURA_I18N_ES = {
   "campanha.thanks.title": "Gracias por transformar cuidado en esperanza",
   "campanha.thanks.text": "Tu generosidad fortalece la atención humanitaria de ACURABRASIL. Cada aporte acerca a quien necesita de quien puede cuidar.",
   "campanha.thanks.barNote": "Tu valor ya fue sumado en la barra de evolución de la campaña.",
+  "campanha.thanks.barNotePending": "Pago recibido en PayPal. Si la barra aún no se actualiza, nuestro equipo confirmará el valor en breve.",
   "campanha.thanks.cta": "Ver la barra de la campaña",
   "campanha.status.paused": "Captación pausada temporalmente.",
   "campanha.status.closed": "Campaña cerrada. ¡Gracias a todos los que apoyaron!",

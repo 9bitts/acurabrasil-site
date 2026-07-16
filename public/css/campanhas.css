@@ -491,6 +491,11 @@
   padding: 0.7rem 0.85rem;
 }
 
+.campanha-thanks-bar-note--warn {
+  background: #fff4e5;
+  color: #7a4a00;
+}
+
 .campanha-thanks-card .btn {
   margin-top: 0.5rem;
   min-width: 70%;
