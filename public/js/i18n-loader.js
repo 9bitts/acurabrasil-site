@@ -3,7 +3,7 @@
 
   var STORAGE_KEY = 'acura.lang';
   var DEFAULT_LANG = 'es';
-  var ASSET_V = '32';
+  var ASSET_V = '33';
   var loadPromises = {};
 
   window.ACURA_I18N = window.ACURA_I18N || { es: null, pt: null };
@@ -34,7 +34,8 @@
 
     loadPromises[lang] = new Promise(function (resolve, reject) {
       var script = document.createElement('script');
-      script.src = 'js/i18n-' + lang + '.js?v=' + ASSET_V;
+      // Absolute path: relative "js/..." breaks on /campanhas/:slug → /campanhas/js/...
+      script.src = '/js/i18n-' + lang + '.js?v=' + ASSET_V;
       script.async = true;
       script.onload = function () {
         assignLang(lang);
