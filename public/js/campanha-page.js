@@ -431,7 +431,25 @@
         '<div class="campanha-share"><button type="button" class="btn btn-outline btn-sm" id="share-campaign">' +
         esc(t('campanha.share')) +
         '</button></div>' +
+        '<p class="campanha-pix-alt">' +
+        esc(t('campanha.donate.pixAlt')) +
+        ' <a href="/doacao">' +
+        esc(t('campanha.donate.pixAltLink')) +
+        '</a></p>' +
         '</aside>';
+
+    var attachmentsHtml = (campaign.attachments || [])
+      .map(function (doc) {
+        var label = pick(doc, 'title_pt', 'title_es') || doc.url;
+        return (
+          '<li><a class="campanha-doc-link" href="' +
+          esc(doc.url) +
+          '" target="_blank" rel="noopener" download>' +
+          esc(label) +
+          '</a></li>'
+        );
+      })
+      .join('');
 
     var secondaryCtaHtml =
       ctaLabel && campaign.secondary_cta_url
@@ -469,6 +487,13 @@
       '<div class="campanha-story-body">' +
       esc(body) +
       '</div>' +
+      (attachmentsHtml
+        ? '<section class="campanha-docs"><h2>' +
+          esc(t('campanha.docs.title')) +
+          '</h2><ul class="campanha-docs-list">' +
+          attachmentsHtml +
+          '</ul></section>'
+        : '') +
       (gallery ? '<div class="campanha-gallery">' + gallery + '</div>' : '') +
       (updates
         ? '<section class="campanha-updates"><h2>' +
