@@ -1115,6 +1115,8 @@ window.ACURA_I18N_ES = {
   "campanha.progress.goal": "meta",
   "campanha.progress.donors": "personas donaron",
   "campanha.progress.ofGoal": "de la meta",
+  "campanha.pix.keyLabel": "Clave Pix (CNPJ)",
+  "campanha.pix.bank": "ACURABRASIL · Banco Cora SCD (403) · Ag 0001 · C/C 3649168-7",
   "doacao.hub.campaigns": "Campañas activas",
   "doacao.hub.campaignsText": "¿Prefiere apoyar una causa específica? Vea las campañas en curso."
 };

@@ -321,17 +321,31 @@
         campaign.max_amount +
         '" step="1" placeholder="0,00"></div>' +
         (campaign.enable_pix
-          ? '<div class="campanha-pix-box" data-panel="unica"><p id="pix-amount-display"></p><canvas id="pix-qr" width="200" height="200"></canvas><div class="campanha-pix-key"><code>' +
+          ? '<div class="campanha-pix-box" data-panel="unica">' +
+            '<h3>' +
+            esc(t('doacao.pix.title')) +
+            '</h3>' +
+            '<p id="pix-amount-display" class="campanha-pix-amount"></p>' +
+            '<canvas id="pix-qr" width="200" height="200"></canvas>' +
+            '<p class="campanha-pix-key-label">' +
+            esc(t('campanha.pix.keyLabel')) +
+            '</p>' +
+            '<div class="campanha-pix-key"><code id="pix-key-value">' +
             PIX.key +
             '</code><button type="button" class="btn btn-outline btn-sm" id="copy-pix">' +
             esc(t('doacao.pix.copy')) +
-            '</button></div><p class="doacao-pix-info">' +
-            esc(t('doacao.pix.info')) +
+            '</button></div>' +
+            '<p class="campanha-pix-bank">' +
+            esc(t('campanha.pix.bank')) +
             '</p></div>'
           : '') +
         (campaign.enable_pix && campaign.allow_monthly
-          ? '<div data-panel="mensal" hidden><p>' +
+          ? '<div data-panel="mensal" hidden><h3>' +
+            esc(t('doacao.pix.monthly.title')) +
+            '</h3><p>' +
             esc(t('doacao.pix.monthly.text')) +
+            '</p><p class="campanha-pix-key-label">' +
+            esc(t('campanha.pix.keyLabel')) +
             '</p><div class="campanha-pix-key"><code>' +
             PIX.key +
             '</code><button type="button" class="btn btn-outline btn-sm" id="copy-pix-m">' +
@@ -370,14 +384,16 @@
         '<div class="campanha-share"><button type="button" class="btn btn-outline btn-sm" id="share-campaign">' +
         esc(t('campanha.share')) +
         '</button></div>' +
-        (ctaLabel && campaign.secondary_cta_url
-          ? '<p style="margin-top:1rem"><a href="' +
-            esc(campaign.secondary_cta_url) +
-            '">' +
-            esc(ctaLabel) +
-            '</a></p>'
-          : '') +
         '</aside>';
+
+    var secondaryCtaHtml =
+      ctaLabel && campaign.secondary_cta_url
+        ? '<p class="campanha-secondary-cta"><a class="btn btn-outline" href="' +
+          esc(campaign.secondary_cta_url) +
+          '">' +
+          esc(ctaLabel) +
+          '</a></p>'
+        : '';
 
     var root = document.getElementById('campanha-root');
     root.innerHTML =
@@ -402,6 +418,7 @@
       '<p class="campanha-summary">' +
       esc(summary) +
       '</p>' +
+      secondaryCtaHtml +
       '<div class="campanha-story-body">' +
       esc(body) +
       '</div>' +
