@@ -447,10 +447,16 @@
     var attachmentsHtml = (campaign.attachments || [])
       .map(function (doc) {
         var label = pick(doc, 'title_pt', 'title_es') || doc.url;
+        var url = String(doc.url || '');
+        var isPdf = /\.pdf(\?|#|$)/i.test(url);
         return (
           '<li><a class="campanha-doc-link" href="' +
-          esc(doc.url) +
-          '" target="_blank" rel="noopener" download>' +
+          esc(url) +
+          '"' +
+          (isPdf
+            ? ' target="_blank" rel="noopener" download'
+            : ' rel="noopener"') +
+          '>' +
           esc(label) +
           '</a></li>'
         );

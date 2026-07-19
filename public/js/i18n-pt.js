@@ -1097,7 +1097,7 @@ window.ACURA_I18N_PT = {
   "campanha.donate.paypalOnly": "Doação segura via PayPal (cartão ou saldo). O valor entra na barra da campanha automaticamente.",
   "campanha.donate.pixAlt": "Prefere doar via Pix?",
   "campanha.donate.pixAltLink": "Abrir página de doações com Pix",
-  "campanha.docs.title": "Documentos para download",
+  "campanha.docs.title": "Conheça mais",
   "campanha.thanks.eyebrow": "Doação confirmada",
   "campanha.thanks.title": "Obrigado por transformar cuidado em esperança",
   "campanha.thanks.text": "Sua generosidade fortalece o atendimento humanitário da ACURABRASIL. Cada contribuição aproxima quem precisa de quem pode cuidar.",
