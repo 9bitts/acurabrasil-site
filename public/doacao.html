@@ -88,6 +88,103 @@
         </div>
     </section>
 
+    <section class="section" id="doar-agora">
+        <div class="container">
+            <div class="doacao-panel-grid">
+                <div class="doacao-panel-main">
+                    <h2 data-i18n="doacao.panel.title">Faça sua doação</h2>
+
+                    <div class="doacao-tabs" role="tablist">
+                        <button type="button" class="doacao-tab active" data-donation-type="unica" data-i18n="doacao.tab.once">Doação única</button>
+                        <button type="button" class="doacao-tab" data-donation-type="mensal" data-i18n="doacao.tab.monthly">Doação mensal</button>
+                    </div>
+
+                    <div id="destino" class="doacao-cause-tabs">
+                        <span class="doacao-cause-label" data-i18n="doacao.cause.label">Destino:</span>
+                        <button type="button" class="doacao-cause-tab active" data-cause="humanitaria" data-i18n="doacao.cause.humanitarian">Atendimento humanitário</button>
+                        <button type="button" class="doacao-cause-tab" data-cause="pesquisa" data-i18n="doacao.cause.research">Pesquisa científica</button>
+                    </div>
+
+                    <p class="doacao-amount-label" data-i18n="doacao.amount.label">Escolha o valor:</p>
+                    <div class="doacao-amounts">
+                        <button type="button" class="doacao-amount-btn" data-amount="30" data-impact-key="doacao.impact.30">R$ 30</button>
+                        <button type="button" class="doacao-amount-btn active" data-amount="50" data-impact-key="doacao.impact.50">R$ 50</button>
+                        <button type="button" class="doacao-amount-btn" data-amount="100" data-impact-key="doacao.impact.100">R$ 100</button>
+                        <button type="button" class="doacao-amount-btn" data-amount="250" data-impact-key="doacao.impact.250">R$ 250</button>
+                        <button type="button" class="doacao-amount-btn" data-amount="500" data-impact-key="doacao.impact.500">R$ 500</button>
+                        <button type="button" class="doacao-amount-btn" data-amount="1000" data-impact-key="doacao.impact.1000">R$ 1.000</button>
+                    </div>
+                    <p class="doacao-impact-display" id="doacao-impact-display" data-i18n="doacao.impact.50">R$ 50 ≈ X consultas médicas</p>
+                    <p class="doacao-impact-todo" data-i18n="doacao.impact.todo">TODO: validar custo médio por consulta com a diretoria.</p>
+                    <div class="doacao-custom-amount">
+                        <label for="custom-amount" data-i18n="doacao.amount.custom">Outro valor (R$)</label>
+                        <input type="number" id="custom-amount" min="1" step="1" placeholder="0,00" data-i18n-placeholder="doacao.amount.customPlaceholder">
+                    </div>
+
+                    <div data-panel-type="unica">
+                        <div class="doacao-payment-grid">
+                            <div class="doacao-payment-card doacao-pix-card">
+                                <h3 data-i18n="doacao.pix.title">Pix — Cora SCD</h3>
+                                <p class="doacao-pix-amount" id="pix-amount-display">R$ 50,00</p>
+                                <div class="doacao-pix-qr-wrap">
+                                    <canvas id="pix-qr" width="220" height="220" aria-label="QR Code Pix"></canvas>
+                                </div>
+                                <div class="doacao-pix-key">
+                                    <code>30.350.850/0001-80</code>
+                                    <button type="button" class="btn btn-outline btn-sm" id="copy-pix-key" data-i18n="doacao.pix.copy">Copiar chave</button>
+                                </div>
+                                <p id="pix-copy-feedback" class="doacao-copy-feedback" hidden data-i18n="doacao.pix.copied">Chave copiada!</p>
+                                <p class="doacao-pix-info" data-i18n="doacao.pix.info" data-i18n-html><strong>ACURABRASIL</strong> · Banco Cora SCD (403) · Ag 0001 · C/C 3649168-7<br>CNPJ como chave Pix</p>
+                            </div>
+                            <div class="doacao-payment-card">
+                                <h3 data-i18n="doacao.paypal.once.title">PayPal — Doação única</h3>
+                                <p data-i18n="doacao.paypal.once.text">Cartão de crédito internacional. Ideal para doadores no exterior.</p>
+                                <div id="paypal-once-container" class="paypal-button-container"></div>
+                                <p id="paypal-once-unavailable" class="doacao-paypal-unavailable" hidden data-i18n="doacao.paypal.unavailable">PayPal em configuração. Use Pix ou contato@acurabrasil.org.</p>
+                                <p id="paypal-once-success" class="doacao-paypal-success" hidden role="status"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-panel-type="mensal" hidden>
+                        <div class="doacao-payment-grid">
+                            <div class="doacao-payment-card doacao-pix-card">
+                                <h3 data-i18n="doacao.pix.monthly.title">Pix recorrente</h3>
+                                <p data-i18n="doacao.pix.monthly.text">Configure transferência automática mensal no app do seu banco para a chave Pix acima. Doações recorrentes nos permitem planejar emergências com antecedência — como fazem MSF e Cruz Vermelha.</p>
+                                <div class="doacao-pix-key">
+                                    <code>30.350.850/0001-80</code>
+                                    <button type="button" class="btn btn-outline btn-sm" id="copy-pix-key-monthly" data-i18n="doacao.pix.copy">Copiar chave</button>
+                                </div>
+                            </div>
+                            <div class="doacao-payment-card">
+                                <h3 data-i18n="doacao.paypal.monthly.title">PayPal — Assinatura mensal</h3>
+                                <p data-i18n="doacao.paypal.monthly.text">Doação recorrente automática no cartão. Cancele quando quiser pelo PayPal.</p>
+                                <div id="paypal-monthly-container" class="paypal-button-container"></div>
+                                <p id="paypal-monthly-unavailable" class="doacao-paypal-unavailable" hidden data-i18n="doacao.paypal.unavailable">PayPal em configuração. Use Pix recorrente ou contato@acurabrasil.org.</p>
+                                <p id="paypal-monthly-success" class="doacao-paypal-success" hidden role="status"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="doacao-panel-side">
+                    <div class="doacao-badge-preview" id="badge-preview" data-badge="guardiao">
+                        <p class="doacao-badge-label" data-i18n="doacao.badge.preview">Seu selo de reconhecimento</p>
+                        <div class="doacao-selo doacao-selo--guardiao" aria-hidden="true">
+                            <span class="doacao-selo-icon">★</span>
+                        </div>
+                        <h3 class="badge-preview-name" data-i18n="doacao.badge.guardiao.name">Guardião da Saúde</h3>
+                        <p class="badge-preview-desc" data-i18n="doacao.badge.guardiao.desc">Doações a partir de R$ 30 fortalecem nosso atendimento voluntário.</p>
+                    </div>
+                    <div class="doacao-transparency-note">
+                        <h4 data-i18n="doacao.transparency.title">Transparência</h4>
+                        <p data-i18n="doacao.transparency.text">ACURABRASIL é OSCIP (CNPJ 30.350.850/0001-80). Publicamos relatórios de atividades e balanços no portal de transparência.</p>
+                        <a href="/transparencia" class="btn btn-outline btn-sm" data-i18n="doacao.transparency.btn">Ver transparência</a>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
 
     <section class="section" id="campanhas-hub">
         <div class="container">
@@ -183,104 +280,6 @@
                         <a href="/pesquisas" data-i18n="doacao.gallery.science.link">Áreas de pesquisa →</a>
                     </figcaption>
                 </figure>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" id="doar-agora">
-        <div class="container">
-            <div class="doacao-panel-grid">
-                <div class="doacao-panel-main">
-                    <h2 data-i18n="doacao.panel.title">Faça sua doação</h2>
-
-                    <div class="doacao-tabs" role="tablist">
-                        <button type="button" class="doacao-tab active" data-donation-type="unica" data-i18n="doacao.tab.once">Doação única</button>
-                        <button type="button" class="doacao-tab" data-donation-type="mensal" data-i18n="doacao.tab.monthly">Doação mensal</button>
-                    </div>
-
-                    <div id="destino" class="doacao-cause-tabs">
-                        <span class="doacao-cause-label" data-i18n="doacao.cause.label">Destino:</span>
-                        <button type="button" class="doacao-cause-tab active" data-cause="humanitaria" data-i18n="doacao.cause.humanitarian">Atendimento humanitário</button>
-                        <button type="button" class="doacao-cause-tab" data-cause="pesquisa" data-i18n="doacao.cause.research">Pesquisa científica</button>
-                    </div>
-
-                    <p class="doacao-amount-label" data-i18n="doacao.amount.label">Escolha o valor:</p>
-                    <div class="doacao-amounts">
-                        <button type="button" class="doacao-amount-btn" data-amount="30" data-impact-key="doacao.impact.30">R$ 30</button>
-                        <button type="button" class="doacao-amount-btn active" data-amount="50" data-impact-key="doacao.impact.50">R$ 50</button>
-                        <button type="button" class="doacao-amount-btn" data-amount="100" data-impact-key="doacao.impact.100">R$ 100</button>
-                        <button type="button" class="doacao-amount-btn" data-amount="250" data-impact-key="doacao.impact.250">R$ 250</button>
-                        <button type="button" class="doacao-amount-btn" data-amount="500" data-impact-key="doacao.impact.500">R$ 500</button>
-                        <button type="button" class="doacao-amount-btn" data-amount="1000" data-impact-key="doacao.impact.1000">R$ 1.000</button>
-                    </div>
-                    <p class="doacao-impact-display" id="doacao-impact-display" data-i18n="doacao.impact.50">R$ 50 ≈ X consultas médicas</p>
-                    <p class="doacao-impact-todo" data-i18n="doacao.impact.todo">TODO: validar custo médio por consulta com a diretoria.</p>
-                    <div class="doacao-custom-amount">
-                        <label for="custom-amount" data-i18n="doacao.amount.custom">Outro valor (R$)</label>
-                        <input type="number" id="custom-amount" min="1" step="1" placeholder="0,00" data-i18n-placeholder="doacao.amount.customPlaceholder">
-                    </div>
-
-                    <div data-panel-type="unica">
-                        <div class="doacao-payment-grid">
-                            <div class="doacao-payment-card doacao-pix-card">
-                                <h3 data-i18n="doacao.pix.title">Pix — Cora SCD</h3>
-                                <p class="doacao-pix-amount" id="pix-amount-display">R$ 50,00</p>
-                                <div class="doacao-pix-qr-wrap">
-                                    <canvas id="pix-qr" width="220" height="220" aria-label="QR Code Pix"></canvas>
-                                </div>
-                                <div class="doacao-pix-key">
-                                    <code>30.350.850/0001-80</code>
-                                    <button type="button" class="btn btn-outline btn-sm" id="copy-pix-key" data-i18n="doacao.pix.copy">Copiar chave</button>
-                                </div>
-                                <p id="pix-copy-feedback" class="doacao-copy-feedback" hidden data-i18n="doacao.pix.copied">Chave copiada!</p>
-                                <p class="doacao-pix-info" data-i18n="doacao.pix.info" data-i18n-html><strong>ACURABRASIL</strong> · Banco Cora SCD (403) · Ag 0001 · C/C 3649168-7<br>CNPJ como chave Pix</p>
-                            </div>
-                            <div class="doacao-payment-card">
-                                <h3 data-i18n="doacao.paypal.once.title">PayPal — Doação única</h3>
-                                <p data-i18n="doacao.paypal.once.text">Cartão de crédito internacional. Ideal para doadores no exterior.</p>
-                                <div id="paypal-once-container" class="paypal-button-container"></div>
-                                <p id="paypal-once-unavailable" class="doacao-paypal-unavailable" hidden data-i18n="doacao.paypal.unavailable">PayPal em configuração. Use Pix ou contato@acurabrasil.org.</p>
-                                <p id="paypal-once-success" class="doacao-paypal-success" hidden role="status"></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div data-panel-type="mensal" hidden>
-                        <div class="doacao-payment-grid">
-                            <div class="doacao-payment-card doacao-pix-card">
-                                <h3 data-i18n="doacao.pix.monthly.title">Pix recorrente</h3>
-                                <p data-i18n="doacao.pix.monthly.text">Configure transferência automática mensal no app do seu banco para a chave Pix acima. Doações recorrentes nos permitem planejar emergências com antecedência — como fazem MSF e Cruz Vermelha.</p>
-                                <div class="doacao-pix-key">
-                                    <code>30.350.850/0001-80</code>
-                                    <button type="button" class="btn btn-outline btn-sm" id="copy-pix-key-monthly" data-i18n="doacao.pix.copy">Copiar chave</button>
-                                </div>
-                            </div>
-                            <div class="doacao-payment-card">
-                                <h3 data-i18n="doacao.paypal.monthly.title">PayPal — Assinatura mensal</h3>
-                                <p data-i18n="doacao.paypal.monthly.text">Doação recorrente automática no cartão. Cancele quando quiser pelo PayPal.</p>
-                                <div id="paypal-monthly-container" class="paypal-button-container"></div>
-                                <p id="paypal-monthly-unavailable" class="doacao-paypal-unavailable" hidden data-i18n="doacao.paypal.unavailable">PayPal em configuração. Use Pix recorrente ou contato@acurabrasil.org.</p>
-                                <p id="paypal-monthly-success" class="doacao-paypal-success" hidden role="status"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <aside class="doacao-panel-side">
-                    <div class="doacao-badge-preview" id="badge-preview" data-badge="guardiao">
-                        <p class="doacao-badge-label" data-i18n="doacao.badge.preview">Seu selo de reconhecimento</p>
-                        <div class="doacao-selo doacao-selo--guardiao" aria-hidden="true">
-                            <span class="doacao-selo-icon">★</span>
-                        </div>
-                        <h3 class="badge-preview-name" data-i18n="doacao.badge.guardiao.name">Guardião da Saúde</h3>
-                        <p class="badge-preview-desc" data-i18n="doacao.badge.guardiao.desc">Doações a partir de R$ 30 fortalecem nosso atendimento voluntário.</p>
-                    </div>
-                    <div class="doacao-transparency-note">
-                        <h4 data-i18n="doacao.transparency.title">Transparência</h4>
-                        <p data-i18n="doacao.transparency.text">ACURABRASIL é OSCIP (CNPJ 30.350.850/0001-80). Publicamos relatórios de atividades e balanços no portal de transparência.</p>
-                        <a href="/transparencia" class="btn btn-outline btn-sm" data-i18n="doacao.transparency.btn">Ver transparência</a>
-                    </div>
-                </aside>
             </div>
         </div>
     </section>
