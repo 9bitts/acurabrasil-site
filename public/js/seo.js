@@ -4,11 +4,23 @@
   var SITE = 'https://www.acurabrasil.org';
   var OG_IMAGE = SITE + '/img/og-share.png';
 
-  function pageSlug() {
-    var path = window.location.pathname.replace(/^\/+|\/+$/g, '');
-    if (!path) return 'index';
+  function cleanPathname() {
+    var path = window.location.pathname || '/';
     if (/\.html$/i.test(path)) path = path.replace(/\.html$/i, '');
-    return path.split('/').pop() || 'index';
+    path = path.replace(/\/+$/, '') || '/';
+    if (path === '/index') path = '/';
+    return path;
+  }
+
+  function pageSlug() {
+    var path = cleanPathname();
+    if (path === '/') return 'index';
+    return path.split('/').filter(Boolean).pop() || 'index';
+  }
+
+  function canonicalFromLocation() {
+    var path = cleanPathname();
+    return path === '/' ? SITE + '/' : SITE + path;
   }
 
   function metaFromI18n(lang, titleKey, descKey) {
@@ -32,10 +44,13 @@
     'consulta-venezuela': { titleKey: 'consulta.meta.title', descKey: 'consulta.meta.description' },
     'solicitud-sos-venezuela': { titleKey: 'sosve.intake.meta.title', descKey: 'sosve.intake.meta.description' },
     'doacao': { titleKey: 'doacao.meta.title', descKey: 'doacao.meta.description' },
+    'campanhas': { titleKey: 'campanhas.meta.title', descKey: 'campanhas.meta.description' },
     'transparencia': { titleKey: 'trans.meta.title', descKey: 'trans.meta.description' },
     'contato': { titleKey: 'contato.meta.title', descKey: 'contato.meta.description' },
     'associar': { titleKey: 'associar.meta.title', descKey: 'associar.meta.description' },
     'privacidade': { titleKey: 'privacy.meta.title', descKey: 'privacy.meta.description' },
+    'voluntarios': { titleKey: 'vol.meta.title', descKey: 'vol.meta.description' },
+    'anjos': { titleKey: 'anjo.meta.title', descKey: 'anjo.meta.description' },
   };
 
   function upsertMeta(attr, name, content) {
@@ -64,9 +79,11 @@
   }
 
   function applySeo() {
+    var path = cleanPathname();
     var slug = pageSlug();
-    var cfg = PAGE_META[slug];
-    if (!cfg) return;
+    var isCampaignDetail = /^\/campanhas\/[^/]+$/.test(path);
+    var cfg = isCampaignDetail ? null : PAGE_META[slug];
+    var canonical = canonicalFromLocation();
 
     var lang = 'es';
     try {
@@ -74,20 +91,22 @@
       if (stored === 'pt' || stored === 'es') lang = stored;
     } catch (e) { /* ignore */ }
 
-    var meta = metaFromI18n(lang, cfg.titleKey, cfg.descKey);
-    var canonical = SITE + (slug === 'index' ? '' : '/' + slug);
-    var locale = lang === 'pt' ? 'pt_BR' : 'es_VE';
-
+    // Always declare a user-selected canonical for Google (static tag + JS keep in sync).
     upsertLink('canonical', canonical);
     upsertLink('alternate', canonical, { hreflang: 'es-VE' });
     upsertLink('alternate', canonical, { hreflang: 'pt-BR' });
     upsertLink('alternate', canonical, { hreflang: 'x-default' });
+    upsertMeta('property', 'og:url', canonical);
+
+    if (!cfg) return;
+
+    var meta = metaFromI18n(lang, cfg.titleKey, cfg.descKey);
+    var locale = lang === 'pt' ? 'pt_BR' : 'es_VE';
 
     upsertMeta('property', 'og:type', 'website');
     upsertMeta('property', 'og:site_name', 'ACURABRASIL');
     upsertMeta('property', 'og:title', meta.title);
     upsertMeta('property', 'og:description', meta.description);
-    upsertMeta('property', 'og:url', canonical);
     upsertMeta('property', 'og:image', OG_IMAGE);
     upsertMeta('property', 'og:image:width', '500');
     upsertMeta('property', 'og:image:height', '500');

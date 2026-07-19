@@ -307,6 +307,24 @@
         : 'https://www.acurabrasil.org' + campaign.cover_url;
       ogImage.setAttribute('content', img);
     }
+    var slugPath = campaign.slug
+      ? '/campanhas/' + encodeURIComponent(campaign.slug)
+      : (window.location.pathname || '').replace(/\/+$/, '') || '/campanhas';
+    var canonicalHref = 'https://www.acurabrasil.org' + slugPath;
+    var canonicalEl = document.querySelector('link[rel="canonical"]');
+    if (!canonicalEl) {
+      canonicalEl = document.createElement('link');
+      canonicalEl.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonicalEl);
+    }
+    canonicalEl.setAttribute('href', canonicalHref);
+    var ogUrl = document.querySelector('meta[property="og:url"]');
+    if (!ogUrl) {
+      ogUrl = document.createElement('meta');
+      ogUrl.setAttribute('property', 'og:url');
+      document.head.appendChild(ogUrl);
+    }
+    ogUrl.setAttribute('content', canonicalHref);
 
     var amounts =
       campaign.suggested_amounts && campaign.suggested_amounts.length

@@ -42,6 +42,15 @@ app.use((req, res, next) => {
   next();
 });
 
+// Collapse trailing slashes so /doacao/ and /doacao are not duplicate URLs for Google.
+app.use((req, res, next) => {
+  if (req.method !== 'GET' && req.method !== 'HEAD') return next();
+  if (req.path.length <= 1 || !req.path.endsWith('/')) return next();
+  if (req.path.startsWith('/api')) return next();
+  const qs = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
+  return res.redirect(301, req.path.replace(/\/+$/, '') + qs);
+});
+
 app.use((req, res, next) => {
   if (req.secure || req.headers['x-forwarded-proto'] === 'https') {
     res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
@@ -95,10 +104,52 @@ app.get(['/solicitud-sos-venezuela', '/solicitud-sos-venezuela/'], (req, res) =>
   return res.redirect(301, 'https://app.doctor8.org/atendimentohumanitario');
 });
 
+// Legacy aliases Google may still crawl (reduce Soft-404 / Not found noise in GSC).
+const LEGACY_REDIRECTS = {
+  '/campanha': '/campanhas',
+  '/home': '/',
+  '/sobre': '/instituicao',
+  '/about': '/instituicao',
+  '/doar': '/doacao',
+  '/donar': '/doacao',
+  '/donate': '/doacao',
+  '/donation': '/doacao',
+  '/voluntario': '/voluntarios',
+  '/anjo': '/anjos',
+  '/sos': '/sos-venezuela',
+  '/venezuela': '/sos-venezuela',
+  '/sos-salud-venezuela': '/sos-venezuela',
+  '/sos-saude-venezuela': '/sos-venezuela',
+};
+app.get(Object.keys(LEGACY_REDIRECTS), (req, res) => {
+  const target = LEGACY_REDIRECTS[req.path];
+  if (!target) return res.status(404).end();
+  const qs = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
+  return res.redirect(301, target + qs);
+});
+
+// Missing transparency PDFs historically linked on the site (see public/docs/TODO-PDFs-2024.txt).
+const MISSING_DOC_REDIRECTS = [
+  '/docs/ata-fundacao.pdf',
+  '/docs/certificacao-oscip.pdf',
+  '/docs/certidoes-publicas.pdf',
+  '/docs/balanco-patrimonial-2024.pdf',
+  '/docs/demonstracao-resultados-2024.pdf',
+  '/docs/informe-conselho-fiscal-2024.pdf',
+  '/docs/informe-anual-2024.pdf',
+  '/docs/estatuto.pdf',
+  '/docs/estatuto-social.pdf',
+  '/docs/cnpj.pdf',
+];
+app.get(MISSING_DOC_REDIRECTS, (req, res) => {
+  return res.redirect(301, '/contato?assunto=transparencia');
+});
+
 app.get(['/campanhas/:slug', '/campanhas/:slug/'], (req, res, next) => {
   const slug = String(req.params.slug || '').toLowerCase();
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) return next();
   res.setHeader('Cache-Control', 'public, max-age=0');
+  res.setHeader('Link', `<https://${CANONICAL_HOST}/campanhas/${slug}>; rel="canonical"`);
   res.sendFile(path.join(__dirname, 'public', 'campanha.html'));
 });
 
@@ -152,6 +203,14 @@ function resolvePublicHtml(urlPath) {
   return resolved;
 }
 
+function setHtmlCanonicalHeader(res, reqPath) {
+  const clean = (reqPath || '/').replace(/\/+$/, '') || '/';
+  const href = clean === '/'
+    ? `https://${CANONICAL_HOST}/`
+    : `https://${CANONICAL_HOST}${clean}`;
+  res.setHeader('Link', `<${href}>; rel="canonical"`);
+}
+
 app.use((req, res, next) => {
   if (req.method !== 'GET' && req.method !== 'HEAD') return next();
   if (req.path.startsWith('/api') || req.path.startsWith('/admin')) return next();
@@ -162,6 +221,7 @@ app.use((req, res, next) => {
   fs.stat(htmlPath, (err, stat) => {
     if (err || !stat.isFile()) return next();
     res.setHeader('Cache-Control', 'public, max-age=0');
+    setHtmlCanonicalHeader(res, req.path);
     res.sendFile(htmlPath);
   });
 });
