@@ -6,3 +6,4 @@ rs.webp: Pexels — ação humanitária / voluntariado
 venezuela.webp: Unsplash — atendimento médico humanitário
 ciencia.webp: Unsplash — pesquisa científica em laboratório
 grafica-impressos.jpg: Unsplash (photo-1503694978374-8a2fa686963a) — máquina de impressão industrial
+solidariedade-abraco.jpg: imagem ilustrativa — abraço solidário (capa campanha Apoie a equipe SOS Saúde Venezuela)
