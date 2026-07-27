@@ -924,6 +924,7 @@ window.ACURA_I18N_PT = {
   "contato.form.subject.doacao": "Doação / Selo de doador",
   "nav.volunteers": "Voluntariado profissional",
   "nav.angels": "Voluntariado Anjo",
+  "nav.masterclassEft": "Masterclass EFT Avatar",
   "footer.volunteers": "Voluntariado profissional",
   "footer.angels": "Voluntariado Anjo",
   "footer.newsletter.title": "Boletim AcuraBrasil",

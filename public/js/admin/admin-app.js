@@ -247,6 +247,7 @@
       if (!btn) return;
       state.tab = btn.dataset.tab;
       state.selectedProtocolo = null;
+      state.selectedMasterclassId = null;
       document.querySelectorAll('.admin-nav button').forEach((b) => b.classList.toggle('active', b === btn));
       render();
     });
@@ -296,6 +297,8 @@
       else if (state.tab === 'parcerias') main.innerHTML = await renderParcerias();
       else if (state.tab === 'campanhas') {
         main.innerHTML = await window.AcuraAdminCampaigns.render(api, state);
+      } else if (state.tab === 'masterclass') {
+        main.innerHTML = await renderMasterclass();
       }
       bindEvents();
       if (state.tab === 'campanhas' && window.AcuraAdminCampaigns) {
@@ -637,11 +640,146 @@
       </div>`;
   }
 
+  async function renderMasterclass() {
+    if (state.selectedMasterclassId) {
+      return renderMasterclassDetail(state.selectedMasterclassId);
+    }
+
+    const params = new URLSearchParams();
+    const status = state.masterclassFilterStatus || '';
+    const q = state.masterclassFilterQ || '';
+    if (status) params.set('status', status);
+    if (q) params.set('q', q);
+
+    const data = await api('/api/admin/masterclass-registrations?' + params.toString());
+    const statusLabels = data.statusLabels || {};
+    const relacaoLabels = data.relacaoLabels || {};
+    const stats = data.stats || { total: 0, byStatus: {} };
+
+    const cards = `
+      <div class="admin-cards">
+        <div class="admin-card"><div class="admin-card-value">${stats.total || 0}</div><div class="admin-card-label">Total</div></div>
+        <div class="admin-card"><div class="admin-card-value">${stats.byStatus?.nova || 0}</div><div class="admin-card-label">Novas</div></div>
+        <div class="admin-card"><div class="admin-card-value">${stats.byStatus?.confirmada || 0}</div><div class="admin-card-label">Confirmadas</div></div>
+        <div class="admin-card"><div class="admin-card-value">${stats.byStatus?.aprovada_voluntario || 0}</div><div class="admin-card-label">Voluntariado</div></div>
+      </div>`;
+
+    const rows = (data.registrations || [])
+      .map(
+        (r) => `<tr class="clickable" data-masterclass-id="${r.id}">
+          <td>${r.id}</td>
+          <td>${esc(fmtTs(r.created_at))}</td>
+          <td>${esc(r.nome)}</td>
+          <td>${esc(r.email)}</td>
+          <td>${esc(r.whatsapp)}</td>
+          <td>${esc(relacaoLabels[r.relacao] || r.relacao)}</td>
+          <td><span class="badge badge-${esc(r.status === 'confirmada' || r.status === 'aprovada_voluntario' ? 'em_consulta' : r.status === 'recusada' || r.status === 'cancelada' ? 'cancelado' : 'nova')}">${esc(statusLabels[r.status] || r.status)}</span></td>
+        </tr>`
+      )
+      .join('');
+
+    return `
+      <h1>Masterclass EFT Avatar — Inscrições</h1>
+      <p class="admin-hint">Formação: EFT Avatar em Emergências Humanitárias · página pública <a href="/masterclass-eft-avatar" target="_blank" rel="noopener">/masterclass-eft-avatar</a></p>
+      ${cards}
+      <div class="admin-filters">
+        <select id="mc-filter-status">
+          <option value="">Todos os status</option>
+          ${Object.entries(statusLabels)
+            .map(([k, v]) => `<option value="${k}" ${status === k ? 'selected' : ''}>${esc(v)}</option>`)
+            .join('')}
+        </select>
+        <input type="search" id="mc-filter-q" placeholder="Buscar nome, e-mail ou WhatsApp" value="${esc(q)}">
+        <button type="button" class="admin-btn admin-btn-sm" id="mc-filter-apply">Filtrar</button>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>ID</th><th>Data</th><th>Nome</th><th>E-mail</th><th>WhatsApp</th><th>Relação</th><th>Status</th></tr></thead>
+          <tbody>${rows || '<tr><td colspan="7">Nenhuma inscrição encontrada</td></tr>'}</tbody>
+        </table>
+      </div>`;
+  }
+
+  async function renderMasterclassDetail(id) {
+    const data = await api('/api/admin/masterclass-registrations/' + encodeURIComponent(id));
+    const r = data.registration;
+    const statusLabels = data.statusLabels || {};
+    const relacaoLabels = data.relacaoLabels || {};
+    const wa = String(r.whatsapp || '').replace(/\D/g, '');
+    const waLink = wa ? `https://wa.me/${wa}` : '#';
+
+    const statusOptions = Object.entries(statusLabels)
+      .map(([k, v]) => `<option value="${k}" ${r.status === k ? 'selected' : ''}>${esc(v)}</option>`)
+      .join('');
+
+    return `
+      <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" id="mc-back">← Voltar à lista</button>
+      <h1 style="margin-top:1rem">Inscrição #${r.id}</h1>
+      <div class="admin-panel">
+        <p><strong>Nome:</strong> ${esc(r.nome)}</p>
+        <p><strong>E-mail:</strong> <a href="mailto:${esc(r.email)}">${esc(r.email)}</a></p>
+        <p><strong>WhatsApp:</strong> <a href="${esc(waLink)}" target="_blank" rel="noopener">${esc(r.whatsapp)}</a></p>
+        <p><strong>Relação com a ACURA:</strong> ${esc(relacaoLabels[r.relacao] || r.relacao)}</p>
+        <p><strong>Marketing:</strong> ${r.marketing ? 'Sim' : 'Não'}</p>
+        <p><strong>Criado em:</strong> ${esc(fmtTs(r.created_at))}</p>
+        <p><strong>Atualizado em:</strong> ${esc(fmtTs(r.updated_at))}</p>
+        <p><strong>Mensagem:</strong></p>
+        <p class="admin-preview-message">${esc(r.mensagem || '—')}</p>
+        ${
+          r.relacao === 'quero_voluntariar'
+            ? '<p class="admin-hint"><strong>Atenção:</strong> inscrição de novo voluntário — aprovar após análise da demanda.</p>'
+            : ''
+        }
+      </div>
+      <div class="admin-panel">
+        <h2>Atualizar status</h2>
+        <div class="admin-form-group">
+          <label for="mc-status">Status</label>
+          <select id="mc-status">${statusOptions}</select>
+        </div>
+        <div class="admin-form-group">
+          <label for="mc-notes">Notas internas</label>
+          <textarea id="mc-notes" rows="4">${esc(r.admin_notes || '')}</textarea>
+        </div>
+        <button type="button" class="admin-btn" id="mc-save">Salvar</button>
+      </div>`;
+  }
+
   function bindEvents() {
     document.querySelector('[data-goto="intakes"]')?.addEventListener('click', () => {
       state.tab = 'intakes';
       document.querySelector('[data-tab="intakes"]')?.classList.add('active');
       document.querySelector('[data-tab="dashboard"]')?.classList.remove('active');
+      render();
+    });
+
+    document.querySelectorAll('[data-masterclass-id]').forEach((tr) => {
+      tr.addEventListener('click', () => {
+        state.selectedMasterclassId = Number(tr.dataset.masterclassId);
+        render();
+      });
+    });
+
+    document.getElementById('mc-back')?.addEventListener('click', () => {
+      state.selectedMasterclassId = null;
+      render();
+    });
+
+    document.getElementById('mc-filter-apply')?.addEventListener('click', () => {
+      state.masterclassFilterStatus = document.getElementById('mc-filter-status')?.value || '';
+      state.masterclassFilterQ = document.getElementById('mc-filter-q')?.value || '';
+      render();
+    });
+
+    document.getElementById('mc-save')?.addEventListener('click', async () => {
+      const id = state.selectedMasterclassId;
+      await api('/api/admin/masterclass-registrations/' + encodeURIComponent(id), {
+        method: 'PATCH',
+        body: JSON.stringify({
+          status: document.getElementById('mc-status')?.value,
+          admin_notes: document.getElementById('mc-notes')?.value,
+        }),
+      });
       render();
     });
 

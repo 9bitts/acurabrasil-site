@@ -21,6 +21,7 @@ const {
   handleNewsletterConfirm,
   handleNewsletterConfirmPage,
 } = require('./lib/newsletter');
+const { handleMasterclassRegister } = require('./lib/masterclass-eft');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -90,6 +91,7 @@ app.post('/api/contact', handleContactRequest);
 app.post('/api/newsletter', handleNewsletterSubscribe);
 app.get('/api/newsletter/confirm', handleNewsletterConfirmPage);
 app.post('/api/newsletter/confirm', handleNewsletterConfirm);
+app.post('/api/masterclass-eft/register', handleMasterclassRegister);
 app.post('/api/sos-venezuela/intake', (req, res) => {
   return res.status(410).json({ ok: false, error: 'intake_form_disabled' });
 });
