@@ -236,6 +236,9 @@ app.use(express.static(publicPath, {
     if (/\.html?$/i.test(normalized)) {
       res.setHeader('Content-Type', 'text/html; charset=utf-8');
       res.setHeader('Cache-Control', 'public, max-age=0');
+    } else if (/\/js\/admin\//.test(normalized)) {
+      // Admin SPA changes often; never pin with immutable (breaks new tabs like Masterclass).
+      res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
     } else if (/\/(css|js|fonts|img)\//.test(normalized)) {
       res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
     }

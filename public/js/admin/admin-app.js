@@ -132,11 +132,23 @@
   };
 
   async function api(path, opts = {}) {
-    const res = await fetch(path, {
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json', ...(opts.headers || {}) },
-      ...opts,
-    });
+    const { timeoutMs = 20000, headers, signal: _ignoredSignal, ...fetchOpts } = opts;
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+    let res;
+    try {
+      res = await fetch(path, {
+        credentials: 'include',
+        ...fetchOpts,
+        headers: { 'Content-Type': 'application/json', ...(headers || {}) },
+        signal: ctrl.signal,
+      });
+    } catch (err) {
+      if (err?.name === 'AbortError') throw new Error('timeout');
+      throw err;
+    } finally {
+      clearTimeout(timer);
+    }
     if (res.status === 401) {
       window.location.href = '/admin/login.html';
       throw new Error('unauthorized');
@@ -296,9 +308,12 @@
       else if (state.tab === 'divulgacao') main.innerHTML = await renderDivulgacao();
       else if (state.tab === 'parcerias') main.innerHTML = await renderParcerias();
       else if (state.tab === 'campanhas') {
+        if (!window.AcuraAdminCampaigns) throw new Error('campanhas_module_missing');
         main.innerHTML = await window.AcuraAdminCampaigns.render(api, state);
       } else if (state.tab === 'masterclass') {
         main.innerHTML = await renderMasterclass();
+      } else {
+        main.innerHTML = `<p class="admin-error">Aba desconhecida: ${esc(state.tab)}. Recarregue a página (Ctrl+F5).</p>`;
       }
       bindEvents();
       if (state.tab === 'campanhas' && window.AcuraAdminCampaigns) {
@@ -652,6 +667,7 @@
     if (q) params.set('q', q);
 
     const data = await api('/api/admin/masterclass-registrations?' + params.toString());
+    if (!data || !data.ok) throw new Error(data?.error || 'masterclass_list_failed');
     const statusLabels = data.statusLabels || {};
     const relacaoLabels = data.relacaoLabels || {};
     const stats = data.stats || { total: 0, byStatus: {} };
