@@ -379,12 +379,28 @@
                         <input type="tel" id="mc-whatsapp" name="whatsapp" required inputmode="tel" autocomplete="tel-national" placeholder="(11) 90000-0000">
                     </div>
                     <div class="form-group">
+                        <label for="mc-profissao">Profissão *</label>
+                        <input type="text" id="mc-profissao" name="profissao" required maxlength="120" autocomplete="organization-title" placeholder="Ex.: psicólogo(a), enfermeiro(a), estudante…">
+                    </div>
+                    <div class="form-group">
+                        <label for="mc-aluno-meire">Você é aluno(a) da Meire Yamaguchi? *</label>
+                        <select id="mc-aluno-meire" name="aluno_meire" required>
+                            <option value="">Selecione uma opção...</option>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="mc-relacao">Selecione sua relação com a ACURA Brasil *</label>
                         <select id="mc-relacao" name="relacao" required>
                             <option value="">Selecione uma opção...</option>
                             <option value="voluntario">Já sou voluntário(a) da ACURA Brasil</option>
                             <option value="quero_voluntariar">Quero me voluntariar na ACURA Brasil</option>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mc-codigo-carteirinha">Código da carteirinha de voluntário da ACURA</label>
+                        <input type="text" id="mc-codigo-carteirinha" name="codigo_carteirinha" maxlength="64" autocomplete="off" placeholder="Se você já é voluntário(a), informe o código da carteirinha">
                     </div>
                     <div class="form-group">
                         <label for="mc-mensagem">Mensagem (opcional)</label>

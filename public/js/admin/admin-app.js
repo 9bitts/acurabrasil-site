@@ -705,7 +705,7 @@
             .map(([k, v]) => `<option value="${k}" ${status === k ? 'selected' : ''}>${esc(v)}</option>`)
             .join('')}
         </select>
-        <input type="search" id="mc-filter-q" placeholder="Buscar nome, e-mail ou WhatsApp" value="${esc(q)}">
+        <input type="search" id="mc-filter-q" placeholder="Buscar nome, e-mail, WhatsApp, profissão ou carteirinha" value="${esc(q)}">
         <button type="button" class="admin-btn admin-btn-sm" id="mc-filter-apply">Filtrar</button>
       </div>
       <div class="admin-table-wrap">
@@ -721,6 +721,7 @@
     const r = data.registration;
     const statusLabels = data.statusLabels || {};
     const relacaoLabels = data.relacaoLabels || {};
+    const alunoMeireLabels = data.alunoMeireLabels || {};
     const wa = String(r.whatsapp || '').replace(/\D/g, '');
     const waLink = wa ? `https://wa.me/${wa}` : '#';
 
@@ -735,7 +736,10 @@
         <p><strong>Nome:</strong> ${esc(r.nome)}</p>
         <p><strong>E-mail:</strong> <a href="mailto:${esc(r.email)}">${esc(r.email)}</a></p>
         <p><strong>WhatsApp:</strong> <a href="${esc(waLink)}" target="_blank" rel="noopener">${esc(r.whatsapp)}</a></p>
+        <p><strong>Profissão:</strong> ${esc(r.profissao || '—')}</p>
+        <p><strong>Aluno(a) Meire Yamaguchi:</strong> ${esc(alunoMeireLabels[r.aluno_meire] || r.aluno_meire || '—')}</p>
         <p><strong>Relação com a ACURA:</strong> ${esc(relacaoLabels[r.relacao] || r.relacao)}</p>
+        <p><strong>Código da carteirinha:</strong> ${esc(r.codigo_carteirinha || '—')}</p>
         <p><strong>Marketing:</strong> ${r.marketing ? 'Sim' : 'Não'}</p>
         <p><strong>Criado em:</strong> ${esc(fmtTs(r.created_at))}</p>
         <p><strong>Atualizado em:</strong> ${esc(fmtTs(r.updated_at))}</p>

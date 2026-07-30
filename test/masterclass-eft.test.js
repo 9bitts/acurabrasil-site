@@ -54,11 +54,17 @@ describe('masterclass EFT registration', () => {
       nome: 'Maria Silva',
       email: 'maria@example.com',
       whatsapp: '(11) 98888-7777',
+      profissao: 'Psicóloga',
+      aluno_meire: 'sim',
       relacao: 'voluntario',
+      codigo_carteirinha: 'ACURA-123',
       privacidade: true,
     });
     assert.equal(ok.ok, true);
     assert.equal(ok.data.whatsapp, '11988887777');
+    assert.equal(ok.data.profissao, 'Psicóloga');
+    assert.equal(ok.data.aluno_meire, 'sim');
+    assert.equal(ok.data.codigo_carteirinha, 'ACURA-123');
   });
 
   it('silently accepts honeypot', () => {
@@ -74,7 +80,10 @@ describe('masterclass EFT registration', () => {
         nome: 'João Voluntário',
         email: 'joao.mc@example.com',
         whatsapp: '31999998888',
+        profissao: 'Enfermeiro',
+        aluno_meire: 'nao',
         relacao: 'quero_voluntariar',
+        codigo_carteirinha: '',
         mensagem: 'Quero ajudar',
         privacidade: true,
         marketing: true,
@@ -89,6 +98,8 @@ describe('masterclass EFT registration', () => {
     const list = listRegistrations({ q: 'joao.mc@example.com' });
     assert.equal(list.length, 1);
     assert.equal(list[0].relacao, 'quero_voluntariar');
+    assert.equal(list[0].profissao, 'Enfermeiro');
+    assert.equal(list[0].aluno_meire, 'nao');
     assert.equal(list[0].marketing, 1);
 
     const updated = updateRegistration(list[0].id, {
@@ -104,6 +115,8 @@ describe('masterclass EFT registration', () => {
       nome: 'João Voluntário',
       email: 'joao.mc@example.com',
       whatsapp: '31999998888',
+      profissao: 'Enfermeiro',
+      aluno_meire: 'nao',
       relacao: 'voluntario',
       privacidade: true,
     };

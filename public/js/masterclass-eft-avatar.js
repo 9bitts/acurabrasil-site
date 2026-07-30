@@ -53,7 +53,10 @@
       nome: String(fd.get('nome') || '').trim(),
       email: String(fd.get('email') || '').trim(),
       whatsapp: String(fd.get('whatsapp') || '').trim(),
+      profissao: String(fd.get('profissao') || '').trim(),
+      aluno_meire: String(fd.get('aluno_meire') || '').trim(),
       relacao: String(fd.get('relacao') || '').trim(),
+      codigo_carteirinha: String(fd.get('codigo_carteirinha') || '').trim(),
       mensagem: String(fd.get('mensagem') || '').trim(),
       privacidade: fd.get('privacidade') === 'on',
       marketing: fd.get('marketing') === 'on',
@@ -70,6 +73,14 @@
     }
     if (!payload.whatsapp || payload.whatsapp.replace(/\D/g, '').length < 10) {
       showStatus('Informe um WhatsApp com DDD válido.', 'error');
+      return;
+    }
+    if (!payload.profissao || payload.profissao.length < 2) {
+      showStatus('Informe sua profissão.', 'error');
+      return;
+    }
+    if (!payload.aluno_meire) {
+      showStatus('Informe se você é aluno(a) da Meire Yamaguchi.', 'error');
       return;
     }
     if (!payload.relacao) {
@@ -105,6 +116,8 @@
           nome_required: 'Informe seu nome completo.',
           email_invalid: 'Informe um e-mail válido.',
           whatsapp_invalid: 'Informe um WhatsApp com DDD válido.',
+          profissao_required: 'Informe sua profissão.',
+          aluno_meire_required: 'Informe se você é aluno(a) da Meire Yamaguchi.',
           relacao_required: 'Selecione sua relação com a ACURA Brasil.',
           privacidade_required: 'É necessário autorizar o uso dos dados.',
         };
