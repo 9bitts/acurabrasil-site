@@ -2640,6 +2640,18 @@ a.btn.is-disabled:hover {
     margin-bottom: 1rem;
 }
 
+.consulta-hero-actions--whatsapp {
+    margin-top: -0.25rem;
+    margin-bottom: 1rem;
+}
+
+.consulta-hero-actions--whatsapp .btn-whatsapp-secondary {
+    margin-top: 0;
+    font-size: 1.05rem;
+    padding: 0.9rem 2rem;
+
+}
+
 .consulta-hero-nota {
     font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.55);
@@ -3657,12 +3669,14 @@ a.btn.is-disabled:hover {
     }
 
     .consulta-hero-actions,
+    .consulta-hero-actions--whatsapp,
     .consulta-cta-final-actions {
         flex-direction: column;
         align-items: stretch;
     }
 
     .consulta-hero-actions .btn,
+    .consulta-hero-actions--whatsapp .btn,
     .consulta-cta-final-actions .btn,
     .consulta-step-btn {
         width: 100%;

@@ -726,6 +726,7 @@ window.ACURA_I18N_PT = {
   "consulta.hero.subtitle": "Consulta médica e psicológica para quem enfrenta crise, desastre ou vulnerabilidade — em qualquer lugar. Organizado pela ACURABRASIL através da plataforma Doctor8.",
   "consulta.hero.btn.start": "Solicitar atendimento gratuito →",
   "consulta.hero.btn.login": "Já tenho conta",
+  "consulta.hero.btn.whatsapp": "Solicitar suporte pelo WhatsApp",
   "consulta.hero.note": "A plataforma detecta automaticamente o idioma do seu navegador.",
   "consulta.hero.expectation": "Se houver profissionais online, o atendimento pode ser imediato; caso contrário, nossa equipe de triagem responde em até 24 horas.",
   "consulta.who.title": "Para quem é este atendimento?",
