@@ -42,6 +42,7 @@
     'sos-saude-rs': { titleKey: 'sosrs.meta.title', descKey: 'sosrs.meta.description' },
     'sos-venezuela': { titleKey: 'sosve.meta.title', descKey: 'sosve.meta.description' },
     'consulta-venezuela': { titleKey: 'consulta.meta.title', descKey: 'consulta.meta.description' },
+    'atendimento-humanitario': { titleKey: 'consulta.meta.title', descKey: 'consulta.meta.description' },
     'solicitud-sos-venezuela': { titleKey: 'sosve.intake.meta.title', descKey: 'sosve.intake.meta.description' },
     'doacao': { titleKey: 'doacao.meta.title', descKey: 'doacao.meta.description' },
     'campanhas': { titleKey: 'campanhas.meta.title', descKey: 'campanhas.meta.description' },

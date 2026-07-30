@@ -3,8 +3,8 @@
 
   const FALLBACK_WA = {
     number: (window.ACURA_WHATSAPP_CONTACT && window.ACURA_WHATSAPP_CONTACT.number) || '491749803699',
-    linkGeneral: 'https://wa.me/491749803699?text=Hola%2C%20necesito%20atenci%C3%B3n%20gratuita%20del%20SOS%20Venezuela',
-    linkRegistro: 'https://wa.me/491749803699?text=Hola%2C%20necesito%20ayuda%20para%20registrarme%20en%20el%20SOS%20Venezuela',
+    linkGeneral: 'https://wa.me/491749803699?text=Hola%2C%20necesito%20atenci%C3%B3n%20humanitaria%20gratuita%20de%20ACURABRASIL',
+    linkRegistro: 'https://wa.me/491749803699?text=Hola%2C%20necesito%20ayuda%20para%20registrarme%20en%20la%20atenci%C3%B3n%20humanitaria%20de%20ACURABRASIL',
   };
 
   const FALLBACK_SOLICITUD_MSG = {
@@ -32,6 +32,12 @@
   }
 
   function getSolicitudMessage() {
+    const preferConsulta = document.body?.dataset?.waMsg === 'consulta'
+      || /atendimento-humanitario/i.test(window.location.pathname || '');
+    if (preferConsulta) {
+      const generic = i18n('consulta.whatsapp.message');
+      if (generic && generic !== 'consulta.whatsapp.message') return generic;
+    }
     const fromI18n = i18n('sosve.whatsapp.solicitud.message');
     if (fromI18n && fromI18n !== 'sosve.whatsapp.solicitud.message') return fromI18n;
     const lang = getLang();

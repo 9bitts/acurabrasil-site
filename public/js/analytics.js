@@ -69,7 +69,7 @@
       var track = el.getAttribute('data-acura-track');
       if (!track) {
         var href = el.getAttribute('href') || '';
-        if (href.indexOf('consulta-venezuela') !== -1 || href.indexOf('solicitud-sos-venezuela') !== -1) {
+        if (href.indexOf('atendimento-humanitario') !== -1 || href.indexOf('consulta-venezuela') !== -1 || href.indexOf('solicitud-sos-venezuela') !== -1) {
           track = 'consulta_iniciada';
         } else if (href.indexOf('wa.me') !== -1) {
           track = 'whatsapp_clicado';
