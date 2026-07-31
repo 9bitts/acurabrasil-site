@@ -360,8 +360,9 @@
     }
     if (data?.ok === false && data?.error && data?.status === 'error') {
       const errLabel = DOCTOR8_ERROR_LABELS[data.error] || data.error;
+      const detail = data.detail ? `\nDetalhe: ${data.detail}` : '';
       return {
-        message: `#${id} Doctor8 — erro na consulta: ${errLabel}\nE-mail: ${email || '—'}`,
+        message: `#${id} Doctor8 — erro na consulta: ${errLabel}\nE-mail: ${email || '—'}${detail}`,
         error: true,
       };
     }
