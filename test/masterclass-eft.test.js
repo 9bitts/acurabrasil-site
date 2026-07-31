@@ -31,6 +31,19 @@ function mockRes() {
   };
 }
 
+const baseValid = {
+  nome: 'Maria Silva',
+  email: 'maria@example.com',
+  whatsapp: '(11) 98888-7777',
+  profissao: 'Psicóloga',
+  aluno_meire: 'sim',
+  relacao: 'voluntario',
+  codigo_carteirinha: 'EFTAVATAR',
+  privacidade: true,
+  termo_confidencialidade: true,
+  termo_imagem: true,
+};
+
 describe('masterclass EFT registration', () => {
   before(() => {
     getDb();
@@ -50,21 +63,31 @@ describe('masterclass EFT registration', () => {
     assert.equal(bad.ok, false);
     assert.equal(bad.error, 'nome_required');
 
+    const missingCode = validateRegistrationBody({
+      ...baseValid,
+      codigo_carteirinha: '',
+    });
+    assert.equal(missingCode.ok, false);
+    assert.equal(missingCode.error, 'codigo_required');
+
+    const missingTerm = validateRegistrationBody({
+      ...baseValid,
+      termo_confidencialidade: false,
+    });
+    assert.equal(missingTerm.ok, false);
+    assert.equal(missingTerm.error, 'termo_confidencialidade_required');
+
     const ok = validateRegistrationBody({
-      nome: 'Maria Silva',
-      email: 'maria@example.com',
-      whatsapp: '(11) 98888-7777',
-      profissao: 'Psicóloga',
-      aluno_meire: 'sim',
-      relacao: 'voluntario',
-      codigo_carteirinha: 'ACURA-123',
-      privacidade: true,
+      ...baseValid,
+      codigo_carteirinha: 'eftavatar',
     });
     assert.equal(ok.ok, true);
     assert.equal(ok.data.whatsapp, '11988887777');
     assert.equal(ok.data.profissao, 'Psicóloga');
     assert.equal(ok.data.aluno_meire, 'sim');
-    assert.equal(ok.data.codigo_carteirinha, 'ACURA-123');
+    assert.equal(ok.data.codigo_carteirinha, 'EFTAVATAR');
+    assert.equal(ok.data.termo_confidencialidade, 1);
+    assert.equal(ok.data.termo_imagem, 1);
   });
 
   it('silently accepts honeypot', () => {
@@ -83,10 +106,11 @@ describe('masterclass EFT registration', () => {
         profissao: 'Enfermeiro',
         aluno_meire: 'nao',
         relacao: 'quero_voluntariar',
-        codigo_carteirinha: '',
+        codigo_carteirinha: 'ACURA-123',
         mensagem: 'Quero ajudar',
         privacidade: true,
-        marketing: true,
+        termo_confidencialidade: true,
+        termo_imagem: true,
       },
     };
     const res = mockRes();
@@ -94,13 +118,20 @@ describe('masterclass EFT registration', () => {
     assert.equal(res.statusCode, 201);
     assert.equal(res.body.ok, true);
     assert.equal(res.body.needsVolunteerReview, true);
+    assert.equal(res.body.awaitsConfirmation, true);
 
     const list = listRegistrations({ q: 'joao.mc@example.com' });
     assert.equal(list.length, 1);
     assert.equal(list[0].relacao, 'quero_voluntariar');
     assert.equal(list[0].profissao, 'Enfermeiro');
     assert.equal(list[0].aluno_meire, 'nao');
-    assert.equal(list[0].marketing, 1);
+    assert.equal(list[0].codigo_carteirinha, 'ACURA-123');
+    assert.equal(list[0].termo_confidencialidade, 1);
+    assert.equal(list[0].termo_imagem, 1);
+    assert.equal(list[0].termos_versao, '2026-07-eft');
+    assert.ok(list[0].termos_aceitos_em);
+    assert.equal(list[0].ip, '127.0.0.1');
+    assert.equal(list[0].marketing, 0);
 
     const updated = updateRegistration(list[0].id, {
       status: 'confirmada',
@@ -118,7 +149,10 @@ describe('masterclass EFT registration', () => {
       profissao: 'Enfermeiro',
       aluno_meire: 'nao',
       relacao: 'voluntario',
+      codigo_carteirinha: 'EFTAVATAR',
       privacidade: true,
+      termo_confidencialidade: true,
+      termo_imagem: true,
     };
     const res = mockRes();
     await handleMasterclassRegister({ ip: '127.0.0.2', body }, res);

@@ -724,6 +724,11 @@
     const alunoMeireLabels = data.alunoMeireLabels || {};
     const wa = String(r.whatsapp || '').replace(/\D/g, '');
     const waLink = wa ? `https://wa.me/${wa}` : '#';
+    const groupUrl = String(data.whatsappGroupUrl || '').trim();
+    const inviteMsg = encodeURIComponent(
+      `Olá ${r.nome || ''}! Sua inscrição na Masterclass EFT Avatar foi confirmada. Entre no grupo do WhatsApp: ${groupUrl || '[colar link do grupo]'}`
+    );
+    const inviteLink = wa ? `https://wa.me/${wa}?text=${inviteMsg}` : '#';
 
     const statusOptions = Object.entries(statusLabels)
       .map(([k, v]) => `<option value="${k}" ${r.status === k ? 'selected' : ''}>${esc(v)}</option>`)
@@ -739,8 +744,12 @@
         <p><strong>Profissão:</strong> ${esc(r.profissao || '—')}</p>
         <p><strong>Aluno(a) Meire Yamaguchi:</strong> ${esc(alunoMeireLabels[r.aluno_meire] || r.aluno_meire || '—')}</p>
         <p><strong>Relação com a ACURA:</strong> ${esc(relacaoLabels[r.relacao] || r.relacao)}</p>
-        <p><strong>Código da carteirinha:</strong> ${esc(r.codigo_carteirinha || '—')}</p>
-        <p><strong>Marketing:</strong> ${r.marketing ? 'Sim' : 'Não'}</p>
+        <p><strong>Código (carteirinha ACURA ou EFTAVATAR):</strong> ${esc(r.codigo_carteirinha || '—')}</p>
+        <p><strong>Termo confidencialidade:</strong> ${r.termo_confidencialidade ? 'Sim' : 'Não'}</p>
+        <p><strong>Termo imagem/voz:</strong> ${r.termo_imagem ? 'Sim' : 'Não'}</p>
+        <p><strong>Versão dos termos:</strong> ${esc(r.termos_versao || '—')}</p>
+        <p><strong>Aceite dos termos em:</strong> ${esc(fmtTs(r.termos_aceitos_em) || '—')}</p>
+        <p><strong>IP do aceite:</strong> ${esc(r.ip || '—')}</p>
         <p><strong>Criado em:</strong> ${esc(fmtTs(r.created_at))}</p>
         <p><strong>Atualizado em:</strong> ${esc(fmtTs(r.updated_at))}</p>
         <p><strong>Mensagem:</strong></p>
@@ -749,6 +758,13 @@
           r.relacao === 'quero_voluntariar'
             ? '<p class="admin-hint"><strong>Atenção:</strong> inscrição de novo voluntário — aprovar após análise da demanda.</p>'
             : ''
+        }
+        <p class="admin-hint"><strong>Fluxo WhatsApp:</strong> só envie o link do grupo depois de confirmar a inscrição.</p>
+        ${
+          groupUrl
+            ? `<p><strong>Link do grupo:</strong> <a href="${esc(groupUrl)}" target="_blank" rel="noopener">${esc(groupUrl)}</a></p>
+               <p><a class="admin-btn admin-btn-sm" href="${esc(inviteLink)}" target="_blank" rel="noopener">Enviar convite do grupo no WhatsApp</a></p>`
+            : '<p class="admin-hint">Configure <code>MASTERCLASS_EFT_WHATSAPP_GROUP_URL</code> no servidor para exibir o link do grupo aqui.</p>'
         }
       </div>
       <div class="admin-panel">
