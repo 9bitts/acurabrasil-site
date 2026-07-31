@@ -348,6 +348,24 @@
     return 'Aprovação não informada pela API';
   }
 
+  const DOCTOR8_PROFESSIONAL_SIGNUP_URL =
+    'https://app.doctor8.org/register/professional/signup';
+
+  function digitsOnly(value) {
+    return String(value || '').replace(/\D/g, '');
+  }
+
+  /** WhatsApp link asking volunteer applicants to create/complete Doctor8 professional profile. */
+  function masterclassDoctor8SignupWaLink(registration) {
+    const wa = digitsOnly(registration?.whatsapp);
+    if (!wa) return '';
+    const nome = String(registration?.nome || '').trim() || 'voluntário(a)';
+    const text = encodeURIComponent(
+      `Olá ${nome}! Para se voluntariar na ACURA Brasil, crie sua conta profissional no Doctor8 neste link:\n${DOCTOR8_PROFESSIONAL_SIGNUP_URL}\n\nDepois, acesse Meu perfil, complete o cadastro e adicione todos os dados.`
+    );
+    return `https://wa.me/${wa}?text=${text}`;
+  }
+
   function formatDoctor8ResultMessage(data, id) {
     const email = data?.email || data?.registration?.email || '';
     const lines = [];
@@ -811,11 +829,12 @@
 
     const cardsList = (data.registrations || [])
       .map((r) => {
-        const wa = String(r.whatsapp || '').replace(/\D/g, '');
+        const wa = digitsOnly(r.whatsapp);
         const inviteMsg = encodeURIComponent(
           `Olá ${r.nome || ''}! Sua inscrição na Masterclass EFT Avatar foi confirmada. Entre no grupo do WhatsApp: ${groupUrl || '[colar link do grupo]'}`
         );
         const inviteLink = wa ? `https://wa.me/${wa}?text=${inviteMsg}` : '#';
+        const doctor8SignupLink = masterclassDoctor8SignupWaLink(r);
         const badgeClass =
           r.status === 'confirmada' || r.status === 'aprovada_voluntario'
             ? 'em_consulta'
@@ -882,6 +901,13 @@
             <button type="button" class="admin-btn admin-btn-sm" data-mc-list-action="approve" data-mc-id="${r.id}">Aprovar</button>
             <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" data-mc-list-action="reject" data-mc-id="${r.id}">Não aprovar</button>
             <a class="admin-btn admin-btn-sm admin-btn-secondary" href="${esc(inviteLink)}" target="_blank" rel="noopener">WhatsApp</a>
+            ${
+              r.relacao === 'quero_voluntariar' && doctor8SignupLink
+                ? `<a class="admin-btn admin-btn-sm admin-btn-orange" href="${esc(doctor8SignupLink)}" target="_blank" rel="noopener" title="Orientar criação da conta Doctor8">Cadastro Doctor8</a>`
+                : r.relacao === 'quero_voluntariar'
+                  ? '<span class="admin-hint">Cadastro Doctor8: sem WhatsApp</span>'
+                  : ''
+            }
             <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" data-mc-list-action="email-toggle" data-mc-id="${r.id}">Enviar e-mail</button>
             <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" data-mc-list-action="doctor8" data-mc-id="${r.id}">Verificar Doctor8</button>
             <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" data-mc-list-action="detail" data-mc-id="${r.id}">Ver ficha</button>
@@ -933,13 +959,14 @@
     const statusLabels = data.statusLabels || {};
     const relacaoLabels = data.relacaoLabels || {};
     const alunoMeireLabels = data.alunoMeireLabels || {};
-    const wa = String(r.whatsapp || '').replace(/\D/g, '');
+    const wa = digitsOnly(r.whatsapp);
     const waLink = wa ? `https://wa.me/${wa}` : '#';
     const groupUrl = String(data.whatsappGroupUrl || '').trim();
     const inviteMsg = encodeURIComponent(
       `Olá ${r.nome || ''}! Sua inscrição na Masterclass EFT Avatar foi confirmada. Entre no grupo do WhatsApp: ${groupUrl || '[colar link do grupo]'}`
     );
     const inviteLink = wa ? `https://wa.me/${wa}?text=${inviteMsg}` : '#';
+    const doctor8SignupLink = masterclassDoctor8SignupWaLink(r);
     const doctor8Profile = data.doctor8Profile || null;
     let storedProfile = doctor8Profile;
     if (!storedProfile && r.doctor8_profile_json) {
@@ -998,6 +1025,11 @@
           <button type="button" class="admin-btn admin-btn-sm" id="mc-approve">Aprovar</button>
           <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" id="mc-reject">Não aprovar</button>
           <a class="admin-btn admin-btn-sm admin-btn-secondary" href="${esc(inviteLink)}" target="_blank" rel="noopener" id="mc-whatsapp">Falar no WhatsApp</a>
+          ${
+            r.relacao === 'quero_voluntariar' && doctor8SignupLink
+              ? `<a class="admin-btn admin-btn-sm admin-btn-orange" href="${esc(doctor8SignupLink)}" target="_blank" rel="noopener" id="mc-doctor8-signup">Cadastro Doctor8</a>`
+              : ''
+          }
           <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" id="mc-email-toggle">Enviar e-mail</button>
           <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" id="mc-doctor8">Verificar Doctor8</button>
         </div>

@@ -106,6 +106,15 @@ body.admin-body {
   background: var(--admin-danger);
 }
 
+.admin-btn-orange {
+  background: #e67e22;
+  color: #fff;
+}
+
+.admin-btn-orange:hover {
+  background: #d35400;
+}
+
 .admin-btn-sm {
   padding: 0.35rem 0.65rem;
   font-size: 0.8rem;
