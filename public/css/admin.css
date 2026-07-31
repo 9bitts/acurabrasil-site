@@ -333,12 +333,50 @@ body.admin-body {
   margin: 0.75rem 0 0;
 }
 
-.mc-list-flash {
-  margin: 0.75rem 0 1rem;
-  padding: 0.65rem 0.85rem;
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  border-radius: 8px;
+.mc-result-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: rgba(15, 23, 42, 0.45);
+}
+
+.mc-result-modal-card {
+  width: min(420px, 100%);
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.25rem 1.35rem 1.15rem;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.25);
+  border: 1px solid #e2e8f0;
+}
+
+.mc-result-modal.is-error .mc-result-modal-card {
+  border-color: #fecaca;
+}
+
+.mc-result-modal-card h2 {
+  margin: 0 0 0.65rem;
+  font-size: 1.1rem;
+  color: #0f172a;
+}
+
+.mc-result-modal.is-error .mc-result-modal-card h2 {
+  color: #b42318;
+}
+
+.mc-result-modal-text {
+  margin: 0 0 1.1rem;
+  line-height: 1.5;
+  color: #334155;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.mc-result-modal-card .admin-btn {
+  width: 100%;
 }
 
 .badge {

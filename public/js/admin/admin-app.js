@@ -130,6 +130,7 @@
     scheduleWeekStart: startOfWeek(new Date()),
     selectedProtocolo: null,
     masterclassFlash: null,
+    masterclassKeepScroll: false,
   };
 
   async function api(path, opts = {}) {
@@ -298,6 +299,13 @@
 
   async function render() {
     const main = document.getElementById('admin-main');
+    const keepScroll = state.tab === 'masterclass' && state.masterclassKeepScroll;
+    const scrollY = keepScroll ? window.scrollY || document.documentElement.scrollTop || 0 : 0;
+    const pendingFlash = keepScroll ? state.masterclassFlash : null;
+    if (keepScroll) {
+      state.masterclassKeepScroll = false;
+      state.masterclassFlash = null;
+    }
     main.innerHTML = '<p>Carregando…</p>';
     try {
       if (state.tab === 'dashboard') main.innerHTML = await renderDashboard();
@@ -320,9 +328,104 @@
       if (state.tab === 'campanhas' && window.AcuraAdminCampaigns) {
         window.AcuraAdminCampaigns.bind(api, state, render);
       }
+      if (keepScroll) {
+        window.scrollTo(0, scrollY);
+      }
+      if (pendingFlash?.message) {
+        showMcResultModal(pendingFlash.message, pendingFlash.error);
+      }
     } catch (err) {
       main.innerHTML = `<p class="admin-error">Erro: ${esc(err.message)}</p>`;
     }
+  }
+
+  function formatDoctor8ResultMessage(data, id) {
+    const email = data?.email || data?.registration?.email || '';
+    const lines = [];
+    if (data?.configured === false || data?.status === 'not_configured') {
+      return {
+        message:
+          'API Doctor8 não configurada no servidor.\nDefina DOCTOR8_API_BASE_URL e DOCTOR8_API_KEY no .env.',
+        error: true,
+      };
+    }
+    if (data?.ok === false && data?.error && data?.status === 'error') {
+      const errLabel = DOCTOR8_ERROR_LABELS[data.error] || data.error;
+      return {
+        message: `#${id} Doctor8 — erro na consulta: ${errLabel}\nE-mail: ${email || '—'}`,
+        error: true,
+      };
+    }
+    if (data?.registered) {
+      lines.push(`#${id} — Conta encontrada na Doctor8`);
+      lines.push(`E-mail consultado: ${email || '—'}`);
+      if (data.user) {
+        lines.push('');
+        lines.push('Dados do perfil:');
+        if (data.user.name) lines.push(`Nome: ${data.user.name}`);
+        if (data.user.email) lines.push(`E-mail: ${data.user.email}`);
+        if (data.user.phone) lines.push(`Telefone: ${data.user.phone}`);
+        if (data.user.role) lines.push(`Papel: ${data.user.role}`);
+        if (data.user.status) lines.push(`Status: ${data.user.status}`);
+        if (data.user.createdAt) lines.push(`Criado em: ${data.user.createdAt}`);
+        if (data.user.profileUrl) lines.push(`Perfil: ${data.user.profileUrl}`);
+      } else {
+        lines.push('');
+        lines.push(
+          'A API atual confirma o cadastro do e-mail, mas ainda não devolve o perfil completo (nome, telefone, etc.).'
+        );
+        lines.push('Quando a Doctor8 publicar /api/integrations/lookup-user, esses dados aparecem aqui.');
+      }
+      return { message: lines.join('\n'), error: false };
+    }
+    lines.push(`#${id} — A Doctor8 respondeu que este e-mail não tem conta.`);
+    lines.push(`E-mail consultado: ${email || '—'}`);
+    lines.push('');
+    lines.push('Se a pessoa tem conta, confira se o e-mail da inscrição é o mesmo usado na Doctor8.');
+    return { message: lines.join('\n'), error: true };
+  }
+
+  function closeMcResultModal() {
+    document.getElementById('mc-result-modal')?.remove();
+  }
+
+  function showMcResultModal(message, isError) {
+    closeMcResultModal();
+    const overlay = document.createElement('div');
+    overlay.id = 'mc-result-modal';
+    overlay.className = 'mc-result-modal' + (isError ? ' is-error' : '');
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-labelledby', 'mc-result-modal-title');
+    overlay.innerHTML =
+      '<div class="mc-result-modal-card">' +
+      '<h2 id="mc-result-modal-title">' +
+      (isError ? 'Atenção' : 'Resultado') +
+      '</h2>' +
+      '<p class="mc-result-modal-text"></p>' +
+      '<button type="button" class="admin-btn admin-btn-sm" id="mc-result-modal-close">Fechar</button>' +
+      '</div>';
+    overlay.querySelector('.mc-result-modal-text').textContent = String(message || '');
+    document.body.appendChild(overlay);
+
+    function close() {
+      closeMcResultModal();
+      document.removeEventListener('keydown', onKey);
+    }
+    function onKey(e) {
+      if (e.key === 'Escape') close();
+    }
+    overlay.querySelector('#mc-result-modal-close')?.addEventListener('click', close);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) close();
+    });
+    document.addEventListener('keydown', onKey);
+    overlay.querySelector('#mc-result-modal-close')?.focus();
+  }
+
+  function queueMasterclassRefresh(message, isError) {
+    state.masterclassFlash = message ? { message, error: !!isError } : null;
+    state.masterclassKeepScroll = true;
   }
 
   async function renderDashboard() {
@@ -682,9 +785,6 @@
       </div>`;
 
     const groupUrl = String(data.whatsappGroupUrl || '').trim();
-    const flash = state.masterclassFlash
-      ? `<p class="admin-hint mc-list-flash" style="${state.masterclassFlash.error ? 'color:#b42318' : ''}">${esc(state.masterclassFlash.message)}</p>`
-      : '';
 
     const cardsList = (data.registrations || [])
       .map((r) => {
@@ -754,7 +854,6 @@
       <h1>Masterclass EFT Avatar — Inscrições</h1>
       <p class="admin-hint">Formação: EFT Avatar em Emergências Humanitárias · página pública <a href="/masterclass-eft-avatar" target="_blank" rel="noopener">/masterclass-eft-avatar</a></p>
       ${cards}
-      ${flash}
       <div class="admin-filters">
         <select id="mc-filter-status">
           <option value="">Todos os status</option>
@@ -837,7 +936,6 @@
 
       <div class="admin-panel">
         <h2>Ações</h2>
-        <p id="mc-action-status" class="admin-hint" ${state.masterclassFlash ? '' : 'hidden'} style="${state.masterclassFlash?.error ? 'color:#b42318' : ''}">${esc(state.masterclassFlash?.message || '')}</p>
         <div class="admin-actions-row" style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1rem">
           <button type="button" class="admin-btn admin-btn-sm" id="mc-approve">Aprovar</button>
           <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" id="mc-reject">Não aprovar</button>
@@ -945,12 +1043,12 @@
             statusEl.textContent = message || '';
             statusEl.style.color = isError ? '#b42318' : '';
           }
-          state.masterclassFlash = message ? { message, error: !!isError } : null;
         };
 
         if (action === 'detail') {
           state.selectedMasterclassId = id;
           state.masterclassFlash = null;
+          closeMcResultModal();
           render();
           return;
         }
@@ -970,17 +1068,19 @@
               { method: 'POST', body: JSON.stringify({}) }
             );
             if (!data?.ok) {
-              setListStatus('Não foi possível aprovar: ' + (data?.error || 'erro'), true);
+              showMcResultModal('Não foi possível aprovar: ' + (data?.error || 'erro'), true);
+              setListStatus('');
               return;
             }
             let msg = `#${id} aprovada.`;
             if (data.emailSent) msg += ' E-mail enviado.';
             else if (data.emailSkipped) msg += ' E-mail já havia sido enviado.';
             else if (data.emailError) msg += ' Status ok, e-mail falhou: ' + data.emailError;
-            state.masterclassFlash = { message: msg, error: !!data.emailError };
+            queueMasterclassRefresh(msg, !!data.emailError);
             await render();
           } catch (err) {
-            setListStatus('Erro ao aprovar: ' + (err.message || 'falha'), true);
+            showMcResultModal('Erro ao aprovar: ' + (err.message || 'falha'), true);
+            setListStatus('');
           } finally {
             el.disabled = false;
           }
@@ -997,13 +1097,15 @@
               { method: 'POST', body: JSON.stringify({}) }
             );
             if (!data?.ok) {
-              setListStatus('Não foi possível recusar: ' + (data?.error || 'erro'), true);
+              showMcResultModal('Não foi possível recusar: ' + (data?.error || 'erro'), true);
+              setListStatus('');
               return;
             }
-            state.masterclassFlash = { message: `#${id} marcada como recusada.`, error: false };
+            queueMasterclassRefresh(`#${id} marcada como recusada.`, false);
             await render();
           } catch (err) {
-            setListStatus('Erro ao recusar: ' + (err.message || 'falha'), true);
+            showMcResultModal('Erro ao recusar: ' + (err.message || 'falha'), true);
+            setListStatus('');
           } finally {
             el.disabled = false;
           }
@@ -1018,19 +1120,17 @@
               '/api/admin/masterclass-registrations/' + encodeURIComponent(id) + '/doctor8-lookup',
               { method: 'POST', body: JSON.stringify({}) }
             );
-            if (data?.error === 'not_found') {
-              setListStatus('Inscrição não encontrada.', true);
+            if (data?.error === 'not_found' && !data?.status) {
+              showMcResultModal('Inscrição não encontrada.', true);
+              setListStatus('');
               return;
             }
-            const label = DOCTOR8_STATUS_LABELS[data?.status] || data?.status || 'consulta concluída';
-            const msg =
-              data?.ok === false && data?.error
-                ? `#${id} Doctor8: ` + (DOCTOR8_STATUS_LABELS[data.status] || data.error)
-                : `#${id} Doctor8: ` + label + (data?.user ? ' (perfil disponível)' : '');
-            state.masterclassFlash = { message: msg, error: data?.ok === false };
+            const formatted = formatDoctor8ResultMessage(data, id);
+            queueMasterclassRefresh(formatted.message, formatted.error);
             await render();
           } catch (err) {
-            setListStatus('Erro Doctor8: ' + (err.message || 'falha'), true);
+            showMcResultModal('Erro Doctor8: ' + (err.message || 'falha'), true);
+            setListStatus('');
           } finally {
             el.disabled = false;
           }
@@ -1049,7 +1149,8 @@
             let attachment = null;
             if (file) {
               if (file.size > 8 * 1024 * 1024) {
-                setListStatus('Anexo acima de 8 MB.', true);
+                showMcResultModal('Anexo acima de 8 MB.', true);
+                setListStatus('');
                 return;
               }
               const contentBase64 = await readFileAsBase64(file);
@@ -1074,13 +1175,15 @@
                 email_not_configured: 'E-mail não configurado no servidor (Resend/SMTP).',
                 email_failed: 'Falha ao enviar e-mail.',
               };
-              setListStatus(map[data?.error] || data?.error || 'Erro ao enviar', true);
+              showMcResultModal(map[data?.error] || data?.error || 'Erro ao enviar', true);
+              setListStatus('');
               return;
             }
-            state.masterclassFlash = { message: `#${id} e-mail enviado.`, error: false };
+            queueMasterclassRefresh(`#${id} e-mail enviado.`, false);
             await render();
           } catch (err) {
-            setListStatus('Erro ao enviar e-mail: ' + (err.message || 'falha'), true);
+            showMcResultModal('Erro ao enviar e-mail: ' + (err.message || 'falha'), true);
+            setListStatus('');
           } finally {
             el.disabled = false;
           }
@@ -1113,19 +1216,13 @@
     });
 
     function setMcActionStatus(message, isError) {
-      state.masterclassFlash = message ? { message, error: !!isError } : null;
-      const el = document.getElementById('mc-action-status');
-      if (!el) return;
-      el.hidden = !message;
-      el.textContent = message || '';
-      el.style.color = isError ? '#b42318' : '';
+      if (message) showMcResultModal(message, isError);
     }
 
     document.getElementById('mc-approve')?.addEventListener('click', async () => {
       const id = state.selectedMasterclassId;
       const btn = document.getElementById('mc-approve');
       if (btn) btn.disabled = true;
-      setMcActionStatus('Aprovando e enviando e-mail de confirmação…');
       try {
         const data = await api(
           '/api/admin/masterclass-registrations/' + encodeURIComponent(id) + '/approve',
@@ -1139,7 +1236,7 @@
         if (data.emailSent) msg += ' E-mail de confirmação enviado.';
         else if (data.emailSkipped) msg += ' E-mail de confirmação já havia sido enviado.';
         else if (data.emailError) msg += ' Status atualizado, mas o e-mail falhou: ' + data.emailError;
-        state.masterclassFlash = { message: msg, error: !!data.emailError };
+        queueMasterclassRefresh(msg, !!data.emailError);
         await render();
       } catch (err) {
         setMcActionStatus('Erro ao aprovar: ' + (err.message || 'falha'), true);
@@ -1153,7 +1250,6 @@
       if (!window.confirm('Confirmar recusa desta inscrição?')) return;
       const btn = document.getElementById('mc-reject');
       if (btn) btn.disabled = true;
-      setMcActionStatus('Recusando inscrição…');
       try {
         const notes = document.getElementById('mc-notes')?.value;
         const data = await api(
@@ -1164,7 +1260,7 @@
           setMcActionStatus('Não foi possível recusar: ' + (data?.error || 'erro'), true);
           return;
         }
-        state.masterclassFlash = { message: 'Inscrição marcada como recusada.', error: false };
+        queueMasterclassRefresh('Inscrição marcada como recusada.', false);
         await render();
       } catch (err) {
         setMcActionStatus('Erro ao recusar: ' + (err.message || 'falha'), true);
@@ -1188,7 +1284,6 @@
       const file = fileInput?.files?.[0];
 
       if (btn) btn.disabled = true;
-      setMcActionStatus('Enviando e-mail…');
       try {
         let attachment = null;
         if (file) {
@@ -1221,8 +1316,7 @@
           setMcActionStatus(map[data?.error] || data?.error || 'Erro ao enviar', true);
           return;
         }
-        state.masterclassFlash = { message: 'E-mail enviado.', error: false };
-        if (fileInput) fileInput.value = '';
+        queueMasterclassRefresh('E-mail enviado.', false);
         await render();
       } catch (err) {
         setMcActionStatus('Erro ao enviar e-mail: ' + (err.message || 'falha'), true);
@@ -1235,25 +1329,17 @@
       const id = state.selectedMasterclassId;
       const btn = document.getElementById('mc-doctor8');
       if (btn) btn.disabled = true;
-      setMcActionStatus('Consultando Doctor8…');
       try {
         const data = await api(
           '/api/admin/masterclass-registrations/' + encodeURIComponent(id) + '/doctor8-lookup',
           { method: 'POST', body: JSON.stringify({}) }
         );
-        if (data?.error === 'not_found') {
+        if (data?.error === 'not_found' && !data?.status) {
           setMcActionStatus('Inscrição não encontrada.', true);
           return;
         }
-        const label = DOCTOR8_STATUS_LABELS[data?.status] || data?.status || 'consulta concluída';
-        const msg =
-          data?.ok === false && data?.error
-            ? 'Doctor8: ' + (DOCTOR8_STATUS_LABELS[data.status] || data.error)
-            : 'Doctor8: ' + label + (data?.user ? ' (perfil disponível)' : '');
-        state.masterclassFlash = {
-          message: msg,
-          error: data?.ok === false,
-        };
+        const formatted = formatDoctor8ResultMessage(data, id);
+        queueMasterclassRefresh(formatted.message, formatted.error);
         await render();
       } catch (err) {
         setMcActionStatus('Erro Doctor8: ' + (err.message || 'falha'), true);
