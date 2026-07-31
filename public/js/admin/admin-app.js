@@ -681,24 +681,80 @@
         <div class="admin-card"><div class="admin-card-value">${stats.byStatus?.aprovada_voluntario || 0}</div><div class="admin-card-label">Voluntariado</div></div>
       </div>`;
 
-    const rows = (data.registrations || [])
-      .map(
-        (r) => `<tr class="clickable" data-masterclass-id="${r.id}">
-          <td>${r.id}</td>
-          <td>${esc(fmtTs(r.created_at))}</td>
-          <td>${esc(r.nome)}</td>
-          <td>${esc(r.email)}</td>
-          <td>${esc(r.whatsapp)}</td>
-          <td>${esc(relacaoLabels[r.relacao] || r.relacao)}</td>
-          <td><span class="badge badge-${esc(r.status === 'confirmada' || r.status === 'aprovada_voluntario' ? 'em_consulta' : r.status === 'recusada' || r.status === 'cancelada' ? 'cancelado' : 'nova')}">${esc(statusLabels[r.status] || r.status)}</span></td>
-        </tr>`
-      )
+    const groupUrl = String(data.whatsappGroupUrl || '').trim();
+    const flash = state.masterclassFlash
+      ? `<p class="admin-hint mc-list-flash" style="${state.masterclassFlash.error ? 'color:#b42318' : ''}">${esc(state.masterclassFlash.message)}</p>`
+      : '';
+
+    const cardsList = (data.registrations || [])
+      .map((r) => {
+        const wa = String(r.whatsapp || '').replace(/\D/g, '');
+        const inviteMsg = encodeURIComponent(
+          `Olá ${r.nome || ''}! Sua inscrição na Masterclass EFT Avatar foi confirmada. Entre no grupo do WhatsApp: ${groupUrl || '[colar link do grupo]'}`
+        );
+        const inviteLink = wa ? `https://wa.me/${wa}?text=${inviteMsg}` : '#';
+        const badgeClass =
+          r.status === 'confirmada' || r.status === 'aprovada_voluntario'
+            ? 'em_consulta'
+            : r.status === 'recusada' || r.status === 'cancelada'
+              ? 'cancelado'
+              : 'nova';
+        const d8Label =
+          DOCTOR8_STATUS_LABELS[r.doctor8_status] || r.doctor8_status || 'não consultado';
+
+        return `<article class="mc-reg-card" data-masterclass-card="${r.id}">
+          <div class="mc-reg-card-top">
+            <div class="mc-reg-card-meta">
+              <span class="mc-reg-id">#${r.id}</span>
+              <span class="mc-reg-date">${esc(fmtTs(r.created_at))}</span>
+              <span class="badge badge-${esc(badgeClass)}">${esc(statusLabels[r.status] || r.status)}</span>
+            </div>
+            <h3 class="mc-reg-name">${esc(r.nome)}</h3>
+            <div class="mc-reg-grid">
+              <p><strong>E-mail:</strong> <a href="mailto:${esc(r.email)}">${esc(r.email)}</a></p>
+              <p><strong>WhatsApp:</strong> ${esc(r.whatsapp || '—')}</p>
+              <p><strong>Profissão:</strong> ${esc(r.profissao || '—')}</p>
+              <p><strong>Relação:</strong> ${esc(relacaoLabels[r.relacao] || r.relacao)}</p>
+              <p><strong>Código:</strong> ${esc(r.codigo_carteirinha || '—')}</p>
+              <p><strong>Doctor8:</strong> ${r.doctor8_registered ? 'Cadastrado' : 'Não'} · ${esc(d8Label)}</p>
+            </div>
+            ${r.mensagem ? `<p class="mc-reg-msg"><strong>Mensagem:</strong> ${esc(r.mensagem)}</p>` : ''}
+          </div>
+          <div class="mc-reg-actions">
+            <button type="button" class="admin-btn admin-btn-sm" data-mc-list-action="approve" data-mc-id="${r.id}">Aprovar</button>
+            <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" data-mc-list-action="reject" data-mc-id="${r.id}">Não aprovar</button>
+            <a class="admin-btn admin-btn-sm admin-btn-secondary" href="${esc(inviteLink)}" target="_blank" rel="noopener">WhatsApp</a>
+            <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" data-mc-list-action="email-toggle" data-mc-id="${r.id}">Enviar e-mail</button>
+            <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" data-mc-list-action="doctor8" data-mc-id="${r.id}">Verificar Doctor8</button>
+            <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" data-mc-list-action="detail" data-mc-id="${r.id}">Ver ficha</button>
+          </div>
+          <div class="mc-reg-email" id="mc-list-email-${r.id}" hidden>
+            <div class="admin-form-group">
+              <label>Assunto</label>
+              <input type="text" class="mc-list-email-subject" maxlength="200" value="Masterclass EFT Avatar — ACURA Brasil">
+            </div>
+            <div class="admin-form-group">
+              <label>Mensagem</label>
+              <textarea class="mc-list-email-body" rows="4">Olá ${esc(r.nome || '')},
+
+</textarea>
+            </div>
+            <div class="admin-form-group">
+              <label>Anexo opcional (PDF ou imagem, até 8 MB)</label>
+              <input type="file" class="mc-list-email-file" accept=".pdf,image/jpeg,image/png,image/webp,image/gif,application/pdf">
+            </div>
+            <button type="button" class="admin-btn admin-btn-sm" data-mc-list-action="email-send" data-mc-id="${r.id}">Enviar agora</button>
+          </div>
+          <p class="admin-hint mc-reg-status" id="mc-list-status-${r.id}" hidden></p>
+        </article>`;
+      })
       .join('');
 
     return `
       <h1>Masterclass EFT Avatar — Inscrições</h1>
       <p class="admin-hint">Formação: EFT Avatar em Emergências Humanitárias · página pública <a href="/masterclass-eft-avatar" target="_blank" rel="noopener">/masterclass-eft-avatar</a></p>
       ${cards}
+      ${flash}
       <div class="admin-filters">
         <select id="mc-filter-status">
           <option value="">Todos os status</option>
@@ -709,11 +765,8 @@
         <input type="search" id="mc-filter-q" placeholder="Buscar nome, e-mail, WhatsApp, profissão ou carteirinha" value="${esc(q)}">
         <button type="button" class="admin-btn admin-btn-sm" id="mc-filter-apply">Filtrar</button>
       </div>
-      <div class="admin-table-wrap">
-        <table class="admin-table">
-          <thead><tr><th>ID</th><th>Data</th><th>Nome</th><th>E-mail</th><th>WhatsApp</th><th>Relação</th><th>Status</th></tr></thead>
-          <tbody>${rows || '<tr><td colspan="7">Nenhuma inscrição encontrada</td></tr>'}</tbody>
-        </table>
+      <div class="mc-reg-list">
+        ${cardsList || '<p class="admin-hint">Nenhuma inscrição encontrada.</p>'}
       </div>`;
   }
 
@@ -857,6 +910,19 @@
   }
 
   function bindEvents() {
+    function readFileAsBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const result = String(reader.result || '');
+          const base64 = result.includes(',') ? result.split(',')[1] : result;
+          resolve(base64);
+        };
+        reader.onerror = () => reject(new Error('file_read_failed'));
+        reader.readAsDataURL(file);
+      });
+    }
+
     document.querySelector('[data-goto="intakes"]')?.addEventListener('click', () => {
       state.tab = 'intakes';
       document.querySelector('[data-tab="intakes"]')?.classList.add('active');
@@ -864,10 +930,161 @@
       render();
     });
 
-    document.querySelectorAll('[data-masterclass-id]').forEach((tr) => {
-      tr.addEventListener('click', () => {
-        state.selectedMasterclassId = Number(tr.dataset.masterclassId);
-        render();
+    document.querySelectorAll('[data-mc-list-action]').forEach((el) => {
+      el.addEventListener('click', async (ev) => {
+        ev.preventDefault();
+        ev.stopPropagation();
+        const id = Number(el.dataset.mcId);
+        const action = el.dataset.mcListAction;
+        if (!id || !action) return;
+
+        const setListStatus = (message, isError) => {
+          const statusEl = document.getElementById('mc-list-status-' + id);
+          if (statusEl) {
+            statusEl.hidden = !message;
+            statusEl.textContent = message || '';
+            statusEl.style.color = isError ? '#b42318' : '';
+          }
+          state.masterclassFlash = message ? { message, error: !!isError } : null;
+        };
+
+        if (action === 'detail') {
+          state.selectedMasterclassId = id;
+          state.masterclassFlash = null;
+          render();
+          return;
+        }
+
+        if (action === 'email-toggle') {
+          const form = document.getElementById('mc-list-email-' + id);
+          if (form) form.hidden = !form.hidden;
+          return;
+        }
+
+        if (action === 'approve') {
+          el.disabled = true;
+          setListStatus('Aprovando e enviando e-mail de confirmação…');
+          try {
+            const data = await api(
+              '/api/admin/masterclass-registrations/' + encodeURIComponent(id) + '/approve',
+              { method: 'POST', body: JSON.stringify({}) }
+            );
+            if (!data?.ok) {
+              setListStatus('Não foi possível aprovar: ' + (data?.error || 'erro'), true);
+              return;
+            }
+            let msg = `#${id} aprovada.`;
+            if (data.emailSent) msg += ' E-mail enviado.';
+            else if (data.emailSkipped) msg += ' E-mail já havia sido enviado.';
+            else if (data.emailError) msg += ' Status ok, e-mail falhou: ' + data.emailError;
+            state.masterclassFlash = { message: msg, error: !!data.emailError };
+            await render();
+          } catch (err) {
+            setListStatus('Erro ao aprovar: ' + (err.message || 'falha'), true);
+          } finally {
+            el.disabled = false;
+          }
+          return;
+        }
+
+        if (action === 'reject') {
+          if (!window.confirm('Confirmar recusa desta inscrição?')) return;
+          el.disabled = true;
+          setListStatus('Recusando inscrição…');
+          try {
+            const data = await api(
+              '/api/admin/masterclass-registrations/' + encodeURIComponent(id) + '/reject',
+              { method: 'POST', body: JSON.stringify({}) }
+            );
+            if (!data?.ok) {
+              setListStatus('Não foi possível recusar: ' + (data?.error || 'erro'), true);
+              return;
+            }
+            state.masterclassFlash = { message: `#${id} marcada como recusada.`, error: false };
+            await render();
+          } catch (err) {
+            setListStatus('Erro ao recusar: ' + (err.message || 'falha'), true);
+          } finally {
+            el.disabled = false;
+          }
+          return;
+        }
+
+        if (action === 'doctor8') {
+          el.disabled = true;
+          setListStatus('Consultando Doctor8…');
+          try {
+            const data = await api(
+              '/api/admin/masterclass-registrations/' + encodeURIComponent(id) + '/doctor8-lookup',
+              { method: 'POST', body: JSON.stringify({}) }
+            );
+            if (data?.error === 'not_found') {
+              setListStatus('Inscrição não encontrada.', true);
+              return;
+            }
+            const label = DOCTOR8_STATUS_LABELS[data?.status] || data?.status || 'consulta concluída';
+            const msg =
+              data?.ok === false && data?.error
+                ? `#${id} Doctor8: ` + (DOCTOR8_STATUS_LABELS[data.status] || data.error)
+                : `#${id} Doctor8: ` + label + (data?.user ? ' (perfil disponível)' : '');
+            state.masterclassFlash = { message: msg, error: data?.ok === false };
+            await render();
+          } catch (err) {
+            setListStatus('Erro Doctor8: ' + (err.message || 'falha'), true);
+          } finally {
+            el.disabled = false;
+          }
+          return;
+        }
+
+        if (action === 'email-send') {
+          const card = document.querySelector(`[data-masterclass-card="${id}"]`);
+          const subject = card?.querySelector('.mc-list-email-subject')?.value || '';
+          const text = card?.querySelector('.mc-list-email-body')?.value || '';
+          const fileInput = card?.querySelector('.mc-list-email-file');
+          const file = fileInput?.files?.[0];
+          el.disabled = true;
+          setListStatus('Enviando e-mail…');
+          try {
+            let attachment = null;
+            if (file) {
+              if (file.size > 8 * 1024 * 1024) {
+                setListStatus('Anexo acima de 8 MB.', true);
+                return;
+              }
+              const contentBase64 = await readFileAsBase64(file);
+              attachment = {
+                filename: file.name,
+                contentType: file.type || 'application/octet-stream',
+                contentBase64,
+              };
+            }
+            const data = await api(
+              '/api/admin/masterclass-registrations/' + encodeURIComponent(id) + '/send-email',
+              {
+                method: 'POST',
+                body: JSON.stringify({ subject, text, attachment }),
+              }
+            );
+            if (!data?.ok) {
+              const map = {
+                email_body_required: 'Informe assunto e mensagem.',
+                attachment_type: 'Tipo de anexo não permitido (use PDF ou imagem).',
+                attachment_too_large: 'Anexo acima de 8 MB.',
+                email_not_configured: 'E-mail não configurado no servidor (Resend/SMTP).',
+                email_failed: 'Falha ao enviar e-mail.',
+              };
+              setListStatus(map[data?.error] || data?.error || 'Erro ao enviar', true);
+              return;
+            }
+            state.masterclassFlash = { message: `#${id} e-mail enviado.`, error: false };
+            await render();
+          } catch (err) {
+            setListStatus('Erro ao enviar e-mail: ' + (err.message || 'falha'), true);
+          } finally {
+            el.disabled = false;
+          }
+        }
       });
     });
 
@@ -902,19 +1119,6 @@
       el.hidden = !message;
       el.textContent = message || '';
       el.style.color = isError ? '#b42318' : '';
-    }
-
-    function readFileAsBase64(file) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => {
-          const result = String(reader.result || '');
-          const base64 = result.includes(',') ? result.split(',')[1] : result;
-          resolve(base64);
-        };
-        reader.onerror = () => reject(new Error('file_read_failed'));
-        reader.readAsDataURL(file);
-      });
     }
 
     document.getElementById('mc-approve')?.addEventListener('click', async () => {
