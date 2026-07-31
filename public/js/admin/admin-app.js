@@ -339,6 +339,15 @@
     }
   }
 
+  function doctor8ApprovalLabel(status, approved, documentsVerified) {
+    if (status === 'approved' || approved === true || documentsVerified === true) {
+      return 'Aprovado no admin (documento conferido)';
+    }
+    if (status === 'pending') return 'Pendente de aprovação no admin';
+    if (status === 'rejected') return 'Rejeitado no admin Doctor8';
+    return 'Aprovação não informada pela API';
+  }
+
   function formatDoctor8ResultMessage(data, id) {
     const email = data?.email || data?.registration?.email || '';
     const lines = [];
@@ -359,6 +368,16 @@
     if (data?.registered) {
       lines.push(`#${id} — Conta encontrada na Doctor8`);
       lines.push(`E-mail consultado: ${email || '—'}`);
+      lines.push('');
+      lines.push(
+        'Aprovação no admin: ' +
+          doctor8ApprovalLabel(data.approvalStatus, data.approved, data.documentsVerified)
+      );
+      if (data.documentsVerified === true) {
+        lines.push('Documentos: conferidos');
+      } else if (data.documentsVerified === false) {
+        lines.push('Documentos: ainda não conferidos');
+      }
       if (data.user) {
         lines.push('');
         lines.push('Dados do perfil:');
@@ -366,15 +385,18 @@
         if (data.user.email) lines.push(`E-mail: ${data.user.email}`);
         if (data.user.phone) lines.push(`Telefone: ${data.user.phone}`);
         if (data.user.role) lines.push(`Papel: ${data.user.role}`);
-        if (data.user.status) lines.push(`Status: ${data.user.status}`);
+        if (data.user.status) lines.push(`Status conta: ${data.user.status}`);
         if (data.user.createdAt) lines.push(`Criado em: ${data.user.createdAt}`);
         if (data.user.profileUrl) lines.push(`Perfil: ${data.user.profileUrl}`);
       } else {
         lines.push('');
+        lines.push('Perfil detalhado (nome/telefone) ainda não veio na resposta da API.');
+      }
+      if (data.approvalStatus === 'unknown' || data.approvalStatus == null) {
+        lines.push('');
         lines.push(
-          'A API atual confirma o cadastro do e-mail, mas ainda não devolve o perfil completo (nome, telefone, etc.).'
+          'Para exibir se está aprovada no admin Doctor8, a API precisa enviar approved/approvalStatus/documentsVerified.'
         );
-        lines.push('Quando a Doctor8 publicar /api/integrations/lookup-user, esses dados aparecem aqui.');
       }
       return { message: lines.join('\n'), error: false };
     }
@@ -801,6 +823,19 @@
               : 'nova';
         const d8Label =
           DOCTOR8_STATUS_LABELS[r.doctor8_status] || r.doctor8_status || 'não consultado';
+        const d8Approval = doctor8ApprovalLabel(
+          r.doctor8_approval_status,
+          !!r.doctor8_approved,
+          !!r.doctor8_documents_verified
+        );
+        let storedProfile = null;
+        if (r.doctor8_profile_json) {
+          try {
+            storedProfile = JSON.parse(r.doctor8_profile_json);
+          } catch {
+            storedProfile = null;
+          }
+        }
 
         return `<article class="mc-reg-card" data-masterclass-card="${r.id}">
           <div class="mc-reg-card-top">
@@ -808,6 +843,17 @@
               <span class="mc-reg-id">#${r.id}</span>
               <span class="mc-reg-date">${esc(fmtTs(r.created_at))}</span>
               <span class="badge badge-${esc(badgeClass)}">${esc(statusLabels[r.status] || r.status)}</span>
+              ${
+                r.doctor8_checked_at
+                  ? `<span class="badge ${r.doctor8_registered ? (r.doctor8_approved ? 'badge-em_consulta' : 'badge-em_triagem') : 'badge-nova'}">${
+                      r.doctor8_registered
+                        ? r.doctor8_approved
+                          ? 'Doctor8 aprovado'
+                          : 'Doctor8 cadastrado'
+                        : 'Doctor8 sem conta'
+                    }</span>`
+                  : ''
+              }
             </div>
             <h3 class="mc-reg-name">${esc(r.nome)}</h3>
             <div class="mc-reg-grid">
@@ -816,7 +862,18 @@
               <p><strong>Profissão:</strong> ${esc(r.profissao || '—')}</p>
               <p><strong>Relação:</strong> ${esc(relacaoLabels[r.relacao] || r.relacao)}</p>
               <p><strong>Código:</strong> ${esc(r.codigo_carteirinha || '—')}</p>
-              <p><strong>Doctor8:</strong> ${r.doctor8_registered ? 'Cadastrado' : 'Não'} · ${esc(d8Label)}</p>
+              <p><strong>Doctor8:</strong> ${r.doctor8_registered ? 'Cadastrado' : r.doctor8_checked_at ? 'Não cadastrado' : 'Não consultado'} · ${esc(d8Label)}</p>
+              <p><strong>Aprovação Doctor8:</strong> ${esc(r.doctor8_checked_at ? d8Approval : '—')}</p>
+              ${
+                storedProfile?.name
+                  ? `<p><strong>Nome na Doctor8:</strong> ${esc(storedProfile.name)}</p>`
+                  : ''
+              }
+              ${
+                storedProfile?.phone
+                  ? `<p><strong>Telefone Doctor8:</strong> ${esc(storedProfile.phone)}</p>`
+                  : ''
+              }
             </div>
             ${r.mensagem ? `<p class="mc-reg-msg"><strong>Mensagem:</strong> ${esc(r.mensagem)}</p>` : ''}
           </div>
@@ -965,8 +1022,18 @@
 
         <div id="mc-doctor8-panel" style="margin-top:1rem">
           <h3>Doctor8</h3>
-          <p><strong>Status:</strong> ${esc(d8StatusLabel)}</p>
+          <p><strong>Status consulta:</strong> ${esc(d8StatusLabel)}</p>
           <p><strong>Cadastrado:</strong> ${r.doctor8_registered ? 'Sim' : 'Não'}</p>
+          <p><strong>Aprovação no admin:</strong> ${esc(
+            doctor8ApprovalLabel(
+              r.doctor8_approval_status,
+              !!r.doctor8_approved,
+              !!r.doctor8_documents_verified
+            )
+          )}</p>
+          <p><strong>Documentos conferidos:</strong> ${
+            r.doctor8_documents_verified ? 'Sim' : r.doctor8_checked_at ? 'Não / não informado' : '—'
+          }</p>
           <p><strong>Última consulta:</strong> ${esc(fmtTs(r.doctor8_checked_at) || '—')}</p>
           ${
             storedProfile
@@ -977,6 +1044,13 @@
                   <p>Telefone: ${esc(storedProfile.phone || '—')}</p>
                   <p>Papel: ${esc(storedProfile.role || '—')}</p>
                   <p>Status: ${esc(storedProfile.status || '—')}</p>
+                  <p>Aprovação: ${esc(
+                    doctor8ApprovalLabel(
+                      storedProfile.approvalStatus || r.doctor8_approval_status,
+                      storedProfile.approved,
+                      storedProfile.documentsVerified
+                    )
+                  )}</p>
                   <p>Criado em: ${esc(storedProfile.createdAt || '—')}</p>
                   ${
                     storedProfile.profileUrl
@@ -987,7 +1061,7 @@
               : `<p class="admin-hint">${
                   data.doctor8ApiConfigured === false
                     ? 'API Doctor8 não configurada neste ambiente.'
-                    : 'Consulta disponível. Se a API rica ainda não estiver no Doctor8, o resultado será apenas sim/não.'
+                    : 'Clique em Verificar Doctor8 para consultar cadastro, aprovação e documentos.'
                 }</p>`
           }
         </div>
