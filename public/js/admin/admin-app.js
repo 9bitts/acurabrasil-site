@@ -129,6 +129,7 @@
     templates: [],
     scheduleWeekStart: startOfWeek(new Date()),
     selectedProtocolo: null,
+    masterclassFlash: null,
   };
 
   async function api(path, opts = {}) {
@@ -729,10 +730,22 @@
       `Olá ${r.nome || ''}! Sua inscrição na Masterclass EFT Avatar foi confirmada. Entre no grupo do WhatsApp: ${groupUrl || '[colar link do grupo]'}`
     );
     const inviteLink = wa ? `https://wa.me/${wa}?text=${inviteMsg}` : '#';
+    const doctor8Profile = data.doctor8Profile || null;
+    let storedProfile = doctor8Profile;
+    if (!storedProfile && r.doctor8_profile_json) {
+      try {
+        storedProfile = JSON.parse(r.doctor8_profile_json);
+      } catch {
+        storedProfile = null;
+      }
+    }
 
     const statusOptions = Object.entries(statusLabels)
       .map(([k, v]) => `<option value="${k}" ${r.status === k ? 'selected' : ''}>${esc(v)}</option>`)
       .join('');
+
+    const d8StatusLabel =
+      DOCTOR8_STATUS_LABELS[r.doctor8_status] || r.doctor8_status || 'Ainda não consultado';
 
     return `
       <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" id="mc-back">← Voltar à lista</button>
@@ -745,11 +758,14 @@
         <p><strong>Aluno(a) Meire Yamaguchi:</strong> ${esc(alunoMeireLabels[r.aluno_meire] || r.aluno_meire || '—')}</p>
         <p><strong>Relação com a ACURA:</strong> ${esc(relacaoLabels[r.relacao] || r.relacao)}</p>
         <p><strong>Código (carteirinha ACURA ou EFTAVATAR):</strong> ${esc(r.codigo_carteirinha || '—')}</p>
+        <p><strong>Status atual:</strong> ${esc(statusLabels[r.status] || r.status)}</p>
         <p><strong>Termo confidencialidade:</strong> ${r.termo_confidencialidade ? 'Sim' : 'Não'}</p>
         <p><strong>Termo imagem/voz:</strong> ${r.termo_imagem ? 'Sim' : 'Não'}</p>
         <p><strong>Versão dos termos:</strong> ${esc(r.termos_versao || '—')}</p>
         <p><strong>Aceite dos termos em:</strong> ${esc(fmtTs(r.termos_aceitos_em) || '—')}</p>
         <p><strong>IP do aceite:</strong> ${esc(r.ip || '—')}</p>
+        <p><strong>E-mail de confirmação:</strong> ${esc(fmtTs(r.confirmation_email_sent_at) || 'Não enviado')}</p>
+        <p><strong>Último e-mail:</strong> ${esc(fmtTs(r.last_email_sent_at) || '—')}</p>
         <p><strong>Criado em:</strong> ${esc(fmtTs(r.created_at))}</p>
         <p><strong>Atualizado em:</strong> ${esc(fmtTs(r.updated_at))}</p>
         <p><strong>Mensagem:</strong></p>
@@ -759,14 +775,73 @@
             ? '<p class="admin-hint"><strong>Atenção:</strong> inscrição de novo voluntário — aprovar após análise da demanda.</p>'
             : ''
         }
-        <p class="admin-hint"><strong>Fluxo WhatsApp:</strong> só envie o link do grupo depois de confirmar a inscrição.</p>
         ${
           groupUrl
-            ? `<p><strong>Link do grupo:</strong> <a href="${esc(groupUrl)}" target="_blank" rel="noopener">${esc(groupUrl)}</a></p>
-               <p><a class="admin-btn admin-btn-sm" href="${esc(inviteLink)}" target="_blank" rel="noopener">Enviar convite do grupo no WhatsApp</a></p>`
-            : '<p class="admin-hint">Configure <code>MASTERCLASS_EFT_WHATSAPP_GROUP_URL</code> no servidor para exibir o link do grupo aqui.</p>'
+            ? `<p><strong>Link do grupo:</strong> <a href="${esc(groupUrl)}" target="_blank" rel="noopener">${esc(groupUrl)}</a></p>`
+            : '<p class="admin-hint">Configure <code>MASTERCLASS_EFT_WHATSAPP_GROUP_URL</code> no servidor para incluir o link do grupo no e-mail de confirmação.</p>'
         }
       </div>
+
+      <div class="admin-panel">
+        <h2>Ações</h2>
+        <p id="mc-action-status" class="admin-hint" ${state.masterclassFlash ? '' : 'hidden'} style="${state.masterclassFlash?.error ? 'color:#b42318' : ''}">${esc(state.masterclassFlash?.message || '')}</p>
+        <div class="admin-actions-row" style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1rem">
+          <button type="button" class="admin-btn admin-btn-sm" id="mc-approve">Aprovar</button>
+          <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" id="mc-reject">Não aprovar</button>
+          <a class="admin-btn admin-btn-sm admin-btn-secondary" href="${esc(inviteLink)}" target="_blank" rel="noopener" id="mc-whatsapp">Falar no WhatsApp</a>
+          <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" id="mc-email-toggle">Enviar e-mail</button>
+          <button type="button" class="admin-btn admin-btn-sm admin-btn-secondary" id="mc-doctor8">Verificar Doctor8</button>
+        </div>
+
+        <div id="mc-email-form" hidden>
+          <h3>Enviar e-mail</h3>
+          <div class="admin-form-group">
+            <label for="mc-email-subject">Assunto</label>
+            <input type="text" id="mc-email-subject" maxlength="200" value="Masterclass EFT Avatar — ACURA Brasil">
+          </div>
+          <div class="admin-form-group">
+            <label for="mc-email-body">Mensagem</label>
+            <textarea id="mc-email-body" rows="6">Olá ${esc(r.nome || '')},
+
+</textarea>
+          </div>
+          <div class="admin-form-group">
+            <label for="mc-email-file">Anexo opcional (PDF ou imagem, até 8 MB)</label>
+            <input type="file" id="mc-email-file" accept=".pdf,image/jpeg,image/png,image/webp,image/gif,application/pdf">
+          </div>
+          <button type="button" class="admin-btn admin-btn-sm" id="mc-email-send">Enviar agora</button>
+        </div>
+
+        <div id="mc-doctor8-panel" style="margin-top:1rem">
+          <h3>Doctor8</h3>
+          <p><strong>Status:</strong> ${esc(d8StatusLabel)}</p>
+          <p><strong>Cadastrado:</strong> ${r.doctor8_registered ? 'Sim' : 'Não'}</p>
+          <p><strong>Última consulta:</strong> ${esc(fmtTs(r.doctor8_checked_at) || '—')}</p>
+          ${
+            storedProfile
+              ? `<div class="admin-hint" style="margin-top:0.75rem">
+                  <p><strong>Perfil:</strong></p>
+                  <p>Nome: ${esc(storedProfile.name || '—')}</p>
+                  <p>E-mail: ${esc(storedProfile.email || '—')}</p>
+                  <p>Telefone: ${esc(storedProfile.phone || '—')}</p>
+                  <p>Papel: ${esc(storedProfile.role || '—')}</p>
+                  <p>Status: ${esc(storedProfile.status || '—')}</p>
+                  <p>Criado em: ${esc(storedProfile.createdAt || '—')}</p>
+                  ${
+                    storedProfile.profileUrl
+                      ? `<p><a href="${esc(storedProfile.profileUrl)}" target="_blank" rel="noopener">Abrir no Doctor8</a></p>`
+                      : ''
+                  }
+                </div>`
+              : `<p class="admin-hint">${
+                  data.doctor8ApiConfigured === false
+                    ? 'API Doctor8 não configurada neste ambiente.'
+                    : 'Consulta disponível. Se a API rica ainda não estiver no Doctor8, o resultado será apenas sim/não.'
+                }</p>`
+          }
+        </div>
+      </div>
+
       <div class="admin-panel">
         <h2>Atualizar status</h2>
         <div class="admin-form-group">
@@ -798,6 +873,7 @@
 
     document.getElementById('mc-back')?.addEventListener('click', () => {
       state.selectedMasterclassId = null;
+      state.masterclassFlash = null;
       render();
     });
 
@@ -819,6 +895,168 @@
       render();
     });
 
+    function setMcActionStatus(message, isError) {
+      state.masterclassFlash = message ? { message, error: !!isError } : null;
+      const el = document.getElementById('mc-action-status');
+      if (!el) return;
+      el.hidden = !message;
+      el.textContent = message || '';
+      el.style.color = isError ? '#b42318' : '';
+    }
+
+    function readFileAsBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const result = String(reader.result || '');
+          const base64 = result.includes(',') ? result.split(',')[1] : result;
+          resolve(base64);
+        };
+        reader.onerror = () => reject(new Error('file_read_failed'));
+        reader.readAsDataURL(file);
+      });
+    }
+
+    document.getElementById('mc-approve')?.addEventListener('click', async () => {
+      const id = state.selectedMasterclassId;
+      const btn = document.getElementById('mc-approve');
+      if (btn) btn.disabled = true;
+      setMcActionStatus('Aprovando e enviando e-mail de confirmação…');
+      try {
+        const data = await api(
+          '/api/admin/masterclass-registrations/' + encodeURIComponent(id) + '/approve',
+          { method: 'POST', body: JSON.stringify({}) }
+        );
+        if (!data?.ok) {
+          setMcActionStatus('Não foi possível aprovar: ' + (data?.error || 'erro'), true);
+          return;
+        }
+        let msg = 'Inscrição aprovada.';
+        if (data.emailSent) msg += ' E-mail de confirmação enviado.';
+        else if (data.emailSkipped) msg += ' E-mail de confirmação já havia sido enviado.';
+        else if (data.emailError) msg += ' Status atualizado, mas o e-mail falhou: ' + data.emailError;
+        state.masterclassFlash = { message: msg, error: !!data.emailError };
+        await render();
+      } catch (err) {
+        setMcActionStatus('Erro ao aprovar: ' + (err.message || 'falha'), true);
+      } finally {
+        if (btn) btn.disabled = false;
+      }
+    });
+
+    document.getElementById('mc-reject')?.addEventListener('click', async () => {
+      const id = state.selectedMasterclassId;
+      if (!window.confirm('Confirmar recusa desta inscrição?')) return;
+      const btn = document.getElementById('mc-reject');
+      if (btn) btn.disabled = true;
+      setMcActionStatus('Recusando inscrição…');
+      try {
+        const notes = document.getElementById('mc-notes')?.value;
+        const data = await api(
+          '/api/admin/masterclass-registrations/' + encodeURIComponent(id) + '/reject',
+          { method: 'POST', body: JSON.stringify({ admin_notes: notes }) }
+        );
+        if (!data?.ok) {
+          setMcActionStatus('Não foi possível recusar: ' + (data?.error || 'erro'), true);
+          return;
+        }
+        state.masterclassFlash = { message: 'Inscrição marcada como recusada.', error: false };
+        await render();
+      } catch (err) {
+        setMcActionStatus('Erro ao recusar: ' + (err.message || 'falha'), true);
+      } finally {
+        if (btn) btn.disabled = false;
+      }
+    });
+
+    document.getElementById('mc-email-toggle')?.addEventListener('click', () => {
+      const form = document.getElementById('mc-email-form');
+      if (!form) return;
+      form.hidden = !form.hidden;
+    });
+
+    document.getElementById('mc-email-send')?.addEventListener('click', async () => {
+      const id = state.selectedMasterclassId;
+      const btn = document.getElementById('mc-email-send');
+      const subject = document.getElementById('mc-email-subject')?.value || '';
+      const text = document.getElementById('mc-email-body')?.value || '';
+      const fileInput = document.getElementById('mc-email-file');
+      const file = fileInput?.files?.[0];
+
+      if (btn) btn.disabled = true;
+      setMcActionStatus('Enviando e-mail…');
+      try {
+        let attachment = null;
+        if (file) {
+          if (file.size > 8 * 1024 * 1024) {
+            setMcActionStatus('Anexo acima de 8 MB.', true);
+            return;
+          }
+          const contentBase64 = await readFileAsBase64(file);
+          attachment = {
+            filename: file.name,
+            contentType: file.type || 'application/octet-stream',
+            contentBase64,
+          };
+        }
+        const data = await api(
+          '/api/admin/masterclass-registrations/' + encodeURIComponent(id) + '/send-email',
+          {
+            method: 'POST',
+            body: JSON.stringify({ subject, text, attachment }),
+          }
+        );
+        if (!data?.ok) {
+          const map = {
+            email_body_required: 'Informe assunto e mensagem.',
+            attachment_type: 'Tipo de anexo não permitido (use PDF ou imagem).',
+            attachment_too_large: 'Anexo acima de 8 MB.',
+            email_not_configured: 'E-mail não configurado no servidor (Resend/SMTP).',
+            email_failed: 'Falha ao enviar e-mail.',
+          };
+          setMcActionStatus(map[data?.error] || data?.error || 'Erro ao enviar', true);
+          return;
+        }
+        state.masterclassFlash = { message: 'E-mail enviado.', error: false };
+        if (fileInput) fileInput.value = '';
+        await render();
+      } catch (err) {
+        setMcActionStatus('Erro ao enviar e-mail: ' + (err.message || 'falha'), true);
+      } finally {
+        if (btn) btn.disabled = false;
+      }
+    });
+
+    document.getElementById('mc-doctor8')?.addEventListener('click', async () => {
+      const id = state.selectedMasterclassId;
+      const btn = document.getElementById('mc-doctor8');
+      if (btn) btn.disabled = true;
+      setMcActionStatus('Consultando Doctor8…');
+      try {
+        const data = await api(
+          '/api/admin/masterclass-registrations/' + encodeURIComponent(id) + '/doctor8-lookup',
+          { method: 'POST', body: JSON.stringify({}) }
+        );
+        if (data?.error === 'not_found') {
+          setMcActionStatus('Inscrição não encontrada.', true);
+          return;
+        }
+        const label = DOCTOR8_STATUS_LABELS[data?.status] || data?.status || 'consulta concluída';
+        const msg =
+          data?.ok === false && data?.error
+            ? 'Doctor8: ' + (DOCTOR8_STATUS_LABELS[data.status] || data.error)
+            : 'Doctor8: ' + label + (data?.user ? ' (perfil disponível)' : '');
+        state.masterclassFlash = {
+          message: msg,
+          error: data?.ok === false,
+        };
+        await render();
+      } catch (err) {
+        setMcActionStatus('Erro Doctor8: ' + (err.message || 'falha'), true);
+      } finally {
+        if (btn) btn.disabled = false;
+      }
+    });
     document.querySelectorAll('[data-goto="divulgacao"]').forEach((el) => {
       el.addEventListener('click', () => {
         state.tab = 'divulgacao';

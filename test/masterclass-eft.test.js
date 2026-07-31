@@ -7,6 +7,13 @@ const path = require('path');
 const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'acura-mc-'));
 const dbPath = path.join(tmpDir, 'test.db');
 process.env.DATA_PATH = dbPath;
+delete process.env.RESEND_API_KEY;
+delete process.env.SMTP_HOST;
+delete process.env.SMTP_USER;
+delete process.env.SMTP_PASS;
+delete process.env.DOCTOR8_API_BASE_URL;
+delete process.env.DOCTOR8_API_KEY;
+process.env.MASTERCLASS_EFT_WHATSAPP_GROUP_URL = 'https://chat.whatsapp.com/TestGroupLink';
 
 const { closeDbForTests, getDb } = require('../lib/db');
 const {
@@ -14,6 +21,12 @@ const {
   handleMasterclassRegister,
   listRegistrations,
   updateRegistration,
+  approveRegistration,
+  rejectRegistration,
+  sendManualEmail,
+  validateAttachment,
+  buildConfirmationEmail,
+  lookupDoctor8ForRegistration,
 } = require('../lib/masterclass-eft');
 
 function mockRes() {
@@ -158,5 +171,85 @@ describe('masterclass EFT registration', () => {
     await handleMasterclassRegister({ ip: '127.0.0.2', body }, res);
     assert.equal(res.statusCode, 409);
     assert.equal(res.body.error, 'already_registered');
+  });
+
+  it('validates attachments', () => {
+    const badType = validateAttachment({
+      filename: 'x.exe',
+      contentType: 'application/octet-stream',
+      contentBase64: Buffer.from('hi').toString('base64'),
+    });
+    assert.equal(badType.ok, false);
+    assert.equal(badType.error, 'attachment_type');
+
+    const ok = validateAttachment({
+      filename: 'certificado.pdf',
+      contentType: 'application/pdf',
+      contentBase64: Buffer.from('%PDF-1.4').toString('base64'),
+    });
+    assert.equal(ok.ok, true);
+    assert.equal(ok.attachment.filename, 'certificado.pdf');
+  });
+
+  it('builds confirmation email with group link', () => {
+    const mail = buildConfirmationEmail(
+      { nome: 'Ana' },
+      'https://chat.whatsapp.com/TestGroupLink'
+    );
+    assert.match(mail.subject, /confirmada/i);
+    assert.match(mail.text, /Ana/);
+    assert.match(mail.text, /chat\.whatsapp\.com\/TestGroupLink/);
+  });
+
+  it('approves and rejects registrations', async () => {
+    const list = listRegistrations({ q: 'joao.mc@example.com' });
+    assert.equal(list.length, 1);
+    const id = list[0].id;
+
+    const approved = await approveRegistration(id);
+    assert.equal(approved.ok, true);
+    assert.equal(approved.registration.status, 'confirmada');
+    // No Resend/SMTP in test env → emailError expected, status still confirmed
+    assert.equal(approved.emailSent, false);
+    assert.ok(approved.emailError);
+    assert.equal(approved.emailSkipped, false);
+
+    // Without a successful send, confirmation_email_sent_at stays empty → retry allowed
+    const second = await approveRegistration(id);
+    assert.equal(second.ok, true);
+    assert.equal(second.registration.status, 'confirmada');
+    assert.equal(second.emailSkipped, false);
+    assert.ok(second.emailError);
+
+    const rejected = await rejectRegistration(id, { admin_notes: 'Fora do perfil' });
+    assert.equal(rejected.ok, true);
+    assert.equal(rejected.registration.status, 'recusada');
+    assert.equal(rejected.registration.admin_notes, 'Fora do perfil');
+  });
+
+  it('sendManualEmail requires configured provider', async () => {
+    const list = listRegistrations({ q: 'joao.mc@example.com' });
+    const id = list[0].id;
+    const result = await sendManualEmail(id, {
+      subject: 'Teste',
+      text: 'Olá, mensagem de teste.',
+      attachment: {
+        filename: 'nota.pdf',
+        contentType: 'application/pdf',
+        contentBase64: Buffer.from('%PDF').toString('base64'),
+      },
+    });
+    assert.equal(result.ok, false);
+    assert.equal(result.error, 'email_not_configured');
+  });
+
+  it('doctor8 lookup without config returns not_configured', async () => {
+    const list = listRegistrations({ q: 'joao.mc@example.com' });
+    const id = list[0].id;
+    const result = await lookupDoctor8ForRegistration(id);
+    assert.equal(result.configured, false);
+    assert.equal(result.status, 'not_configured');
+    assert.ok(result.registration.doctor8_checked_at);
+    assert.equal(result.registration.doctor8_status, 'not_configured');
   });
 });

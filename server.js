@@ -78,7 +78,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.json({ limit: '256kb' }));
+// 10mb allows admin masterclass e-mail attachments (PDF/certificate); public payloads stay small.
+app.use(express.json({ limit: '10mb' }));
 app.use(compression());
 
 app.get('/api/site-config', (req, res) => {
