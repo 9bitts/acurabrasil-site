@@ -581,36 +581,72 @@
 
 .mc-eft .mc-extensao-info {
   max-width: 960px;
-  margin: 1.75rem auto 0;
+  margin: 2.75rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(15, 61, 82, 0.12);
   display: grid;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 @media (min-width: 768px) {
   .mc-eft .mc-extensao-info {
     grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
   }
 }
 
 .mc-eft .mc-extensao-info-block {
-  background: var(--mc-note);
-  border: 1px solid var(--mc-note-border);
-  border-radius: var(--radius);
-  padding: 1.15rem 1.25rem;
+  background: var(--branco);
+  border: 1px solid rgba(15, 61, 82, 0.1);
+  border-left: 4px solid var(--mc-teal);
+  border-radius: 12px;
+  padding: 1.5rem 1.5rem 1.4rem;
   color: var(--texto-escuro);
-  font-size: 0.95rem;
-  line-height: 1.55;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  box-shadow: 0 8px 24px rgba(15, 61, 82, 0.06);
 }
 
 .mc-eft .mc-extensao-info-block strong {
   display: block;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.65rem;
   color: var(--mc-deep);
-  font-size: 1rem;
+  font-size: 1.05rem;
+  line-height: 1.35;
 }
 
 .mc-eft .mc-extensao-info-block p {
   margin: 0;
+}
+
+.mc-eft .mc-extensao-info-block p + p {
+  margin-top: 0.65rem;
+}
+
+.mc-eft .mc-extensao-dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.mc-eft .mc-extensao-dates span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4.25rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 8px;
+  background: rgba(22, 78, 108, 0.08);
+  color: var(--mc-deep);
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+}
+
+.mc-eft .mc-extensao-hint {
+  color: var(--mc-muted);
+  font-size: 0.92rem;
 }
 
 .mc-eft .mc-valor {
