@@ -579,6 +579,40 @@
   background: rgba(255, 255, 255, 0.08);
 }
 
+.mc-eft .mc-extensao-info {
+  max-width: 960px;
+  margin: 1.75rem auto 0;
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .mc-eft .mc-extensao-info {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.mc-eft .mc-extensao-info-block {
+  background: var(--mc-note);
+  border: 1px solid var(--mc-note-border);
+  border-radius: var(--radius);
+  padding: 1.15rem 1.25rem;
+  color: var(--texto-escuro);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.mc-eft .mc-extensao-info-block strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--mc-deep);
+  font-size: 1rem;
+}
+
+.mc-eft .mc-extensao-info-block p {
+  margin: 0;
+}
+
 .mc-eft .mc-valor {
   text-align: center;
   max-width: 520px;
