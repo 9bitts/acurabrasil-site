@@ -82,6 +82,12 @@ app.use((req, res, next) => {
 app.use(express.json({ limit: '10mb' }));
 app.use(compression());
 
+// Public JSON must never be edge/browser-cached (Safari + Cloudflare honor Cache-Control).
+app.use('/api', (req, res, next) => {
+  res.setHeader('Cache-Control', 'no-store');
+  next();
+});
+
 app.get('/api/site-config', (req, res) => {
   res.json({
     ga4MeasurementId: process.env.GA4_MEASUREMENT_ID || '',
@@ -152,7 +158,8 @@ app.get(MISSING_DOC_REDIRECTS, (req, res) => {
 app.get(['/campanhas/:slug', '/campanhas/:slug/'], (req, res, next) => {
   const slug = String(req.params.slug || '').toLowerCase();
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) return next();
-  res.setHeader('Cache-Control', 'public, max-age=0');
+  // no-cache: Safari must revalidate HTML after deploys (max-age=0 alone is too weak).
+  res.setHeader('Cache-Control', 'no-cache, must-revalidate');
   res.setHeader('Link', `<https://${CANONICAL_HOST}/campanhas/${slug}>; rel="canonical"`);
   res.sendFile(path.join(__dirname, 'public', 'campanha.html'));
 });
@@ -224,7 +231,8 @@ app.use((req, res, next) => {
 
   fs.stat(htmlPath, (err, stat) => {
     if (err || !stat.isFile()) return next();
-    res.setHeader('Cache-Control', 'public, max-age=0');
+    // no-cache: Safari must revalidate HTML after deploys (max-age=0 alone is too weak).
+    res.setHeader('Cache-Control', 'no-cache, must-revalidate');
     setHtmlCanonicalHeader(res, req.path);
     res.sendFile(htmlPath);
   });
@@ -237,12 +245,17 @@ app.use(express.static(publicPath, {
     const normalized = filePath.replace(/\\/g, '/');
     if (/\.html?$/i.test(normalized)) {
       res.setHeader('Content-Type', 'text/html; charset=utf-8');
-      res.setHeader('Cache-Control', 'public, max-age=0');
+      res.setHeader('Cache-Control', 'no-cache, must-revalidate');
     } else if (/\/js\/admin\//.test(normalized)) {
       // Admin SPA changes often; never pin with immutable (breaks new tabs like Masterclass).
+      res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+    } else if (/\/(css|js)\//.test(normalized)) {
+      // CSS/JS are edited in place (manual ?v= only). Never use immutable — Safari
+      // would keep stale bundles for up to a year and visitors would not see updates.
       res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
-    } else if (/\/(css|js|fonts|img)\//.test(normalized)) {
-      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    } else if (/\/(fonts|img)\//.test(normalized)) {
+      // Media changes less often; allow short cache but still revalidate (no immutable).
+      res.setHeader('Cache-Control', 'public, max-age=604800, must-revalidate');
     }
   },
 }));
