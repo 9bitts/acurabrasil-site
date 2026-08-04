@@ -7,6 +7,7 @@ const path = require('path');
 const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'acura-mc-'));
 const dbPath = path.join(tmpDir, 'test.db');
 process.env.DATA_PATH = dbPath;
+process.env.MASTERCLASS_EFT_REGISTRATIONS_OPEN = '1';
 delete process.env.RESEND_API_KEY;
 delete process.env.SMTP_HOST;
 delete process.env.SMTP_USER;
@@ -107,6 +108,19 @@ describe('masterclass EFT registration', () => {
     const res = validateRegistrationBody({ website: 'spam', nome: 'x' });
     assert.equal(res.ok, false);
     assert.equal(res.silent, true);
+  });
+
+  it('rejects registration when closed', async () => {
+    const previous = process.env.MASTERCLASS_EFT_REGISTRATIONS_OPEN;
+    delete process.env.MASTERCLASS_EFT_REGISTRATIONS_OPEN;
+    try {
+      const res = mockRes();
+      await handleMasterclassRegister({ ip: '127.0.0.9', body: { ...baseValid } }, res);
+      assert.equal(res.statusCode, 403);
+      assert.equal(res.body.error, 'registrations_closed');
+    } finally {
+      process.env.MASTERCLASS_EFT_REGISTRATIONS_OPEN = previous;
+    }
   });
 
   it('persists registration via handler', async () => {

@@ -23,7 +23,7 @@
     <meta name="twitter:image" content="https://www.acurabrasil.org/img/og-share.png">
     <title>Masterclass EFT Avatar em Emergências Humanitárias | ACURABRASIL</title>
     <link rel="stylesheet" href="css/style.css?v=41">
-    <link rel="stylesheet" href="css/masterclass-eft.css?v=7">
+    <link rel="stylesheet" href="css/masterclass-eft.css?v=8">
     <script src="js/analytics-config.js?v=41"></script>
     <script src="js/seo.js?v=41"></script>
     <script src="js/i18n-loader.js?v=41"></script>
@@ -68,7 +68,7 @@
                     <span class="lang-toggle-flag" aria-hidden="true">🇪🇸</span>
                     <span class="lang-toggle-label">ES</span>
                 </button>
-                <a href="#inscricao" class="btn btn-verde header-cta">Inscrição gratuita</a>
+                <a href="#inscricao" class="btn btn-verde header-cta">Inscrições encerradas</a>
             </div>
         </div>
     </header>
@@ -82,7 +82,7 @@
                 <p class="mc-hero-lead">Protocolos práticos de estabilização emocional para crises, catástrofes e traumas coletivos.</p>
                 <p class="mc-hero-text">Uma formação gratuita voltada a voluntários da ACURA Brasil que desejam ampliar seus recursos de acolhimento emocional em situações de catástrofe, perdas, deslocamentos, luto e traumas coletivos.</p>
                 <div class="mc-hero-actions">
-                    <a href="#inscricao" class="btn mc-btn-primary">Quero fazer minha inscrição gratuita</a>
+                    <a href="#inscricao" class="btn mc-btn-primary">Inscrições encerradas</a>
                     <a href="#programacao" class="btn mc-btn-ghost">Conhecer a programação</a>
                 </div>
             </div>
@@ -193,7 +193,7 @@
                 Não é necessário já dominar o EFT Avatar para participar da formação.
             </div>
             <div class="mc-cta-wrap">
-                <a href="#inscricao" class="btn btn-verde">Quero participar gratuitamente</a>
+                <a href="#inscricao" class="btn btn-verde">Inscrições encerradas</a>
             </div>
         </div>
     </section>
@@ -269,7 +269,7 @@
             </div>
 
             <div class="mc-cta-wrap">
-                <a href="#inscricao" class="btn btn-verde">Fazer minha inscrição gratuita</a>
+                <a href="#inscricao" class="btn btn-verde">Inscrições encerradas</a>
             </div>
         </div>
     </section>
@@ -364,7 +364,7 @@
                 <p>A masterclass e o certificado de participação fazem parte das ações de formação humanitária da ACURA Brasil — sem custo de inscrição.</p>
                 <p class="mc-valor-note">O certificado de extensão (práticas + prova) é opcional e tem investimento de R$&nbsp;150,00. Não há pagamento pelo site: fale com a equipe pelo WhatsApp para orientações.</p>
                 <div class="mc-cta-wrap">
-                    <a href="#inscricao" class="btn btn-verde">Garantir minha inscrição gratuita</a>
+                    <a href="#inscricao" class="btn btn-verde">Inscrições encerradas</a>
                     <a class="btn mc-btn-ghost" href="https://wa.me/491749803699?text=Ol%C3%A1!%20Tenho%20interesse%20no%20certificado%20de%20extens%C3%A3o%20da%20Masterclass%20EFT%20Avatar%20(R%24%20150)." target="_blank" rel="noopener noreferrer">Dúvidas sobre a extensão</a>
                 </div>
             </div>
@@ -393,71 +393,11 @@
 
     <section class="mc-section" id="inscricao">
         <div class="container">
-            <div class="mc-form-card">
-                <span class="mc-label mc-center">Inscrição gratuita</span>
-                <h2>Faça sua inscrição gratuita</h2>
-                <p class="mc-form-intro">Preencha seus dados para receber as orientações de acesso e participar da formação.</p>
-                <div id="mc-eft-form-status" class="form-status" role="status" aria-live="polite" hidden></div>
-                <form id="mc-eft-form" action="/api/masterclass-eft/register" method="post" novalidate>
-                    <div class="form-honeypot" aria-hidden="true">
-                        <label for="mc-website">Website</label>
-                        <input type="text" id="mc-website" name="website" tabindex="-1" autocomplete="off">
-                    </div>
-                    <div class="form-group">
-                        <label for="mc-nome">Nome completo *</label>
-                        <input type="text" id="mc-nome" name="nome" required maxlength="120" autocomplete="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="mc-email">E-mail *</label>
-                        <input type="email" id="mc-email" name="email" required maxlength="254" autocomplete="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="mc-whatsapp">WhatsApp com DDD *</label>
-                        <input type="tel" id="mc-whatsapp" name="whatsapp" required inputmode="tel" autocomplete="tel-national" placeholder="(11) 90000-0000">
-                    </div>
-                    <div class="form-group">
-                        <label for="mc-profissao">Profissão *</label>
-                        <input type="text" id="mc-profissao" name="profissao" required maxlength="120" autocomplete="organization-title" placeholder="Ex.: psicólogo(a), enfermeiro(a), estudante…">
-                    </div>
-                    <div class="form-group">
-                        <label for="mc-aluno-meire">Você é aluno(a) da Meire Yamaguchi? *</label>
-                        <select id="mc-aluno-meire" name="aluno_meire" required>
-                            <option value="">Selecione uma opção...</option>
-                            <option value="sim">Sim</option>
-                            <option value="nao">Não</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="mc-relacao">Selecione sua relação com a ACURA Brasil *</label>
-                        <select id="mc-relacao" name="relacao" required>
-                            <option value="">Selecione uma opção...</option>
-                            <option value="voluntario">Já sou voluntário(a) da ACURA Brasil</option>
-                            <option value="quero_voluntariar">Quero me voluntariar na ACURA Brasil</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="mc-codigo-carteirinha">Código da carteirinha de voluntário da ACURA ou EFTAVATAR *</label>
-                        <input type="text" id="mc-codigo-carteirinha" name="codigo_carteirinha" required maxlength="64" autocomplete="off" placeholder="Informe o código da carteirinha ACURA ou EFTAVATAR">
-                    </div>
-                    <div class="form-group">
-                        <label for="mc-mensagem">Mensagem (opcional)</label>
-                        <textarea id="mc-mensagem" name="mensagem" maxlength="2000" placeholder="Se desejar, compartilhe brevemente sua motivação ou dúvidas."></textarea>
-                    </div>
-                    <p class="mc-form-hint">Importante: após a inscrição, a equipe analisa e confirma seu cadastro. Só então você receberá o link do grupo de WhatsApp com as orientações e o acesso ao Zoom. Inscrições de novos voluntários (opção "Quero me voluntariar na ACURA Brasil") também passam por essa análise.</p>
-                    <div class="form-group form-group-consent">
-                        <input type="checkbox" id="mc-privacidade" name="privacidade" required value="on">
-                        <label for="mc-privacidade">Autorizo a ACURA Brasil a utilizar os dados informados para processar minha inscrição e enviar comunicações relacionadas a esta formação, de acordo com a <a href="/privacidade">Política de Privacidade</a>. *</label>
-                    </div>
-                    <div class="form-group form-group-consent">
-                        <input type="checkbox" id="mc-termo-confidencialidade" name="termo_confidencialidade" required value="on">
-                        <label for="mc-termo-confidencialidade">Li e concordo com o <button type="button" class="mc-term-link" data-mc-term="confidencialidade">Termo de Confidencialidade e Proteção de Conteúdo</button> da Masterclass EFT AVATAR. *</label>
-                    </div>
-                    <div class="form-group form-group-consent">
-                        <input type="checkbox" id="mc-termo-imagem" name="termo_imagem" required value="on">
-                        <label for="mc-termo-imagem">Concordo com o <button type="button" class="mc-term-link" data-mc-term="imagem">Termo de Autorização de Uso de Imagem e Voz</button> para divulgação e materiais da Masterclass EFT AVATAR. *</label>
-                    </div>
-                    <button type="submit" class="btn btn-verde" style="width:100%">Confirmar minha inscrição gratuita</button>
-                </form>
+            <div class="mc-form-card mc-form-closed" role="status">
+                <span class="mc-label mc-center">Inscrição</span>
+                <h2>Inscrições encerradas</h2>
+                <p class="mc-form-intro">As inscrições para a Masterclass EFT Avatar em Emergências Humanitárias foram encerradas. Quem já se inscreveu continua com o acompanhamento pela equipe da ACURA Brasil.</p>
+                <p class="mc-form-hint mc-center">Dúvidas? Entre em contato pelo <a href="/contato">formulário de contato</a>.</p>
             </div>
             <div class="mc-note" style="max-width:720px;margin:1.75rem auto 0">
                 <strong>Importante</strong>
@@ -486,8 +426,12 @@
                     <p>Não. Não é necessário já dominar o EFT Avatar para participar. A formação apresenta os fundamentos e o protocolo básico.</p>
                 </details>
                 <details>
+                    <summary>Ainda posso me inscrever?</summary>
+                    <p>Não. As inscrições para esta masterclass foram encerradas. Quem já se inscreveu continua com o acompanhamento pela equipe da ACURA Brasil.</p>
+                </details>
+                <details>
                     <summary>Quem pode participar?</summary>
-                    <p>A formação é destinada a voluntários da ACURA Brasil. Novos interessados em voluntariado podem se inscrever e passam por análise da equipe conforme a demanda.</p>
+                    <p>A formação é destinada a voluntários da ACURA Brasil. As inscrições para esta turma foram encerradas.</p>
                 </details>
                 <details>
                     <summary>Haverá certificado?</summary>
@@ -495,7 +439,7 @@
                 </details>
                 <details>
                     <summary>Quando recebo o link do WhatsApp e do Zoom?</summary>
-                    <p>Após a inscrição, a equipe confirma seu cadastro. Só então você recebe o link do grupo de WhatsApp, onde serão compartilhadas as orientações e o acesso ao Zoom da professora Meire Yamaguchi.</p>
+                    <p>Após a confirmação do cadastro pela equipe, você recebe o link do grupo de WhatsApp, onde são compartilhadas as orientações e o acesso ao Zoom da professora Meire Yamaguchi.</p>
                 </details>
                 <details>
                     <summary>Como funciona a prova da extensão?</summary>
@@ -535,7 +479,7 @@
                 <ul>
                     <li><a href="#calendario">Datas</a></li>
                     <li><a href="#programacao">Programação</a></li>
-                    <li><a href="#inscricao">Inscrição gratuita</a></li>
+                    <li><a href="#inscricao">Inscrições encerradas</a></li>
                 </ul>
             </div>
             <div>

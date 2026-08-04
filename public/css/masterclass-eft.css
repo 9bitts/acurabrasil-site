@@ -836,6 +836,23 @@
   line-height: 1.55;
 }
 
+.mc-eft .mc-form-closed {
+  text-align: center;
+  padding: 2.5rem 1.75rem;
+}
+
+.mc-eft .mc-form-closed .mc-form-intro {
+  margin-bottom: 1rem;
+}
+
+.mc-eft .mc-form-closed .mc-form-hint {
+  margin-bottom: 0;
+}
+
+.mc-eft .mc-form-hint.mc-center {
+  text-align: center;
+}
+
 .mc-eft .mc-form-hint {
   font-size: 0.88rem;
   color: var(--texto-mutado);
