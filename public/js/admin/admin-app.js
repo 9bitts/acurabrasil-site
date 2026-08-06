@@ -319,6 +319,9 @@
       else if (state.tab === 'campanhas') {
         if (!window.AcuraAdminCampaigns) throw new Error('campanhas_module_missing');
         main.innerHTML = await window.AcuraAdminCampaigns.render(api, state);
+      } else if (state.tab === 'cursos') {
+        if (!window.AcuraAdminCourses) throw new Error('cursos_module_missing');
+        main.innerHTML = await window.AcuraAdminCourses.render(api, state);
       } else if (state.tab === 'masterclass') {
         main.innerHTML = await renderMasterclass();
       } else {
@@ -327,6 +330,9 @@
       bindEvents();
       if (state.tab === 'campanhas' && window.AcuraAdminCampaigns) {
         window.AcuraAdminCampaigns.bind(api, state, render);
+      }
+      if (state.tab === 'cursos' && window.AcuraAdminCourses) {
+        window.AcuraAdminCourses.bind(api, state, render);
       }
       if (keepScroll) {
         window.scrollTo(0, scrollY);

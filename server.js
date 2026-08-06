@@ -6,6 +6,7 @@ const { handleContactRequest, verifyEmailOnStartup } = require('./lib/contact');
 const { handleIntakeEventRequest } = require('./lib/intake-events');
 const { registerAdminRoutes } = require('./lib/admin-api');
 const { registerCampaignRoutes } = require('./lib/campaigns-api');
+const { registerCourseRoutes } = require('./lib/courses-api');
 const { getDb } = require('./lib/db');
 const {
   handlePaypalConfig,
@@ -105,6 +106,7 @@ app.post('/api/sos-venezuela/intake', (req, res) => {
 app.post('/api/sos-venezuela/intake/:protocolo/event', handleIntakeEventRequest);
 registerAdminRoutes(app);
 registerCampaignRoutes(app);
+registerCourseRoutes(app);
 app.get('/api/paypal/config', handlePaypalConfig);
 app.post('/api/paypal/subscription-plan', handleSubscriptionPlan);
 app.get('/api/consulta-profissionais', handleConsultaProfissionaisRequest);
@@ -162,6 +164,23 @@ app.get(['/campanhas/:slug', '/campanhas/:slug/'], (req, res, next) => {
   res.setHeader('Cache-Control', 'no-cache, must-revalidate');
   res.setHeader('Link', `<https://${CANONICAL_HOST}/campanhas/${slug}>; rel="canonical"`);
   res.sendFile(path.join(__dirname, 'public', 'campanha.html'));
+});
+
+app.get(['/cursos/certificado/:code', '/cursos/certificado/:code/'], (req, res, next) => {
+  const code = String(req.params.code || '').toLowerCase();
+  if (!/^[a-f0-9]{8,64}$/.test(code)) return next();
+  res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+  res.setHeader('Link', `<https://${CANONICAL_HOST}/cursos/certificado/${code}>; rel="canonical"`);
+  res.sendFile(path.join(__dirname, 'public', 'curso-certificado.html'));
+});
+
+app.get(['/cursos/:slug', '/cursos/:slug/'], (req, res, next) => {
+  const slug = String(req.params.slug || '').toLowerCase();
+  if (slug === 'certificado') return next();
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) return next();
+  res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+  res.setHeader('Link', `<https://${CANONICAL_HOST}/cursos/${slug}>; rel="canonical"`);
+  res.sendFile(path.join(__dirname, 'public', 'curso.html'));
 });
 
 app.get(['/admin', '/admin/'], adminGuard, (req, res) => {

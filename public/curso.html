@@ -1,32 +1,28 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es-VE">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/favicon.ico" type="image/png">
-    <meta name="description" data-i18n-content="campanhas.meta.description" content="Campanhas de doação da ACURABRASIL. Escolha uma causa e apoie atendimento humanitário e pesquisa.">
+    <meta name="description" content="Curso gratuito ACURABRASIL para voluntarios.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="ACURABRASIL">
-    <meta property="og:title" content="Campanhas - ACURABRASIL">
-    <meta property="og:description" content="Campanhas de doação da ACURABRASIL. Escolha uma causa e apoie.">
-    <meta property="og:url" content="https://www.acurabrasil.org/campanhas">
-    <link rel="canonical" href="https://www.acurabrasil.org/campanhas">
     <meta property="og:image" content="https://www.acurabrasil.org/img/og-share.png">
-    <title>Campanhas - ACURABRASIL</title>
-    <link rel="stylesheet" href="css/style.css?v=41">
-    <link rel="stylesheet" href="css/campanhas.css?v=41">
-    <script src="js/analytics-config.js?v=41" defer></script>
-    <script src="js/seo.js?v=41" defer></script>
-    <script src="js/i18n-loader.js?v=41" defer></script>
+    <title>Curso - ACURABRASIL</title>
+    <link rel="stylesheet" href="/css/style.css?v=42">
+    <link rel="stylesheet" href="/css/cursos.css?v=42">
+    <script src="/js/analytics-config.js?v=42" defer></script>
+    <script src="/js/seo.js?v=42" defer></script>
+    <script src="/js/i18n-loader.js?v=42" defer></script>
     <script>try{var l=localStorage.getItem('acura.lang')||'es';document.documentElement.lang=l==='es'?'es-VE':'pt-BR';}catch(e){}</script>
 </head>
-<body data-i18n-title="campanhas.meta.title">
+<body>
     <a class="skip-link" href="#main-content" data-i18n="common.skipLink">Ir al contenido principal</a>
     <main id="main-content">
     <header class="header">
         <div class="header-container">
             <a href="/" class="logo">
-                <picture><source srcset="img/logo-acurabrasil.webp?v=16" type="image/webp"><img src="img/logo-acurabrasil.png?v=16" alt="ACURABRASIL" class="logo-img" width="180" height="48"></picture>
+                <picture><source srcset="/img/logo-acurabrasil.webp?v=16" type="image/webp"><img src="/img/logo-acurabrasil.png?v=16" alt="ACURABRASIL" class="logo-img" width="180" height="48"></picture>
             </a>
             <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" data-i18n-aria="common.menuOpen">
                 <span></span><span></span><span></span>
@@ -39,9 +35,8 @@
                     <li><a href="/doacao" class="nav-link nav-link-donate" data-i18n="nav.donate">Donar</a></li>
                     <li><a href="/instituicao" class="nav-link" data-i18n="nav.about">La Institución</a></li>
                     <li><a href="/equipe" class="nav-link" data-i18n="nav.team">Equipo</a></li>
-                    
                     <li><a href="/cursos" class="nav-link" data-i18n="nav.cursos">Cursos</a></li>
-<li class="nav-dropdown">
+                    <li class="nav-dropdown">
                         <button type="button" class="nav-dropdown-toggle" aria-expanded="false" data-i18n="nav.more">Más</button>
                         <ul class="nav-dropdown-menu">
                             <li><a href="/pesquisas" data-i18n="nav.research">Investigaciones</a></li>
@@ -65,32 +60,32 @@
         </div>
     </header>
 
-    <section class="campanhas-hero">
-        <div class="container">
-            <div class="breadcrumb"><a href="/" data-i18n="common.breadcrumbHome">Inicio</a> / <span data-i18n="campanhas.breadcrumb">Campañas</span></div>
-            <h1 data-i18n="campanhas.hero.title">Campañas que salvan vidas</h1>
-            <p data-i18n="campanhas.hero.subtitle">Elija una causa, conozca la historia y done con Pix o PayPal. Varias campañas activas al mismo tiempo.</p>
-            <div class="campanhas-filters" id="campanhas-filters" role="tablist">
-                <button type="button" class="campanhas-filter active" data-filter="" data-i18n="campanhas.filter.all">Todas</button>
-                <button type="button" class="campanhas-filter" data-filter="emergency" data-i18n="campanhas.filter.emergency">Emergencia</button>
-                <button type="button" class="campanhas-filter" data-filter="research" data-i18n="campanhas.filter.research">Investigación</button>
-                <button type="button" class="campanhas-filter" data-filter="project" data-i18n="campanhas.filter.project">Proyectos</button>
-                <button type="button" class="campanhas-filter" data-filter="evergreen" data-i18n="campanhas.filter.evergreen">Continuas</button>
+    <div id="curso-root">
+        <section class="curso-detail-hero">
+            <div class="container">
+                <div class="breadcrumb"><a href="/cursos" data-i18n="cursos.breadcrumb">Cursos</a> / <span id="curso-crumb">…</span></div>
+                <span class="cursos-free-badge" data-i18n="cursos.freeVolunteers">Gratuitos para voluntarios</span>
+                <h1 id="curso-title">…</h1>
+                <p class="curso-summary" id="curso-summary"></p>
+                <p id="curso-instructor" style="opacity:0.85;margin:0 0 0.75rem"></p>
+                <div class="curso-detail-stats" id="curso-stats"></div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="section">
-        <div class="container">
-            <div id="campanhas-grid" class="campanhas-grid" aria-live="polite">
-                <p class="campanhas-loading" data-i18n="campanhas.loading">Cargando campañas…</p>
+        <section class="section" style="padding-top:0">
+            <div class="container curso-layout">
+                <div>
+                    <div class="curso-player-wrap" id="curso-player">
+                        <div class="curso-player-empty" data-i18n="cursos.player.empty">Seleccione una clase para comenzar</div>
+                    </div>
+                    <div id="curso-body" style="margin-top:1.5rem"></div>
+                    <h2 style="margin:1.5rem 0 0.75rem" data-i18n="cursos.curriculum">Contenido del curso</h2>
+                    <div id="curso-curriculum"></div>
+                </div>
+                <aside id="curso-sidebar"></aside>
             </div>
-            <div id="campanhas-closed-wrap" class="campanhas-closed-wrap" hidden>
-                <h2 data-i18n="campanhas.closed.title">Campañas encerradas</h2>
-                <div id="campanhas-closed" class="campanhas-grid"></div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <footer class="footer">
         <div class="footer-bottom">
@@ -99,9 +94,8 @@
         </div>
     </footer>
     </main>
-    <script src="js/i18n.js?v=41"></script>
-    <script src="js/main.js?v=41"></script>
-    <script src="js/cookie-consent.js?v=41"></script>
-    <script src="js/campanhas-list.js?v=3"></script>
+    <script src="/js/i18n.js?v=42"></script>
+    <script src="/js/main.js?v=42"></script>
+    <script src="/js/curso-page.js?v=42"></script>
 </body>
 </html>

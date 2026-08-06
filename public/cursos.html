@@ -1,26 +1,26 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es-VE">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/favicon.ico" type="image/png">
-    <meta name="description" data-i18n-content="campanhas.meta.description" content="Campanhas de doação da ACURABRASIL. Escolha uma causa e apoie atendimento humanitário e pesquisa.">
+    <meta name="description" data-i18n-content="cursos.meta.description" content="Cursos gratuitos da ACURABRASIL para voluntários. Capacitação em saúde, emergência e atendimento humanitário.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="ACURABRASIL">
-    <meta property="og:title" content="Campanhas - ACURABRASIL">
-    <meta property="og:description" content="Campanhas de doação da ACURABRASIL. Escolha uma causa e apoie.">
-    <meta property="og:url" content="https://www.acurabrasil.org/campanhas">
-    <link rel="canonical" href="https://www.acurabrasil.org/campanhas">
+    <meta property="og:title" content="Cursos - ACURABRASIL">
+    <meta property="og:description" content="Cursos gratuitos para voluntários da ACURABRASIL.">
+    <meta property="og:url" content="https://www.acurabrasil.org/cursos">
+    <link rel="canonical" href="https://www.acurabrasil.org/cursos">
     <meta property="og:image" content="https://www.acurabrasil.org/img/og-share.png">
-    <title>Campanhas - ACURABRASIL</title>
-    <link rel="stylesheet" href="css/style.css?v=41">
-    <link rel="stylesheet" href="css/campanhas.css?v=41">
-    <script src="js/analytics-config.js?v=41" defer></script>
-    <script src="js/seo.js?v=41" defer></script>
-    <script src="js/i18n-loader.js?v=41" defer></script>
+    <title>Cursos - ACURABRASIL</title>
+    <link rel="stylesheet" href="css/style.css?v=42">
+    <link rel="stylesheet" href="css/cursos.css?v=42">
+    <script src="js/analytics-config.js?v=42" defer></script>
+    <script src="js/seo.js?v=42" defer></script>
+    <script src="js/i18n-loader.js?v=42" defer></script>
     <script>try{var l=localStorage.getItem('acura.lang')||'es';document.documentElement.lang=l==='es'?'es-VE':'pt-BR';}catch(e){}</script>
 </head>
-<body data-i18n-title="campanhas.meta.title">
+<body data-i18n-title="cursos.meta.title">
     <a class="skip-link" href="#main-content" data-i18n="common.skipLink">Ir al contenido principal</a>
     <main id="main-content">
     <header class="header">
@@ -39,9 +39,8 @@
                     <li><a href="/doacao" class="nav-link nav-link-donate" data-i18n="nav.donate">Donar</a></li>
                     <li><a href="/instituicao" class="nav-link" data-i18n="nav.about">La Institución</a></li>
                     <li><a href="/equipe" class="nav-link" data-i18n="nav.team">Equipo</a></li>
-                    
-                    <li><a href="/cursos" class="nav-link" data-i18n="nav.cursos">Cursos</a></li>
-<li class="nav-dropdown">
+                    <li><a href="/cursos" class="nav-link" data-i18n="nav.cursos" aria-current="page">Cursos</a></li>
+                    <li class="nav-dropdown">
                         <button type="button" class="nav-dropdown-toggle" aria-expanded="false" data-i18n="nav.more">Más</button>
                         <ul class="nav-dropdown-menu">
                             <li><a href="/pesquisas" data-i18n="nav.research">Investigaciones</a></li>
@@ -65,29 +64,31 @@
         </div>
     </header>
 
-    <section class="campanhas-hero">
+    <section class="cursos-hero">
         <div class="container">
-            <div class="breadcrumb"><a href="/" data-i18n="common.breadcrumbHome">Inicio</a> / <span data-i18n="campanhas.breadcrumb">Campañas</span></div>
-            <h1 data-i18n="campanhas.hero.title">Campañas que salvan vidas</h1>
-            <p data-i18n="campanhas.hero.subtitle">Elija una causa, conozca la historia y done con Pix o PayPal. Varias campañas activas al mismo tiempo.</p>
-            <div class="campanhas-filters" id="campanhas-filters" role="tablist">
-                <button type="button" class="campanhas-filter active" data-filter="" data-i18n="campanhas.filter.all">Todas</button>
-                <button type="button" class="campanhas-filter" data-filter="emergency" data-i18n="campanhas.filter.emergency">Emergencia</button>
-                <button type="button" class="campanhas-filter" data-filter="research" data-i18n="campanhas.filter.research">Investigación</button>
-                <button type="button" class="campanhas-filter" data-filter="project" data-i18n="campanhas.filter.project">Proyectos</button>
-                <button type="button" class="campanhas-filter" data-filter="evergreen" data-i18n="campanhas.filter.evergreen">Continuas</button>
+            <div class="breadcrumb"><a href="/" data-i18n="common.breadcrumbHome">Inicio</a> / <span data-i18n="cursos.breadcrumb">Cursos</span></div>
+            <span class="cursos-free-badge" data-i18n="cursos.freeVolunteers">Gratuitos para voluntarios</span>
+            <h1 data-i18n="cursos.hero.title">Cursos para quien sirve en la práctica</h1>
+            <p data-i18n="cursos.hero.subtitle">Capacitación gratuita de la ACURABRASIL: salud, emergencia y atención humanitaria. Aprenda a su ritmo y aplique en el campo.</p>
+            <div class="cursos-search">
+                <input type="search" id="cursos-q" data-i18n-placeholder="cursos.search" placeholder="Buscar curso, tema o instructor...">
+            </div>
+            <div class="cursos-filters" id="cursos-filters" role="tablist">
+                <button type="button" class="cursos-filter active" data-filter="" data-i18n="cursos.filter.all">Todos</button>
+                <button type="button" class="cursos-filter" data-filter="saude" data-i18n="cursos.cat.saude">Salud</button>
+                <button type="button" class="cursos-filter" data-filter="emergencia" data-i18n="cursos.cat.emergencia">Emergencia</button>
+                <button type="button" class="cursos-filter" data-filter="psicologia" data-i18n="cursos.cat.psicologia">Psicología</button>
+                <button type="button" class="cursos-filter" data-filter="voluntariado" data-i18n="cursos.cat.voluntariado">Voluntariado</button>
+                <button type="button" class="cursos-filter" data-filter="gestao" data-i18n="cursos.cat.gestao">Gestión</button>
+                <button type="button" class="cursos-filter" data-filter="integrativa" data-i18n="cursos.cat.integrativa">Integrativa</button>
             </div>
         </div>
     </section>
 
     <section class="section">
         <div class="container">
-            <div id="campanhas-grid" class="campanhas-grid" aria-live="polite">
-                <p class="campanhas-loading" data-i18n="campanhas.loading">Cargando campañas…</p>
-            </div>
-            <div id="campanhas-closed-wrap" class="campanhas-closed-wrap" hidden>
-                <h2 data-i18n="campanhas.closed.title">Campañas encerradas</h2>
-                <div id="campanhas-closed" class="campanhas-grid"></div>
+            <div id="cursos-grid" class="cursos-grid" aria-live="polite">
+                <p class="cursos-loading" data-i18n="cursos.loading">Cargando cursos…</p>
             </div>
         </div>
     </section>
@@ -99,9 +100,8 @@
         </div>
     </footer>
     </main>
-    <script src="js/i18n.js?v=41"></script>
-    <script src="js/main.js?v=41"></script>
-    <script src="js/cookie-consent.js?v=41"></script>
-    <script src="js/campanhas-list.js?v=3"></script>
+    <script src="js/i18n.js?v=42"></script>
+    <script src="js/main.js?v=42"></script>
+    <script src="js/cursos-list.js?v=42"></script>
 </body>
 </html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es-VE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.ico" type="image/png">
+    <meta name="robots" content="noindex">
+    <title>Certificado - ACURABRASIL</title>
+    <link rel="stylesheet" href="/css/style.css?v=42">
+    <link rel="stylesheet" href="/css/cursos.css?v=42">
+    <script src="/js/i18n-loader.js?v=42" defer></script>
+    <script>try{var l=localStorage.getItem('acura.lang')||'es';document.documentElement.lang=l==='es'?'es-VE':'pt-BR';}catch(e){}</script>
+</head>
+<body>
+    <main id="main-content" class="section">
+        <div class="container">
+            <div id="cert-box" class="curso-cert-box">
+                <p data-i18n="cursos.certificate.loading">Verificando certificado…</p>
+            </div>
+            <p style="text-align:center;margin-top:1.5rem">
+                <a href="/cursos" class="btn btn-verde" data-i18n="cursos.back">Ver cursos</a>
+            </p>
+        </div>
+    </main>
+    <script src="/js/i18n.js?v=42"></script>
+    <script>
+    (function () {
+      function t(key) {
+        var lang = 'es';
+        try { lang = localStorage.getItem('acura.lang') || 'es'; } catch (e) {}
+        var bundled = (lang === 'pt' ? window.ACURA_I18N_PT : window.ACURA_I18N_ES) || {};
+        return bundled[key] || key;
+      }
+      function esc(s) {
+        var el = document.createElement('span');
+        el.textContent = s == null ? '' : String(s);
+        return el.innerHTML;
+      }
+      function pick(obj, pt, es) {
+        var lang = 'es';
+        try { lang = localStorage.getItem('acura.lang') || 'es'; } catch (e) {}
+        return lang === 'pt' ? obj[pt] : (obj[es] || obj[pt]);
+      }
+      var parts = location.pathname.replace(/\/+$/, '').split('/');
+      var code = parts[parts.length - 1] || '';
+      var box = document.getElementById('cert-box');
+      fetch('/api/courses/certificates/' + encodeURIComponent(code))
+        .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+        .then(function (res) {
+          if (!res.ok || !res.d.certificate) {
+            box.className = 'curso-cert-box fail';
+            box.innerHTML = '<h1>' + esc(t('cursos.certificate.invalid')) + '</h1><p>' + esc(t('cursos.certificate.invalidText')) + '</p>';
+            return;
+          }
+          var c = res.d.certificate;
+          box.className = 'curso-cert-box ok';
+          box.innerHTML =
+            '<p style="color:#72a842;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;font-size:0.75rem">' +
+            esc(t('cursos.certificate.verified')) + '</p>' +
+            '<h1 style="margin:0.5rem 0">' + esc(t('cursos.certificate.title')) + '</h1>' +
+            '<p>' + esc(t('cursos.certificate.authentic')) + '</p>' +
+            '<hr style="margin:1.25rem 0;border:0;border-top:1px solid #e2e8f0">' +
+            '<p><strong>' + esc(t('cursos.certificate.student')) + '</strong><br>' + esc(c.student_name) + '</p>' +
+            '<p><strong>' + esc(t('cursos.certificate.course')) + '</strong><br>' + esc(pick(c, 'course_title_pt', 'course_title_es')) + '</p>' +
+            (c.instructor_name ? '<p><strong>' + esc(t('cursos.instructor')) + '</strong><br>' + esc(c.instructor_name) + '</p>' : '') +
+            (c.workload_hours != null ? '<p><strong>' + esc(t('cursos.workload')) + '</strong><br>' + esc(String(c.workload_hours)) + 'h</p>' : '') +
+            '<p><strong>' + esc(t('cursos.certificate.issued')) + '</strong><br>' + esc(String(c.issued_at || '').slice(0, 10)) + '</p>' +
+            '<p style="font-size:0.8rem;color:#64748b;margin-top:1rem">' + esc(t('cursos.certificate.code')) + ': ' + esc(c.verify_code) + '</p>';
+        })
+        .catch(function () {
+          box.className = 'curso-cert-box fail';
+          box.innerHTML = '<h1>' + esc(t('cursos.certificate.invalid')) + '</h1>';
+        });
+    })();
+    </script>
+</body>
+</html>
