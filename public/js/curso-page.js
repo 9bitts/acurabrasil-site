@@ -17,6 +17,12 @@
   }
 
   function lang() {
+    if (window.AcuraI18n && typeof window.AcuraI18n.getLang === 'function') {
+      return window.AcuraI18n.getLang();
+    }
+    if (window.AcuraI18nLoader && typeof window.AcuraI18nLoader.getLang === 'function') {
+      return window.AcuraI18nLoader.getLang();
+    }
     try {
       return localStorage.getItem('acura.lang') || 'es';
     } catch (e) {
@@ -415,7 +421,8 @@
 
   bind();
   load();
-  window.addEventListener('acura:langchange', function () {
+  // i18n.js dispatches on document (not window).
+  document.addEventListener('acura:langchange', function () {
     renderHero();
     renderCurriculum();
     renderSidebar();

@@ -21,6 +21,9 @@
     if (window.AcuraI18n && typeof window.AcuraI18n.getLang === 'function') {
       return window.AcuraI18n.getLang();
     }
+    if (window.AcuraI18nLoader && typeof window.AcuraI18nLoader.getLang === 'function') {
+      return window.AcuraI18nLoader.getLang();
+    }
     try {
       return localStorage.getItem('acura.lang') || 'es';
     } catch (e) {
@@ -147,5 +150,7 @@
   }
 
   load();
-  window.addEventListener('acura:langchange', render);
+  // i18n.js dispatches on document (not window) — must listen here to re-translate empty/cards.
+  document.addEventListener('acura:langchange', render);
+  document.addEventListener('acura:i18n-ready', render, { once: true });
 })();
