@@ -228,6 +228,7 @@ img {
 }
 
 .lang-toggle {
+    position: relative;
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
@@ -241,6 +242,7 @@ img {
     cursor: pointer;
     transition: all 0.2s ease;
     white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .lang-toggle:hover {
@@ -255,9 +257,15 @@ img {
 }
 
 .header-cta {
-    flex-shrink: 0;
-    padding: 0.55rem 1rem;
-    font-size: 0.82rem;
+    flex-shrink: 1;
+    min-width: 0;
+    max-width: 12.5rem;
+    padding: 0.5rem 0.85rem;
+    font-size: 0.78rem;
+    line-height: 1.25;
+    white-space: normal;
+    text-align: center;
+    overflow-wrap: anywhere;
 }
 
 img {
@@ -3486,12 +3494,8 @@ a.btn.is-disabled:hover {
     .contact-grid { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 1024px) {
-    .nav-menu { gap: 0.75rem; }
-    .nav-link { font-size: 0.8rem; }
-}
-
-@media (max-width: 768px) {
+/* Collapse nav earlier so browser zoom / large text does not smash items together */
+@media (max-width: 75rem) {
     .header-container {
         height: auto;
         min-height: var(--header-height);
@@ -3509,14 +3513,27 @@ a.btn.is-disabled:hover {
         grid-area: logo;
     }
 
+    .header .logo-img {
+        height: 48px;
+        max-height: 48px;
+        max-width: 220px;
+    }
+
     .menu-toggle {
         grid-area: toggle;
+        display: flex;
         justify-self: end;
+        min-width: 44px;
+        min-height: 44px;
+        align-items: center;
+        justify-content: center;
     }
 
     .header-actions {
         grid-area: actions;
         margin-left: 0;
+        gap: 0.4rem;
+        min-width: 0;
     }
 
     .header-nav {
@@ -3531,19 +3548,14 @@ a.btn.is-disabled:hover {
     }
 
     .header-cta {
-        display: none;
-    }
-
-    .menu-toggle {
-        display: flex;
-        min-width: 44px;
-        min-height: 44px;
-        align-items: center;
-        justify-content: center;
+        max-width: 9.5rem;
+        padding: 0.45rem 0.65rem;
+        font-size: 0.72rem;
     }
 
     .lang-toggle {
         min-height: 44px;
+        padding: 0.4rem 0.6rem;
     }
 
     .nav-menu {
@@ -3555,6 +3567,7 @@ a.btn.is-disabled:hover {
         gap: 0;
         box-shadow: none;
         border-top: 1px solid var(--cinza-borda);
+        flex-wrap: nowrap;
     }
 
     .nav-menu.open {
@@ -3573,6 +3586,13 @@ a.btn.is-disabled:hover {
         padding: 0.875rem 0;
         border-bottom: 1px solid var(--cinza-borda);
         min-height: 44px;
+        white-space: normal;
+        font-size: 0.95rem;
+    }
+
+    .nav-link.active::after {
+        bottom: 0.5rem;
+        width: 2rem;
     }
 
     .nav-dropdown-menu {
@@ -3596,7 +3616,29 @@ a.btn.is-disabled:hover {
         min-height: 44px;
         white-space: normal;
     }
+}
 
+@media (max-width: 30rem) {
+    .lang-toggle-label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+
+    .header-cta {
+        max-width: 7.5rem;
+        font-size: 0.68rem;
+        padding: 0.4rem 0.5rem;
+    }
+}
+
+@media (max-width: 768px) {
     .page-hero {
         padding: calc(var(--header-height) + 2rem) 1.25rem 2.5rem;
     }
