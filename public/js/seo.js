@@ -40,7 +40,6 @@
     'pesquisas': { titleKey: 'pesq.meta.title', descKey: 'pesq.meta.description' },
     'atendimento-pandemia': { titleKey: 'covid.meta.title', descKey: 'covid.meta.description' },
     'sos-saude-rs': { titleKey: 'sosrs.meta.title', descKey: 'sosrs.meta.description' },
-    'sos-venezuela': { titleKey: 'sosve.meta.title', descKey: 'sosve.meta.description' },
     'consulta-venezuela': { titleKey: 'consulta.meta.title', descKey: 'consulta.meta.description' },
     'atendimento-humanitario': { titleKey: 'consulta.meta.title', descKey: 'consulta.meta.description' },
     'solicitud-sos-venezuela': { titleKey: 'sosve.intake.meta.title', descKey: 'sosve.intake.meta.description' },

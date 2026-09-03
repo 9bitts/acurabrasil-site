@@ -114,6 +114,9 @@ app.get('/api/consulta-profissionais', handleConsultaProfissionaisRequest);
 app.get(['/solicitud-sos-venezuela', '/solicitud-sos-venezuela/'], (req, res) => {
   return res.redirect(301, 'https://app.doctor8.org/atendimentohumanitario');
 });
+app.get(['/sos-venezuela', '/sos-venezuela/'], (req, res) => {
+  return res.redirect(301, '/atendimento-humanitario');
+});
 
 // Legacy aliases Google may still crawl (reduce Soft-404 / Not found noise in GSC).
 const LEGACY_REDIRECTS = {
@@ -127,10 +130,11 @@ const LEGACY_REDIRECTS = {
   '/donation': '/doacao',
   '/voluntario': '/voluntarios',
   '/anjo': '/anjos',
-  '/sos': '/sos-venezuela',
-  '/venezuela': '/sos-venezuela',
-  '/sos-salud-venezuela': '/sos-venezuela',
-  '/sos-saude-venezuela': '/sos-venezuela',
+  '/sos': '/atendimento-humanitario',
+  '/venezuela': '/atendimento-humanitario',
+  '/sos-venezuela': '/atendimento-humanitario',
+  '/sos-salud-venezuela': '/atendimento-humanitario',
+  '/sos-saude-venezuela': '/atendimento-humanitario',
   '/consulta-venezuela': '/atendimento-humanitario',
 };
 app.get(Object.keys(LEGACY_REDIRECTS), (req, res) => {

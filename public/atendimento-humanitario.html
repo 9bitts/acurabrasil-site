@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="css/style.css?v=44">
     <script src="js/analytics-config.js?v=41" defer></script>
     <script src="js/seo.js?v=41" defer></script>
-    <script src="js/i18n-loader.js?v=44" defer></script>
+    <script src="js/i18n-loader.js?v=45" defer></script>
     <script>try{var l=localStorage.getItem('acura.lang')||'es';document.documentElement.lang=l==='es'?'es-VE':'pt-BR';}catch(e){}</script>
 </head>
 <body data-i18n-title="consulta.meta.title" data-wa-msg="consulta">
@@ -45,7 +45,6 @@
             <nav class="header-nav">
                 <ul class="nav-menu">
                     <li><a href="/" class="nav-link" data-i18n="nav.home">Inicio</a></li>
-                    <li><a href="/sos-venezuela" class="nav-link" data-i18n="nav.sosVe">SOS Venezuela</a></li>
                     <li><a href="/atendimento-humanitario" class="nav-link nav-link-destaque" data-i18n="nav.consult">Atención Humanitaria</a></li>
                     <li><a href="/doacao" class="nav-link nav-link-donate" data-i18n="nav.donate">Donar</a></li>
                     <li><a href="/instituicao" class="nav-link" data-i18n="nav.about">La Institución</a></li>
@@ -96,6 +95,25 @@
                 </a>
             </div>
             <p class="consulta-hero-nota" data-i18n="consulta.hero.note">La plataforma detecta automáticamente el idioma de su navegador.</p>
+        </div>
+    </section>
+
+    <section class="sos-partners-strip" aria-label="Parceiros da ACURABRASIL">
+        <div class="container sos-partners-inner">
+            <div class="sos-partners-row">
+                <img src="img/parceiros/medicos-pela-vida.png" alt="Médicos Pela Vida" class="sos-partner-logo sos-partner-logo--medicos" width="160" height="103" loading="lazy">
+                <img src="img/parceiros/instituto-nise-yamaguchi.png" alt="Instituto Nise Yamaguchi" class="sos-partner-logo sos-partner-logo--nise" width="160" height="160" loading="lazy">
+                <img src="img/parceiros/meire-yamaguchi-academy.png" alt="Meire Yamaguchi Academy" class="sos-partner-logo sos-partner-logo--nise" width="160" height="160" loading="lazy">
+                <img src="img/parceiros/doctor8.png" alt="Doctor8" class="sos-partner-logo" width="140" height="48" loading="lazy">
+                <img src="img/parceiros/casa-do-terapeuta.png" alt="Casa do Terapeuta" class="sos-partner-logo" width="140" height="48" loading="lazy">
+                <img src="img/parceiros/abratef.png" alt="ABRATEF — Associação Brasileira de Terapia Familiar" class="sos-partner-logo" width="140" height="48" loading="lazy">
+                <img src="img/parceiros/rotary-butanta.png" alt="Rotary Club de São Paulo Butantã" class="sos-partner-logo" width="140" height="48" loading="lazy">
+                <img src="img/parceiros/pahp.png" alt="PAHP — Programa de Ajuda Humanitária Psicológica" class="sos-partner-logo" width="140" height="48" loading="lazy">
+                <img src="img/parceiros/florais-saint-germain.png" alt="Florais de Saint Germain" class="sos-partner-logo" width="140" height="48" loading="lazy">
+                <img src="img/parceiros/missao-paz.png" alt="Missão Paz" class="sos-partner-logo" width="140" height="48" loading="lazy">
+                <img src="img/parceiros/w3midia.png" alt="w3mídia — comunicação na internet" class="sos-partner-logo" width="140" height="48" loading="lazy">
+                <img src="img/parceiros/abrasel.png" alt="Abrasel" class="sos-partner-logo" width="140" height="48" loading="lazy">
+            </div>
         </div>
     </section>
 
@@ -191,7 +209,7 @@
                     <span class="consulta-ops-badge" data-i18n="consulta.ops.active.badge">Operación activa</span>
                     <h3 data-i18n="consulta.ops.active.title">SOS Venezuela</h3>
                     <p data-i18n="consulta.ops.active.text">Atención gratuita para personas afectadas por los terremotos y la crisis humanitaria en Venezuela.</p>
-                    <a href="/sos-venezuela" class="btn btn-outline" data-i18n="consulta.ops.active.btn">Conocer el SOS Venezuela →</a>
+                    <a href="https://app.doctor8.org/atendimentohumanitario" class="btn btn-outline" data-i18n="consulta.ops.active.btn">Solicitar atención gratuita →</a>
                 </article>
                 <article class="consulta-ops-card">
                     <span class="consulta-ops-badge consulta-ops-badge--history" data-i18n="consulta.ops.rs.badge">Histórico</span>
@@ -267,7 +285,7 @@
                 </div>
                 <div class="consulta-info-card">
                     <h3 data-i18n="consulta.info.help.title">¿Problemas con el registro?</h3>
-                    <p data-i18n="consulta.info.help.text" data-i18n-html>Voluntarios de ACURABRASIL pueden ayudarle. Escríbanos a <a href="mailto:contato@acurabrasil.org">contato@acurabrasil.org</a>, use el WhatsApp de esta página o vea la operación activa en <a href="/sos-venezuela">SOS Venezuela</a>.</p>
+                    <p data-i18n="consulta.info.help.text" data-i18n-html>Voluntarios de ACURABRASIL pueden ayudarle. Escríbanos a <a href="mailto:contato@acurabrasil.org">contato@acurabrasil.org</a> o use el WhatsApp de esta página.</p>
                 </div>
             </div>
         </div>
@@ -281,7 +299,7 @@
                 <a href="https://app.doctor8.org/atendimentohumanitario" class="btn btn-consulta-principal btn-lg" data-i18n="consulta.final.btn.start">Solicitar atención gratuita →</a>
                 <a href="/campanhas" class="btn btn-transparente" data-i18n="consulta.final.btn.more">Conocer las campañas</a>
             </div>
-            <p class="consulta-powered" data-i18n="consulta.powered" data-i18n-html>Plataforma <a href="https://app.doctor8.org" target="_blank" rel="noopener">Doctor8</a> · Red humanitaria <a href="/sos-venezuela">ACURABRASIL</a></p>
+            <p class="consulta-powered" data-i18n="consulta.powered" data-i18n-html>Plataforma <a href="https://app.doctor8.org" target="_blank" rel="noopener">Doctor8</a> · Red humanitaria <a href="/">ACURABRASIL</a></p>
         </div>
     </section>
     </main>
@@ -305,7 +323,6 @@
                     <li><a href="/doacao" data-i18n="footer.donate">Donación</a></li>
                     <li><a href="/sos-saude-rs" data-i18n="footer.sosRs">SOS Salud RS</a></li>
                     <li><a href="/atendimento-humanitario" data-i18n="footer.consult">Atención Humanitaria</a></li>
-                    <li><a href="/sos-venezuela" data-i18n="footer.sosVe">SOS Venezuela</a></li>
                     <li><a href="/voluntarios" data-i18n="footer.volunteers">Voluntariado</a></li>
                     <li><a href="/contato" data-i18n="footer.contactLink">Contacto</a></li>
                 </ul>
