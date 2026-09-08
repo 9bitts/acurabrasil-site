@@ -328,58 +328,137 @@
     color: #ffe082;
 }
 
-.sa-home-banner {
+.sa-home-hero {
     display: none;
     margin-top: var(--header-height);
-    background: #fff8e1;
-    border-bottom: 3px solid #e2b400;
-    color: var(--texto-escuro);
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    background:
+        radial-gradient(ellipse at 88% 12%, rgba(226, 180, 0, 0.28) 0%, transparent 46%),
+        linear-gradient(135deg, #0e3348 0%, #164e6c 52%, #1a3d4f 100%);
 }
 
-html.sa-is-september .sa-home-banner {
+.sa-home-hero::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #c9a227 0%, #ffe082 50%, #c9a227 100%);
+}
+
+html.sa-is-september .sa-home-hero {
     display: block;
 }
 
-html.sa-is-september .emergency-banner {
-    margin-top: 0;
+html:not(.sa-is-september) .doacao-banner {
+    margin-top: var(--header-height);
 }
 
-.sa-home-banner-inner {
-    max-width: 1100px;
+.sa-home-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 1.35rem 1.5rem;
+    padding: 2.75rem 2rem 3rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+    gap: 2.5rem;
+    align-items: center;
 }
 
-.sa-home-banner .btn {
-    margin-top: 0.85rem;
-}
-
-.sa-home-tag {
+.sa-home-hero-tag {
     display: inline-block;
     font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #7a5c00;
-    margin-bottom: 0.35rem;
+    color: #ffe082;
+    background: rgba(226, 180, 0, 0.16);
+    border: 1px solid rgba(255, 224, 130, 0.45);
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    margin-bottom: 1rem;
 }
 
-.sa-home-banner h2 {
-    font-size: 1.25rem;
-    margin: 0 0 0.4rem;
-    color: var(--azul-escuro);
+.sa-home-hero-copy h2 {
+    font-size: clamp(1.85rem, 3.4vw, 2.55rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 0 0 0.85rem;
+    color: #fff;
 }
 
-.sa-home-banner p {
-    margin: 0;
-    color: var(--texto-mutado);
-    font-size: 0.95rem;
+.sa-home-hero-lead {
+    margin: 0 0 0.85rem;
+    font-size: 1.08rem;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.92);
+    max-width: 36rem;
+}
+
+.sa-home-hero-crisis {
+    margin: 0 0 1.35rem;
+    font-size: 0.98rem;
     line-height: 1.5;
+    color: rgba(255, 255, 255, 0.82);
+    max-width: 36rem;
 }
 
-.sa-home-banner p a {
-    color: var(--azul-institucional);
-    font-weight: 600;
+.sa-home-hero-crisis a {
+    color: #ffe082;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.sa-home-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.sa-home-hero-cta {
+    background: #e2b400;
+    color: #12394d;
+    border: 1px solid #e2b400;
+    font-weight: 700;
+}
+
+.sa-home-hero-cta:hover {
+    background: #f0c93a;
+    color: #12394d;
+}
+
+.sa-home-hero-188 {
+    background: transparent;
+    color: #ffe082;
+    border: 1px solid rgba(255, 224, 130, 0.55);
+    font-weight: 700;
+}
+
+.sa-home-hero-188:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff8e1;
+}
+
+.sa-home-hero-photo {
+    margin: 0;
+    border-radius: 22px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    box-shadow: 0 28px 50px rgba(0, 0, 0, 0.32);
+    border: 3px solid rgba(226, 180, 0, 0.55);
+    background: #0e3348;
+}
+
+.sa-home-hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .consulta-ops-badge--sa {
@@ -395,11 +474,34 @@ html.sa-is-september .emergency-banner {
     .sa-hero-grid,
     .sa-not-grid,
     .sa-prof-steps,
-    .consulta-steps--two {
+    .consulta-steps--two,
+    .sa-home-hero-inner {
         grid-template-columns: 1fr;
     }
 
-    .sa-hero-media {
+    .sa-hero-media,
+    .sa-home-hero-photo {
         order: -1;
+    }
+
+    .sa-home-hero-inner {
+        padding: 1.75rem 1.25rem 2rem;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .sa-home-hero-lead,
+    .sa-home-hero-crisis {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .sa-home-hero-actions {
+        justify-content: center;
+    }
+
+    .sa-home-hero-photo {
+        max-width: 420px;
+        margin: 0 auto;
     }
 }

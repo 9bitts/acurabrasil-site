@@ -25,10 +25,10 @@
     <title>ACURABRASIL - Asociación Brasil por la Cura</title>
     <link rel="preload" href="css/style.css?v=46" as="style">
     <link rel="stylesheet" href="css/style.css?v=46">
-    <link rel="stylesheet" href="css/setembroamarelo.css?v=2">
+    <link rel="stylesheet" href="css/setembroamarelo.css?v=3">
     <script src="js/analytics-config.js?v=41" defer></script>
     <script src="js/seo.js?v=42" defer></script>
-    <script src="js/i18n-loader.js?v=46" defer></script>
+    <script src="js/i18n-loader.js?v=47" defer></script>
     <script>try{var l=localStorage.getItem('acura.lang')||'es';document.documentElement.lang=l==='es'?'es-VE':'pt-BR';}catch(e){}</script>
     <script>
     try {
@@ -105,47 +105,24 @@
         </div>
     </header>
 
-    <section class="sa-home-banner" aria-label="Setembro Amarelo">
-        <div class="sa-home-banner-inner">
-            <div>
-                <span class="sa-home-tag" data-i18n="index.sa.tag">Setembro Amarelo 2026</span>
+    <section class="sa-home-hero" aria-label="Setembro Amarelo">
+        <div class="sa-home-hero-inner">
+            <div class="sa-home-hero-copy">
+                <span class="sa-home-hero-tag" data-i18n="index.sa.tag">Setembro Amarelo 2026</span>
                 <h2 data-i18n="index.sa.title">Escutar é estar presente</h2>
-                <p data-i18n="index.sa.text" data-i18n-html>Cuidado psicológico e médico gratuito pela ACURABRASIL. Se você precisa falar agora, ligue <a href="tel:188">188</a> (CVV, 24h).</p>
-                <a href="/setembroamarelo" class="btn btn-azul" data-i18n="index.sa.btn">Conhecer a campanha →</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="emergency-banner">
-        <div class="emergency-banner-inner">
-            <div class="emergency-banner-content">
-                <span class="emergency-pulse" data-i18n="index.emergency.pulse">Emergencia Humanitaria · 24 de junio de 2026</span>
-                <h2 data-i18n="index.emergency.title">Terremotos en Venezuela: ACURABRASIL moviliza apoyo a distancia</h2>
-                <p data-i18n="index.emergency.text">
-                    Dos terremotos de magnitud 7,2 y 7,5 devastaron el norte de Venezuela. Caracas, La Guaira y decenas de municipios necesitan asistencia médica y psicológica urgente — y usted puede ayudar como voluntario o profesional de la salud.
-                </p>
-                <div class="emergency-stats-inline">
-                    <div class="emergency-stat-inline">
-                        <strong data-i18n="index.emergency.stat1.value">7,5 Mw</strong>
-                        <span data-i18n="index.emergency.stat1.label">Mayor magnitud registrada</span>
-                    </div>
-                    <div class="emergency-stat-inline">
-                        <strong data-i18n="index.emergency.stat2.value">500+</strong>
-                        <span data-i18n="index.emergency.stat2.label">Víctimas fatales confirmadas*</span>
-                    </div>
-                    <div class="emergency-stat-inline">
-                        <strong data-i18n="index.emergency.stat3.value">4.300+</strong>
-                        <span data-i18n="index.emergency.stat3.label">Heridos reportados*</span>
-                    </div>
+                <p class="sa-home-hero-lead" data-i18n="index.sa.lead">Consulta psicológica e médica gratuita, por telemedicina, para quem atravessa um momento difícil.</p>
+                <p class="sa-home-hero-crisis" data-i18n="index.sa.text" data-i18n-html>Cuidado psicológico e médico gratuito pela ACURABRASIL. Se você precisa falar agora, ligue <a href="tel:188">188</a> (CVV, 24h).</p>
+                <div class="sa-home-hero-actions">
+                    <a href="/setembroamarelo" class="btn sa-home-hero-cta" data-i18n="index.sa.btn">Conhecer a campanha →</a>
+                    <a href="tel:188" class="btn sa-home-hero-188" data-acura-track="cvv_188_clicado" data-i18n="index.sa.btn188">Ligar 188</a>
                 </div>
-                <p class="emergency-footnote" data-i18n="index.emergency.footnote">*Cifras oficiales en actualización conforme avanzan los rescates.</p>
             </div>
-            <div class="emergency-cta-box emergency-cta-box--light">
-                <img src="img/alianca-pela-vida-venezuela.png" alt="Aliança pela Vida — Juntos pela Venezuela" class="emergency-cta-logo" width="320" height="320">
-                <a href="https://app.doctor8.org/atendimentohumanitario" class="btn btn-consulta-principal btn-consulta-inline" data-i18n="index.emergency.cta.consult" data-acura-track="consulta_iniciada">Solicitar atención gratuita →</a>
-                <a href="/atendimento-humanitario" class="btn btn-transparente" style="margin-top: 0.75rem;" data-i18n="index.emergency.cta.how">¿Cómo funciona?</a>
-                <a href="/voluntarios" class="btn btn-urgencia" style="margin-top: 0.75rem;" data-i18n="index.emergency.cta.help">Cómo Ayudar a Venezuela →</a>
-            </div>
+            <figure class="sa-home-hero-photo">
+                <picture>
+                    <source srcset="img/setembro-amarelo-home.webp" type="image/webp">
+                    <img src="img/setembro-amarelo-home.jpg" width="1200" height="900" alt="Manos sosteniendo un lazo amarillo del Setembro Amarelo" data-i18n-aria="index.sa.imgAlt" fetchpriority="high">
+                </picture>
+            </figure>
         </div>
     </section>
 
@@ -165,7 +142,7 @@
 
     <section class="hero hero-home">
         <div class="hero-container">
-            <picture><source srcset="img/logo-acurabrasil.webp?v=16" type="image/webp"><img src="img/logo-acurabrasil.png?v=16" alt="ACURABRASIL" class="hero-logo" width="420" height="110" fetchpriority="high"></picture>
+            <picture><source srcset="img/logo-acurabrasil.webp?v=16" type="image/webp"><img src="img/logo-acurabrasil.png?v=16" alt="ACURABRASIL" class="hero-logo" width="420" height="110"></picture>
             <span class="hero-tag" data-i18n="index.hero.tag">Innovación Médica y Atención Humanitaria</span>
             <h1 class="hero-title" data-i18n="index.hero.title">La Ciencia al Servicio de la Vida y la Esperanza.</h1>
             <p class="hero-subtitle" data-i18n="index.hero.subtitle">
