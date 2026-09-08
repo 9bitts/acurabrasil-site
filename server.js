@@ -136,6 +136,7 @@ const LEGACY_REDIRECTS = {
   '/sos-salud-venezuela': '/atendimento-humanitario',
   '/sos-saude-venezuela': '/atendimento-humanitario',
   '/consulta-venezuela': '/atendimento-humanitario',
+  '/setembro-amarelo': '/setembroamarelo',
 };
 app.get(Object.keys(LEGACY_REDIRECTS), (req, res) => {
   const target = LEGACY_REDIRECTS[req.path];

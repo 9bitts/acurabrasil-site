@@ -64,7 +64,7 @@ Painel interno de operação (triagem, escala, voluntários) em **`/admin/`** �
 1. Crie uma propriedade GA4 em [analytics.google.com](https://analytics.google.com).
 2. Defina `GA4_MEASUREMENT_ID=G-XXXXXXXXXX` no Railway (substitua pelo ID real).
 3. O site usa **Consent Mode v2**: analytics só é ativado após aceite no banner de cookies.
-4. Eventos customizados: `consulta_iniciada`, `doacao_pix_copiada`, `doacao_paypal_clicada`, `formulario_contato_enviado`, `intake_sos_enviado`, `voluntario_cta_clicado`, `whatsapp_clicado`.
+4. Eventos customizados: `consulta_iniciada`, `doacao_pix_copiada`, `doacao_paypal_clicada`, `formulario_contato_enviado`, `intake_sos_enviado`, `voluntario_cta_clicado`, `whatsapp_clicado`, `cvv_188_clicado`.
 
 ### Variáveis de ambiente
 

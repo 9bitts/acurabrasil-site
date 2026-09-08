@@ -51,6 +51,15 @@
     'privacidade': { titleKey: 'privacy.meta.title', descKey: 'privacy.meta.description' },
     'voluntarios': { titleKey: 'vol.meta.title', descKey: 'vol.meta.description' },
     'anjos': { titleKey: 'anjo.meta.title', descKey: 'anjo.meta.description' },
+    'setembroamarelo': {
+      titleKey: 'sa.meta.title',
+      descKey: 'sa.meta.description',
+      ogImage: SITE + '/img/setembro-amarelo-og.jpg',
+      ogWidth: '1200',
+      ogHeight: '630',
+      ogType: 'image/jpeg',
+      twitterCard: 'summary_large_image',
+    },
   };
 
   function upsertMeta(attr, name, content) {
@@ -87,8 +96,13 @@
 
     var lang = 'es';
     try {
-      var stored = localStorage.getItem('acura.lang');
-      if (stored === 'pt' || stored === 'es') lang = stored;
+      if (window.AcuraI18nLoader && window.AcuraI18nLoader.getLang) {
+        lang = window.AcuraI18nLoader.getLang();
+      } else {
+        var stored = localStorage.getItem('acura.lang');
+        if (stored === 'pt' || stored === 'es') lang = stored;
+        else if (document.documentElement.getAttribute('data-default-lang') === 'pt') lang = 'pt';
+      }
     } catch (e) { /* ignore */ }
 
     // Always declare a user-selected canonical for Google (static tag + JS keep in sync).
@@ -103,22 +117,23 @@
     var meta = metaFromI18n(lang, cfg.titleKey, cfg.descKey);
     var locale = lang === 'pt' ? 'pt_BR' : 'es_VE';
 
+    var ogImage = cfg.ogImage || OG_IMAGE;
     upsertMeta('property', 'og:type', 'website');
     upsertMeta('property', 'og:site_name', 'ACURABRASIL');
     upsertMeta('property', 'og:title', meta.title);
     upsertMeta('property', 'og:description', meta.description);
-    upsertMeta('property', 'og:image', OG_IMAGE);
-    upsertMeta('property', 'og:image:width', '500');
-    upsertMeta('property', 'og:image:height', '500');
-    upsertMeta('property', 'og:image:alt', 'ACURABRASIL');
-    upsertMeta('property', 'og:image:type', 'image/png');
+    upsertMeta('property', 'og:image', ogImage);
+    upsertMeta('property', 'og:image:width', cfg.ogWidth || '500');
+    upsertMeta('property', 'og:image:height', cfg.ogHeight || '500');
+    upsertMeta('property', 'og:image:alt', meta.title || 'ACURABRASIL');
+    upsertMeta('property', 'og:image:type', cfg.ogType || 'image/png');
     upsertMeta('property', 'og:locale', locale);
     upsertMeta('property', 'og:locale:alternate', lang === 'pt' ? 'es_VE' : 'pt_BR');
 
-    upsertMeta('name', 'twitter:card', 'summary');
+    upsertMeta('name', 'twitter:card', cfg.twitterCard || 'summary');
     upsertMeta('name', 'twitter:title', meta.title);
     upsertMeta('name', 'twitter:description', meta.description);
-    upsertMeta('name', 'twitter:image', OG_IMAGE);
+    upsertMeta('name', 'twitter:image', ogImage);
   }
 
   if (document.readyState === 'loading') {

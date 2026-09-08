@@ -250,4 +250,73 @@
     document.body.prepend(banner);
     setTimeout(() => banner.remove(), 12000);
   })();
+
+  function isSetembroAmareloPeriod(now) {
+    try {
+      const parts = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/Sao_Paulo',
+        month: 'numeric',
+      }).formatToParts(now || new Date());
+      const month = Number((parts.find((p) => p.type === 'month') || {}).value);
+      return month === 9;
+    } catch (e) {
+      return (now || new Date()).getMonth() === 8;
+    }
+  }
+
+  function applySetembroAmareloWhatsApp() {
+    if (!document.body || !document.body.classList.contains('sa-page')) return;
+    if (!window.AcuraI18n) return;
+    const msg = window.AcuraI18n.t(window.AcuraI18n.getLang(), 'sa.whatsapp.prefill');
+    if (!msg || msg === 'sa.whatsapp.prefill') return;
+    const number =
+      (window.ACURA_WHATSAPP_CONTACT && window.ACURA_WHATSAPP_CONTACT.number) || '491749803699';
+    const href = 'https://wa.me/' + number + '?text=' + encodeURIComponent(msg);
+    document.querySelectorAll('.sa-page .btn-whatsapp-solicitud, .sa-page .whatsapp-float, .sa-page .btn-whatsapp-secondary').forEach((el) => {
+      el.href = href;
+    });
+  }
+
+  function injectSetembroAmareloNav() {
+    if (!isSetembroAmareloPeriod()) return;
+    const menu = document.querySelector('.nav-dropdown-menu');
+    if (!menu || menu.querySelector('[data-sa-nav]')) return;
+    const li = document.createElement('li');
+    li.setAttribute('data-sa-nav', '1');
+    const a = document.createElement('a');
+    a.href = '/setembroamarelo';
+    a.setAttribute('data-i18n', 'nav.setembroAmarelo');
+    a.textContent = window.AcuraI18n
+      ? window.AcuraI18n.t(window.AcuraI18n.getLang(), 'nav.setembroAmarelo')
+      : 'Setembro Amarelo';
+    if (pageSlugFromHref('/setembroamarelo') === currentPage) {
+      a.classList.add('active');
+    }
+    li.appendChild(a);
+    menu.insertBefore(li, menu.firstElementChild);
+    a.addEventListener('click', () => {
+      if (navMenu) navMenu.classList.remove('open');
+      if (menuToggle) {
+        menuToggle.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+      document.body.classList.remove('menu-open');
+      document.querySelectorAll('.nav-dropdown.open').forEach((d) => d.classList.remove('open'));
+    });
+  }
+
+  if (isSetembroAmareloPeriod()) {
+    document.documentElement.classList.add('sa-is-september');
+  } else {
+    document.documentElement.classList.remove('sa-is-september');
+  }
+  injectSetembroAmareloNav();
+  applySetembroAmareloWhatsApp();
+  document.addEventListener('acura:langchange', () => {
+    const navLink = document.querySelector('[data-sa-nav] a');
+    if (navLink && window.AcuraI18n) {
+      navLink.textContent = window.AcuraI18n.t(window.AcuraI18n.getLang(), 'nav.setembroAmarelo');
+    }
+    applySetembroAmareloWhatsApp();
+  });
 })();

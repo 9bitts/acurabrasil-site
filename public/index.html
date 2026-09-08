@@ -23,12 +23,19 @@
     <meta name="twitter:description" content="ACURABRASIL - Asociación Brasil por la Cura. Fomento de la investigación científica, atención humanitaria y transparencia pública.">
     <meta name="twitter:image" content="https://www.acurabrasil.org/img/og-share.png">
     <title>ACURABRASIL - Asociación Brasil por la Cura</title>
-    <link rel="preload" href="css/style.css?v=45" as="style">
-    <link rel="stylesheet" href="css/style.css?v=45">
+    <link rel="preload" href="css/style.css?v=46" as="style">
+    <link rel="stylesheet" href="css/style.css?v=46">
+    <link rel="stylesheet" href="css/setembroamarelo.css?v=2">
     <script src="js/analytics-config.js?v=41" defer></script>
-    <script src="js/seo.js?v=41" defer></script>
-    <script src="js/i18n-loader.js?v=45" defer></script>
+    <script src="js/seo.js?v=42" defer></script>
+    <script src="js/i18n-loader.js?v=46" defer></script>
     <script>try{var l=localStorage.getItem('acura.lang')||'es';document.documentElement.lang=l==='es'?'es-VE':'pt-BR';}catch(e){}</script>
+    <script>
+    try {
+      var saMonth = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Sao_Paulo', month: 'numeric' }).format(new Date());
+      if (saMonth === '9') document.documentElement.classList.add('sa-is-september');
+    } catch (e) {}
+    </script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -97,6 +104,17 @@
             </div>
         </div>
     </header>
+
+    <section class="sa-home-banner" aria-label="Setembro Amarelo">
+        <div class="sa-home-banner-inner">
+            <div>
+                <span class="sa-home-tag" data-i18n="index.sa.tag">Setembro Amarelo 2026</span>
+                <h2 data-i18n="index.sa.title">Escutar é estar presente</h2>
+                <p data-i18n="index.sa.text" data-i18n-html>Cuidado psicológico e médico gratuito pela ACURABRASIL. Se você precisa falar agora, ligue <a href="tel:188">188</a> (CVV, 24h).</p>
+                <a href="/setembroamarelo" class="btn btn-azul" data-i18n="index.sa.btn">Conhecer a campanha →</a>
+            </div>
+        </div>
+    </section>
 
     <section class="emergency-banner">
         <div class="emergency-banner-inner">
@@ -450,9 +468,9 @@
         </div>
     </footer>
 
-    <script src="js/i18n.js?v=41"></script><script src="js/main.js?v=41"></script>
+    <script src="js/i18n.js?v=42"></script><script src="js/main.js?v=44"></script>
     <script src="js/cookie-consent.js?v=41"></script>
-    <script src="js/analytics.js?v=41"></script>
+    <script src="js/analytics.js?v=42"></script>
     <script src="js/newsletter.js?v=41"></script>
     <script src="js/video-facade.js?v=16"></script>
 </body>

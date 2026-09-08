@@ -3,18 +3,29 @@
 
   var STORAGE_KEY = 'acura.lang';
   var DEFAULT_LANG = 'es';
-  var ASSET_V = '45';
+  var ASSET_V = '46';
   var loadPromises = {};
 
   window.ACURA_I18N = window.ACURA_I18N || { es: null, pt: null };
   window.__ACURA_I18N_READY__ = false;
+
+  function getPageDefaultLang() {
+    try {
+      var htmlLang = document.documentElement.getAttribute('data-default-lang');
+      if (htmlLang === 'pt' || htmlLang === 'es') return htmlLang;
+    } catch (e) { /* ignore */ }
+    if (window.ACURA_DEFAULT_LANG === 'pt' || window.ACURA_DEFAULT_LANG === 'es') {
+      return window.ACURA_DEFAULT_LANG;
+    }
+    return DEFAULT_LANG;
+  }
 
   function getLang() {
     try {
       var stored = localStorage.getItem(STORAGE_KEY);
       if (stored === 'es' || stored === 'pt') return stored;
     } catch (e) { /* ignore */ }
-    return DEFAULT_LANG;
+    return getPageDefaultLang();
   }
 
   function assignLang(lang) {

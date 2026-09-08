@@ -2,6 +2,17 @@
   const STORAGE_KEY = 'acura.lang';
   const DEFAULT_LANG = 'es';
 
+  function getPageDefaultLang() {
+    try {
+      const htmlLang = document.documentElement.getAttribute('data-default-lang');
+      if (htmlLang === 'pt' || htmlLang === 'es') return htmlLang;
+    } catch { /* ignore */ }
+    if (window.ACURA_DEFAULT_LANG === 'pt' || window.ACURA_DEFAULT_LANG === 'es') {
+      return window.ACURA_DEFAULT_LANG;
+    }
+    return DEFAULT_LANG;
+  }
+
   function getLang() {
     if (window.AcuraI18nLoader?.getLang) {
       return window.AcuraI18nLoader.getLang();
@@ -10,7 +21,7 @@
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored === 'es' || stored === 'pt') return stored;
     } catch { /* ignore */ }
-    return DEFAULT_LANG;
+    return getPageDefaultLang();
   }
 
   const BRAND_WITH_SPACE_RE = /\bACURA\s+BRASIL\b/gi;

@@ -1155,7 +1155,18 @@ window.ACURA_I18N = {
     "campanha.pix.keyLabel": "Clave Pix (CNPJ)",
     "campanha.pix.bank": "ACURABRASIL · Banco Cora SCD (403) · Ag 0001 · C/C 3649168-7",
     "doacao.hub.campaigns": "Campañas activas",
-    "doacao.hub.campaignsText": "¿Prefiere apoyar una causa específica? Vea las campañas en curso."
+    "doacao.hub.campaignsText": "¿Prefiere apoyar una causa específica? Vea las campañas en curso.",
+    "nav.setembroAmarelo": "Setembro Amarelo",
+    "sa.meta.title": "Setembro Amarelo | ACURABRASIL",
+    "sa.meta.description": "Escucha y cuidado profesional gratuito en el Setembro Amarelo. Solicite atención humanitaria de ACURABRASIL en la plataforma Doctor8. En crisis, llame al 188.",
+    "index.sa.tag": "Setembro Amarelo 2026",
+    "index.sa.title": "Escuchar es estar presente",
+    "index.sa.text": "Cuidado psicológico y médico gratuito de ACURABRASIL. Si necesita hablar ahora, llame al <a href=\"tel:188\">188</a> (CVV, 24h).",
+    "index.sa.btn": "Conocer la campaña →",
+    "consulta.ops.sa.badge": "Campaña activa",
+    "consulta.ops.sa.title": "Setembro Amarelo",
+    "consulta.ops.sa.text": "Escucha y cuidado profesional gratuito para quien atraviesa un momento difícil.",
+    "consulta.ops.sa.btn": "Abrir la campaña →"
   },
   "pt": {
     "nav.home": "Início",
@@ -2313,6 +2324,17 @@ window.ACURA_I18N = {
     "campanha.pix.keyLabel": "Chave Pix (CNPJ)",
     "campanha.pix.bank": "ACURABRASIL · Banco Cora SCD (403) · Ag 0001 · C/C 3649168-7",
     "doacao.hub.campaigns": "Campanhas ativas",
-    "doacao.hub.campaignsText": "Prefere apoiar uma causa específica? Veja as campanhas em andamento."
+    "doacao.hub.campaignsText": "Prefere apoiar uma causa específica? Veja as campanhas em andamento.",
+    "nav.setembroAmarelo": "Setembro Amarelo",
+    "sa.meta.title": "Setembro Amarelo | ACURABRASIL",
+    "sa.meta.description": "Escuta e cuidado profissional gratuito no Setembro Amarelo. Solicite atendimento humanitário da ACURABRASIL pela plataforma Doctor8. Em crise, ligue 188.",
+    "index.sa.tag": "Setembro Amarelo 2026",
+    "index.sa.title": "Escutar é estar presente",
+    "index.sa.text": "Cuidado psicológico e médico gratuito pela ACURABRASIL. Se você precisa falar agora, ligue <a href=\"tel:188\">188</a> (CVV, 24h).",
+    "index.sa.btn": "Conhecer a campanha →",
+    "consulta.ops.sa.badge": "Campanha ativa",
+    "consulta.ops.sa.title": "Setembro Amarelo",
+    "consulta.ops.sa.text": "Escuta e cuidado profissional gratuito para quem atravessa um momento difícil.",
+    "consulta.ops.sa.btn": "Abrir a campanha →"
   }
 };

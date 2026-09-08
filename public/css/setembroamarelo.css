@@ -1,0 +1,405 @@
+/* Setembro Amarelo campaign landing — accent yellow, institutional blue. */
+
+.sa-crisis {
+    margin-top: var(--header-height);
+    background: var(--azul-escuro);
+    color: var(--branco);
+    border-bottom: 3px solid #e2b400;
+}
+
+.sa-crisis-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0.85rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+    line-height: 1.45;
+}
+
+.sa-crisis-inner p {
+    margin: 0;
+    flex: 1 1 280px;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.sa-crisis-inner a {
+    color: #ffe082;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.sa-crisis-inner a:hover {
+    color: #fff8e1;
+}
+
+.sa-crisis-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.sa-crisis-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    background: #e2b400;
+    color: var(--azul-escuro);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+}
+
+.sa-crisis-btn:hover {
+    background: #f0c93a;
+    color: var(--azul-escuro);
+}
+
+.sa-crisis-btn--ghost {
+    background: transparent;
+    color: #ffe082;
+    border: 1px solid rgba(255, 224, 130, 0.55);
+}
+
+.sa-crisis-btn--ghost:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff8e1;
+}
+
+.sa-hero {
+    background: var(--azul-escuro);
+    color: var(--branco);
+    padding: 2.5rem 1.5rem 3.25rem;
+}
+
+.sa-hero-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 2rem;
+    align-items: center;
+}
+
+.sa-hero .breadcrumb,
+.sa-hero .consulta-breadcrumb {
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 1rem;
+}
+
+.sa-hero .consulta-breadcrumb a {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.sa-badge {
+    display: inline-block;
+    background: rgba(226, 180, 0, 0.18);
+    border: 1px solid rgba(226, 180, 0, 0.45);
+    color: #ffe082;
+    border-radius: 999px;
+    padding: 0.35rem 0.9rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.sa-hero h1 {
+    font-size: clamp(1.75rem, 4vw, 2.55rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 0.75rem;
+    color: var(--branco);
+}
+
+.sa-hero-theme {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #ffe082;
+    margin: 0 0 0.85rem;
+}
+
+.sa-hero-subtitle,
+.sa-hero-expectation,
+.sa-hero-note {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.55;
+}
+
+.sa-hero-subtitle {
+    font-size: 1.08rem;
+    margin: 0 0 0.85rem;
+}
+
+.sa-hero-expectation {
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0 0 1.25rem;
+}
+
+.sa-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.85rem;
+}
+
+.sa-hero-note {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0.5rem 0 0;
+}
+
+.sa-hero-media {
+    margin: 0;
+}
+
+.sa-hero-media img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.sa-partners {
+    background: var(--cinza-claro);
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--cinza-borda);
+}
+
+.sa-partners-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem 2.5rem;
+}
+
+.sa-partners-inner img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
+.consulta-steps--two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.sa-ddi {
+    max-width: 720px;
+    margin: 1.75rem auto 0;
+    padding: 1rem 1.25rem;
+    background: #fff8e1;
+    border: 1px solid #e2b400;
+    border-radius: var(--radius);
+    color: var(--texto-escuro);
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+.sa-care-featured {
+    border-color: #e2b400;
+    box-shadow: var(--shadow-md);
+}
+
+.sa-not-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
+.sa-not-card {
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+}
+
+.sa-not-card h3 {
+    font-size: 1.05rem;
+    margin: 0 0 0.6rem;
+    color: var(--azul-escuro);
+}
+
+.sa-not-card p {
+    margin: 0;
+    color: var(--texto-mutado);
+    font-size: 0.92rem;
+    line-height: 1.55;
+}
+
+.sa-why {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.sa-why p {
+    color: var(--texto-mutado);
+    line-height: 1.65;
+}
+
+.sa-prof {
+    background: var(--footer-bg);
+    color: var(--branco);
+    padding: 3.5rem 1.5rem;
+}
+
+.sa-prof-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.sa-prof-kicker {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #ffe082;
+    margin-bottom: 0.75rem;
+}
+
+.sa-prof h2 {
+    color: var(--branco);
+    font-size: 1.7rem;
+    margin: 0 0 0.75rem;
+}
+
+.sa-prof-subtitle {
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0 0 2rem;
+    line-height: 1.55;
+}
+
+.sa-prof-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    text-align: left;
+    margin-bottom: 1.75rem;
+}
+
+.sa-prof-step {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius);
+    padding: 1.1rem 1rem;
+}
+
+.sa-prof-step h3 {
+    color: var(--branco);
+    font-size: 0.95rem;
+    margin: 0 0 0.45rem;
+}
+
+.sa-prof-step p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.85rem;
+    line-height: 1.45;
+}
+
+.sa-prof-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.sa-prof-note {
+    margin: 0;
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.sa-prof-note a {
+    color: #ffe082;
+}
+
+.sa-home-banner {
+    display: none;
+    margin-top: var(--header-height);
+    background: #fff8e1;
+    border-bottom: 3px solid #e2b400;
+    color: var(--texto-escuro);
+}
+
+html.sa-is-september .sa-home-banner {
+    display: block;
+}
+
+html.sa-is-september .emergency-banner {
+    margin-top: 0;
+}
+
+.sa-home-banner-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1.35rem 1.5rem;
+}
+
+.sa-home-banner .btn {
+    margin-top: 0.85rem;
+}
+
+.sa-home-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #7a5c00;
+    margin-bottom: 0.35rem;
+}
+
+.sa-home-banner h2 {
+    font-size: 1.25rem;
+    margin: 0 0 0.4rem;
+    color: var(--azul-escuro);
+}
+
+.sa-home-banner p {
+    margin: 0;
+    color: var(--texto-mutado);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.sa-home-banner p a {
+    color: var(--azul-institucional);
+    font-weight: 600;
+}
+
+.consulta-ops-badge--sa {
+    color: #7a5c00;
+    background: #fff4c2;
+}
+
+.consulta-ops-card--sa {
+    border-color: #e2b400;
+}
+
+@media (max-width: 900px) {
+    .sa-hero-grid,
+    .sa-not-grid,
+    .sa-prof-steps,
+    .consulta-steps--two {
+        grid-template-columns: 1fr;
+    }
+
+    .sa-hero-media {
+        order: -1;
+    }
+}
