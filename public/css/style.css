@@ -1654,6 +1654,21 @@ a.btn.is-disabled:hover {
     max-width: 160px;
 }
 
+img.sos-partner-logo--meire {
+    height: auto;
+    max-width: 124px;
+}
+
+img.sos-partner-logo--florais {
+    height: auto;
+    max-width: 118px;
+}
+
+img.sos-partner-logo--rapha {
+    height: auto;
+    max-width: 200px;
+}
+
 .btn-urgencia {
     background-color: #c0392b;
     color: #ffffff;
@@ -3791,6 +3806,15 @@ a.btn.is-disabled:hover {
     .sos-partner-logo--nise {
         height: auto;
         max-width: 130px;
+    }
+    img.sos-partner-logo--meire {
+        max-width: 100px;
+    }
+    img.sos-partner-logo--florais {
+        max-width: 96px;
+    }
+    img.sos-partner-logo--rapha {
+        max-width: 168px;
     }
 }
 
