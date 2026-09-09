@@ -1157,6 +1157,7 @@ window.ACURA_I18N = {
     "doacao.hub.campaigns": "Campañas activas",
     "doacao.hub.campaignsText": "¿Prefiere apoyar una causa específica? Vea las campañas en curso.",
     "nav.setembroAmarelo": "Setembro Amarelo",
+    "nav.outubroRosa": "Octubre Rosa",
     "sa.meta.title": "Setembro Amarelo | ACURABRASIL",
     "sa.meta.description": "Escucha y cuidado profesional gratuito en el Setembro Amarelo. Solicite atención humanitaria de ACURABRASIL en la plataforma Doctor8. En crisis, llame al 188.",
     "index.sa.tag": "Setembro Amarelo 2026",
@@ -1169,7 +1170,18 @@ window.ACURA_I18N = {
     "consulta.ops.sa.badge": "Campaña activa",
     "consulta.ops.sa.title": "Setembro Amarelo",
     "consulta.ops.sa.text": "Escucha y cuidado profesional gratuito para quien atraviesa un momento difícil.",
-    "consulta.ops.sa.btn": "Abrir la campaña →"
+    "consulta.ops.sa.btn": "Abrir la campaña →",
+    "index.or.tag": "Octubre Rosa 2026",
+    "index.or.title": "Cuidar también es prevenir",
+    "index.or.lead": "Consulta médica y psicológica gratuita, por telemedicina, para la salud de la mujer.",
+    "index.or.text": "Esta página no sustituye mamografía ni emergencia. Ante riesgo de vida, llame al <a href=\"tel:192\">192</a>.",
+    "index.or.btn": "Conocer la campaña →",
+    "index.or.btn192": "Llamar al 192",
+    "index.or.imgAlt": "Manos sosteniendo un lazo rosa del Octubre Rosa",
+    "consulta.ops.or.badge": "Campaña",
+    "consulta.ops.or.title": "Octubre Rosa",
+    "consulta.ops.or.text": "Orientación médica y escucha profesional para la salud de la mama.",
+    "consulta.ops.or.btn": "Abrir la campaña →"
   },
   "pt": {
     "nav.home": "Início",
@@ -2329,6 +2341,7 @@ window.ACURA_I18N = {
     "doacao.hub.campaigns": "Campanhas ativas",
     "doacao.hub.campaignsText": "Prefere apoiar uma causa específica? Veja as campanhas em andamento.",
     "nav.setembroAmarelo": "Setembro Amarelo",
+    "nav.outubroRosa": "Outubro Rosa",
     "sa.meta.title": "Setembro Amarelo | ACURABRASIL",
     "sa.meta.description": "Escuta e cuidado profissional gratuito no Setembro Amarelo. Solicite atendimento humanitário da ACURABRASIL pela plataforma Doctor8. Em crise, ligue 188.",
     "index.sa.tag": "Setembro Amarelo 2026",
@@ -2341,6 +2354,17 @@ window.ACURA_I18N = {
     "consulta.ops.sa.badge": "Campanha ativa",
     "consulta.ops.sa.title": "Setembro Amarelo",
     "consulta.ops.sa.text": "Escuta e cuidado profissional gratuito para quem atravessa um momento difícil.",
-    "consulta.ops.sa.btn": "Abrir a campanha →"
+    "consulta.ops.sa.btn": "Abrir a campanha →",
+    "index.or.tag": "Outubro Rosa 2026",
+    "index.or.title": "Cuidar também é prevenir",
+    "index.or.lead": "Consulta médica e psicológica gratuita, por telemedicina, para a saúde da mulher.",
+    "index.or.text": "Esta página não substitui mamografia nem emergência. Em risco de vida, ligue <a href=\"tel:192\">192</a>.",
+    "index.or.btn": "Conhecer a campanha →",
+    "index.or.btn192": "Ligar 192",
+    "index.or.imgAlt": "Mãos sustentando um laço rosa do Outubro Rosa",
+    "consulta.ops.or.badge": "Campanha",
+    "consulta.ops.or.title": "Outubro Rosa",
+    "consulta.ops.or.text": "Orientação médica e escuta profissional para a saúde da mama.",
+    "consulta.ops.or.btn": "Abrir a campanha →"
   }
 };

@@ -60,6 +60,15 @@
       ogType: 'image/jpeg',
       twitterCard: 'summary_large_image',
     },
+    'outubrorosa': {
+      titleKey: 'or.meta.title',
+      descKey: 'or.meta.description',
+      ogImage: SITE + '/img/outubro-rosa-og.jpg',
+      ogWidth: '1200',
+      ogHeight: '630',
+      ogType: 'image/jpeg',
+      twitterCard: 'summary_large_image',
+    },
   };
 
   function upsertMeta(attr, name, content) {

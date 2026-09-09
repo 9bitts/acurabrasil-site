@@ -251,45 +251,51 @@
     setTimeout(() => banner.remove(), 12000);
   })();
 
-  function isSetembroAmareloPeriod(now) {
+  function saoPauloMonth(now) {
     try {
       const parts = new Intl.DateTimeFormat('en-US', {
         timeZone: 'America/Sao_Paulo',
         month: 'numeric',
       }).formatToParts(now || new Date());
-      const month = Number((parts.find((p) => p.type === 'month') || {}).value);
-      return month === 9;
+      return Number((parts.find((p) => p.type === 'month') || {}).value);
     } catch (e) {
-      return (now || new Date()).getMonth() === 8;
+      return (now || new Date()).getMonth() + 1;
     }
   }
 
-  function applySetembroAmareloWhatsApp() {
-    if (!document.body || !document.body.classList.contains('sa-page')) return;
+  function isSetembroAmareloPeriod(now) {
+    return saoPauloMonth(now) === 9;
+  }
+
+  function isOutubroRosaPeriod(now) {
+    return saoPauloMonth(now) === 10;
+  }
+
+  function applyCampaignWhatsApp(pageClass, prefillKey) {
+    if (!document.body || !document.body.classList.contains(pageClass)) return;
     if (!window.AcuraI18n) return;
-    const msg = window.AcuraI18n.t(window.AcuraI18n.getLang(), 'sa.whatsapp.prefill');
-    if (!msg || msg === 'sa.whatsapp.prefill') return;
+    const msg = window.AcuraI18n.t(window.AcuraI18n.getLang(), prefillKey);
+    if (!msg || msg === prefillKey) return;
     const number =
       (window.ACURA_WHATSAPP_CONTACT && window.ACURA_WHATSAPP_CONTACT.number) || '491749803699';
     const href = 'https://wa.me/' + number + '?text=' + encodeURIComponent(msg);
-    document.querySelectorAll('.sa-page .btn-whatsapp-solicitud, .sa-page .whatsapp-float, .sa-page .btn-whatsapp-secondary').forEach((el) => {
+    document.querySelectorAll('.' + pageClass + ' .btn-whatsapp-solicitud, .' + pageClass + ' .whatsapp-float, .' + pageClass + ' .btn-whatsapp-secondary').forEach((el) => {
       el.href = href;
     });
   }
 
-  function injectSetembroAmareloNav() {
-    if (!isSetembroAmareloPeriod()) return;
+  function injectCampaignNav({ href, key, attr, fallback }) {
     const menu = document.querySelector('.nav-dropdown-menu');
-    if (!menu || menu.querySelector('[data-sa-nav]')) return;
+    if (!menu || menu.querySelector('[' + attr + ']')) return;
     const li = document.createElement('li');
-    li.setAttribute('data-sa-nav', '1');
+    li.setAttribute(attr, '1');
     const a = document.createElement('a');
-    a.href = '/setembroamarelo';
-    a.setAttribute('data-i18n', 'nav.setembroAmarelo');
+    a.href = href;
+    a.setAttribute('data-i18n', key);
     a.textContent = window.AcuraI18n
-      ? window.AcuraI18n.t(window.AcuraI18n.getLang(), 'nav.setembroAmarelo')
-      : 'Setembro Amarelo';
-    if (pageSlugFromHref('/setembroamarelo') === currentPage) {
+      ? window.AcuraI18n.t(window.AcuraI18n.getLang(), key)
+      : fallback;
+    if (pageSlugFromHref(href) === currentPage) {
       a.classList.add('active');
     }
     li.appendChild(a);
@@ -307,16 +313,38 @@
 
   if (isSetembroAmareloPeriod()) {
     document.documentElement.classList.add('sa-is-september');
+    injectCampaignNav({
+      href: '/setembroamarelo',
+      key: 'nav.setembroAmarelo',
+      attr: 'data-sa-nav',
+      fallback: 'Setembro Amarelo',
+    });
   } else {
     document.documentElement.classList.remove('sa-is-september');
   }
-  injectSetembroAmareloNav();
-  applySetembroAmareloWhatsApp();
+  if (isOutubroRosaPeriod()) {
+    document.documentElement.classList.add('or-is-october');
+    injectCampaignNav({
+      href: '/outubrorosa',
+      key: 'nav.outubroRosa',
+      attr: 'data-or-nav',
+      fallback: 'Outubro Rosa',
+    });
+  } else {
+    document.documentElement.classList.remove('or-is-october');
+  }
+  applyCampaignWhatsApp('sa-page', 'sa.whatsapp.prefill');
+  applyCampaignWhatsApp('or-page', 'or.whatsapp.prefill');
   document.addEventListener('acura:langchange', () => {
-    const navLink = document.querySelector('[data-sa-nav] a');
-    if (navLink && window.AcuraI18n) {
-      navLink.textContent = window.AcuraI18n.t(window.AcuraI18n.getLang(), 'nav.setembroAmarelo');
+    const saNav = document.querySelector('[data-sa-nav] a');
+    if (saNav && window.AcuraI18n) {
+      saNav.textContent = window.AcuraI18n.t(window.AcuraI18n.getLang(), 'nav.setembroAmarelo');
     }
-    applySetembroAmareloWhatsApp();
+    const orNav = document.querySelector('[data-or-nav] a');
+    if (orNav && window.AcuraI18n) {
+      orNav.textContent = window.AcuraI18n.t(window.AcuraI18n.getLang(), 'nav.outubroRosa');
+    }
+    applyCampaignWhatsApp('sa-page', 'sa.whatsapp.prefill');
+    applyCampaignWhatsApp('or-page', 'or.whatsapp.prefill');
   });
 })();

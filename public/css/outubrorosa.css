@@ -1,0 +1,225 @@
+/* Outubro Rosa — pink accent on the shared campaign layout (.sa-* in setembroamarelo.css). */
+
+.or-page .sa-crisis {
+    border-bottom-color: #e07a9a;
+}
+
+.or-page .sa-crisis-inner a {
+    color: #f8c5d2;
+}
+
+.or-page .sa-crisis-inner a:hover {
+    color: #ffe4ec;
+}
+
+.or-page .sa-crisis-btn {
+    background: #e07a9a;
+    color: #3a1220;
+}
+
+.or-page .sa-crisis-btn:hover {
+    background: #ea94ad;
+    color: #3a1220;
+}
+
+.or-page .sa-crisis-btn--ghost {
+    background: transparent;
+    color: #f8c5d2;
+    border-color: rgba(248, 197, 210, 0.55);
+}
+
+.or-page .sa-crisis-btn--ghost:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffe4ec;
+}
+
+.or-page .sa-badge {
+    background: rgba(224, 122, 154, 0.18);
+    border-color: rgba(224, 122, 154, 0.45);
+    color: #f8c5d2;
+}
+
+.or-page .sa-hero-theme {
+    color: #f8c5d2;
+}
+
+.or-page .sa-ddi {
+    background: #fdeef2;
+    border-color: #e07a9a;
+}
+
+.or-page .sa-care-featured {
+    border-color: #e07a9a;
+}
+
+.or-page .sa-prof-kicker,
+.or-page .sa-prof-note a {
+    color: #f8c5d2;
+}
+
+.or-home-hero {
+    display: none;
+    margin-top: var(--header-height);
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    background:
+        radial-gradient(ellipse at 88% 12%, rgba(224, 122, 154, 0.34) 0%, transparent 46%),
+        linear-gradient(135deg, #3a1a2a 0%, #164e6c 52%, #1a3d4f 100%);
+}
+
+.or-home-hero::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #9b3d5c 0%, #f4b6c6 50%, #9b3d5c 100%);
+}
+
+html.or-is-october .or-home-hero {
+    display: block;
+}
+
+html.or-is-october .sa-home-hero {
+    display: none;
+}
+
+.or-home-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.75rem 2rem 3rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.or-home-hero-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #f8c5d2;
+    background: rgba(224, 122, 154, 0.18);
+    border: 1px solid rgba(248, 197, 210, 0.45);
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+}
+
+.or-home-hero-copy h2 {
+    font-size: clamp(1.85rem, 3.4vw, 2.55rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 0 0 0.85rem;
+    color: #fff;
+}
+
+.or-home-hero-lead {
+    margin: 0 0 0.85rem;
+    font-size: 1.08rem;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.92);
+    max-width: 36rem;
+}
+
+.or-home-hero-note {
+    margin: 0 0 1.35rem;
+    font-size: 0.98rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.82);
+    max-width: 36rem;
+}
+
+.or-home-hero-note a {
+    color: #f8c5d2;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.or-home-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.or-home-hero-cta {
+    background: #e07a9a;
+    color: #3a1220;
+    border: 1px solid #e07a9a;
+    font-weight: 700;
+}
+
+.or-home-hero-cta:hover {
+    background: #ea94ad;
+    color: #3a1220;
+}
+
+.or-home-hero-192 {
+    background: transparent;
+    color: #f8c5d2;
+    border: 1px solid rgba(248, 197, 210, 0.55);
+    font-weight: 700;
+}
+
+.or-home-hero-192:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffe4ec;
+}
+
+.or-home-hero-photo {
+    margin: 0;
+    border-radius: 22px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    box-shadow: 0 28px 50px rgba(0, 0, 0, 0.32);
+    border: 3px solid rgba(224, 122, 154, 0.55);
+    background: #3a1a2a;
+}
+
+.or-home-hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.consulta-ops-badge--or {
+    color: #9b3d5c;
+    background: #fdeef2;
+}
+
+.consulta-ops-card--or {
+    border-color: #e07a9a;
+}
+
+@media (max-width: 900px) {
+    .or-home-hero-inner {
+        grid-template-columns: 1fr;
+        padding: 1.75rem 1.25rem 2rem;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .or-home-hero-photo {
+        order: -1;
+        max-width: 420px;
+        margin: 0 auto;
+    }
+
+    .or-home-hero-lead,
+    .or-home-hero-note {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .or-home-hero-actions {
+        justify-content: center;
+    }
+}

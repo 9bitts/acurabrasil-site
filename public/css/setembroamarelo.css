@@ -353,7 +353,7 @@ html.sa-is-september .sa-home-hero {
     display: block;
 }
 
-html:not(.sa-is-september) .doacao-banner {
+html:not(.sa-is-september):not(.or-is-october) .doacao-banner {
     margin-top: var(--header-height);
 }
 

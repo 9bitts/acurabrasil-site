@@ -88,6 +88,8 @@
         var params = { link_url: el.getAttribute('href') || undefined };
         if (/setembroamarelo/i.test(window.location.pathname || '')) {
           params.campaign = 'setembro-amarelo';
+        } else if (/outubrorosa/i.test(window.location.pathname || '')) {
+          params.campaign = 'outubro-rosa';
         }
         trackEvent(track, params);
       }
