@@ -43,6 +43,11 @@
     color: #f8c5d2;
 }
 
+.or-page .sa-hero-media {
+    border-color: rgba(224, 122, 154, 0.55);
+    background: #3a1a2a;
+}
+
 .or-page .sa-ddi {
     background: #fdeef2;
     border-color: #e07a9a;
