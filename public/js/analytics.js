@@ -71,7 +71,7 @@
         var href = el.getAttribute('href') || '';
         if (href.indexOf('atendimento-humanitario') !== -1 || href.indexOf('consulta-venezuela') !== -1 || href.indexOf('solicitud-sos-venezuela') !== -1) {
           track = 'consulta_iniciada';
-        } else if (href.indexOf('app.doctor8.org/atendimentohumanitario') !== -1) {
+        } else if (href.indexOf('app.doctor8.org/atendimentohumanitario') !== -1 || href.indexOf('#pagar') !== -1) {
           track = 'consulta_iniciada';
         } else if (href.indexOf('tel:188') !== -1 || /cvv\.org\.br/i.test(href)) {
           track = 'cvv_188_clicado';

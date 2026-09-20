@@ -531,3 +531,90 @@ html:not(.sa-is-september):not(.or-is-october) .doacao-banner {
         margin: 0 auto;
     }
 }
+
+.sa-pay {
+    background: #fffdf3;
+}
+
+.sa-pay-card {
+    max-width: 640px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #f0e0a0;
+    border-radius: 16px;
+    padding: 1.75rem;
+    box-shadow: 0 8px 24px rgba(30, 50, 90, 0.06);
+}
+
+.sa-pay-price {
+    display: inline-block;
+    font-weight: 800;
+    color: #1e3a6e;
+    background: #ffe082;
+    border-radius: 999px;
+    padding: 0.2rem 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.sa-pay-grid {
+    display: grid;
+    gap: 0.9rem;
+}
+
+.sa-pay-grid label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-weight: 600;
+    color: #1e3a6e;
+    font-size: 0.92rem;
+}
+
+.sa-pay-grid input,
+.sa-pay-grid textarea {
+    font: inherit;
+    font-weight: 400;
+    border: 1px solid #d7d2c3;
+    border-radius: 10px;
+    padding: 0.7rem 0.85rem;
+    color: #1a2433;
+}
+
+.sa-pay-grid textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.sa-pay-type {
+    font-weight: 400;
+    color: #44506a;
+}
+
+.sa-pay-note,
+.sa-pay-status {
+    margin: 0.85rem 0 0;
+    font-size: 0.9rem;
+    color: #44506a;
+}
+
+.sa-pay-status--error {
+    color: #9b1c1c;
+}
+
+.sa-pay-submit {
+    margin-top: 0.5rem;
+}
+
+.consulta-care-type-card.is-selected,
+.consulta-care-type-btn.is-selected {
+    outline: 3px solid #e2b400;
+    outline-offset: 2px;
+}
+
+.sa-pay .form-honeypot {
+    position: absolute;
+    left: -9999px;
+    height: 0;
+    overflow: hidden;
+}
+
