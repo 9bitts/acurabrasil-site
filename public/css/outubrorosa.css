@@ -204,6 +204,10 @@ html.or-is-october .sa-home-hero {
     border-color: #e07a9a;
 }
 
+.consulta-ops-card--or .consulta-ops-card-photo {
+    border-bottom: 3px solid #e07a9a;
+}
+
 @media (max-width: 900px) {
     .or-home-hero-inner {
         grid-template-columns: 1fr;

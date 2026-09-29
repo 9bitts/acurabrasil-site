@@ -1173,14 +1173,14 @@ window.ACURA_I18N = {
     "consulta.ops.sa.btn": "Abrir la campaña →",
     "index.or.tag": "Octubre Rosa 2026",
     "index.or.title": "Cuidar también es prevenir",
-    "index.or.lead": "Consulta médica y psicológica gratuita, por telemedicina, para la salud de la mujer.",
+    "index.or.lead": "Consulta médica y psicológica por telemedicina, por R$ 100, para la salud de la mujer.",
     "index.or.text": "Esta página no sustituye mamografía ni emergencia. Ante riesgo de vida, llame al <a href=\"tel:192\">192</a>.",
     "index.or.btn": "Conocer la campaña →",
     "index.or.btn192": "Llamar al 192",
     "index.or.imgAlt": "Manos sosteniendo un lazo rosa del Octubre Rosa",
     "consulta.ops.or.badge": "Campaña",
     "consulta.ops.or.title": "Octubre Rosa",
-    "consulta.ops.or.text": "Orientación médica y escucha profesional para la salud de la mama.",
+    "consulta.ops.or.text": "Orientación médica y escucha por R$ 100 para la salud de la mama.",
     "consulta.ops.or.btn": "Abrir la campaña →"
   },
   "pt": {
@@ -2357,14 +2357,14 @@ window.ACURA_I18N = {
     "consulta.ops.sa.btn": "Abrir a campanha →",
     "index.or.tag": "Outubro Rosa 2026",
     "index.or.title": "Cuidar também é prevenir",
-    "index.or.lead": "Consulta médica e psicológica gratuita, por telemedicina, para a saúde da mulher.",
+    "index.or.lead": "Consulta médica e psicológica por telemedicina, por R$ 100, para a saúde da mulher.",
     "index.or.text": "Esta página não substitui mamografia nem emergência. Em risco de vida, ligue <a href=\"tel:192\">192</a>.",
     "index.or.btn": "Conhecer a campanha →",
     "index.or.btn192": "Ligar 192",
     "index.or.imgAlt": "Mãos sustentando um laço rosa do Outubro Rosa",
     "consulta.ops.or.badge": "Campanha",
     "consulta.ops.or.title": "Outubro Rosa",
-    "consulta.ops.or.text": "Orientação médica e escuta profissional para a saúde da mama.",
+    "consulta.ops.or.text": "Orientação médica e escuta por R$ 100 para a saúde da mama.",
     "consulta.ops.or.btn": "Abrir a campanha →"
   }
 };

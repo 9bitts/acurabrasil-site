@@ -21,6 +21,17 @@
     return document.documentElement.getAttribute('data-default-lang') === 'es' ? 'es' : 'pt';
   }
 
+  function careLabel(btn, fallback) {
+    if (!btn) return fallback;
+    var heading = btn.querySelector('h3');
+    if (!heading && btn.closest) {
+      var card = btn.closest('article');
+      if (card) heading = card.querySelector('h3');
+    }
+    var text = heading && heading.textContent ? heading.textContent.trim() : '';
+    return text || fallback;
+  }
+
   function setCareType(value, label) {
     var input = document.getElementById('sa-care-type');
     var hint = document.getElementById('sa-care-type-label');
@@ -47,14 +58,12 @@
 
     var initialType = form.careType.value || 'PSYCHOLOGIST';
     var initialBtn = document.querySelector('[data-sa-care="' + initialType + '"]');
-    var initialLabel = (initialBtn && initialBtn.querySelector('h3') && initialBtn.querySelector('h3').textContent) || initialType;
-    setCareType(initialType, initialLabel);
+    setCareType(initialType, careLabel(initialBtn, initialType));
 
     document.querySelectorAll('[data-sa-care]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var value = btn.getAttribute('data-sa-care');
-        var label = (btn.querySelector('h3') && btn.querySelector('h3').textContent) || value;
-        setCareType(value, label);
+        setCareType(value, careLabel(btn, value));
       });
     });
 
