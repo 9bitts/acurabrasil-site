@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="pt-BR" data-default-lang="pt">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>Confirmar inscripción — ACURABRASIL</title>
+  <title>Confirmar inscrição — ACURABRASIL</title>
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="ACURABRASIL">
-    <meta property="og:title" content="Confirmar inscripción — ACURABRASIL">
+    <meta property="og:title" content="Confirmar inscrição — ACURABRASIL">
     <meta property="og:description" content="">
     <meta property="og:url" content="https://www.acurabrasil.org/newsletter-confirm">
     <link rel="canonical" href="https://www.acurabrasil.org/newsletter-confirm">
@@ -17,7 +17,7 @@
     <meta property="og:image:alt" content="ACURABRASIL">
     <meta property="og:image:type" content="image/png">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Confirmar inscripción — ACURABRASIL">
+    <meta name="twitter:title" content="Confirmar inscrição — ACURABRASIL">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="https://www.acurabrasil.org/img/og-share.png">
   <link rel="stylesheet" href="css/style.css?v=44">
@@ -57,11 +57,11 @@
 <body>
   <main class="newsletter-confirm-page">
     <div class="newsletter-confirm-card">
-      <h1 id="confirm-title">Confirme su inscripción</h1>
-      <p id="confirm-text">Haga clic en el botón para confirmar su correo en el boletín de ACURABRASIL. El enlace expira en 48 horas.</p>
-      <button type="button" class="btn btn-verde" id="confirm-btn">Confirmar inscripción</button>
+      <h1 id="confirm-title">Confirme sua inscrição</h1>
+      <p id="confirm-text">Clique no botão para confirmar seu e-mail na newsletter da ACURABRASIL. O link expira em 48 horas.</p>
+      <button type="button" class="btn btn-verde" id="confirm-btn">Confirmar inscrição</button>
       <p class="newsletter-confirm-status info" id="confirm-status" hidden role="status" aria-live="polite"></p>
-      <p style="margin-top:1.5rem;"><a href="/">← Volver al inicio</a></p>
+      <p style="margin-top:1.5rem;"><a href="/">← Voltar ao início</a></p>
     </div>
   </main>
   <script>
@@ -70,14 +70,19 @@
       var token = params.get('token');
       var btn = document.getElementById('confirm-btn');
       var status = document.getElementById('confirm-status');
-      var lang = (document.documentElement.lang || 'es').toLowerCase();
-      var isPt = lang.indexOf('pt') === 0;
+      var lang = 'pt';
+      try { lang = localStorage.getItem('acura.lang') || 'pt'; } catch (e) {}
+      var isPt = lang !== 'es';
+      document.documentElement.lang = isPt ? 'pt-BR' : 'es';
 
-      if (isPt) {
-        document.getElementById('confirm-title').textContent = 'Confirme sua inscrição';
+      if (!isPt) {
+        document.title = 'Confirmar inscripción — ACURABRASIL';
+        document.getElementById('confirm-title').textContent = 'Confirme su inscripción';
         document.getElementById('confirm-text').textContent =
-          'Clique no botão para confirmar seu e-mail na newsletter da ACURABRASIL. O link expira em 48 horas.';
-        btn.textContent = 'Confirmar inscrição';
+          'Haga clic en el botón para confirmar su correo en el boletín de ACURABRASIL. El enlace expira en 48 horas.';
+        btn.textContent = 'Confirmar inscripción';
+        var back = document.querySelector('.newsletter-confirm-card a');
+        if (back) back.textContent = '← Volver al inicio';
       }
 
       if (!token) {

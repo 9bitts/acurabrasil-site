@@ -3,8 +3,8 @@
 
   const FALLBACK_WA = {
     number: (window.ACURA_WHATSAPP_CONTACT && window.ACURA_WHATSAPP_CONTACT.number) || '491749803699',
-    linkGeneral: 'https://wa.me/491749803699?text=Hola%2C%20necesito%20atenci%C3%B3n%20humanitaria%20gratuita%20de%20ACURABRASIL',
-    linkRegistro: 'https://wa.me/491749803699?text=Hola%2C%20necesito%20ayuda%20para%20registrarme%20en%20la%20atenci%C3%B3n%20humanitaria%20de%20ACURABRASIL',
+    linkGeneral: 'https://wa.me/491749803699?text=Ol%C3%A1%2C%20preciso%20de%20atendimento%20humanit%C3%A1rio%20gratuito%20da%20ACURABRASIL',
+    linkRegistro: 'https://wa.me/491749803699?text=Ol%C3%A1%2C%20preciso%20de%20ajuda%20para%20me%20cadastrar%20no%20atendimento%20humanit%C3%A1rio%20da%20ACURABRASIL',
   };
 
   const FALLBACK_SOLICITUD_MSG = {
@@ -19,7 +19,7 @@
     if (window.AcuraI18n?.getLang) {
       return window.AcuraI18n.getLang();
     }
-    return document.documentElement.lang?.startsWith('pt') ? 'pt' : 'es';
+    return document.documentElement.lang?.startsWith('es') ? 'es' : 'pt';
   }
 
   function i18n(key) {
@@ -41,7 +41,7 @@
     const fromI18n = i18n('sosve.whatsapp.solicitud.message');
     if (fromI18n && fromI18n !== 'sosve.whatsapp.solicitud.message') return fromI18n;
     const lang = getLang();
-    return FALLBACK_SOLICITUD_MSG[lang] || FALLBACK_SOLICITUD_MSG.es;
+    return FALLBACK_SOLICITUD_MSG[lang] || FALLBACK_SOLICITUD_MSG.pt;
   }
 
   // Solicitudes por cartão whatsapp-solicitud: el equipo de triaje las registra manualmente
@@ -113,7 +113,7 @@
   function renderScheduleBlock(container, info) {
     if (!container || !info) return;
 
-    const msg = getLang() === 'pt' ? info.outOfHoursMessage?.pt : info.outOfHoursMessage?.es;
+    const msg = getLang() === 'es' ? info.outOfHoursMessage?.es : info.outOfHoursMessage?.pt;
 
     if (info.isOpen) {
       const shifts = (info.shiftsToday || [])

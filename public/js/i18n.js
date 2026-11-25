@@ -1,6 +1,6 @@
 (function () {
   const STORAGE_KEY = 'acura.lang';
-  const DEFAULT_LANG = 'es';
+  const DEFAULT_LANG = 'pt';
 
   function getPageDefaultLang() {
     try {
@@ -37,12 +37,12 @@
   function t(lang, key) {
     const dict = window.ACURA_I18N;
     if (!dict) return key;
-    const value = dict[lang]?.[key] ?? dict.es?.[key] ?? dict.pt?.[key] ?? key;
+    const value = dict[lang]?.[key] ?? dict.pt?.[key] ?? dict.es?.[key] ?? key;
     return normalizeBrandText(value);
   }
 
   function apply(lang) {
-    if (!window.ACURA_I18N?.[lang] && !window.ACURA_I18N?.es) return;
+    if (!window.ACURA_I18N?.[lang]) return;
 
     document.documentElement.lang = lang === 'es' ? 'es-VE' : 'pt-BR';
 
@@ -61,7 +61,9 @@
     });
 
     document.querySelectorAll('[data-i18n-aria]').forEach((el) => {
-      el.setAttribute('aria-label', t(lang, el.getAttribute('data-i18n-aria')));
+      const value = t(lang, el.getAttribute('data-i18n-aria'));
+      el.setAttribute('aria-label', value);
+      if (el.tagName === 'IMG') el.alt = value;
     });
 
     document.querySelectorAll('[data-i18n-title]').forEach((el) => {
@@ -139,7 +141,7 @@
   }
 
   function dictReady(lang) {
-    return !!(window.ACURA_I18N?.[lang] || window.ACURA_I18N?.es || window.ACURA_I18N?.pt);
+    return !!window.ACURA_I18N?.[lang];
   }
 
   function start() {

@@ -25,9 +25,9 @@
       return window.AcuraI18nLoader.getLang();
     }
     try {
-      return localStorage.getItem('acura.lang') || 'es';
+      return localStorage.getItem('acura.lang') || 'pt';
     } catch (e) {
-      return 'es';
+      return 'pt';
     }
   }
 

@@ -10,12 +10,12 @@
   if (!group || !bodyEl || !checkbox || !assuntoSelect) return;
 
   function getLang() {
-    return window.AcuraI18n?.getLang?.() === 'pt' ? 'pt' : 'es';
+    return window.AcuraI18n?.getLang?.() === 'es' ? 'es' : 'pt';
   }
 
   function renderTermsBody() {
     const lang = getLang();
-    const html = window.VolunteerTermsContent?.[lang] || window.VolunteerTermsContent?.es || '';
+    const html = window.VolunteerTermsContent?.[lang] || window.VolunteerTermsContent?.pt || '';
     bodyEl.innerHTML = html;
   }
 

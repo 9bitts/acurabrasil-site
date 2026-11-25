@@ -26,7 +26,7 @@
   function metaFromI18n(lang, titleKey, descKey) {
     var dict = window.ACURA_I18N;
     if (!dict) return { title: document.title, description: '' };
-    var d = dict[lang] || dict.es || {};
+    var d = dict[lang] || dict.pt || {};
     return {
       title: d[titleKey] || document.title,
       description: d[descKey] || '',
@@ -103,7 +103,7 @@
     var cfg = isCampaignDetail ? null : PAGE_META[slug];
     var canonical = canonicalFromLocation();
 
-    var lang = 'es';
+    var lang = 'pt';
     try {
       if (window.AcuraI18nLoader && window.AcuraI18nLoader.getLang) {
         lang = window.AcuraI18nLoader.getLang();

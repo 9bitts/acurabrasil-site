@@ -2,7 +2,7 @@
   'use strict';
 
   var STORAGE_KEY = 'acura.lang';
-  var DEFAULT_LANG = 'es';
+  var DEFAULT_LANG = 'pt';
   var ASSET_V = '50';
   var loadPromises = {};
 

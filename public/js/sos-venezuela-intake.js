@@ -130,7 +130,7 @@
   }
 
   function getLang() {
-    return window.AcuraI18n?.getLang?.() || 'es';
+    return window.AcuraI18n?.getLang?.() || 'pt';
   }
 
   function t(key) {

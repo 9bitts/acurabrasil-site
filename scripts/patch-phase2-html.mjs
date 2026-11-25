@@ -9,11 +9,11 @@ const FONT_PRELOAD = `    <link rel="preload" href="fonts/inter-latin-400-normal
     <link rel="preload" href="fonts/inter-latin-600-normal.woff2?v=${ASSET_V}" as="font" type="font/woff2" crossorigin>
 `;
 
-const SKIP_LINK = `    <a class="skip-link" href="#main-content" data-i18n="common.skipLink">Ir al contenido principal</a>
+const SKIP_LINK = `    <a class="skip-link" href="#main-content" data-i18n="common.skipLink">Ir para o conteúdo principal</a>
 `;
 
 const LANG_BOOT = `    <script src="js/i18n-loader.js?v=${ASSET_V}"></script>
-    <script>try{var l=localStorage.getItem('acura.lang')||'es';document.documentElement.lang=l==='es'?'es-VE':'pt-BR';}catch(e){}</script>
+    <script>try{var l=localStorage.getItem('acura.lang')||'pt';document.documentElement.lang=l==='es'?'es-VE':'pt-BR';}catch(e){}</script>
 `;
 
 function wrapLogoImg(html) {

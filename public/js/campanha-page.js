@@ -47,20 +47,18 @@
       return window.AcuraI18nLoader.getLang();
     }
     try {
-      return localStorage.getItem('acura.lang') || 'es';
+      return localStorage.getItem('acura.lang') || 'pt';
     } catch (e) {
-      return 'es';
+      return 'pt';
     }
   }
 
   function i18nReady() {
     if (window.__ACURA_I18N_READY__) return true;
-    if (window.ACURA_I18N_ES || window.ACURA_I18N_PT) return true;
     var current = lang();
-    return !!(
-      window.ACURA_I18N &&
-      (window.ACURA_I18N[current] || window.ACURA_I18N.es || window.ACURA_I18N.pt)
-    );
+    if (current === 'pt' && window.ACURA_I18N_PT) return true;
+    if (current === 'es' && window.ACURA_I18N_ES) return true;
+    return !!(window.ACURA_I18N && window.ACURA_I18N[current]);
   }
 
   function whenI18nReady(cb) {
